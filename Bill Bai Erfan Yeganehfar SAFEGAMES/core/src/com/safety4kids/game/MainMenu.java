@@ -14,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 /**
+ * This class displays the main menu which has buttons to allow the user to visit different stages such as Instructions,
+ * first level, or exit.
  *
  * @version 3.0, 2019-05-28
  * @author Bill Bai, Erfan Yeganehfar
@@ -23,6 +25,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
  *  Bill Bai: Completed entire class. Time spent: 2 hours.
  */
 public class MainMenu implements Screen {
+
     SpriteBatch batch;
     Texture img;
     Texture backgroundImg;
@@ -96,11 +99,6 @@ public class MainMenu implements Screen {
     }
 
     @Override
-    public void show() {
-        Gdx.input.setInputProcessor(stage);
-    }
-
-    @Override
     @SuppressWarnings("Duplicates")
     public void render(float delta) {
         Gdx.gl.glClearColor(255, 255, 255, 1);
@@ -114,6 +112,12 @@ public class MainMenu implements Screen {
         stage.addActor(exitBtn);
         stage.addActor(instructionsBtn);
         stage.draw();
+    }
+
+
+    @Override
+    public void show() {
+
     }
 
     @Override
