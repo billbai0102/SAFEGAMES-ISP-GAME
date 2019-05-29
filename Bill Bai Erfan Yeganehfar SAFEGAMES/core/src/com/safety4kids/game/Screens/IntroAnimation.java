@@ -1,4 +1,4 @@
-package com.safety4kids.game;
+package com.safety4kids.game.Screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;

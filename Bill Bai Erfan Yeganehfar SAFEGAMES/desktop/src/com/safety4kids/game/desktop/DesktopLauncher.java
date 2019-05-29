@@ -2,7 +2,7 @@ package com.safety4kids.game.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.safety4kids.game.Start;
+import com.safety4kids.game.Safety4Kids;
 
 /**
  * @version 3.0, 2019-05-28
@@ -19,6 +19,6 @@ public class DesktopLauncher {
 		config.height = 900; //This is the height of the output window.
 		config.width = 900; //This is the width of the output window.
 		config.forceExit = false; //This allows the application to fully close, without running in background when closed.
-		new LwjglApplication(new Start(), config); //Starts the game.
+		new LwjglApplication(new Safety4Kids(), config); //Starts the game.
 	}
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="240" height="29" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="1">
+ <tileset firstgid="1" source="phase-2.tsx"/>
+ <layer id="1" name="Background" width="240" height="29">
+  <data encoding="base64" compression="zlib">
+   eJztnGtWUzEUhYPz8YGtVp2MglJFnQ9o0fmAFp2P+NhdiyzTcE6Sm6bk9LK7+P70o7lJyk7ShN6Jc24KnoCnYAaegefgBZjQ09Ob9UdgDt6Cd+AYvAcfwEf6Ln6aIXwvLdaf/vb8CTgFn8BnsABn4Av4St/FzxPk8myh/vS358/BBfgGvoMluAQ/wE/6Lv40QUmmwzxbbB99O/8LXIHf4A/4C9wefsC9Pfoe/iJBSaa1LFtpH307fx88AA/BI7APHoMJmNJ38VdOpyTTJVm23H76cv8SvAIH4BC8Bm/AEZjTd/HxeLvas/CPkkwPzbK19tOX+9773/Q3fZzfxfXz/uEz6zOZyrOUZSnDltpPz/OjXfZxfpdufQ5217/jMxnnMZfl3Hzcu/30PD/adZ+bg1cPn0ltTnVOznJpji33Dz3Pjyx7bQ6eufVshhn2WdTOj0pyHL7Wcv/Q8/zIso+f83PwsVvPcZjhFdI8Gpel5Th+neX+oef5kXUvzcELJccz939PS5pLtfLDHEvZt9w/9P33v+l1L83BSyXHcZalDGvX9zmWXmO5f+j773/Tp72UYSnHqSx7cteX1tC920/P86Mx+FyOU1n25K6vraEttJ+e50dj8UOz7MmVr62hrbWfnudHY/BajuMse0rKl9bQVttP33//m76NT2XZU1K+38NO/T+YxfbfVd97/5vell/9rcTrNUv1o+f50Rj9jfvqbFB+vF6z0D56nh+N2avf860oP16vWWgfPc+PxuxL76djtf70PD+6yz4kd7+7GsIxwGL7d93Xfv+r9/43fRsfomW5lk2yrtW/pizL/b+pL+nnsC94fjQuH6JluZaheQ/Xelr9W40b27w/X80YU3v9kn6Wrt17/5t+u/e/i+fmGobmPVzrafVvNW60+nwgUTNe1b5/Jf0sXbv3/jf9dn08N9cwNO/hWlGrX6txo8XnA42a8ar2/SvpZ+navfe/6e37oXkP14pa+a3GjRafDzRqxqtN+r+mP/4BZZajsA==
+  </data>
+ </layer>
+ <layer id="2" name="Graphic layer" width="240" height="29">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC8GbMAAAQ==
+  </data>
+ </layer>
+ <objectgroup id="3" name="Ground"/>
+ <objectgroup id="4" name="Coins"/>
+ <objectgroup id="5" name="Pipes"/>
+</map>
