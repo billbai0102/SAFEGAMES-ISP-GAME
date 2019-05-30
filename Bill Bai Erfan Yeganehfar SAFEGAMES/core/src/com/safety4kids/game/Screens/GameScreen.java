@@ -6,6 +6,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -17,6 +19,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Entities.MainPlayer;
@@ -27,6 +30,7 @@ import sun.applet.Main;
 
 public class GameScreen implements Screen {
     private Safety4Kids game;
+    private SpriteBatch batch;
     private OrthographicCamera gamecam;
     //
     private Viewport gamePort;
@@ -45,12 +49,14 @@ public class GameScreen implements Screen {
 
     public GameScreen(Safety4Kids game){
         this.game = game;
+        batch = new SpriteBatch();
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(Safety4Kids.V_WIDTH / Safety4Kids.PPM, Safety4Kids.V_HEIGHT / Safety4Kids.PPM, gamecam);
-        hud = new Hud(game.batch);
+        hud = new Hud(batch);
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("core/assets/level1.tmx");
+        //fixBleeding(map);
         renderer = new OrthogonalTiledMapRenderer(map, 1/ Safety4Kids.PPM);
         //sets the view point of the Orthographic Camera to better use of the 4 quadrants within a 2d grid system
         gamecam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
@@ -68,6 +74,17 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
 
+    }
+
+    public static void fixBleeding(TextureRegion region) {
+        float fix = 0.01f;
+        float x = region.getRegionX();
+        float y = region.getRegionY();
+        float width = region.getRegionWidth();
+        float height = region.getRegionHeight();
+        float invTexWidth = 1f / region.getTexture().getWidth();
+        float invTexHeight = 1f / region.getTexture().getHeight();
+        region.setRegion((x + fix) * invTexWidth, (y + fix) * invTexHeight, (x + width - fix) * invTexWidth, (y + height - fix) * invTexHeight); // Trims Region
     }
 
     public void handleInput(float dt) {
@@ -111,7 +128,7 @@ public class GameScreen implements Screen {
         b2dr.render(world,gamecam.combined);
 
         //shows the screen based on the Camera with the hud
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
     }
 

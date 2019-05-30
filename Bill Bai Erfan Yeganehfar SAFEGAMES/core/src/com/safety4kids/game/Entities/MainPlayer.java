@@ -21,8 +21,10 @@ public class MainPlayer extends Sprite {
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
         FixtureDef fdef = new FixtureDef();
-        CircleShape shape = new CircleShape();
-        shape.setRadius(10/ Safety4Kids.PPM);
+
+        PolygonShape shape = new PolygonShape();
+
+        shape.setAsBox(7f/Safety4Kids.PPM,12f/Safety4Kids.PPM);
 
         fdef.shape = shape;
         b2body.createFixture(fdef);

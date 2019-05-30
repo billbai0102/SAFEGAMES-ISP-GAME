@@ -3,6 +3,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.safety4kids.game.Screens.GameScreen;
+import com.safety4kids.game.Screens.IntroAnimation;
 import com.safety4kids.game.Screens.MainMenu;
 
 /**
@@ -18,7 +19,6 @@ import com.safety4kids.game.Screens.MainMenu;
  *  Erfan Yeganehfar: Added overrided methods and components within the constructor: 1.5hrs 2019-05-28
  */
 public class Safety4Kids extends Game {
-    public SpriteBatch batch;
     public static final int V_WIDTH = 450;
     public static final int V_HEIGHT = 450;
     public static final float PPM = 100f;
@@ -68,8 +68,7 @@ public class Safety4Kids extends Game {
                 });
             }
         }).start();*/
-        batch = new SpriteBatch();
-        setScreen(new GameScreen(this));
+        setScreen(new IntroAnimation(this));
 
 
     }

@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Screens.Instructions;
 
 /**
@@ -56,6 +57,8 @@ public class MainMenu implements Screen {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Starting level 1...");
+
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new GameScreen(new Safety4Kids()));
             }
 
             @Override
