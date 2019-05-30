@@ -17,7 +17,7 @@ public class MainPlayer extends Sprite {
 
     public void definePlayer(){
         BodyDef bdef = new BodyDef();
-        bdef.position.set(132 / Safety4Kids.PPM,340/ Safety4Kids.PPM);
+        bdef.position.set(500 / Safety4Kids.PPM,340/ Safety4Kids.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
         FixtureDef fdef = new FixtureDef();

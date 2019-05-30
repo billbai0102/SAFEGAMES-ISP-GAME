@@ -21,7 +21,7 @@ public class Safety4Kids extends Game {
     public SpriteBatch batch;
     public static final int V_WIDTH = 450;
     public static final int V_HEIGHT = 450;
-    public static final float PPM = 120;
+    public static final float PPM = 100f;
 
     /**
      * This variable represents the minimum time taken to startup the game, before going to the main menu.

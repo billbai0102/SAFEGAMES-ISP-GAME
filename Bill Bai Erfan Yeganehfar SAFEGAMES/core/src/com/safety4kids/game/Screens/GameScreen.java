@@ -40,6 +40,7 @@ public class GameScreen implements Screen {
     private World world;
     private Box2DDebugRenderer b2dr;
 
+    //Instance of the main character
     private MainPlayer player;
 
     public GameScreen(Safety4Kids game){
@@ -84,7 +85,7 @@ public class GameScreen implements Screen {
 
         world.step(1/60f, 6, 2);
 
-        gamecam.position.x = player.b2body.getPosition().x;
+        gamecam.position.x = (float) Math.round(player.b2body.getPosition().x * 100f) / 100f;
         //gamecam.position.y = player.b2body.getPosition().y;
 
 
@@ -98,9 +99,11 @@ public class GameScreen implements Screen {
     public void render(float delta) {
         //update is separated from the render logic
         update(delta);
+
         //Clears the game screen
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         //Renders the Game map
         renderer.render();
 
