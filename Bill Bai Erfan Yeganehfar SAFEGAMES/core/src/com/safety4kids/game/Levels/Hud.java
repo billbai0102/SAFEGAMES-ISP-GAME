@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Safety4Kids;
@@ -17,7 +18,7 @@ import com.safety4kids.game.Safety4Kids;
  * @version 1.0
  * the Hud class displays current game information to the player using stages and Scene2D
  */
-public class Hud {
+public class Hud implements Disposable {
     public Stage stage;
     private Viewport viewport;
     private  Integer worldTimer;
@@ -70,4 +71,8 @@ public class Hud {
 
     }
 
+    @Override
+    public void dispose() {
+        stage.dispose();
+    }
 }

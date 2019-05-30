@@ -22,6 +22,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.Levels.Hud;
 import com.safety4kids.game.Safety4Kids;
+import com.safety4kids.game.Utils.Box2WorldCreator;
 import sun.applet.Main;
 
 public class GameScreen implements Screen {
@@ -55,48 +56,12 @@ public class GameScreen implements Screen {
 
         world = new World(new Vector2(0,-10),true);
         b2dr = new Box2DDebugRenderer();
+
+        //Generates the Box2D world for the objects within the Tile Map
+        new Box2WorldCreator(world, map);
+
+        //The player is created inside of the Box2D world
         player = new MainPlayer(world);
-
-        BodyDef bdef = new BodyDef();
-        PolygonShape shape = new PolygonShape();
-        FixtureDef fdef = new FixtureDef();
-        Body body;
-
-        for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX()+rect.getWidth()/2)/ Safety4Kids.PPM, (rect.getY() + rect.getHeight() / 2)/ Safety4Kids.PPM);
-            body = world.createBody(bdef);
-
-            shape.setAsBox(rect.getWidth()/2/ Safety4Kids.PPM,rect.getHeight()/2/ Safety4Kids.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-        }
-
-        for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX()+rect.getWidth()/2)/ Safety4Kids.PPM, (rect.getY() + rect.getHeight() / 2)/ Safety4Kids.PPM);
-            body = world.createBody(bdef);
-
-            shape.setAsBox(rect.getWidth()/2/ Safety4Kids.PPM,rect.getHeight()/2/ Safety4Kids.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-        }
-
-        for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)){
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX()+rect.getWidth()/2)/ Safety4Kids.PPM, (rect.getY() + rect.getHeight() / 2)/ Safety4Kids.PPM);
-            body = world.createBody(bdef);
-
-            shape.setAsBox(rect.getWidth()/2/ Safety4Kids.PPM,rect.getHeight()/2/ Safety4Kids.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-        }
 
     }
     @Override
@@ -169,6 +134,10 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        map.dispose();
+        renderer.dispose();
+        world.dispose();
+        b2dr.dispose();
+        hud.dispose();
     }
 }
