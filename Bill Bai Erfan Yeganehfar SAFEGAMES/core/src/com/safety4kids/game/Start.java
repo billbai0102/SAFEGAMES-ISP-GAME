@@ -2,6 +2,7 @@ package com.safety4kids.game;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
+import com.safety4kids.game.Screens.IntroAnimation;
 
 /**
  * This class is the entry point to the game. It is called by DesktopLauncher, and first plays a splash screen before
