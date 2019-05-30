@@ -49,7 +49,7 @@ public class MyOrthogonalTiledMapRenderer extends BatchTiledMapRenderer {
     }
 
     public static void fixBleeding(TextureRegion region) {
-        float fix = 0.01f;
+        float fix = 0.03f;
         float x = region.getRegionX();
         float y = region.getRegionY();
         float width = region.getRegionWidth();
@@ -64,6 +64,10 @@ public class MyOrthogonalTiledMapRenderer extends BatchTiledMapRenderer {
 
     }
 
+    /**
+     *
+     * @param layer the specific tile map layer to be rendered
+     */
     @Override
     public void renderTileLayer (TiledMapTileLayer layer) {
         final Color batchColor = batch.getColor();
