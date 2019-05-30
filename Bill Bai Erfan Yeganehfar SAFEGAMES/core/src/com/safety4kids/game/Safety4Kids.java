@@ -68,7 +68,7 @@ public class Safety4Kids extends Game {
                 });
             }
         }).start();*/
-        setScreen(new IntroAnimation(this));
+        setScreen(new GameScreen(this));
 
 
     }

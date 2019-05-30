@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.objects.TextureMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -26,6 +27,7 @@ import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.Levels.Hud;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.Box2WorldCreator;
+import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
 import sun.applet.Main;
 
 public class GameScreen implements Screen {
@@ -47,6 +49,9 @@ public class GameScreen implements Screen {
     //Instance of the main character
     private MainPlayer player;
 
+
+    private TiledMapTileLayer tiledMapLayer;
+    private MyOrthogonalTiledMapRenderer tiledMapRenderer;
     public GameScreen(Safety4Kids game){
         this.game = game;
         batch = new SpriteBatch();
@@ -54,9 +59,13 @@ public class GameScreen implements Screen {
         gamePort = new FitViewport(Safety4Kids.V_WIDTH / Safety4Kids.PPM, Safety4Kids.V_HEIGHT / Safety4Kids.PPM, gamecam);
         hud = new Hud(batch);
 
-        mapLoader = new TmxMapLoader();
-        map = mapLoader.load("core/assets/level1.tmx");
-        //fixBleeding(map);
+       //mapLoader = new TmxMapLoader();
+       //map = mapLoader.load("core/assets/level1.tmx");
+
+        map = new TmxMapLoader().load("core/assets/level1.tmx");
+        tiledMapRenderer = new MyOrthogonalTiledMapRenderer(map, 1/32f);
+        //tiledMapLayer = (TiledMapTileLayer)map.getLayers().get(0);
+
         renderer = new OrthogonalTiledMapRenderer(map, 1/ Safety4Kids.PPM);
         //sets the view point of the Orthographic Camera to better use of the 4 quadrants within a 2d grid system
         gamecam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
@@ -110,6 +119,8 @@ public class GameScreen implements Screen {
         gamecam.update();
         //sets the view of the renderer to the games orthographic camera
         renderer.setView(gamecam);
+        tiledMapRenderer.setView(gamecam);
+        tiledMapRenderer.render();
     }
 
     @Override
