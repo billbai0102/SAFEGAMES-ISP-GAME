@@ -5,21 +5,34 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.objects.TextureMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.Levels.Hud;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.Box2WorldCreator;
+import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
+import sun.applet.Main;
 
 public class GameScreen implements Screen {
     private Safety4Kids game;
+    private SpriteBatch batch;
     private OrthographicCamera gamecam;
     //
     private Viewport gamePort;
@@ -33,16 +46,26 @@ public class GameScreen implements Screen {
     private World world;
     private Box2DDebugRenderer b2dr;
 
+    //Instance of the main character
     private MainPlayer player;
 
+
+    private TiledMapTileLayer tiledMapLayer;
+    private MyOrthogonalTiledMapRenderer tiledMapRenderer;
     public GameScreen(Safety4Kids game){
         this.game = game;
+        batch = new SpriteBatch();
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(Safety4Kids.V_WIDTH / Safety4Kids.PPM, Safety4Kids.V_HEIGHT / Safety4Kids.PPM, gamecam);
-        hud = new Hud(game.batch);
+        hud = new Hud(batch);
 
-        mapLoader = new TmxMapLoader();
-        map = mapLoader.load("core/assets/level1.tmx");
+        //mapLoader = new TmxMapLoader();
+        //map = mapLoader.load("core/assets/level1.tmx");
+
+        map = new TmxMapLoader().load("core/assets/level1.tmx");
+        tiledMapRenderer = new MyOrthogonalTiledMapRenderer(map, 1/32f);
+        //tiledMapLayer = (TiledMapTileLayer)map.getLayers().get(0);
+
         renderer = new OrthogonalTiledMapRenderer(map, 1/ Safety4Kids.PPM);
         //sets the view point of the Orthographic Camera to better use of the 4 quadrants within a 2d grid system
         gamecam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
@@ -62,9 +85,20 @@ public class GameScreen implements Screen {
 
     }
 
+    public static void fixBleeding(TextureRegion region) {
+        float fix = 0.01f;
+        float x = region.getRegionX();
+        float y = region.getRegionY();
+        float width = region.getRegionWidth();
+        float height = region.getRegionHeight();
+        float invTexWidth = 1f / region.getTexture().getWidth();
+        float invTexHeight = 1f / region.getTexture().getHeight();
+        region.setRegion((x + fix) * invTexWidth, (y + fix) * invTexHeight, (x + width - fix) * invTexWidth, (y + height - fix) * invTexHeight); // Trims Region
+    }
+
     public void handleInput(float dt) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
-            player.b2body.applyLinearImpulse(new Vector2(0, 3.5f), player.b2body.getWorldCenter(), true);
+            player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
             player.b2body.applyLinearImpulse(new Vector2(0.1f, 0),player.b2body.getWorldCenter(), true);
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
@@ -77,7 +111,7 @@ public class GameScreen implements Screen {
 
         world.step(1/60f, 6, 2);
 
-        gamecam.position.x = player.b2body.getPosition().x;
+        gamecam.position.x = (float) Math.round(player.b2body.getPosition().x * 100f) / 100f;
         //gamecam.position.y = player.b2body.getPosition().y;
 
 
@@ -85,15 +119,19 @@ public class GameScreen implements Screen {
         gamecam.update();
         //sets the view of the renderer to the games orthographic camera
         renderer.setView(gamecam);
+        tiledMapRenderer.setView(gamecam);
+        tiledMapRenderer.render();
     }
 
     @Override
     public void render(float delta) {
         //update is separated from the render logic
         update(delta);
+
         //Clears the game screen
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         //Renders the Game map
         renderer.render();
 
@@ -101,7 +139,7 @@ public class GameScreen implements Screen {
         b2dr.render(world,gamecam.combined);
 
         //shows the screen based on the Camera with the hud
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
     }
 
