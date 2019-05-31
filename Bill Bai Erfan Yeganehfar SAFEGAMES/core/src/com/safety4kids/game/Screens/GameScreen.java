@@ -74,6 +74,8 @@ public class GameScreen implements Screen {
         gamePort = new FitViewport(V_WIDTH / PPM, V_HEIGHT / PPM, gamecam);
 
         hud = new Hud(batch);
+        //mapLoader = new TmxMapLoader();
+        //map = mapLoader.load("core/assets/level1.tmx");
 
         map = new TmxMapLoader().load("core/assets/level1.tmx");
         tiledMapRenderer = new MyOrthogonalTiledMapRenderer(map, 1/PPM);
