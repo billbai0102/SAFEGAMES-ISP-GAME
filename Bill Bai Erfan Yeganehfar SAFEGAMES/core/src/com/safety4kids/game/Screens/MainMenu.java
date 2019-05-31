@@ -23,7 +23,7 @@ import com.safety4kids.game.Safety4Kids;
  * Ms. Krasteva
  *
  * Modifications:
- * 3.1 Bill Bai: (2019-05-30) Recreated background, rearranged buttons. -- 0.5hrs
+ * 3.1 Bill Bai: (2019-05-30) Recreated background, rearranged and restyled buttons. -- 0.5hrs
  */
 public class MainMenu implements Screen {
 
