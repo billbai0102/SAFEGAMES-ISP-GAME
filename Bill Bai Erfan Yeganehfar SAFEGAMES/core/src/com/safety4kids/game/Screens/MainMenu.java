@@ -51,7 +51,6 @@ public class MainMenu implements Screen {
         gamePort = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), gamecam);
 
         batch = new SpriteBatch();
-        img = new Texture("core/assets/badlogic.jpg");
         backgroundImg = new Texture("core/assets/MainMenuBg.png");
         Gdx.input.setInputProcessor(stage);
         skin = new Skin(Gdx.files.internal("core/skin/flat-earth-ui.json"));
@@ -117,7 +116,7 @@ public class MainMenu implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch = new SpriteBatch();
         batch.begin();
-        batch.draw(backgroundImg, 0, 0);
+        batch.draw(backgroundImg, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
 
         stage.addActor(startBtn);
