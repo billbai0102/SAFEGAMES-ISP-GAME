@@ -68,9 +68,6 @@ public class Level2Screen implements Screen {
         world = new World(new Vector2(0,CONST_GRAVITY),true);
         b2dr = new Box2DDebugRenderer();
 
-        //Generates the Box2D world for the objects within the Tile Map
-        new Box2DCollisionCreator(world, map);
-
 
         player = new MainPlayer(world);
     }

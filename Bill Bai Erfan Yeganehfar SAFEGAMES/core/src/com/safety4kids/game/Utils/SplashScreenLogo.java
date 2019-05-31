@@ -1,4 +1,4 @@
-package com.safety4kids.game;
+package com.safety4kids.game.Utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
