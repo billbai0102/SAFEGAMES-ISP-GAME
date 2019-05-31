@@ -35,6 +35,7 @@ import static com.safety4kids.game.Safety4Kids.*;
  * 3.3 Erfan Yeg: (2019-05-29) Created box2d bodies and fixtures and added them to the box2d world, aka collision detection,
  * Added the main player body to the world as well as input handling. -- 2hr
  * 3.4 Bill Bai: (2019-05-30) Cleaned up code, by removing unused variables. -- 15mins
+ * 3.5 Bill Bai: (2019-05-30) Edited the TiledMap for the game, to better suit the constricts. -- 0.5hr
  */
 public class GameScreen implements Screen {
 
