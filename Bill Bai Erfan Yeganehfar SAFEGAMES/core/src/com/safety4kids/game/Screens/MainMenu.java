@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -11,7 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Safety4Kids;
 
 /**
@@ -34,6 +37,8 @@ public class MainMenu implements Screen {
     Skin skin;
     TextButton instructionsBtn;
     TextButton exitBtn;
+    private Viewport gamePort;
+    private OrthographicCamera gamecam;
 
     Stage stage;
     Game game;
@@ -41,6 +46,9 @@ public class MainMenu implements Screen {
     public MainMenu(Game aGame) {
         this.game = aGame;
         stage = new Stage(new ScreenViewport());
+        gamecam = new OrthographicCamera();
+
+        gamePort = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), gamecam);
 
         batch = new SpriteBatch();
         img = new Texture("core/assets/badlogic.jpg");
@@ -57,7 +65,7 @@ public class MainMenu implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Starting level 1...");
 
-                ((Game)Gdx.app.getApplicationListener()).setScreen(new GameScreen(new Safety4Kids()));
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new Level1Screen(new Safety4Kids()));
             }
 
             @Override
@@ -126,6 +134,7 @@ public class MainMenu implements Screen {
 
     @Override
     public void resize(int width, int height) {
+        gamePort.update(width, height);
 
     }
 

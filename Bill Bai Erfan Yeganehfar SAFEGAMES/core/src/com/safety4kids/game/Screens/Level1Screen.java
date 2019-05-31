@@ -34,10 +34,10 @@ import static com.safety4kids.game.Safety4Kids.*;
  * 3.2 Erfan Yeg: (2019-05-29) created + added the basic tile map and created the tilemap renderer -- 1hr
  * 3.3 Erfan Yeg: (2019-05-29) Created box2d bodies and fixtures and added them to the box2d world, aka collision detection,
  * Added the main player body to the world as well as input handling. -- 2hr
- * 3.4 Bill Bai: (2019-05-30) Cleaned up code, by removing unused variables. -- 15mins
- * 3.5 Bill Bai: (2019-05-30) Edited the TiledMap for the game, to better suit the constricts. -- 0.5hr
+ * 3.4 Erfan Yeg: (2019-05-30) Cleaned code up, made a new class for loading in objects and fixed tilemap bleeding as well
+ * as better mouvment. -- 1.5hrs
  */
-public class GameScreen implements Screen {
+public class Level1Screen implements Screen {
 
     //
     private Safety4Kids game;
@@ -64,7 +64,7 @@ public class GameScreen implements Screen {
      * and finally the main player.
      * @param game The Safety4Kids Game that this level screen is displayed on
      */
-    public GameScreen(Safety4Kids game){
+    public Level1Screen(Safety4Kids game){
         this.game = game;
 
         batch = new SpriteBatch();
@@ -105,7 +105,7 @@ public class GameScreen implements Screen {
             player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0),player.b2body.getWorldCenter(), true);
     }
 
-    public void update(){
+    public void update(float dt){
         //user input handler
         handleInput();
 
@@ -132,7 +132,7 @@ public class GameScreen implements Screen {
     @Override
     public void render(float delta) {
         //update is separated from the render logic
-        update();
+        update(Gdx.graphics.getDeltaTime());
         Gdx.graphics.setTitle(TITLE + " -- FPS: " + Gdx.graphics.getFramesPerSecond());
 
         //Clears the game screen

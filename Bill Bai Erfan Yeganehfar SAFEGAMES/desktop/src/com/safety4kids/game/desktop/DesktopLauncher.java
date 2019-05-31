@@ -5,12 +5,13 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.safety4kids.game.Safety4Kids;
 
 /**
- * @version 3.0, 2019-05-28
+ * @version 3.1, 2019-05-28
  * @author Bill Bai, Erfan Yeganehfar
  * Ms. Krasteva
  *
  * Modifications:
- *  Bill Bai: Completed entire class. Time spent: 7 minutes.
+ *  3.0 Bill Bai: Completed entire class. Time spent: -- 7 mins.
+ *  3.1 Erfan Yeg: (2019-05-29) better naming conventions/ programming organization with static finals -- 5 mins
  */
 public class DesktopLauncher {
 	public static void main (String[] arg) {
