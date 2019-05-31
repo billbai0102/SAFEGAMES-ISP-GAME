@@ -13,7 +13,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.safety4kids.game.Safety4Kids;
-import com.safety4kids.game.Screens.Instructions;
 
 /**
  * This class displays the main menu which has buttons to allow the user to visit different stages such as Instructions,
@@ -24,7 +23,7 @@ import com.safety4kids.game.Screens.Instructions;
  * Ms. Krasteva
  *
  * Modifications:
- *  Bill Bai: Completed entire class. Time spent: 2 hours.
+ * 3.1 Bill Bai: (2019-05-30) Recreated background, rearranged and restyled buttons. -- 0.5hrs
  */
 public class MainMenu implements Screen {
 
@@ -45,14 +44,14 @@ public class MainMenu implements Screen {
 
         batch = new SpriteBatch();
         img = new Texture("core/assets/badlogic.jpg");
-        backgroundImg = new Texture("core/assets/MainBackground.jpg");
+        backgroundImg = new Texture("core/assets/MainMenuBg.png");
         Gdx.input.setInputProcessor(stage);
         skin = new Skin(Gdx.files.internal("core/skin/flat-earth-ui.json"));
 
         //start btn
         startBtn = new TextButton("START", skin);
-        startBtn.setSize(100, 100);
-        startBtn.setPosition(Gdx.graphics.getWidth() / 2 - 50, Gdx.graphics.getHeight() / 2 - 200);
+        startBtn.setSize(100, 50);
+        startBtn.setPosition(Gdx.graphics.getWidth() / 2 - 50, Gdx.graphics.getHeight() / 2 + 200);
         startBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
@@ -69,8 +68,8 @@ public class MainMenu implements Screen {
 
         //exit btn
         exitBtn = new TextButton("EXIT", skin);
-        exitBtn.setSize(100, 100);
-        exitBtn.setPosition(Gdx.graphics.getWidth() / 2 + 100, Gdx.graphics.getHeight() / 2 - 200);
+        exitBtn.setSize(100, 50);
+        exitBtn.setPosition(Gdx.graphics.getWidth() / 2 - 50, Gdx.graphics.getHeight() / 2 + 50);
         exitBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
@@ -86,13 +85,14 @@ public class MainMenu implements Screen {
 
         //instructions btn
         instructionsBtn = new TextButton("HELP", skin);
-        instructionsBtn.setSize(100, 100);
-        instructionsBtn.setPosition(Gdx.graphics.getWidth() / 2 - 200, Gdx.graphics.getHeight() / 2 - 200);
+        instructionsBtn.setSize(100, 50);
+        instructionsBtn.setPosition(Gdx.graphics.getWidth() / 2 - 50, Gdx.graphics.getHeight() / 2 + 125);
         instructionsBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Main Menu --> Instructions");
-                game.setScreen(new Instructions(game));
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
+               // game.setScreen(new Instructions(game));
             }
 
             @Override

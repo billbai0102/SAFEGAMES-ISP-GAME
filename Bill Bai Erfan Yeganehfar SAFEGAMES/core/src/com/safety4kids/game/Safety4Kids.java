@@ -1,6 +1,5 @@
 package com.safety4kids.game;
 import com.badlogic.gdx.Game;
-import com.safety4kids.game.Screens.GameScreen;
 import com.safety4kids.game.Screens.IntroAnimation;
 
 /**

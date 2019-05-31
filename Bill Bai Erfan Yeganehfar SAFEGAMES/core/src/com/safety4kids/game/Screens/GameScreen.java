@@ -7,17 +7,16 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.Levels.Hud;
 import com.safety4kids.game.Safety4Kids;
-import com.safety4kids.game.Utils.BoundedCamera;
 import com.safety4kids.game.Utils.Box2DCollisionCreator;
 import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
 
@@ -26,8 +25,8 @@ import static com.safety4kids.game.Safety4Kids.*;
 /**
  * This Class represents the first level of the game where it is based on an interactive learning platformer.
  *
- * @version 3.4 2019-05-28
- * @author Erfan Yeganehfar
+ * @version 3.4 2019-05-30
+ * @author Erfan Yeganehfar, Bill Bai
  * Ms. Krasteva
  *
  * Modifications:
@@ -35,7 +34,7 @@ import static com.safety4kids.game.Safety4Kids.*;
  * 3.2 Erfan Yeg: (2019-05-29) created + added the basic tile map and created the tilemap renderer -- 1hr
  * 3.3 Erfan Yeg: (2019-05-29) Created box2d bodies and fixtures and added them to the box2d world, aka collision detection,
  * Added the main player body to the world as well as input handling. -- 2hr
- *
+ * 3.4 Bill Bai: (2019-05-30) Cleaned up code, by removing unused variables. -- 15mins
  */
 public class GameScreen implements Screen {
 
@@ -96,7 +95,7 @@ public class GameScreen implements Screen {
 
     }
 
-    public void handleInput(float dt) {
+    public void handleInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
             player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= MAX_VELOCITY)
@@ -105,9 +104,9 @@ public class GameScreen implements Screen {
             player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0),player.b2body.getWorldCenter(), true);
     }
 
-    public void update(float dt){
+    public void update(){
         //user input handler
-        handleInput(dt);
+        handleInput();
 
         world.step(STEP, 6, 2);
 
@@ -132,7 +131,7 @@ public class GameScreen implements Screen {
     @Override
     public void render(float delta) {
         //update is separated from the render logic
-        update(delta);
+        update();
         Gdx.graphics.setTitle(TITLE + " -- FPS: " + Gdx.graphics.getFramesPerSecond());
 
         //Clears the game screen
