@@ -50,21 +50,21 @@ public class Hud implements Disposable {
         //scales to the stage
         table.setFillParent(true);
 
-        countdownLabel = new Label(worldTimer.toString(), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        scoreLabel = new Label(score.toString(), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        scoreLabel =new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         timeLebel= new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        levelLabel= new Label("1-1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        worlLabel= new Label( "WORLD", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        playerLabel= new Label("PLAYER1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        levelLabel= new Label("1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        worlLabel= new Label( "LEVEL", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        playerLabel= new Label("SCORE", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         //adds Labels to the table, while equally dividing them
-        table.add(playerLabel).expandX().padTop(1);
-        table.add(worlLabel).expandX().padTop(1);
-        table.add(timeLebel).expandX().padTop(1);
+        //table.add(playerLabel).expandX().padTop(10);
+        table.add(worlLabel).expandX().padTop(10);
+        //table.add(timeLebel).expandX().padTop(10);
         //new row created
         table.row();
-        table.add(scoreLabel).expandX();
+        //table.add(scoreLabel).expandX();
         table.add(levelLabel).expandX();
-        table.add(countdownLabel).expandX();
+        //table.add(countdownLabel).expandX();
 
         //adds table to the current stage
         stage.addActor(table);
