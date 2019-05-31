@@ -1,5 +1,6 @@
 package com.safety4kids.game.Entities;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.safety4kids.game.Safety4Kids;
 
@@ -30,6 +31,7 @@ public class MainPlayer extends Sprite {
         b2body.createFixture(fdef);
     }
 
+    public Vector2 getPosition() { return b2body.getPosition(); }
 
 
 }

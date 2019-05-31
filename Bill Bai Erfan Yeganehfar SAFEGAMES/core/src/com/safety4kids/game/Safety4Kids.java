@@ -16,18 +16,19 @@ import com.safety4kids.game.Screens.MainMenu;
  *
  * Modifications:
  *  Bill Bai: Completed entire class. Time spent: 1 hour 2019-05-28
- *  Erfan Yeganehfar: Added overrided methods and components within the constructor: 1.5hrs 2019-05-28
+ *  Erfan Yeganehfar: Added overrided methods and components within the constructor to create the virtual game: 1.5hrs 2019-05-28
  */
 public class Safety4Kids extends Game {
+
+    public static final String TITLE = "Safety4Kids";
     public static final int V_WIDTH = 450;
     public static final int V_HEIGHT = 450;
     public static final float PPM = 100f;
-
-    /**
-     * This variable represents the minimum time taken to startup the game, before going to the main menu.
-     */
-    private static long MIN_TIME = 3000;
-
+    public static final int SCALE = 2;
+    public static final float CONST_GRAVITY = -9.8f;
+    public static final float MAX_VELOCITY = 2f;
+    public static final float MIN_VELOCITY = -2f;
+    public static final float STEP = 1 / 60f;
     /**
      * This is the constructor. It calls the superclass constructor, which is of Game.
      */
@@ -41,36 +42,7 @@ public class Safety4Kids extends Game {
      */
     @Override
     public void create () {
-        /*setScreen(new IntroAnimation(this));
-        final long START_TIME = System.currentTimeMillis();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //Load all images, music, etc here.
-
-                Gdx.app.postRunnable(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        long splash_elapsed_time = System.currentTimeMillis() - START_TIME;
-                        if (splash_elapsed_time < Safety4Kids.MIN_TIME) {
-                            Timer.schedule(
-                                    new Timer.Task() {
-                                        @Override
-                                        public void run() {
-                                            Safety4Kids.this.setScreen(new MainMenu(Safety4Kids.this));
-                                        }
-                                    }, (float)(Safety4Kids.MIN_TIME - splash_elapsed_time) / 1000f);
-                        } else {
-                            Safety4Kids.this.setScreen(new MainMenu(Safety4Kids.this));
-                        }
-                    }
-                });
-            }
-        }).start();*/
         setScreen(new GameScreen(this));
-
-
     }
 
     /**

@@ -16,7 +16,7 @@ import com.safety4kids.game.MovingObject;
  * Ms. Krasteva
  * <p>
  * Modifications:
- * Bill Bai: Completed entire class. Time spent: 1 hour.
+ * Bill Bai: (2019-05-28) Completed entire class. Time spent: 1 hour.
  * @version 3.0, 2019-05-28
  */
 public class IntroAnimation implements Screen {
@@ -74,7 +74,7 @@ public class IntroAnimation implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 
     /**
