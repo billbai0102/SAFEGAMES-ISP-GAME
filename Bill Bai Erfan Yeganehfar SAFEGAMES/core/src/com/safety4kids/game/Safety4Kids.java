@@ -1,5 +1,6 @@
 package com.safety4kids.game;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.safety4kids.game.Screens.IntroAnimation;
 
 /**
@@ -47,6 +48,8 @@ public class Safety4Kids extends Game {
     @Override
     public void render () {
         super.render();
+        Gdx.graphics.setTitle(TITLE + " -- FPS: " + Gdx.graphics.getFramesPerSecond());
+
     }
 
     /**

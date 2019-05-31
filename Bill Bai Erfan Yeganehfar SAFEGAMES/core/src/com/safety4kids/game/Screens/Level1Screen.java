@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -26,7 +27,7 @@ import static com.safety4kids.game.Safety4Kids.*;
  * This Class represents the first level of the game where it is based on an interactive learning platformer.
  *
  * @version 3.4 2019-05-30
- * @author Erfan Yeganehfar, Bill Bai
+ * @author Erfan Yeganehfar
  * Ms. Krasteva
  *
  * Modifications:
@@ -42,6 +43,7 @@ public class Level1Screen implements Screen {
     //
     private Safety4Kids game;
     private SpriteBatch batch;
+
     private OrthographicCamera gamecam;
     private Viewport gamePort;
     private Hud hud;
@@ -50,6 +52,8 @@ public class Level1Screen implements Screen {
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     private MyOrthogonalTiledMapRenderer tiledMapRenderer;
+    private TextureAtlas atlas;
+
 
 
     //Box2d collision detection instance variables
@@ -73,6 +77,7 @@ public class Level1Screen implements Screen {
 
         gamePort = new FitViewport(V_WIDTH / PPM, V_HEIGHT / PPM, gamecam);
 
+        atlas = new TextureAtlas("core/assets/MainPlayerAssets/MainPlayer.pack");
         hud = new Hud(batch);
         //mapLoader = new TmxMapLoader();
         //map = mapLoader.load("core/assets/level1.tmx");
@@ -92,7 +97,7 @@ public class Level1Screen implements Screen {
         new Box2DCollisionCreator(world, map);
 
         //The player is created inside of the Box2D world
-        player = new MainPlayer(world);
+        player = new MainPlayer(this);
 
     }
 
@@ -133,8 +138,6 @@ public class Level1Screen implements Screen {
     public void render(float delta) {
         //update is separated from the render logic
         update(Gdx.graphics.getDeltaTime());
-        Gdx.graphics.setTitle(TITLE + " -- FPS: " + Gdx.graphics.getFramesPerSecond());
-
         //Clears the game screen
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -148,6 +151,15 @@ public class Level1Screen implements Screen {
         //shows the screen based on the Camera with the hud
         batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
+    }
+
+
+    public World getWorld() {
+        return world;
+    }
+
+    public TextureAtlas getAtlas() {
+        return atlas;
     }
 
     /**
