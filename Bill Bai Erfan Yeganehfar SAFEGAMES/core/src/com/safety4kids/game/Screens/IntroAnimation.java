@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.safety4kids.game.MovingObject;
+import com.safety4kids.game.SplashScreenLogo;
 
 /**
  * This class serves as the splash screen to the program. It displays the company logo.
@@ -23,19 +23,19 @@ public class IntroAnimation implements Screen {
     /**
      * This variable is type SpriteBatch. It holds a batch of sprites to be drawn on screen.
      */
-    SpriteBatch batch;
+    private SpriteBatch batch;
 
     /**
      * This is the stage that is being drawn on
      */
-    Stage stage;
+    private Stage stage;
 
     /**
      * This is the Game that is currently being used to draw on.
      */
-    Game game;
+    private Game game;
 
-    MovingObject logo;
+    private SplashScreenLogo logo;
 
     /**
      * This is the constructor. It initiates the global variables.
@@ -48,11 +48,9 @@ public class IntroAnimation implements Screen {
         stage = new Stage(new ScreenViewport());
         batch = new SpriteBatch();
 
-        logo = new MovingObject();
-        logo.setPosition(-400,Gdx.graphics.getHeight()/2-200);
+        logo = new SplashScreenLogo();
+        logo.setPosition(-400,Gdx.graphics.getHeight()/2f-200);
     }
-
-    float after;
 
     @Override
     public void render(float delta) {
@@ -66,7 +64,7 @@ public class IntroAnimation implements Screen {
         if(logo.getX() < Gdx.graphics.getWidth()/2 - 200) {
             logo.moveRight(Gdx.graphics.getDeltaTime());
         }else if (logo.getX() > Gdx.graphics.getWidth()/2 - 200 && logo.getAlpha() >= 0) {
-            logo.fade(Gdx.graphics.getDeltaTime());
+            logo.fade();
         }else{
             game.setScreen(new MainMenu(game));
         }

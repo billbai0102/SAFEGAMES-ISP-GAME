@@ -6,14 +6,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-public class MovingObject {
-    Rectangle bottom, left, right, top;
-    Sprite sprite;
-    Texture texture;
-    float velocityY;
-    float alpha;
+public class SplashScreenLogo {
+    private Rectangle bottom;
+    private Sprite sprite;
+    private Texture texture;
+    private float alpha;
 
-    public MovingObject(){
+    public SplashScreenLogo(){
         bottom = new Rectangle(0.0f,0.0f,400.0f,400.0f);
         texture = new Texture(Gdx.files.internal("core/assets/SAFEGAMES_Logo.png"));
         sprite = new Sprite(texture);
@@ -28,18 +27,13 @@ public class MovingObject {
         sprite.setPosition(x,y);
     }
 
-    public void fade(float delta){
+    public void fade(){
         alpha -= (1f / 60f) / 3;
         sprite.setAlpha(alpha);
-        System.out.println(alpha);
     }
 
     public float getAlpha(){
         return alpha;
-    }
-
-    public void update(float delta){
-
     }
 
     public float getX(){
