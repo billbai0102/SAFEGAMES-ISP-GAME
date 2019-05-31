@@ -7,7 +7,11 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+<<<<<<< HEAD
 import com.safety4kids.game.SplashScreenLogo;
+=======
+import com.safety4kids.game.Utils.MovingObject;
+>>>>>>> 885bc56ffbe50e7f5d969c9393b6009565c99ffe
 
 /**
  * This class serves as the splash screen to the program. It displays the company logo.
