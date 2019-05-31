@@ -1,10 +1,6 @@
 package com.safety4kids.game;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.safety4kids.game.Screens.GameScreen;
-import com.safety4kids.game.Screens.IntroAnimation;
-import com.safety4kids.game.Screens.MainMenu;
 
 /**
  * This class is the entry point to the game. It is called by DesktopLauncher, and first plays a splash screen before
@@ -41,33 +37,6 @@ public class Safety4Kids extends Game {
      */
     @Override
     public void create () {
-        /*setScreen(new IntroAnimation(this));
-        final long START_TIME = System.currentTimeMillis();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //Load all images, music, etc here.
-
-                Gdx.app.postRunnable(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        long splash_elapsed_time = System.currentTimeMillis() - START_TIME;
-                        if (splash_elapsed_time < Safety4Kids.MIN_TIME) {
-                            Timer.schedule(
-                                    new Timer.Task() {
-                                        @Override
-                                        public void run() {
-                                            Safety4Kids.this.setScreen(new MainMenu(Safety4Kids.this));
-                                        }
-                                    }, (float)(Safety4Kids.MIN_TIME - splash_elapsed_time) / 1000f);
-                        } else {
-                            Safety4Kids.this.setScreen(new MainMenu(Safety4Kids.this));
-                        }
-                    }
-                });
-            }
-        }).start();*/
         setScreen(new GameScreen(this));
 
 
