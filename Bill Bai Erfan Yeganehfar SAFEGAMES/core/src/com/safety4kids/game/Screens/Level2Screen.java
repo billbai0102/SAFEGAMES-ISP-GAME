@@ -23,7 +23,7 @@ import static com.safety4kids.game.Safety4Kids.PPM;
 /**
  * This is class represents the second level of the game.
  *
- * @version 3 2019-05-28
+ * @version 3 2019-05-30
  * @author Bill Bai, Erfan Yeganehfar
  * Ms. Krasteva
  *

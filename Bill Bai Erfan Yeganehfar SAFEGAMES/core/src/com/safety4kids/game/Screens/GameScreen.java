@@ -25,7 +25,7 @@ import static com.safety4kids.game.Safety4Kids.*;
 /**
  * This Class represents the first level of the game where it is based on an interactive learning platformer.
  *
- * @version 3.4 2019-05-28
+ * @version 3.4 2019-05-30
  * @author Erfan Yeganehfar, Bill Bai
  * Ms. Krasteva
  *
