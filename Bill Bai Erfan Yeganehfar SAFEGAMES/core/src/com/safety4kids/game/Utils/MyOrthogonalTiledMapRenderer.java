@@ -1,5 +1,5 @@
 package com.safety4kids.game.Utils;
-import static com.badlogic.gdx.graphics.g2d.Batch.C1;
+/*import static com.badlogic.gdx.graphics.g2d.Batch.C1;
 import static com.badlogic.gdx.graphics.g2d.Batch.C2;
 import static com.badlogic.gdx.graphics.g2d.Batch.C3;
 import static com.badlogic.gdx.graphics.g2d.Batch.C4;
@@ -19,6 +19,8 @@ import static com.badlogic.gdx.graphics.g2d.Batch.Y1;
 import static com.badlogic.gdx.graphics.g2d.Batch.Y2;
 import static com.badlogic.gdx.graphics.g2d.Batch.Y3;
 import static com.badlogic.gdx.graphics.g2d.Batch.Y4;
+*/
+import static com.badlogic.gdx.graphics.g2d.Batch.*;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -30,6 +32,14 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 
+
+/**
+ * This class is just the is part of the implementation from BatchTiledMapRenderer from badlogic (libgdx)
+ * yet the fixBleeding method has been added to fix the background leaks between tiles.
+ *
+ * Citation for BatchTiledMapRenderer: https://github.com/libgdx/libgdx/blob/master/gdx/src/com/badlogic/gdx/maps/tiled/renderers/BatchTiledMapRenderer.java
+ * Citation for fixing leaks: https://badlogicgames.com/forum/viewtopic.php?f=11&t=16368
+ */
 public class MyOrthogonalTiledMapRenderer extends BatchTiledMapRenderer {
 
     public MyOrthogonalTiledMapRenderer (TiledMap map) {
