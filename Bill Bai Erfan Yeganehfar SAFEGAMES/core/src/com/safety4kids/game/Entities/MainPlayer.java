@@ -30,8 +30,7 @@ public class MainPlayer extends Sprite {
     private Animation<TextureRegion> playerRun;
     private TextureRegion playerJump;
     public enum State {
-        FALLING, JUMPING, IDLE, RUNNING,
-    };
+        FALLING, JUMPING, IDLE, RUNNING}
     public State currState;
     public State prevState;
 
@@ -51,12 +50,18 @@ public class MainPlayer extends Sprite {
 
 
         //get run animation frames and add them to marioRun Animation
-        for(int i = 1; i < 4; i++)
-//            frames.add(new TextureRegion(screen.getAtlas().findRegion("MainPlayer"), i * 16, 0, 16, 16));
-        playerRun = new Animation(0.1f, frames);
-
+        for(int i = 2; i < 12; i++)
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("sprite"), i * 16, 0, 32, 32));
         frames.clear();
+
+        playerRun = new Animation(0.1f, frames);
+      playerIdle = new TextureRegion(screen.getAtlas().findRegion("idle"), 11, 4, 32, 32);
+       playerJump = new TextureRegion(screen.getAtlas().findRegion("jump"), 80, 0, 32, 32);
+
         definePlayer();
+
+        setBounds(500, 340, 13 / Safety4Kids.PPM, 24 / Safety4Kids.PPM);
+        setRegion(playerIdle);
     }
 
     public void definePlayer(){
@@ -79,9 +84,74 @@ public class MainPlayer extends Sprite {
 
     public void jump(){
         if ( currState != State.JUMPING ) {
-            b2body.applyLinearImpulse(new Vector2(0, 4f), b2body.getWorldCenter(), true);
+            b2body.applyLinearImpulse(new Vector2(0, 3.8f), b2body.getWorldCenter(), true);
             currState = State.JUMPING;
         }
+    }
+
+    public void update(float dt) {
+
+        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+
+        setRegion(getFrame(dt));
+
+
+    }
+
+        public State getState(){
+        if((b2body.getLinearVelocity().y > 0 && currState == State.JUMPING) || (b2body.getLinearVelocity().y < 0 && prevState == State.JUMPING))
+            return State.JUMPING;
+            //if there is a negative value in the y Axis
+        else if(b2body.getLinearVelocity().y < 0)
+            return State.FALLING;
+            //if the player is running at a positive or negative value in the x axis
+        else if(b2body.getLinearVelocity().x != 0)
+            return State.RUNNING;
+            //returns the state as idle if no other state is present
+        else
+            return State.IDLE;
+    }
+
+    public TextureRegion getFrame(float dt) {
+        //get marios current state. ie. jumping, running, standing...
+        currState = getState();
+
+        TextureRegion region;
+
+        //depending on the state, get corresponding animation keyFrame.
+        switch (currState) {
+            case JUMPING:
+                region = playerJump;
+                break;
+           /* case RUNNING:
+                region = playerRun.getKeyFrame(timer,timer);
+                break;*/
+            case FALLING:
+            case IDLE:
+            default:
+                region = playerIdle;
+                break;
+        }
+/*
+        //if mario is running left and the texture isnt facing left... flip it.
+        if((b2body.getLinearVelocity().x < 0 || !isRight) && !region.isFlipX()){
+            region.flip(true, false);
+            isRight = false;
+        }
+
+        //if mario is running right and the texture isnt facing right... flip it.
+        else if((b2body.getLinearVelocity().x > 0 || isRight) && region.isFlipX()){
+            region.flip(true, false);
+            isRight = true;
+        }
+*/
+        //if the current state is the same as the previous state increase the state timer.
+        //otherwise the state has changed and we need to reset timer.
+        timer = currState == prevState ? timer + dt : 0;
+        //update previous state
+        prevState = currState;
+        //return our final adjusted frame
+        return region;
     }
 
 }

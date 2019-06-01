@@ -132,23 +132,7 @@ public class GameScreen implements Screen {
      */
     @Override
     public void render(float delta) {
-        //update is separated from the render logic
-        update();
-        Gdx.graphics.setTitle(TITLE + " -- FPS: " + Gdx.graphics.getFramesPerSecond());
 
-        //Clears the game screen
-        Gdx.gl.glClearColor(0,0,0,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        //Renders the Game map
-        renderer.render();
-
-        //Box2D Debug renderer
-        b2dr.render(world,gamecam.combined);
-
-        //shows the screen based on the Camera with the hud
-        batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.stage.draw();
     }
 
     /**
@@ -158,7 +142,6 @@ public class GameScreen implements Screen {
      */
     @Override
     public void resize(int width, int height) {
-        gamePort.update(width, height);
     }
 
     /**
@@ -166,11 +149,6 @@ public class GameScreen implements Screen {
      */
     @Override
     public void dispose() {
-        map.dispose();
-        renderer.dispose();
-        world.dispose();
-        b2dr.dispose();
-        hud.dispose();
     }
 
     @Override
