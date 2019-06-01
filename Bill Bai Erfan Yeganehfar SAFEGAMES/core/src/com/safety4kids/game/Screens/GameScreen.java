@@ -1,5 +1,6 @@
 package com.safety4kids.game.Screens;
 
+<<<<<<< HEAD
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -106,6 +107,7 @@ public class GameScreen implements Screen {
     }
 
     public void update(){
+
         //user input handler
         handleInput();
 
@@ -192,4 +194,7 @@ public class GameScreen implements Screen {
 
     }
 
+=======
+public class GameScreen {
+>>>>>>> 5d1b76d2899eb1a8ae468a71376bdb6880b8d1af
 }

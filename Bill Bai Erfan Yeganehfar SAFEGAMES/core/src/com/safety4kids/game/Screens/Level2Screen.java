@@ -69,7 +69,6 @@ public class Level2Screen implements Screen {
         b2dr = new Box2DDebugRenderer();
 
 
-        player = new MainPlayer(world);
     }
 
 
