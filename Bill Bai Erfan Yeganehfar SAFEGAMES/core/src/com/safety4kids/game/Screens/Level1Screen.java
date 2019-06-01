@@ -146,9 +146,13 @@ public class Level1Screen implements Screen {
 
         //Renders the Game map
         renderer.render();
+        batch.setProjectionMatrix(gamecam.combined);
+        batch.begin();
+        player.draw(batch);
+        batch.end();
 
         //Box2D Debug renderer
-        b2dr.render(world,gamecam.combined);
+       // b2dr.render(world,gamecam.combined);
 
         //shows the screen based on the Camera with the hud
         batch.setProjectionMatrix(hud.stage.getCamera().combined);

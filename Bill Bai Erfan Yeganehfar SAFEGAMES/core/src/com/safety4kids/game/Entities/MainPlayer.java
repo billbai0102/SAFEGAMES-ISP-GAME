@@ -51,30 +51,30 @@ public class MainPlayer extends Sprite {
 
         //get run animation frames and add them to marioRun Animation
         for(int i = 2; i < 12; i++)
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("sprite"), i * 16, 0, 32, 32));
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("sprite"), 78 + i * 16, 4, 14, 24));
         frames.clear();
 
         playerRun = new Animation(0.1f, frames);
-      playerIdle = new TextureRegion(screen.getAtlas().findRegion("idle"), 11, 4, 32, 32);
-       playerJump = new TextureRegion(screen.getAtlas().findRegion("jump"), 80, 0, 32, 32);
+        playerIdle = new TextureRegion(screen.getAtlas().findRegion("idle"), 10, 4, 14, 24);
+        playerJump = new TextureRegion(screen.getAtlas().findRegion("jump"), 44, 4, 14, 24);
 
         definePlayer();
 
-        setBounds(500, 340, 13 / Safety4Kids.PPM, 24 / Safety4Kids.PPM);
+        setBounds(500 / Safety4Kids.PPM,300/ Safety4Kids.PPM, 14 / Safety4Kids.PPM, 24 / Safety4Kids.PPM);
         setRegion(playerIdle);
     }
 
     public void definePlayer(){
 
         BodyDef bdef = new BodyDef();
-        bdef.position.set(500 / Safety4Kids.PPM,340/ Safety4Kids.PPM);
+        bdef.position.set(500 / Safety4Kids.PPM,300/ Safety4Kids.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
         FixtureDef fdef = new FixtureDef();
 
         PolygonShape shape = new PolygonShape();
 
-        shape.setAsBox(7f/Safety4Kids.PPM,12f/Safety4Kids.PPM);
+        shape.setAsBox(7f/Safety4Kids.PPM,13f/Safety4Kids.PPM);
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
@@ -132,7 +132,7 @@ public class MainPlayer extends Sprite {
                 region = playerIdle;
                 break;
         }
-/*
+
         //if mario is running left and the texture isnt facing left... flip it.
         if((b2body.getLinearVelocity().x < 0 || !isRight) && !region.isFlipX()){
             region.flip(true, false);
@@ -144,7 +144,7 @@ public class MainPlayer extends Sprite {
             region.flip(true, false);
             isRight = true;
         }
-*/
+
         //if the current state is the same as the previous state increase the state timer.
         //otherwise the state has changed and we need to reset timer.
         timer = currState == prevState ? timer + dt : 0;
