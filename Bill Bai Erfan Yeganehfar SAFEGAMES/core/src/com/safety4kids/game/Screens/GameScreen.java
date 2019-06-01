@@ -1,6 +1,5 @@
 package com.safety4kids.game.Screens;
 
-<<<<<<< HEAD
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -93,7 +92,7 @@ public class GameScreen implements Screen {
         new Box2DCollisionCreator(world, map);
 
         //The player is created inside of the Box2D world
-        player = new MainPlayer(world);
+   //     player = new MainPlayer(world);
 
     }
 
@@ -193,5 +192,4 @@ public class GameScreen implements Screen {
     public void hide() {
 
     }
-  }
 }
