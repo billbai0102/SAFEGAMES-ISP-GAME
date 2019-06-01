@@ -193,8 +193,5 @@ public class GameScreen implements Screen {
     public void hide() {
 
     }
-
-=======
-public class GameScreen {
->>>>>>> 5d1b76d2899eb1a8ae468a71376bdb6880b8d1af
+  }
 }
