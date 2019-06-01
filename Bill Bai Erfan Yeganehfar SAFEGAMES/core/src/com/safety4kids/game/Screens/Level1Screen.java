@@ -103,7 +103,7 @@ public class Level1Screen implements Screen {
 
     public void handleInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
-            player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+            player.jump();
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= MAX_VELOCITY)
             player.b2body.applyLinearImpulse(new Vector2(0.1f, 0),player.b2body.getWorldCenter(), true);
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= MIN_VELOCITY)
@@ -115,6 +115,7 @@ public class Level1Screen implements Screen {
         handleInput();
 
         world.step(STEP, 6, 2);
+        player.update(dt);
 
         gamecam.position.x = (float) Math.round(player.b2body.getPosition().x * 100f) / 100f;
         //gamecam.position.y = player.b2body.getPosition().y;

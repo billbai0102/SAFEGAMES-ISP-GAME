@@ -1,6 +1,5 @@
 package com.safety4kids.game.Screens;
 
-<<<<<<< HEAD
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -40,91 +39,6 @@ import static com.safety4kids.game.Safety4Kids.*;
  */
 public class GameScreen implements Screen {
 
-    //
-    private Safety4Kids game;
-    private SpriteBatch batch;
-    private OrthographicCamera gamecam;
-    private Viewport gamePort;
-    private Hud hud;
-
-    //Tile map Instance variables
-    private TiledMap map;
-    private OrthogonalTiledMapRenderer renderer;
-    private MyOrthogonalTiledMapRenderer tiledMapRenderer;
-
-
-    //Box2d collision detection instance variables
-    private World world;
-    private Box2DDebugRenderer b2dr;
-
-    //Instance of the main character
-    private MainPlayer player;
-    /**
-     * The constructor creates all the necessary components of the platformer. This includes the actual game,
-     * the sprite batches, game camera, viewport, tiled map, box2d world + it's collision detection,
-     * and finally the main player.
-     * @param game The Safety4Kids Game that this level screen is displayed on
-     */
-    public GameScreen(Safety4Kids game){
-        this.game = game;
-
-        batch = new SpriteBatch();
-
-        gamecam = new OrthographicCamera();
-
-        gamePort = new FitViewport(V_WIDTH / PPM, V_HEIGHT / PPM, gamecam);
-
-        hud = new Hud(batch);
-        //mapLoader = new TmxMapLoader();
-        //map = mapLoader.load("core/assets/level1.tmx");
-
-        map = new TmxMapLoader().load("core/assets/level1.tmx");
-        tiledMapRenderer = new MyOrthogonalTiledMapRenderer(map, 1/PPM);
-        //tiledMapLayer = (TiledMapTileLayer)map.getLayers().get(0);
-        renderer = new OrthogonalTiledMapRenderer(map, 1/ PPM);
-
-        //sets the view point of the Orthographic Camera to better use of the 4 quadrants within a 2d grid system
-        gamecam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
-
-        world = new World(new Vector2(0,CONST_GRAVITY),true);
-        b2dr = new Box2DDebugRenderer();
-
-        //Generates the Box2D world for the objects within the Tile Map
-        new Box2DCollisionCreator(world, map);
-
-        //The player is created inside of the Box2D world
-        player = new MainPlayer(world);
-
-    }
-
-    public void handleInput() {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
-            player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= MAX_VELOCITY)
-            player.b2body.applyLinearImpulse(new Vector2(0.1f, 0),player.b2body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= MIN_VELOCITY)
-            player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0),player.b2body.getWorldCenter(), true);
-    }
-
-    public void update(){
-
-        //user input handler
-        handleInput();
-
-        world.step(STEP, 6, 2);
-
-        gamecam.position.x = (float) Math.round(player.b2body.getPosition().x * 100f) / 100f;
-        //gamecam.position.y = player.b2body.getPosition().y;
-
-
-        //update the gamecam with the player whenever they move
-        gamecam.update();
-
-        //sets the view of the renderer to the games orthographic camera and renders teh tilemap
-        renderer.setView(gamecam);
-        tiledMapRenderer.setView(gamecam);
-        tiledMapRenderer.render();
-    }
 
     /**
      * The renderer method upadtes and displays new graphical/technical changes to the game screen based on the game camera
@@ -133,23 +47,7 @@ public class GameScreen implements Screen {
      */
     @Override
     public void render(float delta) {
-        //update is separated from the render logic
-        update();
-        Gdx.graphics.setTitle(TITLE + " -- FPS: " + Gdx.graphics.getFramesPerSecond());
 
-        //Clears the game screen
-        Gdx.gl.glClearColor(0,0,0,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        //Renders the Game map
-        renderer.render();
-
-        //Box2D Debug renderer
-        b2dr.render(world,gamecam.combined);
-
-        //shows the screen based on the Camera with the hud
-        batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.stage.draw();
     }
 
     /**
@@ -159,7 +57,6 @@ public class GameScreen implements Screen {
      */
     @Override
     public void resize(int width, int height) {
-        gamePort.update(width, height);
     }
 
     /**
@@ -167,11 +64,6 @@ public class GameScreen implements Screen {
      */
     @Override
     public void dispose() {
-        map.dispose();
-        renderer.dispose();
-        world.dispose();
-        b2dr.dispose();
-        hud.dispose();
     }
 
     @Override
@@ -194,4 +86,4 @@ public class GameScreen implements Screen {
 
     }
   }
-}
+
