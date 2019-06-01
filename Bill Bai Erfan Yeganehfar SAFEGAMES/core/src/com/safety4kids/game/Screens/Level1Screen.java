@@ -38,6 +38,7 @@ import static com.safety4kids.game.Safety4Kids.*;
  * 3.4 Erfan Yeg: (2019-05-30) Cleaned code up, made a new class for loading in objects and fixed tilemap bleeding as well
  * as better mouvment. -- 1.5hrs
  */
+@SuppressWarnings("Duplicates")
 public class Level1Screen implements Screen {
 
     //

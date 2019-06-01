@@ -97,9 +97,9 @@ public class MainMenu implements Screen {
         instructionsBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Main Menu --> Instructions");
+                System.out.println("Starting level 2...");
+
                 ((Game)Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
-               // game.setScreen(new Instructions(game));
             }
 
             @Override
