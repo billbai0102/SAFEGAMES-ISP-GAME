@@ -35,9 +35,9 @@ public class Level2Screen implements Screen {
     public Level2Screen(Safety4Kids game) {
         this.game = game;
         batch = new SpriteBatch();
-        bg = new Texture("core/assets/Level2Background.png");
+        bg = new Texture("core/assets/Lv2Assets/Level2Background.png");
         bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.ClampToEdge);
-        bgSprite = new Sprite(bg,1920,Gdx.graphics.getHeight());
+        bgSprite = new Sprite(bg);
 
         player = new TextureAtlas(Gdx.files.internal("core/assets/Lv2Assets/Lv2Sprites.atlas"));
         playerAnimation = new Animation<TextureRegion>(1 / 17f, player.getRegions());
