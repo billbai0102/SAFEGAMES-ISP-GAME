@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="240" height="29" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="205">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="240" height="29" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="209">
  <tileset firstgid="1" source="props.tsx"/>
  <tileset firstgid="365" source="back.tsx"/>
  <tileset firstgid="725" source="tileset.tsx"/>
@@ -71,10 +71,6 @@
   <object id="194" x="2920.55" y="344.727" width="23.2727" height="6.72727"/>
   <object id="197" x="2929.54" y="352.273" width="14" height="9.81818"/>
   <object id="198" x="2935.73" y="360.636" width="7.81815" height="6.72727"/>
-  <object id="201" x="3310.1" y="346.319" width="30.3636" height="9.81818" rotation="180"/>
-  <object id="202" x="3303" y="351.591" width="23.2727" height="6.72727" rotation="180"/>
-  <object id="203" x="3294.01" y="362.228" width="14" height="9.81818" rotation="180"/>
-  <object id="204" x="3287.82" y="367.5" width="7.81815" height="6.72727" rotation="180"/>
  </objectgroup>
  <objectgroup id="5" name="Pipes"/>
  <objectgroup id="4" name="Coins"/>

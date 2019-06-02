@@ -88,7 +88,7 @@ public class Level1Screen extends GameScreen {
         world.step(STEP, 6, 2);
         player.update(dt);
 
-        if(player.b2body.getPosition().x >  2.5 && player.b2body.getPosition().x < 36 )
+        if(player.b2body.getPosition().x >  2.5 && player.b2body.getPosition().x < 35 )
         gameCam.position.x = (float) Math.round(player.b2body.getPosition().x * 1000f) / 1000f;
 
         //update the gameCam with the player whenever they move
@@ -134,7 +134,7 @@ public class Level1Screen extends GameScreen {
                 game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
                 hud.stage.draw();
 
-                if (player.b2body.getPosition().x > 38) {
+                if (player.b2body.getPosition().x > 37.5) {
                     ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
                     dispose();
                 }
