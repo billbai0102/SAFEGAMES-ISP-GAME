@@ -66,7 +66,6 @@ public class MainPlayer extends Sprite {
         playerJump = new TextureRegion(screen.getAtlas().findRegion("jump"), 9, 4, 15, 24);
 
         creatBox2D();
-
         setBounds(startPosX / Safety4Kids.PPM,startPosY/ Safety4Kids.PPM, 17 / Safety4Kids.PPM, 30 / Safety4Kids.PPM);
         setRegion(playerIdle);
     }

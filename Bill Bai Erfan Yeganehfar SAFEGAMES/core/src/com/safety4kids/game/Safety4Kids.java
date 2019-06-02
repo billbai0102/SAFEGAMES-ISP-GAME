@@ -14,8 +14,8 @@ import com.safety4kids.game.Screens.IntroAnimation;
  * Ms. Krasteva
  *
  * Modifications:
- *  Bill Bai: Completed entire class. Time spent: 1 hour 2019-05-28
- *  Erfan Yeganehfar: Added overrided methods and components within the constructor to create the virtual game: 1.5hrs 2019-05-28
+ *  3.0 Bill Bai: (2019-05-28) Completed entire class. Time spent: 1 hour
+ *  3.1 Erfan Yeganehfar: (2019-05-28) Added overrided methods and components within the constructor to create the virtual game: 1.5hrs
  */
 public class Safety4Kids extends Game {
 
@@ -53,7 +53,6 @@ public class Safety4Kids extends Game {
     public void render () {
         super.render();
         Gdx.graphics.setTitle(TITLE + " -- FPS: " + Gdx.graphics.getFramesPerSecond());
-
     }
 
     /**
