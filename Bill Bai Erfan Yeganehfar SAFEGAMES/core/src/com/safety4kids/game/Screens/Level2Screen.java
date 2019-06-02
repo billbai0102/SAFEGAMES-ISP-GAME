@@ -30,16 +30,17 @@ public class Level2Screen implements Screen {
 
     private TextureAtlas warning;
     private Animation<TextureRegion> warningAnimation;
+    float warningLocation = 0;
 
     public Level2Screen(Safety4Kids game) {
         this.game = game;
         batch = new SpriteBatch();
         bg = new Texture("core/assets/Level2Background.png");
         bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.ClampToEdge);
-        bgSprite = new Sprite(bg, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        bgSprite = new Sprite(bg,1920,Gdx.graphics.getHeight());
 
         player = new TextureAtlas(Gdx.files.internal("core/assets/Lv2Assets/Lv2Sprites.atlas"));
-        playerAnimation = new Animation<TextureRegion>(1 / 100f, player.getRegions());
+        playerAnimation = new Animation<TextureRegion>(1 / 17f, player.getRegions());
 
         warning = new TextureAtlas(Gdx.files.internal("core/assets/Lv2Assets/Lv2Warning.atlas"));
         warningAnimation = new Animation<TextureRegion>(1 / 5f, warning.getRegions());
@@ -47,7 +48,7 @@ public class Level2Screen implements Screen {
 
     @Override
     public void render(float delta) {
-        scrollTime += 0.05f;
+        scrollTime += 0.0007f;
         if (scrollTime >= 1.0f)
             scrollTime = 0.0f;
 
@@ -55,11 +56,14 @@ public class Level2Screen implements Screen {
 
         batch.begin();
         bgSprite.setU(scrollTime);
-        bgSprite.setU2(scrollTime + 1f);
+        bgSprite.setU2(scrollTime + 0.80f);
         bgSprite.draw(batch);
-        batch.draw(playerAnimation.getKeyFrame(timePassed, true), 500, 14);
-        batch.draw(warningAnimation.getKeyFrame(timePassed, true), 30, 130);
+        batch.draw(playerAnimation.getKeyFrame(timePassed, true), 500, 150);
+        batch.draw(warningAnimation.getKeyFrame(timePassed, true), warningLocation, 130);
         batch.end();
+
+
+
     }
 
     @Override
@@ -90,6 +94,10 @@ public class Level2Screen implements Screen {
 
     @Override
     public void dispose() {
-
+        game.dispose();
+        batch.dispose();
+        bg.dispose();
+        player.dispose();
+        warning.dispose();
     }
 }
