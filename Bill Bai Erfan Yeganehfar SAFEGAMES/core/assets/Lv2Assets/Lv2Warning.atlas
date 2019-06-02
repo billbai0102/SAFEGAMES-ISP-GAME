@@ -1,0 +1,75 @@
+
+Lv2Warning.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+sprite
+  rotate: false
+  xy: 1, 727
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: 0
+sprite
+  rotate: false
+  xy: 1, 485
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: 1
+sprite
+  rotate: false
+  xy: 243, 727
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: 2
+sprite
+  rotate: false
+  xy: 1, 243
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: 3
+sprite
+  rotate: false
+  xy: 243, 485
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: 4
+sprite
+  rotate: false
+  xy: 485, 727
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: 5
+sprite
+  rotate: false
+  xy: 1, 1
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: 6
+sprite
+  rotate: false
+  xy: 243, 243
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: 7
+sprite
+  rotate: false
+  xy: 243, 243
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: 9
+sprite
+  rotate: false
+  xy: 485, 485
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: 8
