@@ -76,7 +76,7 @@ public class Level1Screen extends GameScreen {
         new Box2DCollisionCreator(world, map);
 
         //The player is created inside of the Box2D world
-        player = new MainPlayer(this, 500, 300);
+        player = new MainPlayer(this, 400, 300);
 
         //Processes input for the player
         input = new InputProcessor(player);
@@ -90,6 +90,7 @@ public class Level1Screen extends GameScreen {
         world.step(STEP, 6, 2);
         player.update(dt);
 
+        if(player.b2body.getPosition().x >  2.5 && player.b2body.getPosition().x < 36 )
         gameCam.position.x = (float) Math.round(player.b2body.getPosition().x * 100f) / 100f;
 
         //update the gameCam with the player whenever they move
@@ -124,7 +125,7 @@ public class Level1Screen extends GameScreen {
         game.batch.end();
 
         //Box2D Debug renderer
-        b2dr.render(world,gameCam.combined);
+        //b2dr.render(world,gameCam.combined);
 
         //shows the screen based on the Camera with the hud
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
