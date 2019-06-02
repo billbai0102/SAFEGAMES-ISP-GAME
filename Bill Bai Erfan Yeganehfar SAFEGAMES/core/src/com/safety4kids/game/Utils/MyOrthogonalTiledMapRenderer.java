@@ -59,7 +59,7 @@ public class MyOrthogonalTiledMapRenderer extends BatchTiledMapRenderer {
     }
 
     public static void fixBleeding(TextureRegion region) {
-        float fix = 0.03f;
+        float fix = 0.01f;
         float x = region.getRegionX();
         float y = region.getRegionY();
         float width = region.getRegionWidth();

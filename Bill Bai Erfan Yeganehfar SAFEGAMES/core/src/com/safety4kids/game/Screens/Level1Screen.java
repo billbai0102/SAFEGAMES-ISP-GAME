@@ -19,6 +19,7 @@ import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.Levels.Hud;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.Box2DCollisionCreator;
+import com.safety4kids.game.Utils.InputProcessor;
 import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
 
 import static com.safety4kids.game.Safety4Kids.*;
@@ -43,7 +44,7 @@ public class Level1Screen implements Screen {
 
     //
     private Safety4Kids game;
-    private SpriteBatch batch;
+    //private SpriteBatch batch;
 
     private OrthographicCamera gamecam;
     private Viewport gamePort;
@@ -55,7 +56,7 @@ public class Level1Screen implements Screen {
     private MyOrthogonalTiledMapRenderer tiledMapRenderer;
     private TextureAtlas atlas;
 
-
+    private InputProcessor input;
 
     //Box2d collision detection instance variables
     private World world;
@@ -71,15 +72,14 @@ public class Level1Screen implements Screen {
      */
     public Level1Screen(Safety4Kids game){
         this.game = game;
-
-        batch = new SpriteBatch();
-
+        game.batch = new SpriteBatch();
+        //batch = new SpriteBatch();
         gamecam = new OrthographicCamera();
 
         gamePort = new FitViewport(V_WIDTH / PPM, V_HEIGHT / PPM, gamecam);
 
         atlas = new TextureAtlas("core/assets/MainPlayerAssets/MainPlayer.pack");
-        hud = new Hud(batch);
+        hud = new Hud(game.batch);
         //mapLoader = new TmxMapLoader();
         //map = mapLoader.load("core/assets/level1.tmx");
 
@@ -98,22 +98,16 @@ public class Level1Screen implements Screen {
         new Box2DCollisionCreator(world, map);
 
         //The player is created inside of the Box2D world
-        player = new MainPlayer(this);
+        player = new MainPlayer(this, 500, 300);
 
-    }
 
-    public void handleInput() {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
-            player.jump();
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= MAX_VELOCITY)
-            player.b2body.applyLinearImpulse(new Vector2(0.1f, 0),player.b2body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= MIN_VELOCITY)
-            player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0),player.b2body.getWorldCenter(), true);
+        input = new InputProcessor(player);
+
     }
 
     public void update(float dt){
         //user input handler
-        handleInput();
+        InputProcessor.inputProcess();
 
         world.step(STEP, 6, 2);
         player.update(dt);
@@ -139,23 +133,23 @@ public class Level1Screen implements Screen {
     @Override
     public void render(float delta) {
         //update is separated from the render logic
-        update(Gdx.graphics.getDeltaTime());
+        update(delta);
         //Clears the game screen
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //Renders the Game map
         renderer.render();
-        batch.setProjectionMatrix(gamecam.combined);
-        batch.begin();
-        player.draw(batch);
-        batch.end();
+        game.batch.setProjectionMatrix(gamecam.combined);
+        game.batch.begin();
+        player.draw(game.batch);
+        game.batch.end();
 
         //Box2D Debug renderer
-       // b2dr.render(world,gamecam.combined);
+       //b2dr.render(world,gamecam.combined);
 
         //shows the screen based on the Camera with the hud
-        batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
     }
 

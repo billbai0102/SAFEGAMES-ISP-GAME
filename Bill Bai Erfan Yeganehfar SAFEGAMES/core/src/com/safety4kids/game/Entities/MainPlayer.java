@@ -13,7 +13,7 @@ import com.safety4kids.game.Screens.Level1Screen;
 
 /**
  *
- * @version 3.2 2019-05-29
+ * @version 3.3 2019-05-29
  * @author Erfan Yeganehfar
  * Ms. Krasteva
  *
@@ -21,10 +21,14 @@ import com.safety4kids.game.Screens.Level1Screen;
  * 3.1 Erfan Yeg: (2019-05-29) Created the Box2d body and fixture for the main player, allowing for collsiion detection. -- 30 mins
  * 3.2 Erfan Yeg: (2019-05-31) created texture regions for the main players sprite animation states.
  * Allowing the Box2d body to bind with the sprite animations. -- 1hr
+ * 3.3 Erfan Yeg: (2019-06-01) Binded the player sprite to the box2d body and also animated the running animation,
+ * added the different states and fixed the infinite jumping. -- 3hr
  */
 public class MainPlayer extends Sprite {
     public World world;
     public Body b2body;
+    private float startPosX;
+    private float startPosY;
 
     private TextureRegion playerIdle;
     private Animation<TextureRegion> playerRun;
@@ -38,52 +42,72 @@ public class MainPlayer extends Sprite {
     private boolean isRight;
     private Level1Screen screen;
 
-    public MainPlayer(Level1Screen screen){
+    public MainPlayer(Level1Screen screen, float posX, float posY){
         this.screen = screen;
         this.world = screen.getWorld();
+        startPosX = posX;
+        startPosY = posY;
         currState = State.IDLE;
         prevState = State.IDLE;
         timer = 0;
         isRight = true;
 
-        Array<TextureRegion> frames = new Array<TextureRegion>();
-
+        Array<TextureRegion> runAnimation = new Array<TextureRegion>();
 
         //get run animation frames and add them to marioRun Animation
-        for(int i = 2; i < 12; i++)
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("sprite"), 78 + i * 16, 4, 14, 24));
-        frames.clear();
+        for(int i = 0; i < 10; i++) {
+            runAnimation.add(new TextureRegion(screen.getAtlas().findRegion("running"), 10+(i * 32), 4, 14, 24));
+        }
+        playerRun = new Animation(0.1f, runAnimation);
 
-        playerRun = new Animation(0.1f, frames);
+        runAnimation.clear();
+
         playerIdle = new TextureRegion(screen.getAtlas().findRegion("idle"), 10, 4, 14, 24);
-        playerJump = new TextureRegion(screen.getAtlas().findRegion("jump"), 44, 4, 14, 24);
+        playerJump = new TextureRegion(screen.getAtlas().findRegion("jump"), 9, 4, 15, 24);
 
-        definePlayer();
+        creatBox2D();
 
-        setBounds(500 / Safety4Kids.PPM,300/ Safety4Kids.PPM, 14 / Safety4Kids.PPM, 24 / Safety4Kids.PPM);
+        setBounds(startPosX / Safety4Kids.PPM,startPosY/ Safety4Kids.PPM, 17 / Safety4Kids.PPM, 30 / Safety4Kids.PPM);
         setRegion(playerIdle);
     }
 
-    public void definePlayer(){
 
+    /**
+     * Creates the Box2d Fixture and Body for the player, assigns the location, the shape, and the type of Body.
+     */
+    public void creatBox2D(){
+
+        //Defined Body
         BodyDef bdef = new BodyDef();
-        bdef.position.set(500 / Safety4Kids.PPM,300/ Safety4Kids.PPM);
+        //Position of the body
+        bdef.position.set(startPosX / Safety4Kids.PPM,startPosY/ Safety4Kids.PPM);
+
+        //the type of Body is dynamic (therefore it can move)
         bdef.type = BodyDef.BodyType.DynamicBody;
+
+        //The body is created into the Box2D world
         b2body = world.createBody(bdef);
+
+        //Now a fixure is made for collisions
         FixtureDef fdef = new FixtureDef();
 
+        //The type of shape is assigned and defined
         PolygonShape shape = new PolygonShape();
-
         shape.setAsBox(7f/Safety4Kids.PPM,13f/Safety4Kids.PPM);
 
+        //the shape is bound to the fixture, and the fixture to the body
         fdef.shape = shape;
         b2body.createFixture(fdef);
     }
 
+    /**
+     * Returns the Box2D body position in the Box2D world
+     * @return the Box2D body position
+     */
     public Vector2 getPosition() { return b2body.getPosition(); }
 
     public void jump(){
-        if ( currState != State.JUMPING ) {
+        if ( currState != State.JUMPING && currState!= State.FALLING) {
             b2body.applyLinearImpulse(new Vector2(0, 3.8f), b2body.getWorldCenter(), true);
             currState = State.JUMPING;
         }
@@ -123,9 +147,9 @@ public class MainPlayer extends Sprite {
             case JUMPING:
                 region = playerJump;
                 break;
-           /* case RUNNING:
-                region = playerRun.getKeyFrame(timer,timer);
-                break;*/
+            case RUNNING:
+               region = playerRun.getKeyFrame(timer, true);
+                break;
             case FALLING:
             case IDLE:
             default:
@@ -152,6 +176,10 @@ public class MainPlayer extends Sprite {
         prevState = currState;
         //return our final adjusted frame
         return region;
+    }
+
+    public float Timer(){
+        return timer;
     }
 
 }

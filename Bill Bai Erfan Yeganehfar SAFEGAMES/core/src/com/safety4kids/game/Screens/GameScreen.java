@@ -64,64 +64,12 @@ public class GameScreen implements Screen {
      * @param game The Safety4Kids Game that this level screen is displayed on
      */
     public GameScreen(Safety4Kids game){
-        this.game = game;
-
-        batch = new SpriteBatch();
-
-        gamecam = new OrthographicCamera();
-
-        gamePort = new FitViewport(V_WIDTH / PPM, V_HEIGHT / PPM, gamecam);
-
-        hud = new Hud(batch);
-        //mapLoader = new TmxMapLoader();
-        //map = mapLoader.load("core/assets/level1.tmx");
-
-        map = new TmxMapLoader().load("core/assets/level1.tmx");
-        tiledMapRenderer = new MyOrthogonalTiledMapRenderer(map, 1/PPM);
-        //tiledMapLayer = (TiledMapTileLayer)map.getLayers().get(0);
-        renderer = new OrthogonalTiledMapRenderer(map, 1/ PPM);
-
-        //sets the view point of the Orthographic Camera to better use of the 4 quadrants within a 2d grid system
-        gamecam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
-
-        world = new World(new Vector2(0,CONST_GRAVITY),true);
-        b2dr = new Box2DDebugRenderer();
-
-        //Generates the Box2D world for the objects within the Tile Map
-        new Box2DCollisionCreator(world, map);
-
-        //The player is created inside of the Box2D world
-   //     player = new MainPlayer(world);
 
     }
 
-    public void handleInput() {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
-            player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= MAX_VELOCITY)
-            player.b2body.applyLinearImpulse(new Vector2(0.1f, 0),player.b2body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= MIN_VELOCITY)
-            player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0),player.b2body.getWorldCenter(), true);
-    }
 
     public void update(){
 
-        //user input handler
-        handleInput();
-
-        world.step(STEP, 6, 2);
-
-        gamecam.position.x = (float) Math.round(player.b2body.getPosition().x * 100f) / 100f;
-        //gamecam.position.y = player.b2body.getPosition().y;
-
-
-        //update the gamecam with the player whenever they move
-        gamecam.update();
-
-        //sets the view of the renderer to the games orthographic camera and renders teh tilemap
-        renderer.setView(gamecam);
-        tiledMapRenderer.setView(gamecam);
-        tiledMapRenderer.render();
     }
 
     /**
