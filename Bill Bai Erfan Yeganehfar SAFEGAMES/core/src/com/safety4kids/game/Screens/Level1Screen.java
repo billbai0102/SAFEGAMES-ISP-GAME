@@ -15,11 +15,9 @@ import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.Box2DCollisionCreator;
 import com.safety4kids.game.Utils.InputProcessor;
 import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
-import sun.applet.Main;
 
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.run;
-import static com.safety4kids.game.Safety4Kids.*;
+import static com.safety4kids.game.Safety4Kids.PPM;
+import static com.safety4kids.game.Safety4Kids.STEP;
 import static com.safety4kids.game.Screens.GameScreen.GameState.*;
 
 /**
@@ -35,7 +33,8 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
  * 3.3 Erfan Yeg: (2019-05-29) Created box2d bodies and fixtures and added them to the box2d world, aka collision detection,
  * Added the main player body to the world as well as input handling. -- 2hr
  * 3.4 Erfan Yeg: (2019-05-30) Cleaned code up, made a new class for loading in objects and fixed tilemap bleeding as well
- * as better mouvment. -- 1.5hrs
+ * as better movement. -- 1.5hrs
+ * 3.5 Bill Bai: (2019-06-02) Changed single line in camera positioning equation to fix choppy camera scroll -- <5min
  */
 @SuppressWarnings("Duplicates")
 public class Level1Screen extends GameScreen {
@@ -90,7 +89,7 @@ public class Level1Screen extends GameScreen {
         player.update(dt);
 
         if(player.b2body.getPosition().x >  2.5 && player.b2body.getPosition().x < 36 )
-        gameCam.position.x = (float) Math.round(player.b2body.getPosition().x * 100f) / 100f;
+        gameCam.position.x = (float) Math.round(player.b2body.getPosition().x * 1000f) / 1000f;
 
         //update the gameCam with the player whenever they move
         gameCam.update();
