@@ -8,6 +8,7 @@ import com.safety4kids.game.Entities.MainPlayer;
 import static com.safety4kids.game.Safety4Kids.MAX_VELOCITY;
 import static com.safety4kids.game.Safety4Kids.MIN_VELOCITY;
 
+
 public class InputProcessor {
 
 

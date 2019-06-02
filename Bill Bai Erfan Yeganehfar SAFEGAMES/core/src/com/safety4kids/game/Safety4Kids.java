@@ -29,6 +29,7 @@ public class Safety4Kids extends Game {
     public static final float MIN_VELOCITY = -2f;
     public static final float STEP = 1 / 60f;
     public SpriteBatch batch;
+
     /**
      * This is the constructor. It calls the superclass constructor, which is of Game.
      */
@@ -43,8 +44,6 @@ public class Safety4Kids extends Game {
     @Override
     public void create () {
         setScreen(new IntroAnimation(this));
-        batch = new SpriteBatch();
-
     }
 
     /**

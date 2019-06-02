@@ -24,20 +24,24 @@ public class Hud implements Disposable {
     private  Integer worldTimer;
     private float timeCount;
     private Integer score;
+    private boolean showStats;
+    private int level;
 
-    Label countdownLabel;
-    Label scoreLabel;
-    Label timeLebel;
-    Label levelLabel;
-    Label worlLabel;
-    Label  playerLabel;
+    private Label countdownLabel;
+    private Label scoreLabel;
+    private Label timeLabel;
+    private Label levelLabel;
+    private Label worlLabel;
+    private Label  playerLabel;
 
     /**
      * The constructor for the Hud initializes the Label values and constructs the viewport. Using Scene2D API such as Table,
      * the labels can be set properly with their sprites on the game screen.
      * @param sb the sprite batch passed into the hud for graphics
      */
-    public Hud(SpriteBatch sb) {
+    public Hud(SpriteBatch sb, boolean showStats, int level) {
+        this.level = level;
+        this.showStats = showStats;
         worldTimer = 300;
         timeCount = 0;
         score = 0;
@@ -45,26 +49,36 @@ public class Hud implements Disposable {
         stage = new Stage(viewport, sb);
 
         Table table = new Table();
+
         //Sets assets on top of the stage
         table.top();
+
         //scales to the stage
         table.setFillParent(true);
 
         countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreLabel =new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        timeLebel= new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        levelLabel= new Label("1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        timeLabel= new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        levelLabel= new Label(level+"", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         worlLabel= new Label( "LEVEL", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         playerLabel= new Label("SCORE", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         //adds Labels to the table, while equally dividing them
-        //table.add(playerLabel).expandX().padTop(10);
-        table.add(worlLabel).expandX().padTop(10);
-        //table.add(timeLebel).expandX().padTop(10);
-        //new row created
-        table.row();
-        //table.add(scoreLabel).expandX();
-        table.add(levelLabel).expandX();
-        //table.add(countdownLabel).expandX();
+
+        if (showStats){
+            table.add(playerLabel).expandX().padTop(10);
+            table.add(worlLabel).expandX().padTop(10);
+            table.add(timeLabel).expandX().padTop(10);
+            table.row();
+            table.add(scoreLabel).expandX();
+            table.add(levelLabel).expandX();
+            table.add(countdownLabel).expandX();
+
+        }
+        else{
+            table.add(worlLabel).expandX().padTop(10);
+            table.row();
+            table.add(levelLabel).expandX();
+        }
 
         //adds table to the current stage
         stage.addActor(table);
