@@ -1,6 +1,8 @@
 package com.safety4kids.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.safety4kids.game.Screens.IntroAnimation;
 
 /**
@@ -26,6 +28,8 @@ public class Safety4Kids extends Game {
     public static final float MAX_VELOCITY = 2f;
     public static final float MIN_VELOCITY = -2f;
     public static final float STEP = 1 / 60f;
+    public SpriteBatch batch;
+
     /**
      * This is the constructor. It calls the superclass constructor, which is of Game.
      */
