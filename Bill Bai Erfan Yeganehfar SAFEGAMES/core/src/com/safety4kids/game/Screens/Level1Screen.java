@@ -1,27 +1,26 @@
 package com.safety4kids.game.Screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.Levels.Hud;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.Box2DCollisionCreator;
 import com.safety4kids.game.Utils.InputProcessor;
 import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
+import sun.applet.Main;
 
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.run;
 import static com.safety4kids.game.Safety4Kids.*;
+import static com.safety4kids.game.Screens.GameScreen.GameState.*;
 
 /**
  * This Class represents the first level of the game where it is based on an interactive learning platformer.
@@ -66,7 +65,6 @@ public class Level1Screen extends GameScreen {
 
         //Sets the hud for this level
         hud = new Hud(batch, false, 1);
-
         //Loads, fixes (added padding), and creates the renderer for the TileMap for level 1
         map = new TmxMapLoader().load("core/assets/MapAssets/level1.tmx");
         tiledMapRenderer = new MyOrthogonalTiledMapRenderer(map, 1/PPM);
@@ -84,6 +82,7 @@ public class Level1Screen extends GameScreen {
     }
 
     public void update(float dt){
+
         //user input handler
         InputProcessor.inputProcess();
 
@@ -109,29 +108,51 @@ public class Level1Screen extends GameScreen {
      */
     @Override
     public void render(float delta) {
-        //update is separated from the render logic
-        update(delta);
-        //Clears the game screen
-        Gdx.gl.glClearColor(0,0,0,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
+            state = RETURN;
 
-        //Renders the Game map
-        renderer.render();
+        switch (state) {
+            case RUN:
+                //update is separated from the render logic
+                update(delta);
+                //Clears the game screen
+                Gdx.gl.glClearColor(0, 0, 0, 1);
+                Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        //Draws the sprites to the game screen based on the cam
-        game.batch.setProjectionMatrix(gameCam.combined);
-        game.batch.begin();
-        player.draw(game.batch);
-        game.batch.end();
+                //Renders the Game map
+                renderer.render();
 
-        //Box2D Debug renderer
-        //b2dr.render(world,gameCam.combined);
+                //Draws the sprites to the game screen based on the cam
+                game.batch.setProjectionMatrix(gameCam.combined);
+                game.batch.begin();
+                player.draw(game.batch);
+                game.batch.end();
 
-        //shows the screen based on the Camera with the hud
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.stage.draw();
+                //Box2D Debug renderer
+                b2dr.render(world, gameCam.combined);
+
+                //shows the screen based on the Camera with the hud
+                game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+                hud.stage.draw();
+
+                if (player.b2body.getPosition().x > 38) {
+                    ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
+                    dispose();
+                }
+                break;
+                case PAUSE:
+                    break;
+            case RESUME:
+                state = RUN;
+                break;
+            case RETURN:
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(new Safety4Kids()));
+                dispose();
+                break;
+            default:
+                break;
+        }
     }
-
 
     public World getWorld() {
         return world;
@@ -160,7 +181,6 @@ public class Level1Screen extends GameScreen {
         renderer.dispose();
         world.dispose();
         b2dr.dispose();
-        hud.dispose();
     }
 
     @Override
@@ -170,11 +190,13 @@ public class Level1Screen extends GameScreen {
 
     @Override
     public void pause() {
+        this.state = PAUSE;
 
     }
 
     @Override
     public void resume() {
+        this.state = RESUME;
 
     }
 

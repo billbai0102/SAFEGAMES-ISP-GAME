@@ -1,9 +1,9 @@
 package com.safety4kids.game.Utils;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.safety4kids.game.Entities.MainPlayer;
+import com.safety4kids.game.Screens.GameScreen;
 
 import static com.safety4kids.game.Safety4Kids.MAX_VELOCITY;
 import static com.safety4kids.game.Safety4Kids.MIN_VELOCITY;

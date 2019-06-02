@@ -24,6 +24,14 @@ import static com.safety4kids.game.Safety4Kids.*;
  */
 public abstract class GameScreen implements Screen {
 
+    public enum GameState
+    {
+        PAUSE,
+        RUN,
+        RESUME,
+        RETURN
+    }
+    public GameState state;
     protected Safety4Kids game;
     protected SpriteBatch batch;
     protected OrthographicCamera gameCam;
@@ -40,6 +48,7 @@ public abstract class GameScreen implements Screen {
         game = new Safety4Kids();
         game.batch = new SpriteBatch();
         batch =  game.batch;
+        state = GameState.RUN;
         gameCam = new OrthographicCamera();
         gamePort = new FitViewport(V_WIDTH / PPM, V_HEIGHT / PPM, gameCam);
 
