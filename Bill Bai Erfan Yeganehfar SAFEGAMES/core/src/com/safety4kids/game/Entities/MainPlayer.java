@@ -58,7 +58,7 @@ public class MainPlayer extends Sprite {
         for(int i = 0; i < 10; i++) {
             runAnimation.add(new TextureRegion(screen.getAtlas().findRegion("running"), 10+(i * 32), 4, 14, 24));
         }
-        playerRun = new Animation(0.1f, runAnimation);
+        playerRun = new Animation(0.075f, runAnimation);
 
         runAnimation.clear();
 

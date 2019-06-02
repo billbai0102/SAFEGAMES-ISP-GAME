@@ -125,7 +125,7 @@ public class Level1Screen extends GameScreen {
         game.batch.end();
 
         //Box2D Debug renderer
-        b2dr.render(world,gameCam.combined);
+        //b2dr.render(world,gameCam.combined);
 
         //shows the screen based on the Camera with the hud
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
