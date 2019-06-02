@@ -135,6 +135,7 @@ public class Level1Screen extends GameScreen {
                 hud.stage.draw();
 
                 if (player.b2body.getPosition().x > 37.5) {
+
                     ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
                     dispose();
                 }
