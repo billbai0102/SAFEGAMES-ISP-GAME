@@ -23,7 +23,7 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
 /**
  * This Class represents the first level of the game where it is based on an interactive learning platformer.
  *
- * @version 3.4 2019-05-30
+ * @version 3.7 2019-05-30
  * @author Erfan Yeganehfar
  * Ms. Krasteva
  *
@@ -34,7 +34,9 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
  * Added the main player body to the world as well as input handling. -- 2hr
  * 3.4 Erfan Yeg: (2019-05-30) Cleaned code up, made a new class for loading in objects and fixed tilemap bleeding as well
  * as better movement. -- 1.5hrs
- * 3.5 Bill Bai: (2019-06-02) Changed single line in camera positioning equation to fix choppy camera scroll -- <5min
+ * 3.5 Erfan Yeg: (2019-06-01) Added a way of transitioning from the current level to the next -- 30mins
+ * 3.6 Erfan Yeg: (2019-06-02) Added different states for the game that control the state of the game -- 1hr
+ * 3.7 Bill Bai: (2019-06-02) Changed single line in camera positioning equation to fix choppy camera scroll -- <5min
  */
 @SuppressWarnings("Duplicates")
 public class Level1Screen extends GameScreen {
@@ -73,7 +75,7 @@ public class Level1Screen extends GameScreen {
         new Box2DCollisionCreator(world, map);
 
         //The player is created inside of the Box2D world
-        player = new MainPlayer(this, 400, 300);
+        player = new MainPlayer(this, 400, 250);
 
         //Processes input for the player
         input = new InputProcessor(player);
@@ -134,14 +136,15 @@ public class Level1Screen extends GameScreen {
                 game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
                 hud.stage.draw();
 
-                if (player.b2body.getPosition().x > 37.5) {
-
+                if (player.b2body.getPosition().x > 37.5)
+                    state = NEXT_LEVEL;
+                break;
+                case NEXT_LEVEL:
                     ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
                     dispose();
-                }
-                break;
-                case PAUSE:
                     break;
+            case PAUSE:
+                break;
             case RESUME:
                 state = RUN;
                 break;
@@ -181,6 +184,7 @@ public class Level1Screen extends GameScreen {
         renderer.dispose();
         world.dispose();
         b2dr.dispose();
+        tiledMapRenderer.dispose();
     }
 
     @Override
