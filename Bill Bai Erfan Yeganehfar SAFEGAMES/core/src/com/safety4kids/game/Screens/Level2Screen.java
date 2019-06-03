@@ -1,5 +1,6 @@
 package com.safety4kids.game.Screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -14,6 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static com.safety4kids.game.Screens.GameScreen.GameState.RETURN;
+import static com.safety4kids.game.Screens.GameScreen.GameState.RUN;
+
+
 /**
  * This is class represents the second level of the game.
  *
@@ -22,9 +27,12 @@ import java.util.Random;
  * <p>
  * Modifications:
  * 3.1 Bill Bai: (2019-05-30) Added the basics for the game such as the camera, viewports, hud, and renderer -- 2hrs
+ *
+ * 3.3 Bill Bai: added states
  * @version 3 2019-05-30
  */
-public class Level2Screen implements Screen {
+@SuppressWarnings("Duplicates")
+public class Level2Screen  extends GameScreen implements Screen{
     private Safety4Kids game;
     private SpriteBatch batch;
 
@@ -74,26 +82,52 @@ public class Level2Screen implements Screen {
 
     @Override
     public void render(float delta) {
-        scrollTime += 0.0007f;
-        if (scrollTime >= 1.0f)
-            scrollTime = 0.0f;
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
+            state = RETURN;
 
-        timePassed += Gdx.graphics.getDeltaTime();
+        switch (state) {
+            case RUN:
 
-        batch.begin();
-        bgSprite.setU(scrollTime);
-        bgSprite.setU2(scrollTime + 0.80f);
-        bgSprite.draw(batch);
-        batch.draw(playerAnimation.getKeyFrame(timePassed, true), 500, 150);
-        batch.draw(warningAnimation.getKeyFrame(timePassed, true), warningLocation, 130);
+                scrollTime += 0.0007f;
+                if (scrollTime >= 1.0f)
+                    scrollTime = 0.0f;
 
-        drawQuestions(batch);
-        batch.end();
+                timePassed += Gdx.graphics.getDeltaTime();
+
+                batch.begin();
+                bgSprite.setU(scrollTime);
+                bgSprite.setU2(scrollTime + 0.80f);
+                bgSprite.draw(batch);
+                batch.draw(playerAnimation.getKeyFrame(timePassed, true), 500, 150);
+                batch.draw(warningAnimation.getKeyFrame(timePassed, true), warningLocation, 130);
+
+                drawQuestions(batch);
+                batch.end();
 
 
-        if (win) {
-            System.out.println("Progressing to Level 3 ...");
-            //((Game)Gdx.app.getApplicationListener()).setScreen(new Level3Screen(game));
+                if (win) {
+                    System.out.println("Progressing to Level 3 ...");
+                    //((Game)Gdx.app.getApplicationListener()).setScreen(new Level3Screen(game));
+                }
+
+                //    if win -->
+                //    state = NEXT_LEVEL;
+                break;
+            case NEXT_LEVEL:
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(game));
+                dispose();
+                break;
+            case PAUSE:
+                break;
+            case RESUME:
+                state = RUN;
+                break;
+            case RETURN:
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
+                dispose();
+                break;
+            default:
+                break;
         }
 
     }
@@ -137,11 +171,9 @@ public class Level2Screen implements Screen {
         font.draw(batch, questionGlyph, (Gdx.graphics.getWidth() - questionGlyph.width) / 2, Gdx.graphics.getHeight() - questionGlyph.height);
         // font.draw(batch, )
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
             System.out.println("hi");
         }
-
-
 
 
         if (lives == 0) {
@@ -202,5 +234,11 @@ public class Level2Screen implements Screen {
         bg.dispose();
         player.dispose();
         warning.dispose();
+    }
+
+
+    @Override
+    public void update(float dt) {
+
     }
 }

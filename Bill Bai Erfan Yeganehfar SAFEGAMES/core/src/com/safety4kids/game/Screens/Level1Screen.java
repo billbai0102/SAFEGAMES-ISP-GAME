@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.physics.box2d.World;
 import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.Levels.Hud;
 import com.safety4kids.game.Safety4Kids;
@@ -107,8 +106,10 @@ public class Level1Screen extends GameScreen {
      */
     @Override
     public void render(float delta) {
-        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             state = RETURN;
+            dispose();
+        }
 
         switch (state) {
             case RUN:
@@ -138,7 +139,7 @@ public class Level1Screen extends GameScreen {
                     state = NEXT_LEVEL;
                 break;
                 case NEXT_LEVEL:
-                    ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(game));
+                    ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(game));
                     dispose();
                     break;
             case PAUSE:
