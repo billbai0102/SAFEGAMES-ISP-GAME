@@ -73,7 +73,7 @@ public class MainPlayer extends Sprite {
         playerJump = new TextureRegion(screen.getAtlas().findRegion("jump"), 9, 4, 15, 24);
 
         creatBox2D();
-        setBounds(startPosX / Safety4Kids.PPM,startPosY/ Safety4Kids.PPM, 17 / Safety4Kids.PPM, 30 / Safety4Kids.PPM);
+        setBounds(startPosX / Safety4Kids.PPM,startPosY / Safety4Kids.PPM, 17 / Safety4Kids.PPM, 30 / Safety4Kids.PPM);
         setRegion(playerIdle);
     }
 
@@ -99,14 +99,14 @@ public class MainPlayer extends Sprite {
 
         //The type of shape is assigned and defined
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(7f/Safety4Kids.PPM,13f/Safety4Kids.PPM);
+        shape.setAsBox(6f/Safety4Kids.PPM,13f/Safety4Kids.PPM);
 
         //the shape is bound to the fixture, and the fixture to the body
         fdef.shape = shape;
         b2body.createFixture(fdef);
 
         EdgeShape feet = new EdgeShape();
-        feet.set(new Vector2(-6 / Safety4Kids.PPM, -14 / Safety4Kids.PPM), new Vector2(6 / Safety4Kids.PPM, -14 / Safety4Kids.PPM));
+        feet.set(new Vector2(-5 / Safety4Kids.PPM, -14 / Safety4Kids.PPM), new Vector2(5 / Safety4Kids.PPM, -14 / Safety4Kids.PPM));
         fdef.shape = feet;
         fdef.isSensor = false;
         b2body.createFixture(fdef);
