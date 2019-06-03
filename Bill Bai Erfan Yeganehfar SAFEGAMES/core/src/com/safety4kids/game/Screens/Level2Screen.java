@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.safety4kids.game.Safety4Kids;
 
 import java.io.BufferedReader;
@@ -54,7 +55,7 @@ public class Level2Screen extends GameScreen implements Screen {
 
     private Input answer;
 
-    //private BitmapFont font;
+    private BitmapFont font;
 
     private int lives = 3;
 
@@ -81,7 +82,13 @@ public class Level2Screen extends GameScreen implements Screen {
 
         loadQuestions();
 
-     //   FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/myfont.ttf"));
+
+        //LOAD FONT
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("core/assets/Fonts/VCR_OSD_MONO_1.001.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 12;
+        font = generator.generateFont(parameter);
+        generator.dispose();
     }
 
     @Override
