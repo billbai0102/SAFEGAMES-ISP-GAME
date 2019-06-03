@@ -72,7 +72,7 @@ public class Level1Screen extends GameScreen {
         new Box2DCollisionCreator(world, map);
 
         //The player is created inside of the Box2D world
-        player = new MainPlayer(this, 400, 250);
+        player = new MainPlayer(this, 400, 200);
 
         //Processes input for the player
         input = new InputProcessor(player);
@@ -88,7 +88,7 @@ public class Level1Screen extends GameScreen {
         player.update(dt);
 
         if(player.b2body.getPosition().x >  2.5 && player.b2body.getPosition().x < 35 )
-        gameCam.position.x = (float) Math.round(player.b2body.getPosition().x * 1000f) / 1000f;
+        gameCam.position.x = (player.b2body.getPosition().x );
 
         //update the gameCam with the player whenever they move
         gameCam.update();
