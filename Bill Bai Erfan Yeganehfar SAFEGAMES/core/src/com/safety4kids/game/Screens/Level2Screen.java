@@ -69,6 +69,7 @@ public class Level2Screen extends GameScreen implements Screen {
         this.game = game;
         game.batch = new SpriteBatch();
         batch = game.batch;
+
         bg = new Texture("core/assets/Lv2Assets/Level2Background.png");
         bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.ClampToEdge);
         bgSprite = new Sprite(bg);
@@ -78,9 +79,8 @@ public class Level2Screen extends GameScreen implements Screen {
 
         warning = new TextureAtlas(Gdx.files.internal("core/assets/Lv2Assets/Lv2Warning.atlas"));
         warningAnimation = new Animation<TextureRegion>(1 / 5f, warning.getRegions());
-
+        
         loadQuestions();
-
 
         //LOAD FONT
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("core/assets/Fonts/VCR_OSD_MONO_1.001.ttf"));
@@ -99,7 +99,6 @@ public class Level2Screen extends GameScreen implements Screen {
 
         switch (state) {
             case RUN:
-
                 scrollTime += 0.0007f;
                 if (scrollTime >= 1.0f)
                     scrollTime = 0.0f;
@@ -128,8 +127,6 @@ public class Level2Screen extends GameScreen implements Screen {
             case NEXT_LEVEL:
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(game));
                 dispose();
-                break;
-            case PAUSE:
                 break;
             case RESUME:
                 state = RUN;
