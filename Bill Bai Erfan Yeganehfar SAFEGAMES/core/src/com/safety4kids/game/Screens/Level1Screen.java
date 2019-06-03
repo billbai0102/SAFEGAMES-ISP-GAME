@@ -140,7 +140,7 @@ public class Level1Screen extends GameScreen {
                     state = NEXT_LEVEL;
                 break;
                 case NEXT_LEVEL:
-                    ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
+                    ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(game));
                     dispose();
                     break;
             case PAUSE:
@@ -149,7 +149,7 @@ public class Level1Screen extends GameScreen {
                 state = RUN;
                 break;
             case RETURN:
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(new Safety4Kids()));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
                 dispose();
                 break;
             default:
