@@ -6,7 +6,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.safety4kids.game.Safety4Kids;
 
 import java.io.BufferedReader;
@@ -55,7 +54,7 @@ public class Level2Screen extends GameScreen implements Screen {
 
     private Input answer;
 
-    private BitmapFont font;
+    //private BitmapFont font;
 
     private int lives = 3;
 
@@ -78,11 +77,11 @@ public class Level2Screen extends GameScreen implements Screen {
         warning = new TextureAtlas(Gdx.files.internal("core/assets/Lv2Assets/Lv2Warning.atlas"));
         warningAnimation = new Animation<TextureRegion>(1 / 5f, warning.getRegions());
 
-        font = new BitmapFont(Gdx.files.internal("core/assets/Lv2Assets/segoe.fnt"));
+        //font = new BitmapFont(Gdx.files.internal("core/assets/Lv2Assets/segoe.fnt"));
 
         loadQuestions();
 
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/myfont.ttf"));
+     //   FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/myfont.ttf"));
     }
 
     @Override
@@ -169,13 +168,13 @@ public class Level2Screen extends GameScreen implements Screen {
         boolean correct = false;
         GlyphLayout questionGlyph = new GlyphLayout();
         String q = "Q".concat(String.valueOf(curQuestionIndex + 1).concat(questions.get(curQuestionIndex).substring(2)));
-        questionGlyph.setText(font, q);
+     //   questionGlyph.setText(font, q);
 
         GlyphLayout a1Layout = new GlyphLayout();
         //  String a1 = "A)".concat(answers.get(curQuestionIndex).substring(1));
         //   questionGlyph.setText(font, a1);
 
-        font.draw(batch, questionGlyph, (Gdx.graphics.getWidth() - questionGlyph.width) / 2, Gdx.graphics.getHeight() - questionGlyph.height);
+   //     font.draw(batch, questionGlyph, (Gdx.graphics.getWidth() - questionGlyph.width) / 2, Gdx.graphics.getHeight() - questionGlyph.height);
         // font.draw(batch, )
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
