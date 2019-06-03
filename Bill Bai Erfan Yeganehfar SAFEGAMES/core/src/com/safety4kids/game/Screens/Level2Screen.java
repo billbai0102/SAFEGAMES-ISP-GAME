@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.safety4kids.game.Safety4Kids;
 
 import java.io.BufferedReader;
@@ -27,12 +28,14 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.RUN;
  * <p>
  * Modifications:
  * 3.1 Bill Bai: (2019-05-30) Added the basics for the game such as the camera, viewports, hud, and renderer -- 2hrs
- *
- * 3.3 Bill Bai: added states
+ * 3.2 Added File IO to read into game -- 30min
+ * 3.3 Added Infinite map and animated sprites -- 1.5hrs
+ * 3.4 Added shuffling questions and answers, and input to game - 2hrs
+ * 3.3 Bill Bai: Added game states and return to menu using escape key- 1hr
  * @version 3 2019-05-30
  */
 @SuppressWarnings("Duplicates")
-public class Level2Screen  extends GameScreen implements Screen{
+public class Level2Screen extends GameScreen implements Screen {
     private Safety4Kids game;
     private SpriteBatch batch;
 
@@ -78,6 +81,8 @@ public class Level2Screen  extends GameScreen implements Screen{
         font = new BitmapFont(Gdx.files.internal("core/assets/Lv2Assets/segoe.fnt"));
 
         loadQuestions();
+
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/myfont.ttf"));
     }
 
     @Override
@@ -133,7 +138,7 @@ public class Level2Screen  extends GameScreen implements Screen{
     }
 
     public void shuffleAnswers() {
-        String[] tempAnswers;
+        String[] tempAnswers = answers.get(0);
         Random r = new Random();
 
         for (int x = 0; x < answers.size(); x++) {
@@ -145,16 +150,18 @@ public class Level2Screen  extends GameScreen implements Screen{
                 tempAnswers[k] = tempAnswers[y];
                 tempAnswers[y] = temp;
             }
-            //for(int y = 0; y < tempAnswers.length; x++){
-            //     if(tempAnswers[y].charAt(0) == '4'){
-            //        answerKey.add(y+1);
-            //       break;
-            //     }
-            // }
-            // for(int y = 0; y< tempAnswers.length; y++){
-            //     System.out.println(tempAnswers[y]);
-            // }
-            // System.out.println("Answer at: " + answerKey.get(x));
+            for (int y = 0; y < tempAnswers.length; y++) {
+                if (tempAnswers[y].charAt(0) == '4') {
+                    answerKey.add(y + 1);
+                    break;
+                }
+            }
+            for (int y = 0; y < tempAnswers.length; y++) {
+                System.out.println(tempAnswers[y]);
+                System.out.println();
+            }
+            System.out.println("Answer at: " + answerKey.get(x));
+            System.out.println();
         }
     }
 
@@ -197,7 +204,6 @@ public class Level2Screen  extends GameScreen implements Screen{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Got to loadQuestions()");
         shuffleAnswers();
     }
 

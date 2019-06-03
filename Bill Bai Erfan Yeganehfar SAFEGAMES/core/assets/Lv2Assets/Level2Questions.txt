@@ -57,7 +57,7 @@ Q: When should you wear a life jacket?
 1When on a boat.
 2When playing a water sport.
 3When near an open body of water.
-4All of the above.
+4All of the answers are correct.
 Q: You suspect a stranger is following you.
 1Confront them.
 2Ignore them.
@@ -77,11 +77,11 @@ Q: During a thunderstorm:
 1Go indoors.
 2Do not use a landline telephone.
 3Unplug all appliances.
-4All of the above.
+4All of the answers are correct.
 Q: What should you do with lit candles after you leave a room?
 1Pour out the hot wax.
 2Cover it with a sheet of paper.
-3All of the above.
+3All of the answers are correct.
 4Blow them out.
 Q: Which of the following should you NOT do during a fire emergency?
 1Close doors to prevent fire from spreading.
@@ -97,4 +97,4 @@ Q: Never...
 1Stick metal objects into a toaster or outlet.
 2Sleep in a car with the heater on.
 3Save someone else before you save yourself
-4All of the above
+4All of the answers are correct.
