@@ -1,5 +1,7 @@
 package com.safety4kids.game.Entities;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -9,6 +11,11 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Screens.GameScreen;
+
+import static com.safety4kids.game.Safety4Kids.MAX_VELOCITY;
+import static com.safety4kids.game.Safety4Kids.MIN_VELOCITY;
+import static com.safety4kids.game.Utils.InputProcessor.moveLeft;
+import static com.safety4kids.game.Utils.InputProcessor.moveRight;
 
 
 /**
@@ -97,6 +104,12 @@ public class MainPlayer extends Sprite {
         //the shape is bound to the fixture, and the fixture to the body
         fdef.shape = shape;
         b2body.createFixture(fdef);
+
+        EdgeShape feet = new EdgeShape();
+        feet.set(new Vector2(-6 / Safety4Kids.PPM, -14 / Safety4Kids.PPM), new Vector2(6 / Safety4Kids.PPM, -14 / Safety4Kids.PPM));
+        fdef.shape = feet;
+        fdef.isSensor = false;
+        b2body.createFixture(fdef);
     }
 
     /**
@@ -136,7 +149,7 @@ public class MainPlayer extends Sprite {
     }
 
     public TextureRegion getFrame(float dt) {
-        //get marios current state. ie. jumping, running, standing...
+        //get player current state. ie. jumping, running, standing...
         currState = getState();
 
         TextureRegion region;
@@ -145,6 +158,10 @@ public class MainPlayer extends Sprite {
         switch (currState) {
             case JUMPING:
                 region = playerJump;
+                if ((Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) && b2body.getLinearVelocity().x <= MAX_VELOCITY)
+                    moveRight();
+                if ((Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) && b2body.getLinearVelocity().x >= MIN_VELOCITY)
+                    moveLeft();
                 break;
             case RUNNING:
                region = playerRun.getKeyFrame(timer, true);

@@ -23,20 +23,19 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
 /**
  * This Class represents the first level of the game where it is based on an interactive learning platformer.
  *
- * @version 3.7 2019-05-30
+ * @version 3.6 2019-05-30
  * @author Erfan Yeganehfar
  * Ms. Krasteva
  *
  * Modifications:
  * 3.1 Erfan Yeg: (2019-05-28) Added the basics for the game such as the camera, viewports, hud, and renderer -- 2hrs
- * 3.2 Erfan Yeg: (2019-05-29) created + added the basic tile map and created the tilemap renderer -- 1hr
+ * 3.2 Erfan Yeg: (2019-05-29) created + added the basic tile map and created the tilemap renderer -- 2hrs
  * 3.3 Erfan Yeg: (2019-05-29) Created box2d bodies and fixtures and added them to the box2d world, aka collision detection,
- * Added the main player body to the world as well as input handling. -- 2hr
+ * Added the main player body to the world as well as input handling. -- 2hrs
  * 3.4 Erfan Yeg: (2019-05-30) Cleaned code up, made a new class for loading in objects and fixed tilemap bleeding as well
  * as better movement. -- 1.5hrs
  * 3.5 Erfan Yeg: (2019-06-01) Added a way of transitioning from the current level to the next -- 30mins
  * 3.6 Erfan Yeg: (2019-06-02) Added different states for the game that control the state of the game -- 1hr
- * 3.7 Bill Bai: (2019-06-02) Changed single line in camera positioning equation to fix choppy camera scroll -- <5min
  */
 @SuppressWarnings("Duplicates")
 public class Level1Screen extends GameScreen {
@@ -90,7 +89,7 @@ public class Level1Screen extends GameScreen {
         player.update(dt);
 
         if(player.b2body.getPosition().x >  2.5 && player.b2body.getPosition().x < 35 )
-        gameCam.position.x = (float) Math.round(player.b2body.getPosition().x * 1000f) / 1000f;
+        gameCam.position.x = (float) Math.round(player.b2body.getPosition().x * 100f) / 100f;
 
         //update the gameCam with the player whenever they move
         gameCam.update();
@@ -139,7 +138,7 @@ public class Level1Screen extends GameScreen {
                     state = NEXT_LEVEL;
                 break;
                 case NEXT_LEVEL:
-                    ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(game));
+                    ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(game));
                     dispose();
                     break;
             case PAUSE:
