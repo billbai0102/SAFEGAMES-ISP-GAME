@@ -98,22 +98,29 @@ public class Level2Screen implements Screen {
     }
 
     public void shuffleQuestions() {
-        String[] questions = new String[4];
+        String[] tempAnswers;
         Random r = new Random();
-        for (int x = questions.length - 1; x > 0; x--) {
-            // swap
-            int k = r.nextInt(x);
-            String temp = questions[k];
-            questions[k] = questions[x];
-            questions[x] = temp;
+        for(int x = 0; x < answers.size(); x++) {
+            tempAnswers = answers.get(x);
+            for (int y = tempAnswers.length - 1; y > 0; y--) {
+                // swap
+                int k = r.nextInt(y);
+                String temp = tempAnswers[k];
+                tempAnswers[k] = tempAnswers[y];
+                tempAnswers[y] = temp;
+            }
         }
     }
 
     public void drawQuestions(SpriteBatch batch) {
         boolean correct = false;
         GlyphLayout questionGlyph = new GlyphLayout();
-        String text = "Q".concat(String.valueOf(curQuestionIndex + 1).concat(questions.get(curQuestionIndex).substring(2)));
-        questionGlyph.setText(font, text);
+        String q = "Q".concat(String.valueOf(curQuestionIndex + 1).concat(questions.get(curQuestionIndex).substring(2)));
+        questionGlyph.setText(font, q);
+
+        GlyphLayout a1Layout = new GlyphLayout();
+      //  String a1 = "A)".concat(answers.get(curQuestionIndex).substring(1));
+     //   questionGlyph.setText(font, a1);
 
         font.draw(batch, questionGlyph, (Gdx.graphics.getWidth() - questionGlyph.width) / 2, 900 - questionGlyph.height);
         // font.draw(batch, )
