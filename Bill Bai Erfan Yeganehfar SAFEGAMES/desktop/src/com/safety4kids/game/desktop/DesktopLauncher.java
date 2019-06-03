@@ -20,6 +20,6 @@ public class DesktopLauncher {
 		config.height = Safety4Kids.V_HEIGHT * Safety4Kids.SCALE; //This is the height of the output window.
 		config.width = Safety4Kids.V_WIDTH * Safety4Kids.SCALE; //This is the width of the output window.
 		config.forceExit = false; //This allows the application to fully close, without running in background when closed.
-		new LwjglApplication(new Safety4Kids(), config); //Starts the game.
+        new LwjglApplication(new Safety4Kids(), config); //Starts the game.
 	}
 }
