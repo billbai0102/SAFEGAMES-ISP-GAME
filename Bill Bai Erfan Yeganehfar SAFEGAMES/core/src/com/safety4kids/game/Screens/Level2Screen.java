@@ -50,6 +50,7 @@ public class Level2Screen implements Screen {
 
     List<String> questions = new ArrayList<String>();
     List<String[]> answers = new ArrayList<String[]>();
+    List<Integer> answerKey = new ArrayList<Integer>();
     int curQuestionIndex = 0;
 
     public Level2Screen(Safety4Kids game) {
@@ -61,7 +62,7 @@ public class Level2Screen implements Screen {
         bgSprite = new Sprite(bg);
 
         player = new TextureAtlas(Gdx.files.internal("core/assets/Lv2Assets/Lv2Sprites.atlas"));
-        playerAnimation = new Animation<TextureRegion>(1 / 17f, player.getRegions());
+        playerAnimation = new Animation<TextureRegion>(1 / 12f, player.getRegions());
 
         warning = new TextureAtlas(Gdx.files.internal("core/assets/Lv2Assets/Lv2Warning.atlas"));
         warningAnimation = new Animation<TextureRegion>(1 / 5f, warning.getRegions());
@@ -97,10 +98,11 @@ public class Level2Screen implements Screen {
 
     }
 
-    public void shuffleQuestions() {
+    public void shuffleAnswers() {
         String[] tempAnswers;
         Random r = new Random();
-        for(int x = 0; x < answers.size(); x++) {
+
+        for (int x = 0; x < answers.size(); x++) {
             tempAnswers = answers.get(x);
             for (int y = tempAnswers.length - 1; y > 0; y--) {
                 // swap
@@ -109,6 +111,16 @@ public class Level2Screen implements Screen {
                 tempAnswers[k] = tempAnswers[y];
                 tempAnswers[y] = temp;
             }
+            //for(int y = 0; y < tempAnswers.length; x++){
+            //     if(tempAnswers[y].charAt(0) == '4'){
+            //        answerKey.add(y+1);
+            //       break;
+            //     }
+            // }
+            // for(int y = 0; y< tempAnswers.length; y++){
+            //     System.out.println(tempAnswers[y]);
+            // }
+            // System.out.println("Answer at: " + answerKey.get(x));
         }
     }
 
@@ -119,23 +131,19 @@ public class Level2Screen implements Screen {
         questionGlyph.setText(font, q);
 
         GlyphLayout a1Layout = new GlyphLayout();
-      //  String a1 = "A)".concat(answers.get(curQuestionIndex).substring(1));
-     //   questionGlyph.setText(font, a1);
+        //  String a1 = "A)".concat(answers.get(curQuestionIndex).substring(1));
+        //   questionGlyph.setText(font, a1);
 
         font.draw(batch, questionGlyph, (Gdx.graphics.getWidth() - questionGlyph.width) / 2, 900 - questionGlyph.height);
         // font.draw(batch, )
 
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)){
+            System.out.println("hi");
+        }
 
-        if (correct) {
-            curQuestionIndex++;
-            System.out.println("User got question right. Progressing to question #" + (curQuestionIndex + 1));
-        } else {
-            lives--;
-        }
-        if (curQuestionIndex == 15) {
-            System.out.println("Progressing to Level 3...");
-            //change to next stage
-        }
+
+
+
         if (lives == 0) {
             System.out.println("You've lost!");
         }
@@ -157,7 +165,8 @@ public class Level2Screen implements Screen {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        shuffleQuestions();
+        System.out.println("Got to loadQuestions()");
+        shuffleAnswers();
     }
 
     @Override
