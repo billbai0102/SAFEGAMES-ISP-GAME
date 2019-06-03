@@ -88,7 +88,7 @@ public class Level1Screen extends GameScreen {
         player.update(dt);
 
         if(player.b2body.getPosition().x >  2.5 && player.b2body.getPosition().x < 35 )
-        gameCam.position.x = (float) Math.round(player.b2body.getPosition().x * 100f) / 100f;
+        gameCam.position.x = (float) Math.round(player.b2body.getPosition().x * 1000f) / 1000f;
 
         //update the gameCam with the player whenever they move
         gameCam.update();
