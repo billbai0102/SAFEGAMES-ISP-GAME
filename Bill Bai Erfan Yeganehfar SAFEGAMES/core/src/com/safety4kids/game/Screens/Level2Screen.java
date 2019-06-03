@@ -47,7 +47,8 @@ public class Level2Screen implements Screen {
 
     public Level2Screen(Safety4Kids game){
         this.game = game;
-        batch = new SpriteBatch();
+        game.batch = new SpriteBatch();
+        batch = game.batch;
         bg = new Texture("core/assets/Lv2Assets/Level2Background.png");
         bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.ClampToEdge);
         bgSprite = new Sprite(bg);

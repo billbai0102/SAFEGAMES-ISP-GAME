@@ -20,13 +20,15 @@ import static com.safety4kids.game.Safety4Kids.*;
  * Ms. Krasteva
  *
  * Modifications:
- * 3.1 Erfan Yeg: (2019-05-31) Created this Class for ease of use/ reasuability in the levels.
+ * 3.1 Erfan Yeg: (2019-05-31) Created this Class for ease of use/ reasuability in the levels. -- 30mins
+ * 3.2 Erfan Yeg: (2019-05-2) Added states to the levels, allowing the user to exit to the main menu -- 15mis
  */
 public abstract class GameScreen implements Screen {
 
     public enum GameState
     {
         PAUSE,
+        NEXT_LEVEL,
         RUN,
         RESUME,
         RETURN

@@ -22,7 +22,7 @@ public class Safety4Kids extends Game {
     public static final String TITLE = "Safety4Kids";
     public static final int V_WIDTH = 450;
     public static final int V_HEIGHT = 450;
-    public static final float PPM = 100f;
+    public static final float PPM = 101f;
     public static final int SCALE = 2;
     public static final float CONST_GRAVITY = -9.8f;
     public static final float MAX_VELOCITY = 2f;
