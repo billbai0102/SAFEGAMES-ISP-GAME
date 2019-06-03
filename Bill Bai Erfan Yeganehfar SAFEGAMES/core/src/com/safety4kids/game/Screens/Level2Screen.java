@@ -32,8 +32,7 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.RUN;
  * 3.2 Added File IO to read into game -- 30min
  * 3.3 Added Infinite map and animated sprites -- 1.5hrs
  * 3.4 Added shuffling questions and answers, and input to game - 2hrs
- * 3.5 Bill Bai: Added game states and return to menu using escape key- 1hr
- * 3.6 Bill Bai: Added external library manually. Had to edit build.gradle and manually insert the JAR files. -- 1.5hrs
+ * 3.5 Bill Bai: Added external library manually. Had to edit build.gradle and manually insert the JAR files. -- 1.5hrs
  * @version 6 2019-06-03
  */
 @SuppressWarnings("Duplicates")

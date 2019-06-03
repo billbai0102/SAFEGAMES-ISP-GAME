@@ -106,10 +106,8 @@ public class Level1Screen extends GameScreen {
      */
     @Override
     public void render(float delta) {
-        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
             state = RETURN;
-            dispose();
-        }
 
         switch (state) {
             case RUN:
