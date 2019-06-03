@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.safety4kids.game.Safety4Kids;
-import com.safety4kids.game.Screens.Level1Screen;
+import com.safety4kids.game.Screens.GameScreen;
 
 
 /**
@@ -40,9 +40,9 @@ public class MainPlayer extends Sprite {
 
     private float timer;
     private boolean isRight;
-    private Level1Screen screen;
+    private GameScreen screen;
 
-    public MainPlayer(Level1Screen screen, float posX, float posY){
+    public MainPlayer(GameScreen screen, float posX, float posY){
         this.screen = screen;
         this.world = screen.getWorld();
         startPosX = posX;
@@ -177,7 +177,7 @@ public class MainPlayer extends Sprite {
         return region;
     }
 
-    public float Timer(){
+    public float getTimer(){
         return timer;
     }
 

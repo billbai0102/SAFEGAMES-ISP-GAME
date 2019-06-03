@@ -65,6 +65,7 @@ public class MainMenu implements Screen {
                 System.out.println("Starting level 1...");
 
                 ((Game)Gdx.app.getApplicationListener()).setScreen(new Level1Screen(new Safety4Kids()));
+                dispose();
             }
 
             @Override
@@ -100,6 +101,7 @@ public class MainMenu implements Screen {
                 System.out.println("Starting level 2...");
 
                 ((Game)Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
+                dispose();
             }
 
             @Override

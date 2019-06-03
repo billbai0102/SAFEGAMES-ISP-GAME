@@ -47,7 +47,6 @@ public class Level1Screen extends GameScreen {
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     private MyOrthogonalTiledMapRenderer tiledMapRenderer;
-    private TextureAtlas atlas;
 
     private InputProcessor input;
 
@@ -140,7 +139,7 @@ public class Level1Screen extends GameScreen {
                     state = NEXT_LEVEL;
                 break;
                 case NEXT_LEVEL:
-                    ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
+                    ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(game));
                     dispose();
                     break;
             case PAUSE:
@@ -149,20 +148,12 @@ public class Level1Screen extends GameScreen {
                 state = RUN;
                 break;
             case RETURN:
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(new Safety4Kids()));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
                 dispose();
                 break;
             default:
                 break;
         }
-    }
-
-    public World getWorld() {
-        return world;
-    }
-
-    public TextureAtlas getAtlas() {
-        return atlas;
     }
 
     /**
