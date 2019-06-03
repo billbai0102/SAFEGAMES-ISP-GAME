@@ -24,7 +24,9 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.RUN;
 /**
  * This is class represents the second level of the game.
  *
- * @author Bill Bai, Erfan Yeganehfar
+ * @author Erfan Yeganehfar
+ * @author Bill Bai
+ *
  * Ms. Krasteva
  * <p>
  * Modifications:
@@ -79,7 +81,7 @@ public class Level2Screen extends GameScreen implements Screen {
 
         warning = new TextureAtlas(Gdx.files.internal("core/assets/Lv2Assets/Lv2Warning.atlas"));
         warningAnimation = new Animation<TextureRegion>(1 / 5f, warning.getRegions());
-        
+
         loadQuestions();
 
         //LOAD FONT

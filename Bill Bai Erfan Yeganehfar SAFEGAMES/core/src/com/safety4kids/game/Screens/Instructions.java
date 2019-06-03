@@ -17,7 +17,9 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 /**
  *
  * @version 3.0, 2019-05-28
- * @author Bill Bai, Erfan Yeganehfar
+ * @author Erfan Yeganehfar
+ * @author Bill Bai
+ *
  * Ms. Krasteva
  *
  * Modifications:

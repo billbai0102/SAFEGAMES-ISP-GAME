@@ -22,6 +22,8 @@ import static com.safety4kids.game.Utils.InputProcessor.moveRight;
  *
  * @version 3.3 2019-05-29
  * @author Erfan Yeganehfar
+ * @author Bill Bai
+ *
  * Ms. Krasteva
  *
  * Modifications:

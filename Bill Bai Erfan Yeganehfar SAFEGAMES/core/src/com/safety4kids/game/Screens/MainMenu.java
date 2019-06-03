@@ -22,7 +22,8 @@ import com.safety4kids.game.Safety4Kids;
  * first level, or exit.
  *
  * @version 3.0, 2019-05-28
- * @author Bill Bai, Erfan Yeganehfar
+ * @author Erfan Yeganehfar
+ * @author Bill Bai
  * Ms. Krasteva
  *
  * Modifications:

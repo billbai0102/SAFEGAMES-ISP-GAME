@@ -24,6 +24,8 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
  *
  * @version 3.6 2019-05-30
  * @author Erfan Yeganehfar
+ * @author Bill Bai
+ *
  * Ms. Krasteva
  *
  * Modifications:
