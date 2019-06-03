@@ -134,7 +134,7 @@ public class Level2Screen implements Screen {
         //  String a1 = "A)".concat(answers.get(curQuestionIndex).substring(1));
         //   questionGlyph.setText(font, a1);
 
-        font.draw(batch, questionGlyph, (Gdx.graphics.getWidth() - questionGlyph.width) / 2, 900 - questionGlyph.height);
+        font.draw(batch, questionGlyph, (Gdx.graphics.getWidth() - questionGlyph.width) / 2, Gdx.graphics.getHeight() - questionGlyph.height);
         // font.draw(batch, )
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)){

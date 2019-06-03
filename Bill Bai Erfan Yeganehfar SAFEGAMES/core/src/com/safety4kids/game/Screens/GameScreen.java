@@ -41,6 +41,7 @@ public abstract class GameScreen implements Screen {
         RESUME,
         RETURN
     }
+
     public GameState state;
     protected Safety4Kids game;
     protected SpriteBatch batch;
