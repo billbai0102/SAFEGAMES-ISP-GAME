@@ -31,8 +31,9 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.RUN;
  * 3.2 Added File IO to read into game -- 30min
  * 3.3 Added Infinite map and animated sprites -- 1.5hrs
  * 3.4 Added shuffling questions and answers, and input to game - 2hrs
- * 3.3 Bill Bai: Added game states and return to menu using escape key- 1hr
- * @version 3 2019-05-30
+ * 3.5 Bill Bai: Added game states and return to menu using escape key- 1hr
+ * 3.6 Bill Bai: Added external library manually. Had to edit build.gradle and manually insert the JAR files. -- 1.5hrs
+ * @version 6 2019-06-03
  */
 @SuppressWarnings("Duplicates")
 public class Level2Screen extends GameScreen implements Screen {
@@ -86,7 +87,7 @@ public class Level2Screen extends GameScreen implements Screen {
         //LOAD FONT
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("core/assets/Fonts/VCR_OSD_MONO_1.001.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 12;
+        parameter.size = 30;
         font = generator.generateFont(parameter);
         generator.dispose();
     }
@@ -175,13 +176,13 @@ public class Level2Screen extends GameScreen implements Screen {
         boolean correct = false;
         GlyphLayout questionGlyph = new GlyphLayout();
         String q = "Q".concat(String.valueOf(curQuestionIndex + 1).concat(questions.get(curQuestionIndex).substring(2)));
-     //   questionGlyph.setText(font, q);
+        questionGlyph.setText(font, q);
 
         GlyphLayout a1Layout = new GlyphLayout();
-        //  String a1 = "A)".concat(answers.get(curQuestionIndex).substring(1));
-        //   questionGlyph.setText(font, a1);
+          //String a1 = "A)".concat(answers.get(curQuestionIndex).substring(1));
+          //questionGlyph.setText(font, a1);
 
-   //     font.draw(batch, questionGlyph, (Gdx.graphics.getWidth() - questionGlyph.width) / 2, Gdx.graphics.getHeight() - questionGlyph.height);
+        font.draw(batch, questionGlyph, (Gdx.graphics.getWidth() - questionGlyph.width) / 2, Gdx.graphics.getHeight() - questionGlyph.height);
         // font.draw(batch, )
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
