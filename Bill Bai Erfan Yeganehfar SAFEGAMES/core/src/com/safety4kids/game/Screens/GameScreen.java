@@ -3,12 +3,20 @@ package com.safety4kids.game.Screens;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.safety4kids.game.Entities.MainPlayer;
+import com.safety4kids.game.Levels.Hud;
 import com.safety4kids.game.Safety4Kids;
+import com.safety4kids.game.Utils.InputProcessor;
+import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
+
 import static com.safety4kids.game.Safety4Kids.*;
 
 /**
@@ -38,9 +46,25 @@ public abstract class GameScreen implements Screen {
     protected SpriteBatch batch;
     protected OrthographicCamera gameCam;
     protected Viewport gamePort;
+    protected InputProcessor input;
+
+
+    //Tile map Instance variables
+    protected TiledMap map;
+    protected OrthogonalTiledMapRenderer renderer;
+    protected MyOrthogonalTiledMapRenderer tiledMapRenderer;
+
     //Box2d collision detection instance variables
     protected World world;
     protected Box2DDebugRenderer b2dr;
+    protected TextureAtlas atlas;
+
+    //Instance of the main character
+    protected MainPlayer player;
+
+    protected Hud hud;
+
+
 
     /**
      * The constructor creates all the base necessary components of the platformer. Which is the actual game,
@@ -59,6 +83,14 @@ public abstract class GameScreen implements Screen {
 
         world = new World(new Vector2(0,CONST_GRAVITY),true);
         b2dr = new Box2DDebugRenderer();
+    }
+
+    public World getWorld() {
+        return world;
+    }
+
+    public TextureAtlas getAtlas() {
+        return atlas;
     }
 
     public abstract void update(float dt);

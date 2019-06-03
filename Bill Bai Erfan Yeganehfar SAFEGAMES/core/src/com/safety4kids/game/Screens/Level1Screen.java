@@ -47,7 +47,6 @@ public class Level1Screen extends GameScreen {
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     private MyOrthogonalTiledMapRenderer tiledMapRenderer;
-    private TextureAtlas atlas;
 
     private InputProcessor input;
 
@@ -155,14 +154,6 @@ public class Level1Screen extends GameScreen {
             default:
                 break;
         }
-    }
-
-    public World getWorld() {
-        return world;
-    }
-
-    public TextureAtlas getAtlas() {
-        return atlas;
     }
 
     /**
