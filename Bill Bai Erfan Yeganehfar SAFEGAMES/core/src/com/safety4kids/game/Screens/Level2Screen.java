@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -79,8 +80,6 @@ public class Level2Screen extends GameScreen implements Screen {
         warning = new TextureAtlas(Gdx.files.internal("core/assets/Lv2Assets/Lv2Warning.atlas"));
         warningAnimation = new Animation<TextureRegion>(1 / 5f, warning.getRegions());
 
-        //font = new BitmapFont(Gdx.files.internal("core/assets/Lv2Assets/segoe.fnt"));
-
         loadQuestions();
 
 
@@ -88,6 +87,8 @@ public class Level2Screen extends GameScreen implements Screen {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("core/assets/Fonts/VCR_OSD_MONO_1.001.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 30;
+        parameter.borderColor = Color.BLACK;
+        parameter.borderWidth = 1;
         font = generator.generateFont(parameter);
         generator.dispose();
     }
