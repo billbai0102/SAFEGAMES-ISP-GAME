@@ -330,7 +330,7 @@ public class Level2Screen extends GameScreen implements Screen {
 
 
     private void displayQuestionHelp() {
-            if (questionHelp.get(curQuestionIndex).length() > 35) {
+            if (questionHelp.get(curQuestionIndex).length() > 55) {
                 //Format question
                 GlyphLayout qGlyphPart1 = new GlyphLayout();
                 GlyphLayout qGlyphPart2 = new GlyphLayout();
@@ -405,6 +405,9 @@ public class Level2Screen extends GameScreen implements Screen {
 
     }
 
+    /**
+     * This method disposes the level's objects when it's done running, to save memory usage.
+     */
     @Override
     public void dispose() {
         game.dispose();
@@ -414,7 +417,9 @@ public class Level2Screen extends GameScreen implements Screen {
         warning.dispose();
     }
 
-
+    /**
+     * This method is not used, and only implemented to
+     */
     @Override
     public void update(float dt) {
 
