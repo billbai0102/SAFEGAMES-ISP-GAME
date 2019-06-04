@@ -23,7 +23,9 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
 /**
  * This is class represents the second level of the game.
  *
- * @author Bill Bai, Erfan Yeganehfar
+ * @author Erfan Yeganehfar
+ * @author Bill Bai
+ *
  * Ms. Krasteva
  * <p>
  * Modifications:
@@ -31,8 +33,7 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
  * 3.2 Added File IO to read into game -- 30min
  * 3.3 Added Infinite map and animated sprites -- 1.5hrs
  * 3.4 Added shuffling questions and answers, and input to game - 2hrs
- * 3.5 Bill Bai: Added game states and return to menu using escape key- 1hr
- * 3.6 Bill Bai: Added external library manually. Had to edit build.gradle and manually insert the JAR files. -- 1.5hrs
+ * 3.5 Bill Bai: Added external library manually. Had to edit build.gradle and manually insert the JAR files. -- 1.5hrs
  * @version 6 2019-06-03
  */
 @SuppressWarnings("Duplicates")
@@ -69,6 +70,7 @@ public class Level2Screen extends GameScreen implements Screen {
         this.game = game;
         game.batch = new SpriteBatch();
         batch = game.batch;
+
         bg = new Texture("core/assets/Lv2Assets/Level2Background.png");
         bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.ClampToEdge);
         bgSprite = new Sprite(bg);
@@ -80,7 +82,6 @@ public class Level2Screen extends GameScreen implements Screen {
         warningAnimation = new Animation<TextureRegion>(1 / 5f, warning.getRegions());
 
         loadQuestions();
-
 
         //LOAD FONT
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("core/assets/Fonts/VCR_OSD_MONO_1.001.ttf"));
@@ -101,7 +102,6 @@ public class Level2Screen extends GameScreen implements Screen {
 
         switch (state) {
             case RUN:
-
                 scrollTime += 0.0007f;
                 if (scrollTime >= 1.0f)
                     scrollTime = 0.0f;
@@ -130,8 +130,6 @@ public class Level2Screen extends GameScreen implements Screen {
             case NEXT_LEVEL:
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(game));
                 dispose();
-                break;
-            case PAUSE:
                 break;
             case RESUME:
                 state = RUN;

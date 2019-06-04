@@ -11,7 +11,7 @@ import com.safety4kids.game.Safety4Kids;
 
 /**
  * @author Erfan Yeganehfar
- *
+ * @author Bill Bai
  */
 public class Box2DCollisionCreator {
 

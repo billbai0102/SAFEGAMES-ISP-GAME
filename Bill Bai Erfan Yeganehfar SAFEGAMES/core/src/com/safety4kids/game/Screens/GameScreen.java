@@ -25,6 +25,8 @@ import static com.safety4kids.game.Safety4Kids.*;
  *
  * @version 3.1 2019-05-31
  * @author Erfan Yeganehfar
+ * @author Bill Bai
+ *
  * Ms. Krasteva
  *
  * Modifications:

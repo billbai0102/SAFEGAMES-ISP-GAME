@@ -12,9 +12,11 @@ import com.safety4kids.game.Utils.SplashScreenLogo;
 /**
  * This class serves as the splash screen to the program. It displays the company logo.
  *
- * @author Bill Bai, Erfan Yeganehfar
+ * @author Erfan Yeganehfar
+ * @author Bill Bai
+ *
  * Ms. Krasteva
- * <p>
+ *
  * Modifications:
  * Bill Bai: (2019-05-28) Completed entire class. Time spent: 1 hour.
  * @version 3.0, 2019-05-28

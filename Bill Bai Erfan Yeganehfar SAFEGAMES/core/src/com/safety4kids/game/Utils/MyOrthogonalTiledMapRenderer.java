@@ -34,6 +34,7 @@ import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 
 
 /**
+ *
  * This class is just the is part of the implementation from BatchTiledMapRenderer from badlogic (libgdx)
  * yet the fixBleeding method has been added to fix the background leaks between tiles.
  *

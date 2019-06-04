@@ -4,6 +4,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -15,8 +17,7 @@ import com.safety4kids.game.Utils.Box2DCollisionCreator;
 import com.safety4kids.game.Utils.InputProcessor;
 import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
 
-import static com.safety4kids.game.Safety4Kids.PPM;
-import static com.safety4kids.game.Safety4Kids.STEP;
+import static com.safety4kids.game.Safety4Kids.*;
 import static com.safety4kids.game.Screens.GameScreen.GameState.*;
 
 /**
@@ -24,6 +25,8 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
  *
  * @version 3.6 2019-05-30
  * @author Erfan Yeganehfar
+ * @author Bill Bai
+ *
  * Ms. Krasteva
  *
  * Modifications:
@@ -50,7 +53,8 @@ public class Level1Screen extends GameScreen {
 
     //Instance of the main character
     private MainPlayer player;
-
+    private Texture bg;
+    private Sprite bgSprite;
     /**
      * The constructor creates all the necessary components for this specific platformer. This includes the actual game,
      * the sprite batches, game camera, viewport, box2d world through the gameState.
@@ -63,8 +67,13 @@ public class Level1Screen extends GameScreen {
 
         //Sets the hud for this level
         hud = new Hud(batch, false, 1);
+
+//        bg = new Texture("core/assets/MapAssets/back.png");
+//        bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.ClampToEdge);
+//        bgSprite = new Sprite(bg);
+
         //Loads, fixes (added padding), and creates the renderer for the TileMap for level 1
-        map = new TmxMapLoader().load("core/assets/MapAssets/level1.tmx");
+        map = new TmxMapLoader().load("core/assets/MapAssets/level1a.tmx");
         tiledMapRenderer = new MyOrthogonalTiledMapRenderer(map, 1/PPM);
         renderer = new OrthogonalTiledMapRenderer(map, 1/ PPM);
 
@@ -106,10 +115,8 @@ public class Level1Screen extends GameScreen {
      */
     @Override
     public void render(float delta) {
-        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
             state = RETURN;
-            dispose();
-        }
 
         switch (state) {
             case RUN:
@@ -118,6 +125,9 @@ public class Level1Screen extends GameScreen {
                 //Clears the game screen
                 Gdx.gl.glClearColor(0, 0, 0, 1);
                 Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+//                game.batch.begin();
+//                game.batch.draw(bg,0, 0, V_WIDTH, V_HEIGHT);
+//                game.batch.end();
 
                 //Renders the Game map
                 renderer.render();
