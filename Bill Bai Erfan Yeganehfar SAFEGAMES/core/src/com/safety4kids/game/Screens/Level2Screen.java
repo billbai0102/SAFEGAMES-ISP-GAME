@@ -87,7 +87,7 @@ public class Level2Screen extends GameScreen implements Screen {
         loadQuestions();
 
         //LOAD FONT
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("core/assets/Fonts/VCR_OSD_MONO_1.001.ttf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("core/assets/Fonts/eight-bit-dragon.otf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 30;
         parameter.borderColor = Color.BLACK;
