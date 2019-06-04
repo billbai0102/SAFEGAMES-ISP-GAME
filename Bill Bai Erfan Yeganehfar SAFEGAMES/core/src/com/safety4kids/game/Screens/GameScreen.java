@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.OverLays.Hud;
+import com.safety4kids.game.OverLays.Pause;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.InputProcessor;
 import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
@@ -44,13 +45,15 @@ public abstract class GameScreen implements Screen {
         RETURN
     }
 
+    protected Pause pause;
+    protected Hud hud;
+
     public GameState state;
     protected Safety4Kids game;
     protected SpriteBatch batch;
     protected OrthographicCamera gameCam;
     protected Viewport gamePort;
     protected InputProcessor input;
-
 
     //Tile map Instance variables
     protected TiledMap map;
@@ -65,9 +68,7 @@ public abstract class GameScreen implements Screen {
     //Instance of the main character
     protected MainPlayer player;
 
-    protected Hud hud;
-
-
+    protected boolean isPaused;
 
     /**
      * The constructor creates all the base necessary components of the platformer. Which is the actual game,
