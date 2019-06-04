@@ -120,8 +120,7 @@ public class Level2Screen extends GameScreen implements Screen {
                 batch.draw(warningAnimation.getKeyFrame(timePassed, true), warningLocation, 130);
                 drawQuestions(batch);
 
-
-                displayQuestionHelp(Gdx.graphics.getDeltaTime());
+                displayQuestionHelp();
                 batch.end();
 
 
@@ -322,12 +321,8 @@ public class Level2Screen extends GameScreen implements Screen {
         questionNumber++;
     }
 
-    private final float ANIMATION_LIMIT = 600;
 
-    private void displayQuestionHelp(float delta) {
-        int other = 0;
-        other += delta;
-        if (delta < ANIMATION_LIMIT)
+    private void displayQuestionHelp() {
             if (questionHelp.get(curQuestionIndex).length() > 35) {
                 //Format question
                 GlyphLayout qGlyphPart1 = new GlyphLayout();
