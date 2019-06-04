@@ -34,6 +34,7 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
  * 3.3 Added Infinite map and animated sprites -- 1.5hrs
  * 3.4 Added shuffling questions and answers, and input to game - 2hrs
  * 3.5 Bill Bai: Added external library manually. Had to edit build.gradle and manually insert the JAR files. -- 1.5hrs
+ * 3.6 Bill Bai: Added algorithm to correctly display text without going over edges. -- 2hrs
  * @version 6 2019-06-03
  */
 @SuppressWarnings("Duplicates")
@@ -56,6 +57,7 @@ public class Level2Screen extends GameScreen implements Screen {
     private boolean win = false;
 
     private BitmapFont font;
+    private BitmapFont answerFont;
 
     private int lives = 3;
 
@@ -91,6 +93,9 @@ public class Level2Screen extends GameScreen implements Screen {
         parameter.borderColor = Color.BLACK;
         parameter.borderWidth = 0.5f;
         font = generator.generateFont(parameter);
+        //SECOND FONT
+        parameter.size = 20;
+        answerFont = generator.generateFont(parameter);
         generator.dispose();
     }
 
@@ -165,83 +170,91 @@ public class Level2Screen extends GameScreen implements Screen {
         }
     }
 
+    String[] toPrint;
     private void drawQuestions(SpriteBatch batch) {
-        boolean correct = false;
         int guess;
 
-        String[] printAnswers = answers.get(curQuestionIndex);
+        toPrint = answers.get(curQuestionIndex);
 
         if (questions.get(curQuestionIndex).contains("snow")) {
+
             GlyphLayout qGlyphPart1 = new GlyphLayout();
             GlyphLayout qGlyphPart2 = new GlyphLayout();
+
             String part1 = "Q" + questionNumber + questions.get(curQuestionIndex).substring(2, 44);
             String part2 = questions.get(curQuestionIndex).substring(44);
+
             qGlyphPart1.setText(font, part1);
             qGlyphPart2.setText(font, part2);
+
             font.draw(batch, qGlyphPart1, (Gdx.graphics.getWidth() - qGlyphPart1.width) / 2, Gdx.graphics.getHeight() - qGlyphPart1.height);
             font.draw(batch, qGlyphPart2, (Gdx.graphics.getWidth() - qGlyphPart2.width) / 2, Gdx.graphics.getHeight() - qGlyphPart2.height - qGlyphPart1.height - 20);
+
         } else if (questions.get(curQuestionIndex).length() > 35) {
-            //Format question
+
             GlyphLayout qGlyphPart1 = new GlyphLayout();
             GlyphLayout qGlyphPart2 = new GlyphLayout();
+
             int firstWord = questions.get(curQuestionIndex).substring(2).indexOf(' ', 35);
 
             String part1 = "Q" + questionNumber + questions.get(curQuestionIndex).substring(2, firstWord + 3);
-
             String part2 = questions.get(curQuestionIndex).substring(firstWord + 3);
+
             qGlyphPart1.setText(font, part1);
             qGlyphPart2.setText(font, part2);
+
             font.draw(batch, qGlyphPart1, (Gdx.graphics.getWidth() - qGlyphPart1.width) / 2, Gdx.graphics.getHeight() - qGlyphPart1.height);
             font.draw(batch, qGlyphPart2, (Gdx.graphics.getWidth() - qGlyphPart2.width) / 2, Gdx.graphics.getHeight() - qGlyphPart2.height - qGlyphPart1.height - 20);
+
         } else {
-            //Format question
+
             GlyphLayout questionGlyph = new GlyphLayout();
+
             String q = "Q".concat(String.valueOf(questionNumber).concat(questions.get(curQuestionIndex).substring(2)));
+
             questionGlyph.setText(font, q);
-            //Draw question
+
             font.draw(batch, questionGlyph, (Gdx.graphics.getWidth() - questionGlyph.width) / 2, Gdx.graphics.getHeight() - questionGlyph.height);
         }
 
         //Format first answer
+        //toPrint[0].substring(1)
         GlyphLayout a1Glyph = new GlyphLayout();
-        String a1 = "A)".concat(printAnswers[0].substring(1));
-        a1Glyph.setText(font, a1);
+        String a1 = "A)".concat(toPrint[0].substring(1));
+        a1Glyph.setText(answerFont, a1);
         //Draw answer
-        font.draw(batch, a1Glyph, 5, 750);
+        answerFont.draw(batch, a1Glyph, 5, 750);
 
         //Format second answer
         GlyphLayout a2Glyph = new GlyphLayout();
-        String a2 = "B)".concat(printAnswers[1].substring(1));
-        a2Glyph.setText(font, a2);
+        String a2 = "B)".concat(toPrint[1].substring(1));
+        a2Glyph.setText(answerFont, a2);
         //Draw answer
-        font.draw(batch, a2Glyph, 5, 700);
+        answerFont.draw(batch, a2Glyph, 5, 700);
 
         //Format third answer
         GlyphLayout a3Glyph = new GlyphLayout();
-        String a3 = "C)".concat(printAnswers[2].substring(1));
-        a1Glyph.setText(font, a3);
+        String a3 = "C)".concat(toPrint[2].substring(1));
+        a3Glyph.setText(answerFont, a3);
         //Draw answer
-        font.draw(batch, a3Glyph, 5, 650);
+        answerFont.draw(batch, a3Glyph, 5, 650);
 
         //Format fourth answer
         GlyphLayout a4Glyph = new GlyphLayout();
-        String a4 = "D)".concat(printAnswers[3].substring(1));
-        a1Glyph.setText(font, a4);
+        String a4 = "D)".concat(toPrint[3].substring(1));
+        a4Glyph.setText(answerFont, a4);
         //Draw answer
-        font.draw(batch, a4Glyph, 5, 600);
+        answerFont.draw(batch, a4Glyph, 5, 600);
 
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
             guess = 1;
             if (guess == answerKey.get(curQuestionIndex)) {
                 System.out.println("nice");
+            } else {
+                lose();
             }
-            curQuestionIndex = (int) (Math.random() * questions.size() - 1);
-            questions.remove(curQuestionIndex);
-            answers.remove(curQuestionIndex);
-            answerKey.remove(curQuestionIndex);
-            questionHelp.remove(curQuestionIndex);
-            questionNumber++;
+            inputPressed();
         }
 
 
@@ -249,13 +262,10 @@ public class Level2Screen extends GameScreen implements Screen {
             guess = 2;
             if (guess == answerKey.get(curQuestionIndex)) {
                 System.out.println("nice");
+            } else {
+                lose();
             }
-            curQuestionIndex = (int) (Math.random() * questions.size() - 1);
-            questions.remove(curQuestionIndex);
-            answers.remove(curQuestionIndex);
-            answerKey.remove(curQuestionIndex);
-            questionHelp.remove(curQuestionIndex);
-            questionNumber++;
+            inputPressed();
         }
 
 
@@ -263,13 +273,10 @@ public class Level2Screen extends GameScreen implements Screen {
             guess = 3;
             if (guess == answerKey.get(curQuestionIndex)) {
                 System.out.println("nice");
+            } else {
+                lose();
             }
-            curQuestionIndex = (int) (Math.random() * questions.size() - 1);
-            questions.remove(curQuestionIndex);
-            answers.remove(curQuestionIndex);
-            answerKey.remove(curQuestionIndex);
-            questionHelp.remove(curQuestionIndex);
-            questionNumber++;
+            inputPressed();
         }
 
 
@@ -277,13 +284,10 @@ public class Level2Screen extends GameScreen implements Screen {
             guess = 4;
             if (guess == answerKey.get(curQuestionIndex)) {
                 System.out.println("nice");
+            } else {
+                lose();
             }
-            curQuestionIndex = (int) (Math.random() * questions.size() - 1);
-            questions.remove(curQuestionIndex);
-            answers.remove(curQuestionIndex);
-            answerKey.remove(curQuestionIndex);
-            questionHelp.remove(curQuestionIndex);
-            questionNumber++;
+            inputPressed();
         }
 
 
@@ -294,19 +298,35 @@ public class Level2Screen extends GameScreen implements Screen {
 
         if (lives == 0) {
             System.out.println("You've lost!");
-            state = RETURN;
+           // state = RETURN;
         }
 
     }
 
-    private void displayQuestionHelp(int current){
+    private void lose(){
+        lives--;
+        warningLocation += (500f/3f) - 18f;
+        System.out.println("Lost life.");
+        displayQuestionHelp();
+    }
+
+    private void inputPressed() {
+        curQuestionIndex = (int) (Math.random() * questions.size() - 1);
+        questions.remove(curQuestionIndex);
+        answers.remove(curQuestionIndex);
+        answerKey.remove(curQuestionIndex);
+        questionHelp.remove(curQuestionIndex);
+        questionNumber++;
+    }
+
+    private void displayQuestionHelp() {
         if (questionHelp.get(curQuestionIndex).length() > 35) {
             //Format question
             GlyphLayout qGlyphPart1 = new GlyphLayout();
             GlyphLayout qGlyphPart2 = new GlyphLayout();
             int firstWord = questionHelp.get(curQuestionIndex).substring(2).indexOf(' ', 35);
 
-            String part1 = questionHelp.get(curQuestionIndex).substring( firstWord + 1);
+            String part1 = questionHelp.get(curQuestionIndex).substring(firstWord + 1);
             String part2 = questionHelp.get(curQuestionIndex).substring(firstWord + 1);
 
             qGlyphPart1.setText(font, part1);
@@ -316,11 +336,11 @@ public class Level2Screen extends GameScreen implements Screen {
             font.draw(batch, qGlyphPart2, (Gdx.graphics.getWidth() - qGlyphPart2.width) / 2, 50);
         } else {
             //Format question
-            GlyphLayout questionGlyph = new GlyphLayout();
-            String q = "Q".concat(String.valueOf(questionNumber).concat(questions.get(curQuestionIndex).substring(2)));
-            questionGlyph.setText(font, q);
+            GlyphLayout glyphLayout = new GlyphLayout();
+            String q = questionHelp.get(curQuestionIndex);
+            glyphLayout.setText(font, q);
             //Draw question
-            font.draw(batch, questionGlyph, (Gdx.graphics.getWidth() - questionGlyph.width) / 2, Gdx.graphics.getHeight() - questionGlyph.height);
+            font.draw(batch, glyphLayout, (Gdx.graphics.getWidth() - glyphLayout.width) / 2, 120);
         }
     }
 
@@ -337,7 +357,7 @@ public class Level2Screen extends GameScreen implements Screen {
                 answers.add(txtAnswer);
             }
             br = new BufferedReader(new FileReader("core/assets/Lv2Assets/Level2QuestionHelp.txt"));
-            for(int x = 0; x < 20; x++){
+            for (int x = 0; x < 20; x++) {
                 questionHelp.add(br.readLine());
             }
         } catch (IOException e) {
