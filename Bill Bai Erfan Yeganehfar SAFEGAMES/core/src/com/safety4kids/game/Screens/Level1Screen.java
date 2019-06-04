@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.Levels.Hud;
 import com.safety4kids.game.Safety4Kids;
@@ -43,6 +44,7 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
 public class Level1Screen extends GameScreen {
 
     private Hud hud;
+    private Stage stage;
 
     //Tile map Instance variables
     private TiledMap map;
@@ -67,7 +69,7 @@ public class Level1Screen extends GameScreen {
 
         //Sets the hud for this level
         hud = new Hud(batch, false, 1);
-
+        stage = new Stage();
 //        bg = new Texture("core/assets/MapAssets/back.png");
 //        bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.ClampToEdge);
 //        bgSprite = new Sprite(bg);

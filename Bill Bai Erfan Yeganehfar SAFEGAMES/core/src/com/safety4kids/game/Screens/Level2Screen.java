@@ -183,7 +183,7 @@ public class Level2Screen extends GameScreen implements Screen {
             GlyphLayout qGlyphPart1 = new GlyphLayout();
             GlyphLayout qGlyphPart2 = new GlyphLayout();
 
-            String part1 = "Q" + questionNumber + questions.get(curQuestionIndex).substring(2, 44);
+            String part1 = "Q" + questionNumber + ":" + questions.get(curQuestionIndex).substring(2, 44);
             String part2 = questions.get(curQuestionIndex).substring(44);
 
             qGlyphPart1.setText(font, part1);
@@ -199,7 +199,7 @@ public class Level2Screen extends GameScreen implements Screen {
 
             int firstWord = questions.get(curQuestionIndex).substring(2).indexOf(' ', 35);
 
-            String part1 = "Q" + questionNumber + questions.get(curQuestionIndex).substring(2, firstWord + 3);
+            String part1 = "Q" + questionNumber + ":" + questions.get(curQuestionIndex).substring(2, firstWord + 3);
             String part2 = questions.get(curQuestionIndex).substring(firstWord + 3);
 
             qGlyphPart1.setText(font, part1);
@@ -212,7 +212,7 @@ public class Level2Screen extends GameScreen implements Screen {
 
             GlyphLayout questionGlyph = new GlyphLayout();
 
-            String q = "Q".concat(String.valueOf(questionNumber).concat(questions.get(curQuestionIndex).substring(2)));
+            String q = "Q".concat(String.valueOf(questionNumber).concat(":").concat(questions.get(curQuestionIndex).substring(2)));
 
             questionGlyph.setText(font, q);
 
