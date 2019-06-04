@@ -326,21 +326,21 @@ public class Level2Screen extends GameScreen implements Screen {
             GlyphLayout qGlyphPart2 = new GlyphLayout();
             int firstWord = questionHelp.get(curQuestionIndex).substring(2).indexOf(' ', 35);
 
-            String part1 = questionHelp.get(curQuestionIndex).substring(firstWord + 1);
-            String part2 = questionHelp.get(curQuestionIndex).substring(firstWord + 1);
+            String part1 = questionHelp.get(curQuestionIndex).substring(0,firstWord+1);
+            String part2 = questionHelp.get(curQuestionIndex).substring(firstWord+1);
 
-            qGlyphPart1.setText(font, part1);
-            qGlyphPart2.setText(font, part2);
+            qGlyphPart1.setText(answerFont, part1);
+            qGlyphPart2.setText(answerFont, part2);
 
-            font.draw(batch, qGlyphPart1, (Gdx.graphics.getWidth() - qGlyphPart1.width) / 2, 120);
-            font.draw(batch, qGlyphPart2, (Gdx.graphics.getWidth() - qGlyphPart2.width) / 2, 50);
+            answerFont.draw(batch, qGlyphPart1, (Gdx.graphics.getWidth() - qGlyphPart1.width) / 2, 120);
+            answerFont.draw(batch, qGlyphPart2, (Gdx.graphics.getWidth() - qGlyphPart2.width) / 2, 50);
         } else {
             //Format question
             GlyphLayout glyphLayout = new GlyphLayout();
             String q = questionHelp.get(curQuestionIndex);
-            glyphLayout.setText(font, q);
+            glyphLayout.setText(answerFont, q);
             //Draw question
-            font.draw(batch, glyphLayout, (Gdx.graphics.getWidth() - glyphLayout.width) / 2, 120);
+            answerFont.draw(batch, glyphLayout, (Gdx.graphics.getWidth() - glyphLayout.width) / 2, 120);
         }
     }
 
