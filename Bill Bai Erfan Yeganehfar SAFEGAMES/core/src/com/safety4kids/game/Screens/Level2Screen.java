@@ -8,6 +8,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Safety4Kids;
 
 import java.io.BufferedReader;
@@ -41,6 +44,7 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
 public class Level2Screen extends GameScreen implements Screen {
     private Safety4Kids game;
     private SpriteBatch batch;
+    private Viewport gamePort;
 
     private Texture bg;
     private Sprite bgSprite;
@@ -73,6 +77,7 @@ public class Level2Screen extends GameScreen implements Screen {
         this.game = game;
         game.batch = new SpriteBatch();
         batch = game.batch;
+        gamePort = new ScreenViewport();
 
         bg = new Texture("core/assets/Lv2Assets/Level2Background.png");
         bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.ClampToEdge);
@@ -101,6 +106,8 @@ public class Level2Screen extends GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
             state = RETURN;
 
@@ -366,7 +373,7 @@ public class Level2Screen extends GameScreen implements Screen {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Loaded " + questions.size() + " questions, and " + answers.size() + " answer sets.");
+        //System.out.println("Loaded " + questions.size() + " questions, and " + answers.size() + " answer sets.");
 
         curQuestionIndex = (int) (Math.random() * questions.size() - 1);
         shuffleAnswers();

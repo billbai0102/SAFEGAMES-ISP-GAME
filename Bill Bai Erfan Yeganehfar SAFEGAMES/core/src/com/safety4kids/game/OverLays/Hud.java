@@ -1,4 +1,4 @@
-package com.safety4kids.game.Levels;
+package com.safety4kids.game.OverLays;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
