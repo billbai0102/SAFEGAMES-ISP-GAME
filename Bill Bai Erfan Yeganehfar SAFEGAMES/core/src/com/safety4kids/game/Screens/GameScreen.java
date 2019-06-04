@@ -79,6 +79,11 @@ public abstract class GameScreen implements Screen {
         game.batch = new SpriteBatch();
         batch =  game.batch;
         state = GameState.RUN;
+
+        atlas = new TextureAtlas("core/assets/MainPlayerAssets/MainPlayer.pack");
+
+        pause = new Pause(batch, this);
+
         gameCam = new OrthographicCamera();
         gamePort = new FitViewport(V_WIDTH / PPM, V_HEIGHT / PPM, gameCam);
 
@@ -101,5 +106,28 @@ public abstract class GameScreen implements Screen {
     public abstract void render(float delta);
     public abstract void resize(int width, int height);
     public abstract void dispose();
+
+    @Override
+    public void hide() {
+        pause();
+        isPaused = true;
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void pause() {
+        isPaused = true;
+
+    }
+
+    @Override
+    public void resume() {
+        isPaused = false;
+
+    }
 
 }
