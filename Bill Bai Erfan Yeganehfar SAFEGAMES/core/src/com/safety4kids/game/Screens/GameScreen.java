@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Entities.MainPlayer;
-import com.safety4kids.game.Levels.Hud;
+import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.InputProcessor;
 import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;

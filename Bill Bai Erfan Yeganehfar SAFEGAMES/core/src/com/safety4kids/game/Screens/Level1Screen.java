@@ -11,12 +11,18 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.safety4kids.game.Entities.MainPlayer;
-import com.safety4kids.game.Levels.Hud;
+import com.safety4kids.game.OverLays.Hud;
+import com.safety4kids.game.OverLays.Pause;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.Box2DCollisionCreator;
 import com.safety4kids.game.Utils.InputProcessor;
 import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
+
+//import java.awt.*;
 
 import static com.safety4kids.game.Safety4Kids.*;
 import static com.safety4kids.game.Screens.GameScreen.GameState.*;
@@ -44,8 +50,7 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
 public class Level1Screen extends GameScreen {
 
     private Hud hud;
-    private Stage stage;
-
+    private Pause pause;
     //Tile map Instance variables
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
@@ -69,7 +74,7 @@ public class Level1Screen extends GameScreen {
 
         //Sets the hud for this level
         hud = new Hud(batch, false, 1);
-        stage = new Stage();
+       pause = new Pause(batch);
 //        bg = new Texture("core/assets/MapAssets/back.png");
 //        bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.ClampToEdge);
 //        bgSprite = new Sprite(bg);
@@ -141,11 +146,13 @@ public class Level1Screen extends GameScreen {
                 game.batch.end();
 
                 //Box2D Debug renderer
-                b2dr.render(world, gameCam.combined);
+               // b2dr.render(world, gameCam.combined);
 
                 //shows the screen based on the Camera with the hud
                 game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
                 hud.stage.draw();
+                pause.stage.draw();
+
 
                 if (player.b2body.getPosition().x > 37.5)
                     state = NEXT_LEVEL;
