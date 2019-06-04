@@ -118,8 +118,10 @@ public class Level2Screen extends GameScreen implements Screen {
                 bgSprite.draw(batch);
                 batch.draw(playerAnimation.getKeyFrame(timePassed, true), 500, 150);
                 batch.draw(warningAnimation.getKeyFrame(timePassed, true), warningLocation, 130);
-
                 drawQuestions(batch);
+
+
+                displayQuestionHelp(Gdx.graphics.getDeltaTime());
                 batch.end();
 
 
@@ -171,6 +173,7 @@ public class Level2Screen extends GameScreen implements Screen {
     }
 
     String[] toPrint;
+
     private void drawQuestions(SpriteBatch batch) {
         int guess;
 
@@ -298,50 +301,55 @@ public class Level2Screen extends GameScreen implements Screen {
 
         if (lives == 0) {
             System.out.println("You've lost!");
-           // state = RETURN;
+            // state = RETURN;
         }
 
     }
 
-    private void lose(){
+    private void lose() {
         lives--;
-        warningLocation += (500f/3f) - 18f;
+        warningLocation += (500f / 3f) - 18f;
         System.out.println("Lost life.");
-        displayQuestionHelp();
+        //displayQuestionHelp();
     }
 
     private void inputPressed() {
-        curQuestionIndex = (int) (Math.random() * questions.size() - 1);
         questions.remove(curQuestionIndex);
         answers.remove(curQuestionIndex);
         answerKey.remove(curQuestionIndex);
         questionHelp.remove(curQuestionIndex);
+        curQuestionIndex = (int) (Math.random() * questions.size() - 1);
         questionNumber++;
     }
 
-    private void displayQuestionHelp() {
-        if (questionHelp.get(curQuestionIndex).length() > 35) {
-            //Format question
-            GlyphLayout qGlyphPart1 = new GlyphLayout();
-            GlyphLayout qGlyphPart2 = new GlyphLayout();
-            int firstWord = questionHelp.get(curQuestionIndex).substring(2).indexOf(' ', 35);
+    private final float ANIMATION_LIMIT = 600;
 
-            String part1 = questionHelp.get(curQuestionIndex).substring(0,firstWord+1);
-            String part2 = questionHelp.get(curQuestionIndex).substring(firstWord+1);
+    private void displayQuestionHelp(float delta) {
+        int other = 0;
+        other += delta;
+        if (delta < ANIMATION_LIMIT)
+            if (questionHelp.get(curQuestionIndex).length() > 35) {
+                //Format question
+                GlyphLayout qGlyphPart1 = new GlyphLayout();
+                GlyphLayout qGlyphPart2 = new GlyphLayout();
+                int firstWord = questionHelp.get(curQuestionIndex).substring(2).indexOf(' ', 35);
 
-            qGlyphPart1.setText(answerFont, part1);
-            qGlyphPart2.setText(answerFont, part2);
+                String part1 = questionHelp.get(curQuestionIndex).substring(0, firstWord + 2);
+                String part2 = questionHelp.get(curQuestionIndex).substring(firstWord + 2);
 
-            answerFont.draw(batch, qGlyphPart1, (Gdx.graphics.getWidth() - qGlyphPart1.width) / 2, 120);
-            answerFont.draw(batch, qGlyphPart2, (Gdx.graphics.getWidth() - qGlyphPart2.width) / 2, 50);
-        } else {
-            //Format question
-            GlyphLayout glyphLayout = new GlyphLayout();
-            String q = questionHelp.get(curQuestionIndex);
-            glyphLayout.setText(answerFont, q);
-            //Draw question
-            answerFont.draw(batch, glyphLayout, (Gdx.graphics.getWidth() - glyphLayout.width) / 2, 120);
-        }
+                qGlyphPart1.setText(answerFont, part1);
+                qGlyphPart2.setText(answerFont, part2);
+
+                answerFont.draw(batch, qGlyphPart1, (Gdx.graphics.getWidth() - qGlyphPart1.width) / 2, 120);
+                answerFont.draw(batch, qGlyphPart2, (Gdx.graphics.getWidth() - qGlyphPart2.width) / 2, 50);
+            } else {
+                //Format question
+                GlyphLayout glyphLayout = new GlyphLayout();
+                String q = questionHelp.get(curQuestionIndex);
+                glyphLayout.setText(answerFont, q);
+                //Draw question
+                answerFont.draw(batch, glyphLayout, (Gdx.graphics.getWidth() - glyphLayout.width) / 2, 120);
+            }
     }
 
     private void loadQuestions() {
