@@ -25,7 +25,7 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
  *
  * @author Erfan Yeganehfar
  * @author Bill Bai
- *
+ * <p>
  * Ms. Krasteva
  * <p>
  * Modifications:
@@ -172,21 +172,28 @@ public class Level2Screen extends GameScreen implements Screen {
 
         String[] printAnswers = answers.get(curQuestionIndex);
 
-
-
-        if (questions.get(curQuestionIndex).length() > 35) {
+        if (questions.get(curQuestionIndex).contains("snow")) {
+            GlyphLayout qGlyphPart1 = new GlyphLayout();
+            GlyphLayout qGlyphPart2 = new GlyphLayout();
+            String part1 = "Q" + questionNumber + questions.get(curQuestionIndex).substring(2,44);
+            String part2 = questions.get(curQuestionIndex).substring(44);
+            qGlyphPart1.setText(font, part1);
+            qGlyphPart2.setText(font,part2);
+            font.draw(batch, qGlyphPart1, (Gdx.graphics.getWidth() - qGlyphPart1.width) / 2, Gdx.graphics.getHeight() - qGlyphPart1.height);
+            font.draw(batch, qGlyphPart2, (Gdx.graphics.getWidth() - qGlyphPart2.width) / 2, Gdx.graphics.getHeight() - qGlyphPart2.height - qGlyphPart1.height - 20);
+        } else if (questions.get(curQuestionIndex).length() > 35) {
             //Format question
             GlyphLayout qGlyphPart1 = new GlyphLayout();
             GlyphLayout qGlyphPart2 = new GlyphLayout();
             int firstWord = questions.get(curQuestionIndex).substring(2).indexOf(' ', 35);
 
-            String part1 = "Q" + questionNumber + questions.get(curQuestionIndex).substring(2,firstWord + 3);
+            String part1 = "Q" + questionNumber + questions.get(curQuestionIndex).substring(2, firstWord + 3);
 
             String part2 = questions.get(curQuestionIndex).substring(firstWord + 3);
-            qGlyphPart1.setText(font,part1);
+            qGlyphPart1.setText(font, part1);
             qGlyphPart2.setText(font, part2);
             font.draw(batch, qGlyphPart1, (Gdx.graphics.getWidth() - qGlyphPart1.width) / 2, Gdx.graphics.getHeight() - qGlyphPart1.height);
-            font.draw(batch,qGlyphPart2,(Gdx.graphics.getWidth() - qGlyphPart2.width)/2, Gdx.graphics.getHeight() - qGlyphPart2.height - qGlyphPart1.height - 20);
+            font.draw(batch, qGlyphPart2, (Gdx.graphics.getWidth() - qGlyphPart2.width) / 2, Gdx.graphics.getHeight() - qGlyphPart2.height - qGlyphPart1.height - 20);
         } else {
             //Format question
             GlyphLayout questionGlyph = new GlyphLayout();
@@ -268,7 +275,7 @@ public class Level2Screen extends GameScreen implements Screen {
         }
 
 
-        if(questionNumber == 16){
+        if (questionNumber == 16) {
             state = NEXT_LEVEL;
         }
 
