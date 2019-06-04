@@ -9,13 +9,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Safety4Kids;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -50,7 +46,7 @@ public class Level2Screen extends GameScreen implements Screen {
     private Sprite bgSprite;
     private float scrollTime = 0;
 
-    private TextureAtlas player;
+    public static TextureAtlas player;
     private Animation<TextureRegion> playerAnimation;
     private float timePassed = 0;
 
@@ -67,8 +63,8 @@ public class Level2Screen extends GameScreen implements Screen {
 
     private int questionNumber = 1;
 
-    private List<String> questions = new ArrayList<String>();
-    private List<String[]> answers = new ArrayList<String[]>();
+    private List<String> questions;
+    private List<String[]> answers;
     private List<Integer> answerKey = new ArrayList<Integer>();
     private List<String> questionHelp = new ArrayList<String>();
     private int curQuestionIndex = 0;
@@ -83,13 +79,18 @@ public class Level2Screen extends GameScreen implements Screen {
         bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.ClampToEdge);
         bgSprite = new Sprite(bg);
 
-        player = new TextureAtlas(Gdx.files.internal("core/assets/Lv2Assets/Lv2Sprites.atlas"));
+        player = new TextureAtlas();
         playerAnimation = new Animation<TextureRegion>(1 / 12f, player.getRegions());
 
         warning = new TextureAtlas(Gdx.files.internal("core/assets/Lv2Assets/Lv2Warning.atlas"));
         warningAnimation = new Animation<TextureRegion>(1 / 5f, warning.getRegions());
 
-        loadQuestions();
+        this.questions = IntroAnimation.getQuestions();
+        this.answers = IntroAnimation.getAnswers();
+        this.questionHelp = IntroAnimation.getQuestionHelp();
+
+        curQuestionIndex = (int) (Math.random() * questions.size() - 1);
+        shuffleAnswers();
 
         //LOAD FONT
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("core/assets/Fonts/eight-bit-dragon.otf"));
@@ -354,30 +355,6 @@ public class Level2Screen extends GameScreen implements Screen {
             }
     }
 
-    private void loadQuestions() {
-        String[] txtAnswer = new String[4];
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("core/assets/Lv2Assets/Level2Questions.txt"));
-            for (int x = 0; x < 20; x++) {
-                questions.add(br.readLine());
-
-                for (int y = 0; y < 4; y++) {
-                    txtAnswer[y] = br.readLine();
-                }
-                answers.add(txtAnswer);
-            }
-            br = new BufferedReader(new FileReader("core/assets/Lv2Assets/Level2QuestionHelp.txt"));
-            for (int x = 0; x < 20; x++) {
-                questionHelp.add(br.readLine());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //System.out.println("Loaded " + questions.size() + " questions, and " + answers.size() + " answer sets.");
-
-        curQuestionIndex = (int) (Math.random() * questions.size() - 1);
-        shuffleAnswers();
-    }
 
     @Override
     public void show() {

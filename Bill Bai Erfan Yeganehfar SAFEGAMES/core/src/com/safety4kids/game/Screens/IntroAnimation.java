@@ -5,9 +5,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.safety4kids.game.Utils.SplashScreenLogo;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class serves as the splash screen to the program. It displays the company logo.
@@ -52,6 +59,8 @@ public class IntroAnimation implements Screen {
 
         logo = new SplashScreenLogo();
         logo.setPosition(-400,Gdx.graphics.getHeight()/2f-200);
+
+        loadLevel2Questions();
     }
 
     @Override
@@ -63,15 +72,54 @@ public class IntroAnimation implements Screen {
         logo.draw(batch);
         batch.end();
 
-        game.setScreen(new MainMenu(game));
+       // game.setScreen(new MainMenu(game));
 
-       // if(logo.getX() < Gdx.graphics.getWidth()/2 - 200) {
-       //     logo.moveRight(Gdx.graphics.getDeltaTime());
-       // }else if (logo.getX() > Gdx.graphics.getWidth()/2 - 200 && logo.getAlpha() >= 0) {
-       //     logo.fade();
-       // }else{
-       //     game.setScreen(new MainMenu(game));
-       // }
+        if(logo.getX() < Gdx.graphics.getWidth()/2 - 200) {
+            logo.moveRight(Gdx.graphics.getDeltaTime());
+        }else if (logo.getX() > Gdx.graphics.getWidth()/2 - 200 && logo.getAlpha() >= 0) {
+            logo.fade();
+        }else{
+            game.setScreen(new MainMenu(game));
+        }
+    }
+
+    static TextureAtlas playerTexture = new TextureAtlas("core/assets/Lv2Assets/Lv2Sprites.atlas");
+
+    private static List<String> questions = new ArrayList<String>();
+    private static List<String[]> answers = new ArrayList<String[]>();
+    private static List<String> questionHelp = new ArrayList<String>();
+
+    public static List<String> getQuestions(){
+        return questions;
+    }
+
+    public static List<String[]> getAnswers(){
+        return answers;
+    }
+
+    public static List<String> getQuestionHelp(){
+        return questionHelp;
+    }
+
+    public void loadLevel2Questions(){
+        String[] txtAnswer = new String[4];
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("core/assets/Lv2Assets/Level2Questions.txt"));
+            for (int x = 0; x < 20; x++) {
+                questions.add(br.readLine());
+
+                for (int y = 0; y < 4; y++) {
+                    txtAnswer[y] = br.readLine();
+                }
+                answers.add(txtAnswer);
+            }
+            br = new BufferedReader(new FileReader("core/assets/Lv2Assets/Level2QuestionHelp.txt"));
+            for (int x = 0; x < 20; x++) {
+                questionHelp.add(br.readLine());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
