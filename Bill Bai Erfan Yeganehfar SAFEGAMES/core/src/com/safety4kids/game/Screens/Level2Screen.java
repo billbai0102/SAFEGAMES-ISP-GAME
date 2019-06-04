@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Safety4Kids;
 
 import java.util.ArrayList;
@@ -40,13 +39,12 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
 public class Level2Screen extends GameScreen implements Screen {
     private Safety4Kids game;
     private SpriteBatch batch;
-    private Viewport gamePort;
 
     private Texture bg;
     private Sprite bgSprite;
     private float scrollTime = 0;
 
-    public static TextureAtlas player;
+    public TextureAtlas player;
     private Animation<TextureRegion> playerAnimation;
     private float timePassed = 0;
 
@@ -63,11 +61,11 @@ public class Level2Screen extends GameScreen implements Screen {
 
     private int questionNumber = 1;
 
-    private List<String> questions;
-    private List<String[]> answers;
+    private List<String> questions = new ArrayList<String>();
+    private List<String[]> answers = new ArrayList<String[]>();
     private List<Integer> answerKey = new ArrayList<Integer>();
     private List<String> questionHelp = new ArrayList<String>();
-    private int curQuestionIndex = 0;
+    private int curQuestionIndex;
 
     public Level2Screen(Safety4Kids game) {
         this.game = game;
@@ -79,15 +77,13 @@ public class Level2Screen extends GameScreen implements Screen {
         bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.ClampToEdge);
         bgSprite = new Sprite(bg);
 
-        player = new TextureAtlas();
+        player = IntroAnimation.getPlayerTexture();
         playerAnimation = new Animation<TextureRegion>(1 / 12f, player.getRegions());
 
         warning = new TextureAtlas(Gdx.files.internal("core/assets/Lv2Assets/Lv2Warning.atlas"));
         warningAnimation = new Animation<TextureRegion>(1 / 5f, warning.getRegions());
 
-        this.questions = IntroAnimation.getQuestions();
-        this.answers = IntroAnimation.getAnswers();
-        this.questionHelp = IntroAnimation.getQuestionHelp();
+        loadQuestions();
 
         curQuestionIndex = (int) (Math.random() * questions.size() - 1);
         shuffleAnswers();
@@ -103,6 +99,14 @@ public class Level2Screen extends GameScreen implements Screen {
         parameter.size = 20;
         answerFont = generator.generateFont(parameter);
         generator.dispose();
+    }
+
+    public void loadQuestions(){
+        for(int x = 0; x < 20; x++){
+            this.questions.add(IntroAnimation.getQuestions().get(x));
+            this.answers.add(IntroAnimation.getAnswers().get(x));
+            this.questionHelp.add(IntroAnimation.getQuestionHelp().get(x));
+        }
     }
 
     @Override

@@ -72,22 +72,26 @@ public class IntroAnimation implements Screen {
         logo.draw(batch);
         batch.end();
 
-       // game.setScreen(new MainMenu(game));
+        game.setScreen(new MainMenu(game));
 
-        if(logo.getX() < Gdx.graphics.getWidth()/2 - 200) {
-            logo.moveRight(Gdx.graphics.getDeltaTime());
-        }else if (logo.getX() > Gdx.graphics.getWidth()/2 - 200 && logo.getAlpha() >= 0) {
-            logo.fade();
-        }else{
-            game.setScreen(new MainMenu(game));
-        }
+//        if(logo.getX() < Gdx.graphics.getWidth()/2 - 200) {
+//            logo.moveRight(Gdx.graphics.getDeltaTime());
+//        }else if (logo.getX() > Gdx.graphics.getWidth()/2 - 200 && logo.getAlpha() >= 0) {
+//            logo.fade();
+//        }else{
+//            game.setScreen(new MainMenu(game));
+//        }
     }
 
     static TextureAtlas playerTexture = new TextureAtlas("core/assets/Lv2Assets/Lv2Sprites.atlas");
 
-    private static List<String> questions = new ArrayList<String>();
-    private static List<String[]> answers = new ArrayList<String[]>();
-    private static List<String> questionHelp = new ArrayList<String>();
+    public static TextureAtlas getPlayerTexture(){
+        return playerTexture;
+    }
+
+    static List<String> questions = new ArrayList<String>();
+    static List<String[]> answers = new ArrayList<String[]>();
+    static List<String> questionHelp = new ArrayList<String>();
 
     public static List<String> getQuestions(){
         return questions;
