@@ -130,11 +130,7 @@ public class Level3Screen extends GameScreen {
 
 
                 if (player.b2body.getPosition().x > 37.5)
-                    state = NEXT_LEVEL;
-                break;
-            case NEXT_LEVEL:
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(game));
-                dispose();
+                    state = RETURN;
                 break;
             case RETURN:
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
