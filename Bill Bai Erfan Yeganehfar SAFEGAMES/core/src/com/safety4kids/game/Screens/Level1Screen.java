@@ -68,12 +68,12 @@ public class Level1Screen extends GameScreen {
         //Sets the hud for this level
         hud = new Hud(batch, false, 1);
 
-        bg = new Texture("core/assets/Lv2Assets/Level2Background.png");
-        bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.ClampToEdge);
-        bgSprite = new Sprite(bg);
+//        bg = new Texture("core/assets/MapAssets/back.png");
+//        bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.ClampToEdge);
+//        bgSprite = new Sprite(bg);
 
         //Loads, fixes (added padding), and creates the renderer for the TileMap for level 1
-        map = new TmxMapLoader().load("core/assets/MapAssets/level1.tmx");
+        map = new TmxMapLoader().load("core/assets/MapAssets/level1a.tmx");
         tiledMapRenderer = new MyOrthogonalTiledMapRenderer(map, 1/PPM);
         renderer = new OrthogonalTiledMapRenderer(map, 1/ PPM);
 
@@ -125,9 +125,9 @@ public class Level1Screen extends GameScreen {
                 //Clears the game screen
                 Gdx.gl.glClearColor(0, 0, 0, 1);
                 Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-                game.batch.begin();
-                game.batch.draw(bg,0, 50, V_WIDTH, V_HEIGHT);
-                game.batch.end();
+//                game.batch.begin();
+//                game.batch.draw(bg,0, 0, V_WIDTH, V_HEIGHT);
+//                game.batch.end();
 
                 //Renders the Game map
                 renderer.render();
