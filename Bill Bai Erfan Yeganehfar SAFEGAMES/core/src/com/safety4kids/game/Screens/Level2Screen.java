@@ -59,7 +59,7 @@ public class Level2Screen extends GameScreen implements Screen {
     private BitmapFont font;
     private BitmapFont answerFont;
 
-    private int lives = 3;
+    private int lives = 4;
 
     private int questionNumber = 1;
 
@@ -308,7 +308,7 @@ public class Level2Screen extends GameScreen implements Screen {
 
     private void lose() {
         lives--;
-        warningLocation += (500f / 3f) - 18f;
+        warningLocation += (500f / 4f) - 18f;
         System.out.println("Lost life.");
         //displayQuestionHelp();
     }
