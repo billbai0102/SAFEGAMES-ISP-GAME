@@ -43,7 +43,7 @@ public class Level2Screen extends GameScreen implements Screen {
 
     private Texture bg;
     private Sprite bgSprite;
-    float scrollTime = 0;
+    private float scrollTime = 0;
 
     private TextureAtlas player;
     private Animation<TextureRegion> playerAnimation;
@@ -59,12 +59,13 @@ public class Level2Screen extends GameScreen implements Screen {
 
     private int lives = 3;
 
-    int questionNumber = 1;
+    private int questionNumber = 1;
 
-    List<String> questions = new ArrayList<String>();
-    List<String[]> answers = new ArrayList<String[]>();
-    List<Integer> answerKey = new ArrayList<Integer>();
-    int curQuestionIndex = 0;
+    private List<String> questions = new ArrayList<String>();
+    private List<String[]> answers = new ArrayList<String[]>();
+    private List<Integer> answerKey = new ArrayList<Integer>();
+    private List<String> questionHelp = new ArrayList<String>();
+    private int curQuestionIndex = 0;
 
     public Level2Screen(Safety4Kids game) {
         this.game = game;
@@ -97,8 +98,6 @@ public class Level2Screen extends GameScreen implements Screen {
     public void render(float delta) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
             state = RETURN;
-
-        System.out.println(curQuestionIndex);
 
         switch (state) {
             case RUN:
@@ -144,7 +143,7 @@ public class Level2Screen extends GameScreen implements Screen {
 
     }
 
-    public void shuffleAnswers() {
+    private void shuffleAnswers() {
         String[] tempAnswers = answers.get(0);
         Random r = new Random();
 
@@ -166,7 +165,7 @@ public class Level2Screen extends GameScreen implements Screen {
         }
     }
 
-    public void drawQuestions(SpriteBatch batch) {
+    private void drawQuestions(SpriteBatch batch) {
         boolean correct = false;
         int guess;
 
@@ -175,10 +174,10 @@ public class Level2Screen extends GameScreen implements Screen {
         if (questions.get(curQuestionIndex).contains("snow")) {
             GlyphLayout qGlyphPart1 = new GlyphLayout();
             GlyphLayout qGlyphPart2 = new GlyphLayout();
-            String part1 = "Q" + questionNumber + questions.get(curQuestionIndex).substring(2,44);
+            String part1 = "Q" + questionNumber + questions.get(curQuestionIndex).substring(2, 44);
             String part2 = questions.get(curQuestionIndex).substring(44);
             qGlyphPart1.setText(font, part1);
-            qGlyphPart2.setText(font,part2);
+            qGlyphPart2.setText(font, part2);
             font.draw(batch, qGlyphPart1, (Gdx.graphics.getWidth() - qGlyphPart1.width) / 2, Gdx.graphics.getHeight() - qGlyphPart1.height);
             font.draw(batch, qGlyphPart2, (Gdx.graphics.getWidth() - qGlyphPart2.width) / 2, Gdx.graphics.getHeight() - qGlyphPart2.height - qGlyphPart1.height - 20);
         } else if (questions.get(curQuestionIndex).length() > 35) {
@@ -215,21 +214,21 @@ public class Level2Screen extends GameScreen implements Screen {
         String a2 = "B)".concat(printAnswers[1].substring(1));
         a2Glyph.setText(font, a2);
         //Draw answer
-        font.draw(batch, a2Glyph, 5, 650);
+        font.draw(batch, a2Glyph, 5, 700);
 
         //Format third answer
         GlyphLayout a3Glyph = new GlyphLayout();
         String a3 = "C)".concat(printAnswers[2].substring(1));
         a1Glyph.setText(font, a3);
         //Draw answer
-        font.draw(batch, a3Glyph, 5, 550);
+        font.draw(batch, a3Glyph, 5, 650);
 
         //Format fourth answer
         GlyphLayout a4Glyph = new GlyphLayout();
         String a4 = "D)".concat(printAnswers[3].substring(1));
         a1Glyph.setText(font, a4);
         //Draw answer
-        font.draw(batch, a4Glyph, 5, 450);
+        font.draw(batch, a4Glyph, 5, 600);
 
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
@@ -241,6 +240,7 @@ public class Level2Screen extends GameScreen implements Screen {
             questions.remove(curQuestionIndex);
             answers.remove(curQuestionIndex);
             answerKey.remove(curQuestionIndex);
+            questionHelp.remove(curQuestionIndex);
             questionNumber++;
         }
 
@@ -251,6 +251,10 @@ public class Level2Screen extends GameScreen implements Screen {
                 System.out.println("nice");
             }
             curQuestionIndex = (int) (Math.random() * questions.size() - 1);
+            questions.remove(curQuestionIndex);
+            answers.remove(curQuestionIndex);
+            answerKey.remove(curQuestionIndex);
+            questionHelp.remove(curQuestionIndex);
             questionNumber++;
         }
 
@@ -261,6 +265,10 @@ public class Level2Screen extends GameScreen implements Screen {
                 System.out.println("nice");
             }
             curQuestionIndex = (int) (Math.random() * questions.size() - 1);
+            questions.remove(curQuestionIndex);
+            answers.remove(curQuestionIndex);
+            answerKey.remove(curQuestionIndex);
+            questionHelp.remove(curQuestionIndex);
             questionNumber++;
         }
 
@@ -271,6 +279,10 @@ public class Level2Screen extends GameScreen implements Screen {
                 System.out.println("nice");
             }
             curQuestionIndex = (int) (Math.random() * questions.size() - 1);
+            questions.remove(curQuestionIndex);
+            answers.remove(curQuestionIndex);
+            answerKey.remove(curQuestionIndex);
+            questionHelp.remove(curQuestionIndex);
             questionNumber++;
         }
 
@@ -282,11 +294,37 @@ public class Level2Screen extends GameScreen implements Screen {
 
         if (lives == 0) {
             System.out.println("You've lost!");
+            state = RETURN;
         }
 
     }
 
-    public void loadQuestions() {
+    private void displayQuestionHelp(int current){
+        if (questionHelp.get(curQuestionIndex).length() > 35) {
+            //Format question
+            GlyphLayout qGlyphPart1 = new GlyphLayout();
+            GlyphLayout qGlyphPart2 = new GlyphLayout();
+            int firstWord = questionHelp.get(curQuestionIndex).substring(2).indexOf(' ', 35);
+
+            String part1 = questionHelp.get(curQuestionIndex).substring( firstWord + 1);
+            String part2 = questionHelp.get(curQuestionIndex).substring(firstWord + 1);
+
+            qGlyphPart1.setText(font, part1);
+            qGlyphPart2.setText(font, part2);
+
+            font.draw(batch, qGlyphPart1, (Gdx.graphics.getWidth() - qGlyphPart1.width) / 2, 120);
+            font.draw(batch, qGlyphPart2, (Gdx.graphics.getWidth() - qGlyphPart2.width) / 2, 50);
+        } else {
+            //Format question
+            GlyphLayout questionGlyph = new GlyphLayout();
+            String q = "Q".concat(String.valueOf(questionNumber).concat(questions.get(curQuestionIndex).substring(2)));
+            questionGlyph.setText(font, q);
+            //Draw question
+            font.draw(batch, questionGlyph, (Gdx.graphics.getWidth() - questionGlyph.width) / 2, Gdx.graphics.getHeight() - questionGlyph.height);
+        }
+    }
+
+    private void loadQuestions() {
         String[] txtAnswer = new String[4];
         try {
             BufferedReader br = new BufferedReader(new FileReader("core/assets/Lv2Assets/Level2Questions.txt"));
@@ -297,6 +335,10 @@ public class Level2Screen extends GameScreen implements Screen {
                     txtAnswer[y] = br.readLine();
                 }
                 answers.add(txtAnswer);
+            }
+            br = new BufferedReader(new FileReader("core/assets/Lv2Assets/Level2QuestionHelp.txt"));
+            for(int x = 0; x < 20; x++){
+                questionHelp.add(br.readLine());
             }
         } catch (IOException e) {
             e.printStackTrace();

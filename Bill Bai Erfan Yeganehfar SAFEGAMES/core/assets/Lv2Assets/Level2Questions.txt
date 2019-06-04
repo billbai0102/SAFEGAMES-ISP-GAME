@@ -71,8 +71,8 @@ Q: You should call 911 when...
 Q: You're outside, and you're caught in a thunderstorm.
 1Take shelter under a tree.
 2Run to the highest point of land.
-3Get to lowground and avoid open areas and tall objects.
-4Run to open land.
+3Run to open land.
+4Get to lowground and avoid open areas and tall objects.
 Q: During a thunderstorm:
 1Go indoors.
 2Do not use a landline telephone.
