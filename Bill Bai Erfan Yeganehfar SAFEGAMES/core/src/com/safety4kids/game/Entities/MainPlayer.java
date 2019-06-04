@@ -101,7 +101,7 @@ public class MainPlayer extends Sprite {
 
         //The type of shape is assigned and defined
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(6f/Safety4Kids.PPM,13f/Safety4Kids.PPM);
+        shape.setAsBox(5f/Safety4Kids.PPM,13f/Safety4Kids.PPM);
 
         //the shape is bound to the fixture, and the fixture to the body
         fdef.shape = shape;

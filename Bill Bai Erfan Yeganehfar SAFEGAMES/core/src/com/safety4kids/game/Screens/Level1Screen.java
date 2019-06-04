@@ -10,9 +10,11 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.OverLays.Hud;
@@ -68,15 +70,8 @@ public class Level1Screen extends GameScreen {
      */
     public Level1Screen(Safety4Kids game) {
         super();
-        atlas = new TextureAtlas("core/assets/MainPlayerAssets/MainPlayer.pack");
-
         //Sets the hud for this level
         hud = new Hud(batch, false, 1);
-        pause = new Pause(batch);
-
-//        bg = new Texture("core/assets/MapAssets/back.png");
-//        bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.ClampToEdge);
-//        bgSprite = new Sprite(bg);
 
         //Loads, fixes (added padding), and creates the renderer for the TileMap for level 1
         map = new TmxMapLoader().load("core/assets/MapAssets/level1a.tmx");
@@ -135,6 +130,7 @@ public class Level1Screen extends GameScreen {
                     else if (isPaused)
                         isPaused = false;
                 }
+
                 if(!isPaused)
                     //update is separated from the render logic
                     update(delta);
@@ -152,7 +148,7 @@ public class Level1Screen extends GameScreen {
                 game.batch.end();
 
                 //Box2D Debug renderer
-                // b2dr.render(world, gameCam.combined);
+                 b2dr.render(world, gameCam.combined);
 
                 //shows the screen based on the Camera with the hud
                 game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
@@ -200,28 +196,6 @@ public class Level1Screen extends GameScreen {
         tiledMapRenderer.dispose();
         pause.dispose();
         hud.dispose();
-    }
-
-    @Override
-    public void show() {
-
-    }
-
-    @Override
-    public void pause() {
-        this.state = PAUSE;
-
-    }
-
-    @Override
-    public void resume() {
-        this.state = RESUME;
-
-    }
-
-    @Override
-    public void hide() {
-
     }
 
 }
