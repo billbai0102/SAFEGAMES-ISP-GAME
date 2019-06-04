@@ -225,28 +225,28 @@ public class Level2Screen extends GameScreen implements Screen {
         String a1 = "A)".concat(toPrint[0].substring(1));
         a1Glyph.setText(answerFont, a1);
         //Draw answer
-        answerFont.draw(batch, a1Glyph, Gdx.graphics.getWidth() + 5, Gdx.graphics.getHeight() - 150);
+        answerFont.draw(batch, a1Glyph, 5, Gdx.graphics.getHeight() - 150);
 
         //Format second answer
         GlyphLayout a2Glyph = new GlyphLayout();
         String a2 = "B)".concat(toPrint[1].substring(1));
         a2Glyph.setText(answerFont, a2);
         //Draw answer
-        answerFont.draw(batch, a2Glyph, Gdx.graphics.getWidth() + 5, Gdx.graphics.getHeight() - 200);
+        answerFont.draw(batch, a2Glyph,  5, Gdx.graphics.getHeight() - 200);
 
         //Format third answer
         GlyphLayout a3Glyph = new GlyphLayout();
         String a3 = "C)".concat(toPrint[2].substring(1));
         a3Glyph.setText(answerFont, a3);
         //Draw answer
-        answerFont.draw(batch, a3Glyph, Gdx.graphics.getWidth() + 5, Gdx.graphics.getHeight() - 250);
+        answerFont.draw(batch, a3Glyph,  5, Gdx.graphics.getHeight() - 250);
 
         //Format fourth answer
         GlyphLayout a4Glyph = new GlyphLayout();
         String a4 = "D)".concat(toPrint[3].substring(1));
         a4Glyph.setText(answerFont, a4);
         //Draw answer
-        answerFont.draw(batch, a4Glyph, Gdx.graphics.getWidth() + 5, Gdx.graphics.getHeight() - 300);
+        answerFont.draw(batch, a4Glyph, 5, Gdx.graphics.getHeight() - 300);
 
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
