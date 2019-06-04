@@ -29,10 +29,13 @@ public class Pause implements Disposable {
         viewport = new FitViewport(Safety4Kids.V_WIDTH, Safety4Kids.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, sb);
         skin = new Skin(Gdx.files.internal("core/skin/flat-earth-ui.json"));
-        Window pause= new Window("Pause",skin);
+        Window pause= new Window("PAUSE",skin);
         pause.padTop(10);
-        pause.add(new TextButton("Continue", skin)).row();
-        pause.add(new TextButton("Main Menu", skin));
+        TextButton cont = new TextButton("Continue", skin);
+        TextButton exit = new TextButton("Main Menu", skin);
+        pause.add(cont);
+        pause.row();
+        pause.add(exit);
         pause.setSize(200,200);
         pause.setPosition(stage.getWidth()/2-pause.getWidth()/2,stage.getHeight()/2-pause.getHeight()/2);
 
