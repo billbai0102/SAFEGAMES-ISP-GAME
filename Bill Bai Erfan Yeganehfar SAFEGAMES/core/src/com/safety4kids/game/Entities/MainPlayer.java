@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Screens.GameScreen;
+import com.safety4kids.game.Utils.B2DConstants;
 import com.safety4kids.game.Utils.InputHandler;
 
 import static com.safety4kids.game.Safety4Kids.MAX_VELOCITY;
@@ -103,9 +104,16 @@ public class MainPlayer extends Sprite {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(5f/Safety4Kids.PPM,13f/Safety4Kids.PPM);
 
+        //Sets the filtering bits of the body as the Player bit
+        fdef.filter.categoryBits = B2DConstants.BIT_PLAYER;
+        //Defines what the player can 
+        fdef.filter.maskBits = B2DConstants.BIT_DEF | B2DConstants.BIT_COIN | B2DConstants.BIT_BREAKABLE_BLOCK;
+
         //the shape is bound to the fixture, and the fixture to the body
         fdef.shape = shape;
         b2body.createFixture(fdef);
+
+
 
         EdgeShape feet = new EdgeShape();
         feet.set(new Vector2(-5.6f / Safety4Kids.PPM, -14f / Safety4Kids.PPM), new Vector2(5f / Safety4Kids.PPM, -14f / Safety4Kids.PPM));
