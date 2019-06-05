@@ -58,8 +58,6 @@ public class Level3Screen extends GameScreen {
         //Processes input for the player
         input = new InputHandler(player);
 
-        world.setContactListener(new GameContactListener());
-
     }
 
     public void update(float dt) {

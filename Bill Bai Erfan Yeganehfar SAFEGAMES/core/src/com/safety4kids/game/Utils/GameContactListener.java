@@ -1,8 +1,9 @@
 package com.safety4kids.game.Utils;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.*;
+import com.safety4kids.game.Entities.BreakableTile;
 import com.safety4kids.game.Entities.InteractiveTile;
-import com.sun.javafx.tk.FileChooserType;
 
 public class GameContactListener implements ContactListener {
     @Override
@@ -17,8 +18,10 @@ public class GameContactListener implements ContactListener {
             Fixture hat = fixA.getUserData() == "hat" ? fixA : fixB;
             //Which fixture is the collided object with the hat
             Fixture obj = hat == fixA ? fixB : fixA;
+
             //Determines if the Fixture object is an Interactive Tile object by seeing if the user data is assigned from the Interactive Tile
             if (obj.getUserData() != null && InteractiveTile.class.isAssignableFrom(obj.getUserData().getClass())){
+                Gdx.app.log("obj","collide");
                 //Executes the hat contact method if the object is indeed an interactive tile
                 ((InteractiveTile) obj.getUserData()).onHatContact();
             }
