@@ -20,7 +20,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Safety4Kids;
-
+//created class on 06-06 bill 2hrs
 public class LoseScreen implements Screen {
 
     private SpriteBatch batch;
@@ -96,7 +96,7 @@ public class LoseScreen implements Screen {
         });
 
         restartLvl.setPosition(Gdx.graphics.getWidth() / 2 + menuBtn.getWidth()/2 + 30, Gdx.graphics.getHeight()/2);
-        nextLvl.addListener(new InputListener() {
+        restartLvl.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Restart lv 2");
