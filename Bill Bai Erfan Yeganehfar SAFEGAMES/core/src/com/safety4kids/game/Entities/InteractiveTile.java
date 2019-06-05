@@ -12,6 +12,7 @@ public abstract class InteractiveTile {
     protected TiledMapTile tile;
     protected Rectangle border;
     protected Body body;
+    protected Fixture fixture;
 
     public InteractiveTile(World world, TiledMap map, Rectangle border) {
         this.world = world;
@@ -26,6 +27,9 @@ public abstract class InteractiveTile {
 
         shape.setAsBox(border.getWidth()/2/ Safety4Kids.PPM,border.getHeight()/2/ Safety4Kids.PPM);
         fdef.shape = shape;
-        body.createFixture(fdef);
+        fixture = body.createFixture(fdef);
     }
+
+
+    public abstract void onHatContact();
 }

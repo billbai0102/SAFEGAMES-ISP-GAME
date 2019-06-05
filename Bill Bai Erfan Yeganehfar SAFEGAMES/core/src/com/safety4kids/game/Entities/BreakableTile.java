@@ -8,8 +8,11 @@ public class BreakableTile extends InteractiveTile {
 
     public BreakableTile(World world, TiledMap map, Rectangle border) {
         super(world, map, border);
-        BodyDef bdef = new BodyDef();
-        FixtureDef fdef = new FixtureDef();
-        PolygonShape shape = new PolygonShape();
+        fixture.setUserData(this);
+    }
+
+    @Override
+    public void onHatContact() {
+
     }
 }
