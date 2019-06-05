@@ -190,24 +190,32 @@ public class Level2Screen extends GameScreen implements Screen {
                 batch.draw(playerAnimation.getKeyFrame(timePassed, true), 500, 150);
                 batch.draw(warningAnimation.getKeyFrame(timePassed, true), warningLocation, 130);
                 drawQuestions(batch);
-                displayQuestionHelp();
+                if (pauseProgram)
+                    displayQuestionHelp();
 
                 GlyphLayout fontGlyph = new GlyphLayout();
                 if (correct) {
                     fontGlyph.setText(correctFont, "CORRECT!");
                     //Draw font
-                    answerFont.draw(batch, fontGlyph, (Gdx.graphics.getWidth() - fontGlyph.width) / 2, (Gdx.graphics.getHeight() - fontGlyph.width) / 2);
+                    answerFont.draw(batch, fontGlyph, (Gdx.graphics.getWidth() - fontGlyph.width) / 2, (Gdx.graphics.getHeight() - fontGlyph.height) / 2);
                 } else {
                     fontGlyph.setText(wrongFont, "WRONG!");
                     //Draw font
-                    answerFont.draw(batch, fontGlyph, (Gdx.graphics.getWidth() - fontGlyph.width) / 2, (Gdx.graphics.getHeight() - fontGlyph.width) / 2);
+                    answerFont.draw(batch, fontGlyph, (Gdx.graphics.getWidth() - fontGlyph.width) / 2, (Gdx.graphics.getHeight() - fontGlyph.height) / 2);
                 }
+                GlyphLayout continueGlyph = new GlyphLayout();
+                continueGlyph.setText(answerFont, "Press space to continue...");
+                answerFont.draw(batch, continueGlyph, (Gdx.graphics.getWidth() - continueGlyph.width) / 2, (Gdx.graphics.getHeight() - fontGlyph.height) / 2 - fontGlyph.height * 2);
 
                 batch.end();
 
                 break;
             case RETURN:
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
+                dispose();
+                break;
+            case LOSE:
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new LoseScreen(new Safety4Kids(), questionNumber));
                 dispose();
                 break;
             default:
@@ -358,8 +366,7 @@ public class Level2Screen extends GameScreen implements Screen {
 
         if (lives == 0) {
             System.out.println("You've lost!");
-            //     state = LOSE;
-
+            state = LOSE;
         }
 
     }

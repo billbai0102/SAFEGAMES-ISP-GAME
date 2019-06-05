@@ -15,7 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.safety4kids.game.OverLays.Pause;
 import com.safety4kids.game.Safety4Kids;
 
 /**
@@ -33,7 +32,6 @@ import com.safety4kids.game.Safety4Kids;
 public class MainMenu implements Screen {
 
     SpriteBatch batch;
-    Texture img;
     Texture backgroundImg;
     TextButton startBtn;
     Skin skin;
