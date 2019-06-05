@@ -99,10 +99,20 @@ public class Level2Screen extends GameScreen implements Screen {
         //SECOND FONT
         parameter.size = 20;
         answerFont = generator.generateFont(parameter);
+
+        //FONT FOR WRONG ANSWER
+        wrongFont = generator.generateFont(parameter);
+        wrongFont.setColor(Color.RED);
+
+        //FONT FOR CORRECT ANSWER
+        correctFont = generator.generateFont(parameter);
+        correctFont.setColor(Color.GREEN);
+
         generator.dispose();
     }
 
-    int endCount;
+    BitmapFont wrongFont;
+    BitmapFont correctFont;
 
     public void loadQuestions() {
         for (int x = 0; x < 20; x++) {
@@ -155,7 +165,16 @@ public class Level2Screen extends GameScreen implements Screen {
                 Timer.schedule(new Timer.Task() {
                     @Override
                     public void run() {
-                        inputPressed();
+                        if(pauseProgram) {
+                            questions.remove(curQuestionIndex);
+                            answers.remove(curQuestionIndex);
+                            answerKey.remove(curQuestionIndex);
+                            questionHelp.remove(curQuestionIndex);
+                            curQuestionIndex = (int) (Math.random() * questions.size() - 1);
+                            questionNumber++;
+                        }
+                        pauseProgram = false;
+
                         state = RUN;
                     }
                 }, delay);
@@ -174,16 +193,19 @@ public class Level2Screen extends GameScreen implements Screen {
                 batch.draw(warningAnimation.getKeyFrame(timePassed, true), warningLocation, 130);
                 drawQuestions(batch);
                 displayQuestionHelp();
-                batch.end();
 
-               // float delay = 1.0f;
-//                Timer.schedule(new Timer.Task() {
-//                    @Override
-//                    public void run() {
-//                        ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
-//                        dispose();
-//                    }
-//                }, delay);
+                GlyphLayout fontGlyph = new GlyphLayout();
+                if(correct) {
+                    fontGlyph.setText(correctFont, "CORRECT!");
+                    //Draw font
+                    answerFont.draw(batch, fontGlyph, (Gdx.graphics.getWidth() - fontGlyph.width) / 2, (Gdx.graphics.getHeight() - fontGlyph.width) / 2);
+                }else{
+                    fontGlyph.setText(wrongFont, "WRONG!");
+                    //Draw font
+                    answerFont.draw(batch, fontGlyph, (Gdx.graphics.getWidth() - fontGlyph.width) / 2, (Gdx.graphics.getHeight() - fontGlyph.width) / 2);
+                }
+
+                batch.end();
 
                 break;
             case RETURN:
@@ -195,6 +217,8 @@ public class Level2Screen extends GameScreen implements Screen {
         }
 
     }
+
+    boolean correct;
 
     private void shuffleAnswers() {
         for (int x = 0; x < answers.size(); x++) {
@@ -213,6 +237,7 @@ public class Level2Screen extends GameScreen implements Screen {
         }
     }
 
+    boolean pauseProgram;
 
     private void drawQuestions(SpriteBatch batch) {
         int guess;
@@ -331,36 +356,43 @@ public class Level2Screen extends GameScreen implements Screen {
 
         if (lives == 0) {
             System.out.println("You've lost!");
-       //     state = LOSE;
+            //     state = LOSE;
+
         }
 
     }
 
-    private void win(){
+    private void win() {
         System.out.println("correct answer");
-        if(lives < 4) {
+        if (lives < 4) {
             lives++;
             warningLocation -= (500f / 4f) + 12f;
         }
-        curQuestionIndex--;
+
         state = RESUME;
+        correct = true;
+        pauseProgram = true;
     }
 
     private void lose() {
         lives--;
         warningLocation += (500f / 4f) - 12f;
         System.out.println("Lost life.");
-        curQuestionIndex--;
         state = RESUME;
+
+        correct = false;
+        pauseProgram = true;
     }
 
     private void inputPressed() {
-        questions.remove(curQuestionIndex);
-        answers.remove(curQuestionIndex);
-        answerKey.remove(curQuestionIndex);
-        questionHelp.remove(curQuestionIndex);
-        curQuestionIndex = (int) (Math.random() * questions.size() - 1);
-        questionNumber++;
+        if(pauseProgram) {
+            questions.remove(curQuestionIndex);
+            answers.remove(curQuestionIndex);
+            answerKey.remove(curQuestionIndex);
+            questionHelp.remove(curQuestionIndex);
+            curQuestionIndex = (int) (Math.random() * questions.size() - 1);
+            questionNumber++;
+        }
     }
 
 
