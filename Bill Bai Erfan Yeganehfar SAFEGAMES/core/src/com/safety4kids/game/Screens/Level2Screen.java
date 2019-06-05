@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.safety4kids.game.Safety4Kids;
 
@@ -101,6 +102,8 @@ public class Level2Screen extends GameScreen implements Screen {
         generator.dispose();
     }
 
+    int endCount;
+
     public void loadQuestions() {
         for (int x = 0; x < 20; x++) {
             this.questions.add(IntroAnimation.getQuestions().get(x));
@@ -115,6 +118,11 @@ public class Level2Screen extends GameScreen implements Screen {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
             state = RETURN;
+
+        if (questionNumber == 16) {
+            state = NEXT_LEVEL;
+        }
+
 
         switch (state) {
             case RUN:
@@ -132,7 +140,7 @@ public class Level2Screen extends GameScreen implements Screen {
                 batch.draw(warningAnimation.getKeyFrame(timePassed, true), warningLocation, 130);
                 drawQuestions(batch);
 
-                displayQuestionHelp();
+
                 batch.end();
 
                 break;
@@ -140,8 +148,43 @@ public class Level2Screen extends GameScreen implements Screen {
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(game));
                 dispose();
                 break;
-            case RESUME:
-                state = RUN;
+            case RESUME: //when they lose (will change)
+
+                float delay = 2.0f;
+
+                Timer.schedule(new Timer.Task() {
+                    @Override
+                    public void run() {
+                        inputPressed();
+                        state = RUN;
+                    }
+                }, delay);
+
+                scrollTime += 0.0007f;
+                if (scrollTime >= 1.0f)
+                    scrollTime = 0.0f;
+
+                timePassed += Gdx.graphics.getDeltaTime();
+
+                batch.begin();
+                bgSprite.setU(scrollTime);
+                bgSprite.setU2(scrollTime + 0.80f);
+                bgSprite.draw(batch);
+                batch.draw(playerAnimation.getKeyFrame(timePassed, true), 500, 150);
+                batch.draw(warningAnimation.getKeyFrame(timePassed, true), warningLocation, 130);
+                drawQuestions(batch);
+                displayQuestionHelp();
+                batch.end();
+
+               // float delay = 1.0f;
+//                Timer.schedule(new Timer.Task() {
+//                    @Override
+//                    public void run() {
+//                        ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
+//                        dispose();
+//                    }
+//                }, delay);
+
                 break;
             case RETURN:
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
@@ -250,63 +293,65 @@ public class Level2Screen extends GameScreen implements Screen {
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
             guess = 1;
             if (guess == answerKey.get(curQuestionIndex)) {
-                System.out.println("nice");
+                win();
             } else {
                 lose();
             }
-            inputPressed();
         }
 
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
             guess = 2;
             if (guess == answerKey.get(curQuestionIndex)) {
-                System.out.println("nice");
+                win();
             } else {
                 lose();
             }
-            inputPressed();
         }
 
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) {
             guess = 3;
             if (guess == answerKey.get(curQuestionIndex)) {
-                System.out.println("nice");
+                win();
             } else {
                 lose();
             }
-            inputPressed();
         }
 
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) {
             guess = 4;
             if (guess == answerKey.get(curQuestionIndex)) {
-                System.out.println("nice");
+                win();
             } else {
                 lose();
             }
-            inputPressed();
         }
-
-
-        if (questionNumber == 16) {
-            state = NEXT_LEVEL;
-        }
-
 
         if (lives == 0) {
             System.out.println("You've lost!");
-            // state = RETURN;
+       //     state = LOSE;
         }
 
+    }
+
+    private void win(){
+        System.out.println("correct answer");
+        if(lives < 4) {
+            lives++;
+            warningLocation -= (500f / 4f) + 12f;
+        }
+        curQuestionIndex--;
+        state = RESUME;
     }
 
     private void lose() {
         lives--;
         warningLocation += (500f / 4f) - 12f;
         System.out.println("Lost life.");
+        curQuestionIndex--;
+        state = RESUME;
     }
 
     private void inputPressed() {
