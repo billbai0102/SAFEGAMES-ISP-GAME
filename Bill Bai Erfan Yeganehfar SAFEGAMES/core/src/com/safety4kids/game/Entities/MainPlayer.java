@@ -43,7 +43,7 @@ public class MainPlayer extends Sprite {
     private Animation<TextureRegion> playerRun;
     private TextureRegion playerJump;
     public enum State {
-        FALLING, JUMPING, IDLE, RUNNING}
+        FALLING, JUMPING, IDLE, RUNNING }
     public State currState;
     public State prevState;
 
