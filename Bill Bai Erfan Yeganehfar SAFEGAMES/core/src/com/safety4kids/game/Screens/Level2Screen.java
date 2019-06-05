@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.safety4kids.game.Safety4Kids;
 
@@ -67,6 +66,8 @@ public class Level2Screen extends GameScreen implements Screen {
     private List<Integer> answerKey = new ArrayList<Integer>();
     private List<String> questionHelp = new ArrayList<String>();
     private int curQuestionIndex;
+
+    private boolean pauseProgram = false;
 
     public Level2Screen(Safety4Kids game) {
         this.game = game;
@@ -162,22 +163,19 @@ public class Level2Screen extends GameScreen implements Screen {
 
                 float delay = 2.0f;
 
-                Timer.schedule(new Timer.Task() {
-                    @Override
-                    public void run() {
-                        if(pauseProgram) {
-                            questions.remove(curQuestionIndex);
-                            answers.remove(curQuestionIndex);
-                            answerKey.remove(curQuestionIndex);
-                            questionHelp.remove(curQuestionIndex);
-                            curQuestionIndex = (int) (Math.random() * questions.size() - 1);
-                            questionNumber++;
-                        }
-                        pauseProgram = false;
-
-                        state = RUN;
+                if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+                    if (pauseProgram) {
+                        questions.remove(curQuestionIndex);
+                        answers.remove(curQuestionIndex);
+                        answerKey.remove(curQuestionIndex);
+                        questionHelp.remove(curQuestionIndex);
+                        curQuestionIndex = (int) (Math.random() * questions.size() - 1);
+                        questionNumber++;
                     }
-                }, delay);
+                    pauseProgram = false;
+
+                    state = RUN;
+                }
 
                 scrollTime += 0.0007f;
                 if (scrollTime >= 1.0f)
@@ -195,11 +193,11 @@ public class Level2Screen extends GameScreen implements Screen {
                 displayQuestionHelp();
 
                 GlyphLayout fontGlyph = new GlyphLayout();
-                if(correct) {
+                if (correct) {
                     fontGlyph.setText(correctFont, "CORRECT!");
                     //Draw font
                     answerFont.draw(batch, fontGlyph, (Gdx.graphics.getWidth() - fontGlyph.width) / 2, (Gdx.graphics.getHeight() - fontGlyph.width) / 2);
-                }else{
+                } else {
                     fontGlyph.setText(wrongFont, "WRONG!");
                     //Draw font
                     answerFont.draw(batch, fontGlyph, (Gdx.graphics.getWidth() - fontGlyph.width) / 2, (Gdx.graphics.getHeight() - fontGlyph.width) / 2);
@@ -236,8 +234,6 @@ public class Level2Screen extends GameScreen implements Screen {
             }
         }
     }
-
-    boolean pauseProgram;
 
     private void drawQuestions(SpriteBatch batch) {
         int guess;
@@ -314,44 +310,50 @@ public class Level2Screen extends GameScreen implements Screen {
         //Draw answer
         answerFont.draw(batch, a4Glyph, 5, Gdx.graphics.getHeight() - 300);
 
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
-            guess = 1;
-            if (guess == answerKey.get(curQuestionIndex)) {
-                win();
-            } else {
-                lose();
+        if (pauseProgram == false) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
+                guess = 1;
+                if (guess == answerKey.get(curQuestionIndex)) {
+                    win();
+                } else {
+                    lose();
+                }
+                pauseProgram = true;
             }
-        }
 
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
-            guess = 2;
-            if (guess == answerKey.get(curQuestionIndex)) {
-                win();
-            } else {
-                lose();
+            if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
+                guess = 2;
+                if (guess == answerKey.get(curQuestionIndex)) {
+                    win();
+                } else {
+                    lose();
+                }
+                pauseProgram = true;
             }
-        }
 
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) {
-            guess = 3;
-            if (guess == answerKey.get(curQuestionIndex)) {
-                win();
-            } else {
-                lose();
+            if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) {
+                guess = 3;
+                if (guess == answerKey.get(curQuestionIndex)) {
+                    win();
+                } else {
+                    lose();
+                }
+                pauseProgram = true;
             }
-        }
 
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) {
-            guess = 4;
-            if (guess == answerKey.get(curQuestionIndex)) {
-                win();
-            } else {
-                lose();
+            if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) {
+                guess = 4;
+                if (guess == answerKey.get(curQuestionIndex)) {
+                    win();
+                } else {
+                    lose();
+                }
+                System.out.println(pauseProgram);
             }
+
         }
 
         if (lives == 0) {
@@ -382,17 +384,6 @@ public class Level2Screen extends GameScreen implements Screen {
 
         correct = false;
         pauseProgram = true;
-    }
-
-    private void inputPressed() {
-        if(pauseProgram) {
-            questions.remove(curQuestionIndex);
-            answers.remove(curQuestionIndex);
-            answerKey.remove(curQuestionIndex);
-            questionHelp.remove(curQuestionIndex);
-            curQuestionIndex = (int) (Math.random() * questions.size() - 1);
-            questionNumber++;
-        }
     }
 
 
