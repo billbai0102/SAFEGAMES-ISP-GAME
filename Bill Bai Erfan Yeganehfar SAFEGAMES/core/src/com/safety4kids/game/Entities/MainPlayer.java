@@ -97,17 +97,17 @@ public class MainPlayer extends Sprite {
         //The body is created into the Box2D world
         b2body = world.createBody(bdef);
 
-        //Now a fixure is made for collisions
+        //Now a fixture is made for collisions
         FixtureDef fdef = new FixtureDef();
 
         //The type of shape is assigned and defined
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(5f/Safety4Kids.PPM,13f/Safety4Kids.PPM);
 
-        //Sets the filtering bits of the body as the Player bit
+        //Sets the filtering bits of the body as the Player bit category
         fdef.filter.categoryBits = B2DConstants.BIT_PLAYER;
-        //Defines what the player can 
-        fdef.filter.maskBits = B2DConstants.BIT_DEF | B2DConstants.BIT_COIN | B2DConstants.BIT_BREAKABLE_BLOCK;
+        //Defines what the player can
+        fdef.filter.maskBits = B2DConstants.DEFAULT_BIT | B2DConstants.BIT_COIN | B2DConstants.BIT_BREAKABLE_BLOCK;
 
         //the shape is bound to the fixture, and the fixture to the body
         fdef.shape = shape;
@@ -124,8 +124,11 @@ public class MainPlayer extends Sprite {
         EdgeShape hat = new EdgeShape();
         hat.set(new Vector2(-3.5f / Safety4Kids.PPM,  14f/ Safety4Kids.PPM), new Vector2(3.5f / Safety4Kids.PPM, 14f / Safety4Kids.PPM));
         fdef.shape = hat;
-        fdef.isSensor = false;
+        fdef.isSensor = true;
         b2body.createFixture(fdef).setUserData("hat");
+
+
+
 
     }
 

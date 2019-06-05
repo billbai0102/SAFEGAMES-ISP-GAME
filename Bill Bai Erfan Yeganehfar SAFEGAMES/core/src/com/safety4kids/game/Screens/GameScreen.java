@@ -15,6 +15,7 @@ import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.OverLays.Pause;
 import com.safety4kids.game.Safety4Kids;
+import com.safety4kids.game.Utils.GameContactListener;
 import com.safety4kids.game.Utils.InputHandler;
 import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
 
@@ -93,6 +94,9 @@ public abstract class GameScreen implements Screen {
 
         world = new World(new Vector2(0,CONST_GRAVITY),true);
         b2dr = new Box2DDebugRenderer();
+
+        world.setContactListener(new GameContactListener());
+
     }
 
     public World getWorld() {
