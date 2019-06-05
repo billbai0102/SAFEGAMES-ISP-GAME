@@ -1,6 +1,6 @@
 package com.safety4kids.game.Utils;
 
-public class B2DContants {
+public class B2DConstants {
 	
 	// collision bit filters
 	public static final short BIT_DEF =  1;
