@@ -124,12 +124,12 @@ public class Level1Screen extends GameScreen {
         }
         switch (state) {
             case RUN:
-                if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-                    if (!isPaused)
-                        isPaused = true;
-                    else if (isPaused)
-                        isPaused = false;
-                }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+                if (!isPaused)
+                    isPaused = true;
+                else if (isPaused)
+                    isPaused = false;
+            }
 
                 if(!isPaused)
                     //update is separated from the render logic

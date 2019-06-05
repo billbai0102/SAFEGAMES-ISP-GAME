@@ -59,7 +59,7 @@ public class Pause implements Disposable {
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 20;
         parameter.borderColor = Color.BLACK;
-        parameter.borderWidth = 0.5f;
+        parameter.borderWidth = 0.9f;
         font = generator.generateFont(parameter);
         generator.dispose();
 
@@ -73,21 +73,15 @@ public class Pause implements Disposable {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                pause.setVisible(false);
                 game.resume();
             }
         });
 
         exit = new TextButton("Main Menu", skin);
-        exit.addListener(new InputListener() {
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+        exit.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
                 game.state = RETURN;
-            }
-
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                return true;
             }
         });
 
@@ -108,7 +102,7 @@ public class Pause implements Disposable {
 
         //adds table to the current stage
         stage.addActor(pause);
-
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
