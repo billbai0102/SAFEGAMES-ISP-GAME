@@ -4,16 +4,14 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.physics.box2d.World;
 import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.Box2DCollisionCreator;
-import com.safety4kids.game.Utils.InputProcessor;
+import com.safety4kids.game.Utils.InputHandler;
 import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
 
 import static com.safety4kids.game.Safety4Kids.PPM;
@@ -28,7 +26,7 @@ public class Level3Screen extends GameScreen {
     private OrthogonalTiledMapRenderer renderer;
     private MyOrthogonalTiledMapRenderer tiledMapRenderer;
 
-    private InputProcessor input;
+    private InputHandler input;
 
     //Instance of the main character
     private MainPlayer player;
@@ -57,14 +55,14 @@ public class Level3Screen extends GameScreen {
         player = new MainPlayer(this, 400, 200);
 
         //Processes input for the player
-        input = new InputProcessor(player);
+        input = new InputHandler(player);
 
     }
 
     public void update(float dt) {
         if (!isPaused) {
             //user input handler
-            InputProcessor.inputProcess();
+            input.inputProcess();
 
             world.step(STEP, 6, 2);
             player.update(dt);

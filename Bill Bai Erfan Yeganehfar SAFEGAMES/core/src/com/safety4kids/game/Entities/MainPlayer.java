@@ -1,8 +1,6 @@
 package com.safety4kids.game.Entities;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -11,11 +9,10 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Screens.GameScreen;
+import com.safety4kids.game.Utils.InputHandler;
 
 import static com.safety4kids.game.Safety4Kids.MAX_VELOCITY;
 import static com.safety4kids.game.Safety4Kids.MIN_VELOCITY;
-import static com.safety4kids.game.Utils.InputProcessor.moveLeft;
-import static com.safety4kids.game.Utils.InputProcessor.moveRight;
 
 
 /**
@@ -50,6 +47,7 @@ public class MainPlayer extends Sprite {
     private float timer;
     private boolean isRight;
     private GameScreen screen;
+    private InputHandler input;
 
     public MainPlayer(GameScreen screen, float posX, float posY){
         this.screen = screen;
@@ -60,6 +58,8 @@ public class MainPlayer extends Sprite {
         prevState = State.IDLE;
         timer = 0;
         isRight = true;
+
+        input = new InputHandler(this);
 
         Array<TextureRegion> runAnimation = new Array<TextureRegion>();
 
@@ -161,9 +161,9 @@ public class MainPlayer extends Sprite {
             case JUMPING:
                 region = playerJump;
                 if ((Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) && b2body.getLinearVelocity().x <= MAX_VELOCITY)
-                    moveRight();
+                    input.moveRight();
                 if ((Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) && b2body.getLinearVelocity().x >= MIN_VELOCITY)
-                    moveLeft();
+                    input.moveLeft();
                 break;
             case RUNNING:
                region = playerRun.getKeyFrame(timer, true);

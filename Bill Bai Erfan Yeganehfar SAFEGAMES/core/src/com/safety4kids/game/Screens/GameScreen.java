@@ -15,7 +15,7 @@ import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.OverLays.Pause;
 import com.safety4kids.game.Safety4Kids;
-import com.safety4kids.game.Utils.InputProcessor;
+import com.safety4kids.game.Utils.InputHandler;
 import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
 
 import static com.safety4kids.game.Safety4Kids.*;
@@ -53,7 +53,7 @@ public abstract class GameScreen implements Screen {
     protected SpriteBatch batch;
     protected OrthographicCamera gameCam;
     protected Viewport gamePort;
-    protected InputProcessor input;
+    protected InputHandler input;
 
     //Tile map Instance variables
     protected TiledMap map;
