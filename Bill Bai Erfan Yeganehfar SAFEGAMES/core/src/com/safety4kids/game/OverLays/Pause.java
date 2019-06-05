@@ -1,6 +1,5 @@
 package com.safety4kids.game.OverLays;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -12,7 +11,10 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Disposable;
@@ -20,6 +22,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Screens.GameScreen;
+
 import static com.safety4kids.game.Screens.GameScreen.GameState.RETURN;
 
 /**
@@ -43,7 +46,7 @@ public class Pause implements Disposable {
      * the labels can be set properly with their sprites on the game screen.
      * @param sb the sprite batch passed into the hud for graphics
      */
-    public Pause(SpriteBatch sb, GameScreen game) {
+    public Pause(SpriteBatch sb, final GameScreen game) {
         viewport = new FitViewport(Safety4Kids.V_WIDTH * Safety4Kids.SCALE, Safety4Kids.V_HEIGHT * Safety4Kids.SCALE, new OrthographicCamera());
         SpriteDrawable bgDrawble = new SpriteDrawable(new Sprite(new Texture("core/assets/purp.jpg")));
         SpriteDrawable background = new SpriteDrawable(new Sprite(new Texture("core/assets/transp.png")));

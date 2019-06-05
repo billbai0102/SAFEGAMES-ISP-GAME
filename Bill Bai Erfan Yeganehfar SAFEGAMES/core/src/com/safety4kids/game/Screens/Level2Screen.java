@@ -12,8 +12,8 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.safety4kids.game.Safety4Kids;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import static com.safety4kids.game.Screens.GameScreen.GameState.*;
 
@@ -62,7 +62,7 @@ public class Level2Screen extends GameScreen implements Screen {
     private int questionNumber = 1;
 
     private List<String> questions = new ArrayList<String>();
-    private List<String[]> answers = new ArrayList<String[]>();
+    private List<ArrayList<String>> answers = new ArrayList<ArrayList<String>>();
     private List<Integer> answerKey = new ArrayList<Integer>();
     private List<String> questionHelp = new ArrayList<String>();
     private int curQuestionIndex;
@@ -101,8 +101,8 @@ public class Level2Screen extends GameScreen implements Screen {
         generator.dispose();
     }
 
-    public void loadQuestions(){
-        for(int x = 0; x < 20; x++){
+    public void loadQuestions() {
+        for (int x = 0; x < 20; x++) {
             this.questions.add(IntroAnimation.getQuestions().get(x));
             this.answers.add(IntroAnimation.getAnswers().get(x));
             this.questionHelp.add(IntroAnimation.getQuestionHelp().get(x));
@@ -135,14 +135,6 @@ public class Level2Screen extends GameScreen implements Screen {
                 displayQuestionHelp();
                 batch.end();
 
-
-                if (win) {
-                    System.out.println("Progressing to Level 3 ...");
-                    //((Game)Gdx.app.getApplicationListener()).setScreen(new Level3Screen(game));
-                }
-
-                //    if win -->
-                //    state = NEXT_LEVEL;
                 break;
             case NEXT_LEVEL:
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(game));
@@ -162,20 +154,15 @@ public class Level2Screen extends GameScreen implements Screen {
     }
 
     private void shuffleAnswers() {
-        String[] tempAnswers = answers.get(0);
-        Random r = new Random();
+        for (int x = 0; x < answers.size(); x++) {
+            Collections.shuffle(answers.get(x));
+        }
+
 
         for (int x = 0; x < answers.size(); x++) {
-            tempAnswers = answers.get(x);
-            for (int y = tempAnswers.length - 1; y > 0; y--) {
-                // swap
-                int k = r.nextInt(y);
-                String temp = tempAnswers[k];
-                tempAnswers[k] = tempAnswers[y];
-                tempAnswers[y] = temp;
-            }
-            for (int y = 0; y < tempAnswers.length; y++) {
-                if (tempAnswers[y].charAt(0) == '4') {
+            Collections.shuffle(answers.get(x));
+            for (int y = 0; y < answers.get(x).size(); y++) {
+                if (answers.get(x).get(y).charAt(0) == '4') {
                     answerKey.add(y + 1);
                     break;
                 }
@@ -183,12 +170,9 @@ public class Level2Screen extends GameScreen implements Screen {
         }
     }
 
-    String[] toPrint;
 
     private void drawQuestions(SpriteBatch batch) {
         int guess;
-
-        toPrint = answers.get(curQuestionIndex);
 
         if (questions.get(curQuestionIndex).contains("snow")) {
 
@@ -231,31 +215,33 @@ public class Level2Screen extends GameScreen implements Screen {
             font.draw(batch, questionGlyph, (Gdx.graphics.getWidth() - questionGlyph.width) / 2, Gdx.graphics.getHeight() - questionGlyph.height);
         }
 
+        ArrayList<String> toPrint;
+        toPrint = answers.get(curQuestionIndex);
+
         //Format first answer
-        //toPrint[0].substring(1)
         GlyphLayout a1Glyph = new GlyphLayout();
-        String a1 = "A)".concat(toPrint[0].substring(1));
+        String a1 = "A)".concat(toPrint.get(0).substring(1));
         a1Glyph.setText(answerFont, a1);
         //Draw answer
         answerFont.draw(batch, a1Glyph, 5, Gdx.graphics.getHeight() - 150);
 
         //Format second answer
         GlyphLayout a2Glyph = new GlyphLayout();
-        String a2 = "B)".concat(toPrint[1].substring(1));
+        String a2 = "B)".concat(toPrint.get(1).substring(1));
         a2Glyph.setText(answerFont, a2);
         //Draw answer
-        answerFont.draw(batch, a2Glyph,  5, Gdx.graphics.getHeight() - 200);
+        answerFont.draw(batch, a2Glyph, 5, Gdx.graphics.getHeight() - 200);
 
         //Format third answer
         GlyphLayout a3Glyph = new GlyphLayout();
-        String a3 = "C)".concat(toPrint[2].substring(1));
+        String a3 = "C)".concat(toPrint.get(2).substring(1));
         a3Glyph.setText(answerFont, a3);
         //Draw answer
-        answerFont.draw(batch, a3Glyph,  5, Gdx.graphics.getHeight() - 250);
+        answerFont.draw(batch, a3Glyph, 5, Gdx.graphics.getHeight() - 250);
 
         //Format fourth answer
         GlyphLayout a4Glyph = new GlyphLayout();
-        String a4 = "D)".concat(toPrint[3].substring(1));
+        String a4 = "D)".concat(toPrint.get(3).substring(1));
         a4Glyph.setText(answerFont, a4);
         //Draw answer
         answerFont.draw(batch, a4Glyph, 5, Gdx.graphics.getHeight() - 300);
@@ -319,9 +305,8 @@ public class Level2Screen extends GameScreen implements Screen {
 
     private void lose() {
         lives--;
-        warningLocation += (500f / 4f) - 18f;
+        warningLocation += (500f / 4f) - 12f;
         System.out.println("Lost life.");
-        //displayQuestionHelp();
     }
 
     private void inputPressed() {
@@ -335,28 +320,28 @@ public class Level2Screen extends GameScreen implements Screen {
 
 
     private void displayQuestionHelp() {
-            if (questionHelp.get(curQuestionIndex).length() > 55) {
-                //Format question
-                GlyphLayout qGlyphPart1 = new GlyphLayout();
-                GlyphLayout qGlyphPart2 = new GlyphLayout();
-                int firstWord = questionHelp.get(curQuestionIndex).substring(2).indexOf(' ', 35);
+        if (questionHelp.get(curQuestionIndex).length() > 55) {
+            //Format question
+            GlyphLayout qGlyphPart1 = new GlyphLayout();
+            GlyphLayout qGlyphPart2 = new GlyphLayout();
+            int firstWord = questionHelp.get(curQuestionIndex).substring(2).indexOf(' ', 35);
 
-                String part1 = questionHelp.get(curQuestionIndex).substring(0, firstWord + 2);
-                String part2 = questionHelp.get(curQuestionIndex).substring(firstWord + 2);
+            String part1 = questionHelp.get(curQuestionIndex).substring(0, firstWord + 2);
+            String part2 = questionHelp.get(curQuestionIndex).substring(firstWord + 2);
 
-                qGlyphPart1.setText(answerFont, part1);
-                qGlyphPart2.setText(answerFont, part2);
+            qGlyphPart1.setText(answerFont, part1);
+            qGlyphPart2.setText(answerFont, part2);
 
-                answerFont.draw(batch, qGlyphPart1, (Gdx.graphics.getWidth() - qGlyphPart1.width) / 2, 120);
-                answerFont.draw(batch, qGlyphPart2, (Gdx.graphics.getWidth() - qGlyphPart2.width) / 2, 50);
-            } else {
-                //Format question
-                GlyphLayout glyphLayout = new GlyphLayout();
-                String q = questionHelp.get(curQuestionIndex);
-                glyphLayout.setText(answerFont, q);
-                //Draw question
-                answerFont.draw(batch, glyphLayout, (Gdx.graphics.getWidth() - glyphLayout.width) / 2, 120);
-            }
+            answerFont.draw(batch, qGlyphPart1, (Gdx.graphics.getWidth() - qGlyphPart1.width) / 2, 120);
+            answerFont.draw(batch, qGlyphPart2, (Gdx.graphics.getWidth() - qGlyphPart2.width) / 2, 50);
+        } else {
+            //Format question
+            GlyphLayout glyphLayout = new GlyphLayout();
+            String q = questionHelp.get(curQuestionIndex);
+            glyphLayout.setText(answerFont, q);
+            //Draw question
+            answerFont.draw(batch, glyphLayout, (Gdx.graphics.getWidth() - glyphLayout.width) / 2, 120);
+        }
     }
 
 

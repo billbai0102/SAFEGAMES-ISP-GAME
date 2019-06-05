@@ -21,9 +21,9 @@ import java.util.List;
  *
  * @author Erfan Yeganehfar
  * @author Bill Bai
- *
+ * <p>
  * Ms. Krasteva
- *
+ * <p>
  * Modifications:
  * Bill Bai: (2019-05-28) Completed entire class. Time spent: 1 hour.
  * @version 3.0, 2019-05-28
@@ -58,7 +58,7 @@ public class IntroAnimation implements Screen {
         batch = new SpriteBatch();
 
         logo = new SplashScreenLogo();
-        logo.setPosition(-400,Gdx.graphics.getHeight()/2f-200);
+        logo.setPosition(-400, Gdx.graphics.getHeight() / 2f - 200);
 
         loadLevel2Questions();
     }
@@ -85,38 +85,40 @@ public class IntroAnimation implements Screen {
 
     static TextureAtlas playerTexture = new TextureAtlas("core/assets/Lv2Assets/Lv2Sprites.atlas");
 
-    public static TextureAtlas getPlayerTexture(){
+    public static TextureAtlas getPlayerTexture() {
         return playerTexture;
     }
 
     static List<String> questions = new ArrayList<String>();
-    static List<String[]> answers = new ArrayList<String[]>();
+    static List<ArrayList<String>> answers = new ArrayList<ArrayList<String>>(20);
     static List<String> questionHelp = new ArrayList<String>();
 
-    public static List<String> getQuestions(){
+    public static List<String> getQuestions() {
         return questions;
     }
 
-    public static List<String[]> getAnswers(){
+    public static List<ArrayList<String>> getAnswers() {
         return answers;
     }
 
-    public static List<String> getQuestionHelp(){
+    public static List<String> getQuestionHelp() {
         return questionHelp;
     }
 
-    public void loadLevel2Questions(){
-        String[] txtAnswer = new String[4];
+    public void loadLevel2Questions() {
+
         try {
             BufferedReader br = new BufferedReader(new FileReader("core/assets/Lv2Assets/Level2Questions.txt"));
             for (int x = 0; x < 20; x++) {
+                ArrayList<String> txtAnswer = new ArrayList<String>();
                 questions.add(br.readLine());
 
                 for (int y = 0; y < 4; y++) {
-                    txtAnswer[y] = br.readLine();
+                    txtAnswer.add(y, br.readLine());
                 }
-                answers.add(txtAnswer);
+                answers.add(x, txtAnswer);
             }
+
             br = new BufferedReader(new FileReader("core/assets/Lv2Assets/Level2QuestionHelp.txt"));
             for (int x = 0; x < 20; x++) {
                 questionHelp.add(br.readLine());
@@ -142,7 +144,8 @@ public class IntroAnimation implements Screen {
      * This method has no implementation, since it is not used. It is only added since the class implements Screen.
      */
     @Override
-    public void resize(int width, int height) { }
+    public void resize(int width, int height) {
+    }
 
     /**
      * This method has no implementation, since it is not used. It is only added since the class implements Screen.
@@ -156,11 +159,13 @@ public class IntroAnimation implements Screen {
      * This method has no implementation, since it is not used. It is only added since the class implements Screen.
      */
     @Override
-    public void resume() { }
+    public void resume() {
+    }
 
     /**
      * This method has no implementation, since it is not used. It is only added since the class implements Screen.
      */
     @Override
-    public void hide() { }
+    public void hide() {
+    }
 }
