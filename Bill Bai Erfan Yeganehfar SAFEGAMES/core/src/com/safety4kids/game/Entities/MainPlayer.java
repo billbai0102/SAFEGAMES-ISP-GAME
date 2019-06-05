@@ -75,7 +75,7 @@ public class MainPlayer extends Sprite {
         playerJump = new TextureRegion(screen.getAtlas().findRegion("jump"), 9, 4, 15, 24);
 
         creatBox2D();
-        setBounds(startPosX / Safety4Kids.PPM,startPosY / Safety4Kids.PPM, 17 / Safety4Kids.PPM, 30 / Safety4Kids.PPM);
+        setBounds(startPosX / Safety4Kids.PPM,startPosY / Safety4Kids.PPM, 17f / Safety4Kids.PPM, 29f / Safety4Kids.PPM);
         setRegion(playerIdle);
     }
 
@@ -108,10 +108,17 @@ public class MainPlayer extends Sprite {
         b2body.createFixture(fdef);
 
         EdgeShape feet = new EdgeShape();
-        feet.set(new Vector2(-5.6f / Safety4Kids.PPM, -14 / Safety4Kids.PPM), new Vector2(5 / Safety4Kids.PPM, -14 / Safety4Kids.PPM));
+        feet.set(new Vector2(-5.6f / Safety4Kids.PPM, -14f / Safety4Kids.PPM), new Vector2(5f / Safety4Kids.PPM, -14f / Safety4Kids.PPM));
         fdef.shape = feet;
         fdef.isSensor = false;
-        b2body.createFixture(fdef);
+        b2body.createFixture(fdef).setUserData("feet");
+
+        EdgeShape hat = new EdgeShape();
+        hat.set(new Vector2(-3.5f / Safety4Kids.PPM,  14f/ Safety4Kids.PPM), new Vector2(3.5f / Safety4Kids.PPM, 14f / Safety4Kids.PPM));
+        fdef.shape = hat;
+        fdef.isSensor = false;
+        b2body.createFixture(fdef).setUserData("hat");
+
     }
 
     /**
