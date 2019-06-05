@@ -1,9 +1,11 @@
 package com.safety4kids.game.OverLays;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -26,6 +28,7 @@ public class Hud implements Disposable {
     private Integer score;
     private boolean showStats;
     private int level;
+    private BitmapFont font;
 
     private Label countdownLabel;
     private Label scoreLabel;
@@ -56,12 +59,21 @@ public class Hud implements Disposable {
         //scales to the stage
         table.setFillParent(true);
 
-        countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        scoreLabel =new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        timeLabel= new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        levelLabel= new Label(level+"", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        worlLabel= new Label( "LEVEL", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        playerLabel= new Label("SCORE", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("core/assets/Fonts/eight-bit-dragon.otf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 10;
+        parameter.borderColor = Color.BLACK;
+        parameter.borderWidth = 0.9f;
+        font = generator.generateFont(parameter);
+        generator.dispose();
+
+        countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(font, Color.WHITE));
+        scoreLabel =new Label(String.format("%06d", score), new Label.LabelStyle(font, Color.WHITE));
+        timeLabel= new Label("TIME", new Label.LabelStyle(font, Color.WHITE));
+        levelLabel= new Label(level+"", new Label.LabelStyle(font, Color.WHITE));
+        worlLabel= new Label( "LEVEL", new Label.LabelStyle(font, Color.WHITE));
+        playerLabel= new Label("SCORE", new Label.LabelStyle(font, Color.WHITE));
         //adds Labels to the table, while equally dividing them
 
         if (showStats){
@@ -69,15 +81,15 @@ public class Hud implements Disposable {
             table.add(worlLabel).expandX().padTop(10);
             table.add(timeLabel).expandX().padTop(10);
             table.row();
-            table.add(scoreLabel).expandX();
-            table.add(levelLabel).expandX();
-            table.add(countdownLabel).expandX();
+            table.add(scoreLabel).expandX().padTop(10);
+            table.add(levelLabel).expandX().padTop(10);
+            table.add(countdownLabel).expandX().padTop(10);
 
         }
         else{
             table.add(worlLabel).expandX().padTop(10);
             table.row();
-            table.add(levelLabel).expandX();
+            table.add(levelLabel).expandX().padTop(10);
         }
 
         //adds table to the current stage
