@@ -108,7 +108,7 @@ public class MainPlayer extends Sprite {
         b2body.createFixture(fdef);
 
         EdgeShape feet = new EdgeShape();
-        feet.set(new Vector2(-5 / Safety4Kids.PPM, -14 / Safety4Kids.PPM), new Vector2(5 / Safety4Kids.PPM, -14 / Safety4Kids.PPM));
+        feet.set(new Vector2(-5.6f / Safety4Kids.PPM, -14 / Safety4Kids.PPM), new Vector2(5 / Safety4Kids.PPM, -14 / Safety4Kids.PPM));
         fdef.shape = feet;
         fdef.isSensor = false;
         b2body.createFixture(fdef);
