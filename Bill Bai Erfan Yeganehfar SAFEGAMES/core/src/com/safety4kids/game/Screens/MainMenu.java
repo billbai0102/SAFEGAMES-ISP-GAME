@@ -55,7 +55,7 @@ public class MainMenu implements Screen {
         batch = new SpriteBatch();
         backgroundImg = new Texture("core/assets/MainMenuBg.png");
         Gdx.input.setInputProcessor(stage);
-        skin = new Skin(Gdx.files.internal("core/skin/flat-earth-ui.json"));
+        skin = new Skin(Gdx.files.internal("core/skin/flat_earth/flat-earth-ui.json"));
         //start btn
         startBtn = new TextButton("START", skin);
         startBtn.setSize(100, 50);

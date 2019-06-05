@@ -64,7 +64,7 @@ public class Pause implements Disposable {
         generator.dispose();
 
         stage = new Stage(viewport, sb);
-        skin = new Skin(Gdx.files.internal("core/skin/flat-earth-ui.json"));
+        skin = new Skin(Gdx.files.internal("core/skin/craftacular/skin/craftacular-ui.json"));
 
         pause.top();
 
@@ -88,8 +88,8 @@ public class Pause implements Disposable {
         title = new Label("Pause Menu", new Label.LabelStyle(font, Color.WHITE));
 
 
-        cont.setSize(100, 50);
-        exit.setSize(100, 50);
+        cont.setSize(20, 20);
+        exit.setSize(20, 20);
 
         pause.add(title).expandX().padTop(20).row();
         pause.add(cont).padTop(40);

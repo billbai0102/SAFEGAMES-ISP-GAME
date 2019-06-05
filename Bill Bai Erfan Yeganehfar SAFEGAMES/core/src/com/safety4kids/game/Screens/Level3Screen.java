@@ -11,6 +11,7 @@ import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.Box2DCollisionCreator;
+import com.safety4kids.game.Utils.GameContactListener;
 import com.safety4kids.game.Utils.InputHandler;
 import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
 
@@ -56,6 +57,8 @@ public class Level3Screen extends GameScreen {
 
         //Processes input for the player
         input = new InputHandler(player);
+
+        world.setContactListener(new GameContactListener());
 
     }
 

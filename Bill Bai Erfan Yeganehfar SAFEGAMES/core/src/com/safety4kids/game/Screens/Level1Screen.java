@@ -87,6 +87,7 @@ public class Level1Screen extends GameScreen {
             world.step(STEP, 6, 2);
             player.update(dt);
 
+            //Sets the min and max bounds if the camera following the player
             if (player.b2body.getPosition().x > 2.5 && player.b2body.getPosition().x < 35)
                 gameCam.position.x = (player.b2body.getPosition().x);
 
