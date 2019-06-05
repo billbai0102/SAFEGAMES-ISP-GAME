@@ -106,7 +106,6 @@ public class IntroAnimation implements Screen {
     }
 
     public void loadLevel2Questions() {
-
         try {
             BufferedReader br = new BufferedReader(new FileReader("core/assets/Lv2Assets/Level2Questions.txt"));
             for (int x = 0; x < 20; x++) {

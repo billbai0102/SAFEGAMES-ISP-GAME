@@ -214,6 +214,10 @@ public class Level2Screen extends GameScreen implements Screen {
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
                 dispose();
                 break;
+            case LOSE:
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new LoseScreen(new Safety4Kids(), questionNumber));
+                dispose();
+                break;
             default:
                 break;
         }
@@ -362,8 +366,7 @@ public class Level2Screen extends GameScreen implements Screen {
 
         if (lives == 0) {
             System.out.println("You've lost!");
-            //     state = LOSE;
-
+            state = LOSE;
         }
 
     }
