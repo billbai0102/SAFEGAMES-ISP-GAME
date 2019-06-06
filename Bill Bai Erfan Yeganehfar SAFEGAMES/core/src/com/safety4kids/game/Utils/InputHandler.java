@@ -24,13 +24,13 @@ public class InputHandler implements InputProcessor {
             player.jump();
         if ((Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) && player.b2body.getLinearVelocity().x <= MAX_VELOCITY) {
             moveRight();
-            if (keyUp(Input.Keys.RIGHT))
-                player.b2body.setLinearVelocity(0f, 0f);
+            /*if (keyUp(Input.Keys.RIGHT) || keyUp(Input.Keys.D))
+                player.b2body.setLinearVelocity(0f, 0f);*/
         }
         if ((Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) && player.b2body.getLinearVelocity().x >= MIN_VELOCITY){
             moveLeft();
-            if(keyUp(Input.Keys.LEFT))
-            player.b2body.setLinearVelocity(0f, 0f);
+            /*if (keyUp(Input.Keys.LEFT) || keyUp(Input.Keys.A))
+            player.b2body.setLinearVelocity(0f, 0f);*/
         }
 
 

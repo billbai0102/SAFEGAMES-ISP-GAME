@@ -38,8 +38,8 @@ public class Instructions implements Screen {
         game = aGame;
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-        backgroundImg = new Texture("core/assets/InstructionsImg.jpg");
-        skin = new Skin(Gdx.files.internal("core/skin/flat-earth-ui.json"));
+        backgroundImg = new Texture(Gdx.files.internal("InstructionsImg.jpg"));
+        skin = new Skin(Gdx.files.internal("skin/flat-earth-ui.json"));
 
         //instructions btn
         backBtn = new TextButton("BACK", skin);

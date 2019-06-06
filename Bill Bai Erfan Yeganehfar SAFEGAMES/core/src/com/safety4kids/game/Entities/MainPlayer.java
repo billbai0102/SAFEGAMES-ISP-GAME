@@ -107,7 +107,8 @@ public class MainPlayer extends Sprite {
         //Sets the filtering bits of the body as the Player bit category
         fdef.filter.categoryBits = B2DConstants.BIT_PLAYER;
         //Defines what the player can
-        fdef.filter.maskBits = B2DConstants.PLATFORM_BIT | B2DConstants.BIT_COIN | B2DConstants.BIT_BREAKABLE_BLOCK;
+        fdef.filter.maskBits = B2DConstants.PLATFORM_BIT | B2DConstants.BIT_COIN
+                | B2DConstants.BIT_BREAKABLE_BLOCK | B2DConstants.BIT_HAZARD | B2DConstants.BIT_OBJECT;
 
         //the shape is bound to the fixture, and the fixture to the body
         fdef.shape = shape;
@@ -121,7 +122,7 @@ public class MainPlayer extends Sprite {
 
         EdgeShape hat = new EdgeShape();
         hat.set(new Vector2(-3.5f / Safety4Kids.PPM,  14f/ Safety4Kids.PPM), new Vector2(3.5f / Safety4Kids.PPM, 14f / Safety4Kids.PPM));
-        fdef.filter.categoryBits = B2DConstants.BIT_PLAYER_HEAD;
+        fdef.filter.categoryBits = B2DConstants.BIT_PLAYER_HAT;
         fdef.shape = hat;
         fdef.isSensor = true;
         b2body.createFixture(fdef).setUserData(this);
