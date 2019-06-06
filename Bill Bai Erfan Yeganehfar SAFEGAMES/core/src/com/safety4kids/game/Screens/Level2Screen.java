@@ -292,28 +292,28 @@ public class Level2Screen extends GameScreen implements Screen {
 
         //Format first answer
         GlyphLayout a1Glyph = new GlyphLayout();
-        String a1 = "A)".concat(toPrint.get(0).substring(1));
+        String a1 = "1)".concat(toPrint.get(0).substring(1));
         a1Glyph.setText(answerFont, a1);
         //Draw answer
         answerFont.draw(batch, a1Glyph, 5, Gdx.graphics.getHeight() - 150);
 
         //Format second answer
         GlyphLayout a2Glyph = new GlyphLayout();
-        String a2 = "B)".concat(toPrint.get(1).substring(1));
+        String a2 = "2)".concat(toPrint.get(1).substring(1));
         a2Glyph.setText(answerFont, a2);
         //Draw answer
         answerFont.draw(batch, a2Glyph, 5, Gdx.graphics.getHeight() - 200);
 
         //Format third answer
         GlyphLayout a3Glyph = new GlyphLayout();
-        String a3 = "C)".concat(toPrint.get(2).substring(1));
+        String a3 = "3)".concat(toPrint.get(2).substring(1));
         a3Glyph.setText(answerFont, a3);
         //Draw answer
         answerFont.draw(batch, a3Glyph, 5, Gdx.graphics.getHeight() - 250);
 
         //Format fourth answer
         GlyphLayout a4Glyph = new GlyphLayout();
-        String a4 = "D)".concat(toPrint.get(3).substring(1));
+        String a4 = "4)".concat(toPrint.get(3).substring(1));
         a4Glyph.setText(answerFont, a4);
         //Draw answer
         answerFont.draw(batch, a4Glyph, 5, Gdx.graphics.getHeight() - 300);
