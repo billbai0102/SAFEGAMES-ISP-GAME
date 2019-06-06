@@ -62,7 +62,7 @@ public class Level1Screen extends GameScreen {
     public Level1Screen(Safety4Kids game) {
         super();
         //Sets the hud for this level
-        hud = new Hud(batch, false, 1);
+        hud = new Hud(batch, true, 1);
 
         //Loads, fixes (added padding), and creates the renderer for the TileMap for level 1
         map = new TmxMapLoader().load("core/assets/MapAssets/level1a.tmx");
@@ -87,7 +87,7 @@ public class Level1Screen extends GameScreen {
 
             world.step(STEP, 6, 2);
             player.update(dt);
-
+            hud.update(dt);
             //Sets the min and max bounds if the camera following the player
             if (player.b2body.getPosition().x > 2.5 && player.b2body.getPosition().x < 35)
                 gameCam.position.x = (player.b2body.getPosition().x);

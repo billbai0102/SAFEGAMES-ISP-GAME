@@ -24,14 +24,14 @@ public class Hud implements Disposable {
     public Stage stage;
     private Viewport viewport;
     private  Integer worldTimer;
-    private float timeCount;
-    private Integer score;
+    private float timer;
+    private static Integer score;
     private boolean showStats;
     private int level;
     private BitmapFont font;
 
     private Label countdownLabel;
-    private Label scoreLabel;
+    private static Label scoreLabel;
     private Label timeLabel;
     private Label levelLabel;
     private Label worlLabel;
@@ -46,7 +46,7 @@ public class Hud implements Disposable {
         this.level = level;
         this.showStats = showStats;
         worldTimer = 300;
-        timeCount = 0;
+        timer = 0;
         score = 0;
         viewport = new FitViewport(Safety4Kids.V_WIDTH, Safety4Kids.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, sb);
@@ -96,6 +96,26 @@ public class Hud implements Disposable {
         stage.addActor(table);
 
     }
+/*timeCount +=dt;
+        WHILE (timeCount >= 1){
+            worldTimer--;
+            timeCount -= 1;
+        }
+       countdownLabel.setText(String.format("%03d", worldTimer));*/
+    public void update(float delta) {
+        timer += delta;
+        if (timer >= 1) {
+            worldTimer--;
+            countdownLabel.setText(String.format("%03d", worldTimer));
+            timer = 0;
+        }
+    }
+
+     public static void addPoints (int val){
+         score += val;
+         scoreLabel.setText(String.format("%06d", score));
+        }
+
 
     @Override
     public void dispose() {

@@ -20,6 +20,7 @@ public class GameContactListener implements ContactListener {
             Fixture obj = hat == fixA ? fixB : fixA;
 
             //Determines if the Fixture object is an Interactive Tile object by seeing if the user data is assigned from the Interactive Tile
+            //obj.getUserData() instanceof InteractiveTile
             if (obj.getUserData() != null && InteractiveTile.class.isAssignableFrom(obj.getUserData().getClass())){
                 Gdx.app.log("obj","collide");
                 //Executes the hat contact method if the object is indeed an interactive tile
