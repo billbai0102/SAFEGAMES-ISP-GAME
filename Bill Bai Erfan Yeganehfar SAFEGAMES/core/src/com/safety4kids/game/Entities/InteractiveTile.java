@@ -36,7 +36,7 @@ public abstract class InteractiveTile {
     /**
      * This Method invokes an action to be done based on the object the players hat collided with
      */
-    public abstract void onHatContact();
+    public abstract void onHatContact(MainPlayer player);
 
     /**
      * Sets the filter bit for a box2d fixture

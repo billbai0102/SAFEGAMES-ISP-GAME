@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.*;
 import com.safety4kids.game.Entities.BreakableTile;
 import com.safety4kids.game.Entities.InteractiveTile;
+import com.safety4kids.game.Entities.MainPlayer;
 
 public class GameContactListener implements ContactListener {
     @Override
@@ -11,9 +12,27 @@ public class GameContactListener implements ContactListener {
         //The two fixtures that are to be colliding
         Fixture fixA = contact.getFixtureA();
         Fixture fixB = contact.getFixtureA();
+        int collide = fixA.getFilterData().categoryBits | fixB.getFilterData().categoryBits;
+
+
+        switch(collide){
+            case B2DConstants.BIT_PLAYER_HEAD | B2DConstants.BIT_BREAKABLE_BLOCK:
+            case B2DConstants.BIT_PLAYER_HEAD | B2DConstants.BIT_COIN:
+                Gdx.app.log("obj", "collide");
+                if(fixA.getFilterData().categoryBits == B2DConstants.BIT_PLAYER_HEAD) {
+                    Gdx.app.log("obj", "collide");
+                    ((InteractiveTile) fixB.getUserData()).onHatContact((MainPlayer) fixA.getUserData());
+                }else
+                    ((InteractiveTile) fixA.getUserData()).onHatContact((MainPlayer) fixB.getUserData());
+
+                break;
+
+
+
+        }
 
         //If one of the fixtures is the players hat
-        if (fixA.getUserData() == "hat" || fixB.getUserData() == "hat" ){
+        /*if (fixA.getUserData() == "hat" || fixB.getUserData() == "hat" ){
             //Determining which fixture is the hat fixture
             Fixture hat = fixA.getUserData() == "hat" ? fixA : fixB;
             //Which fixture is the collided object with the hat
@@ -26,7 +45,7 @@ public class GameContactListener implements ContactListener {
                 //Executes the hat contact method if the object is indeed an interactive tile
                 ((InteractiveTile) obj.getUserData()).onHatContact();
             }
-        }
+        }*/
     }
 
     @Override
