@@ -70,20 +70,25 @@ public class Level2Screen extends GameScreen implements Screen {
     private boolean pauseProgram = false;
 
     public Level2Screen(Safety4Kids game) {
+        //Sets game to be drawn on
         this.game = game;
         //TODO Remove later
-        game.batch = new SpriteBatch();
-        batch = game.batch;
-        gamePort = new ScreenViewport();
 
-        bg = new Texture("core/assets/Lv2Assets/Level2Background.png");
+        //Instantiates SpriteBatch
+        game.batch = new SpriteBatch();
+        //Sets this sprite batch to game's sprite batch
+        batch = game.batch;
+        //Sets up ScreenViewport
+        gamePort = new ScreenViewport();
+        //Instantiates background
+        bg = new Texture(Gdx.files.internal("Lv2Assets/Level2Background.png"));
         bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.ClampToEdge);
         bgSprite = new Sprite(bg);
 
         player = IntroAnimation.getPlayerTexture();
         playerAnimation = new Animation<TextureRegion>(1 / 12f, player.getRegions());
 
-        warning = new TextureAtlas(Gdx.files.internal("core/assets/Lv2Assets/Lv2Warning.atlas"));
+        warning = new TextureAtlas(Gdx.files.internal("Lv2Assets/Lv2Warning.atlas"));
         warningAnimation = new Animation<TextureRegion>(1 / 5f, warning.getRegions());
 
         loadQuestions();
@@ -92,7 +97,7 @@ public class Level2Screen extends GameScreen implements Screen {
         shuffleAnswers();
 
         //LOAD FONT
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("core/assets/Fonts/eight-bit-dragon.otf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/eight-bit-dragon.otf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 30;
         parameter.borderColor = Color.BLACK;
