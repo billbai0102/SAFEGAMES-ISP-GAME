@@ -55,7 +55,7 @@ public abstract class InteractiveTile {
      */
     public TiledMapTileLayer.Cell getCell(){
         //Type casts the map layer to a TiledMapTileLayer to gain access to the specified tile
-        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(4);
+        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(0);
 
         //using the PPM and tile size the cell position of the player is returned
         return  layer.getCell((int)(body.getPosition().x * Safety4Kids.PPM / 16),

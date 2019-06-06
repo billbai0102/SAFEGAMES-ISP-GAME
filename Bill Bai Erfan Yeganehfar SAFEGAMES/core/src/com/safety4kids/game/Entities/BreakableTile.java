@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
+import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.Utils.B2DConstants;
 
 public class BreakableTile extends InteractiveTile {
@@ -20,5 +21,6 @@ public class BreakableTile extends InteractiveTile {
         Gdx.app.log("bruh", "Collision");
         setCatFilter(B2DConstants.BIT_DESTROYED);
         getCell().setTile(null);
+        Hud.addPoints(100);
     }
 }
