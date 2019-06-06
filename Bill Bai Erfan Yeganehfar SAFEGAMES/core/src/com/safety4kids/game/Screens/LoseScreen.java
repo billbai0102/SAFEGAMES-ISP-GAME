@@ -43,7 +43,7 @@ public class LoseScreen implements Screen {
     public LoseScreen(Safety4Kids game, int loseScore) {
         this.game = game;
         this.loseScore = loseScore;
-        skin = new Skin(Gdx.files.internal("core/skin/flat_earth/flat-earth-ui.json"));
+        skin = new Skin(Gdx.files.internal("skin/flat_earth/flat-earth-ui.json"));
         batch = new SpriteBatch();
         stage = new Stage(new ScreenViewport());
         gamecam = new OrthographicCamera();
@@ -51,7 +51,7 @@ public class LoseScreen implements Screen {
 
         Gdx.input.setInputProcessor(stage);
 
-        bg = new Texture("core/assets/Lv2Assets/LoseScreenBg.png");
+        bg = new Texture(Gdx.files.internal("Lv2Assets/LoseScreenBg.png"));
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("core/assets/Fonts/eight-bit-dragon.otf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();

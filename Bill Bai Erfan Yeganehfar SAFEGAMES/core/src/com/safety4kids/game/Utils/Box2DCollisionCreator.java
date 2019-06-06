@@ -32,6 +32,7 @@ public class Box2DCollisionCreator {
 
             shape.setAsBox(rect.getWidth()/2/ Safety4Kids.PPM,rect.getHeight()/2/ Safety4Kids.PPM);
             fdef.shape = shape;
+            fdef.filter.categoryBits = B2DConstants.BIT_OBJECT;
             body.createFixture(fdef);
         }
 

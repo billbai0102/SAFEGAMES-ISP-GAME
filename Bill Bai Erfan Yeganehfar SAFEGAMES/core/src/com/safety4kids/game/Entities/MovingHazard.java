@@ -28,20 +28,22 @@ public class MovingHazard extends Hazard {
         move = new Animation(0.075f, frames);
         time = 0;
 
-        setBounds(getX(), getY(), 32 / Safety4Kids.PPM, 32 / Safety4Kids.PPM);
+        setBounds(getX(), getY(), 17 / Safety4Kids.PPM, 30 / Safety4Kids.PPM);
     }
 
     public void update(float dt){
-        //time += dt;
+        time += dt;
+        b2body.setLinearVelocity(velocity);
         setPosition(b2body.getPosition().x - getWidth() / 2,b2body.getPosition().y - getHeight() / 2 );
         setRegion(move.getKeyFrame(time, true));
+
     }
     @Override
     protected void createHazard() {
         //Defined Body
         BodyDef bdef = new BodyDef();
         //Position of the body
-        bdef.position.set(getX(), getY());
+        bdef.position.set(getX() / Safety4Kids.PPM, getY()/Safety4Kids.PPM);
 
         //the type of Body is dynamic (therefore it can move)
         bdef.type = BodyDef.BodyType.DynamicBody;
@@ -53,7 +55,7 @@ public class MovingHazard extends Hazard {
         FixtureDef fdef = new FixtureDef();
         //The type of shape is assigned and defined
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(5f/Safety4Kids.PPM,13f/Safety4Kids.PPM);
+        shape.setAsBox(10f/Safety4Kids.PPM,16f/Safety4Kids.PPM);
 
         //Sets the filtering bits of the body as the Player bit category
         fdef.filter.categoryBits = B2DConstants.BIT_HAZARD;

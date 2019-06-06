@@ -34,9 +34,9 @@ public class Safety4Kids extends Game {
     /**
      * This is the constructor. It calls the superclass constructor, which is of Game.
      */
-    public Safety4Kids(){
-        super();
-    }
+    //public Safety4Kids(){
+    //    super();
+    //}
 
     /**
      * This method loads the splash screen, and keeps it on until necessary elements are loaded in. It serves as a buffer
@@ -44,7 +44,7 @@ public class Safety4Kids extends Game {
      */
     @Override
     public void create () {
-        setScreen(new IntroAnimation(this));
+        this.setScreen(new IntroAnimation(this));
     }
 
     /**

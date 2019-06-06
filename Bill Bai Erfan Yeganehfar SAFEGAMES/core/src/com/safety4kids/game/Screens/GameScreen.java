@@ -1,5 +1,6 @@
 package com.safety4kids.game.Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -82,7 +83,7 @@ public abstract class GameScreen implements Screen {
         batch =  game.batch;
         state = GameState.RUN;
 
-        atlas = new TextureAtlas("core/assets/MainPlayerAssets/MainPlayer.pack");
+        atlas = new TextureAtlas(Gdx.files.internal("MainPlayerAssets/MainPlayer.pack"));
 
         pause = new Pause(batch, this);
 

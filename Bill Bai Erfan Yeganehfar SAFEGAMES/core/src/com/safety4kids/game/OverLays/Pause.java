@@ -48,14 +48,14 @@ public class Pause implements Disposable {
      */
     public Pause(SpriteBatch sb, final GameScreen game) {
         viewport = new FitViewport(Safety4Kids.V_WIDTH * Safety4Kids.SCALE, Safety4Kids.V_HEIGHT * Safety4Kids.SCALE, new OrthographicCamera());
-        SpriteDrawable bgDrawble = new SpriteDrawable(new Sprite(new Texture("core/assets/purp.jpg")));
-        SpriteDrawable background = new SpriteDrawable(new Sprite(new Texture("core/assets/transp.png")));
+        SpriteDrawable bgDrawble = new SpriteDrawable(new Sprite(new Texture("purp.jpg")));
+        SpriteDrawable background = new SpriteDrawable(new Sprite(new Texture("transp.png")));
 
         Window.WindowStyle windowStyle= new Window.WindowStyle(new BitmapFont(), Color.BLACK, bgDrawble);
         windowStyle.stageBackground = background;
         pause = new Window("", windowStyle);
 
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("core/assets/Fonts/eight-bit-dragon.otf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/eight-bit-dragon.otf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 20;
         parameter.borderColor = Color.BLACK;
@@ -64,7 +64,7 @@ public class Pause implements Disposable {
         generator.dispose();
 
         stage = new Stage(viewport, sb);
-        skin = new Skin(Gdx.files.internal("core/skin/craftacular/skin/craftacular-ui.json"));
+        skin = new Skin(Gdx.files.internal("skin/craftacular/skin/craftacular-ui.json"));
 
         pause.top();
 

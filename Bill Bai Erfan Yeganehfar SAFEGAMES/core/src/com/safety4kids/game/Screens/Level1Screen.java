@@ -67,7 +67,7 @@ public class Level1Screen extends GameScreen {
         hud = new Hud(batch, true, 1);
 
         //Loads, fixes (added padding), and creates the renderer for the TileMap for level 1
-        map = new TmxMapLoader().load("core/assets/MapAssets/level1a.tmx");
+        map = new TmxMapLoader().load("MapAssets/level1a.tmx");
         tiledMapRenderer = new MyOrthogonalTiledMapRenderer(map, 1 / PPM);
         renderer = new OrthogonalTiledMapRenderer(map, 1 / PPM);
 
@@ -76,7 +76,7 @@ public class Level1Screen extends GameScreen {
 
         //The player is created inside of the Box2D world
         player = new MainPlayer(this, 400, 200);
-        hazard = new MovingHazard(this, 500, 200);
+        hazard = new MovingHazard(this, 450, 200);
 
         //Processes input for the player
         input = new InputHandler(player);
@@ -89,8 +89,9 @@ public class Level1Screen extends GameScreen {
 
             world.step(STEP, 6, 2);
             player.update(dt);
-            hud.update(dt);
             hazard.update(dt);
+
+            hud.update(dt);
             //Sets the min and max bounds if the camera following the player
             if (player.b2body.getPosition().x > 2.5 && player.b2body.getPosition().x < 35)
                 gameCam.position.x = (player.b2body.getPosition().x);
@@ -125,7 +126,6 @@ public class Level1Screen extends GameScreen {
                 else if (isPaused)
                     isPaused = false;
             }
-                System.out.println(game.batch);
                 if(!isPaused)
                     //update is separated from the render logic
                     update(delta);
@@ -138,7 +138,6 @@ public class Level1Screen extends GameScreen {
 
                 //Draws the sprites to the game screen based on the cam
                 game.batch.setProjectionMatrix(gameCam.combined);
-                    System.out.println(hazard);
 
                     game.batch.begin();
                     player.draw(game.batch);

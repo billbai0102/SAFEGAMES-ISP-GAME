@@ -83,7 +83,7 @@ public class IntroAnimation implements Screen {
 //        }
     }
 
-    static TextureAtlas playerTexture = new TextureAtlas("core/assets/Lv2Assets/Lv2Sprites.atlas");
+    static TextureAtlas playerTexture = new TextureAtlas(Gdx.files.internal("Lv2Assets/Lv2Sprites.atlas"));
 
     public static TextureAtlas getPlayerTexture() {
         return playerTexture;
@@ -107,7 +107,7 @@ public class IntroAnimation implements Screen {
 
     public void loadLevel2Questions() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("core/assets/Lv2Assets/Level2Questions.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("Lv2Assets/Level2Questions.txt"));
             for (int x = 0; x < 20; x++) {
                 ArrayList<String> txtAnswer = new ArrayList<String>();
                 questions.add(br.readLine());
@@ -118,7 +118,7 @@ public class IntroAnimation implements Screen {
                 answers.add(x, txtAnswer);
             }
 
-            br = new BufferedReader(new FileReader("core/assets/Lv2Assets/Level2QuestionHelp.txt"));
+            br = new BufferedReader(new FileReader("Lv2Assets/Level2QuestionHelp.txt"));
             for (int x = 0; x < 20; x++) {
                 questionHelp.add(br.readLine());
             }

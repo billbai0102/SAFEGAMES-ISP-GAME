@@ -15,7 +15,7 @@ public class MovingObject {
 
     public MovingObject(){
         bottom = new Rectangle(0.0f,0.0f,400.0f,400.0f);
-        texture = new Texture(Gdx.files.internal("core/assets/SAFEGAMES_Logo.png"));
+        texture = new Texture(Gdx.files.internal("SAFEGAMES_Logo.png"));
         sprite = new Sprite(texture);
         sprite.setSize(400,400);
         this.setPosition(0,0);

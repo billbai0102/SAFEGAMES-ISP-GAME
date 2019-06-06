@@ -2,6 +2,7 @@ package com.safety4kids.game.Utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.*;
+import com.safety4kids.game.Entities.Hazard;
 import com.safety4kids.game.Entities.InteractiveTile;
 import com.safety4kids.game.Entities.MainPlayer;
 
@@ -25,6 +26,13 @@ public class GameContactListener implements ContactListener {
                     ((InteractiveTile) fixA.getUserData()).onHatContact((MainPlayer) fixB.getUserData());
 
                 break;
+            case B2DConstants.BIT_HAZARD | B2DConstants.BIT_OBJECT:
+            if(fixA.getFilterData().categoryBits == B2DConstants.BIT_HAZARD){
+                Gdx.app.log("obj", "collide");
+                ((Hazard)fixA.getUserData()).reverseVelocity(true, false);}
+            else
+                ((Hazard)fixB.getUserData()).reverseVelocity(true, false);
+            break;
 
 
 
