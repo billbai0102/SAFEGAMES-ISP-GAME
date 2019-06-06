@@ -15,7 +15,7 @@ public class CoinObj extends InteractiveTile {
     }
 
     @Override
-    public void onHatContact() {
+    public void onHatContact(MainPlayer player) {
         Gdx.app.log("coin", "Collision");
     }
 }
