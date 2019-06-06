@@ -70,11 +70,15 @@ public class Level2Screen extends GameScreen implements Screen {
     private boolean pauseProgram = false;
 
     public Level2Screen(Safety4Kids game) {
+        //Sets game to be drawn on
         this.game = game;
+        //Instantiates SpriteBatch
         game.batch = new SpriteBatch();
+        //Sets this sprite batch to game's sprite batch
         batch = game.batch;
+        //Sets up ScreenViewport
         gamePort = new ScreenViewport();
-
+        //Instantiates background
         bg = new Texture("core/assets/Lv2Assets/Level2Background.png");
         bg.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.ClampToEdge);
         bgSprite = new Sprite(bg);
