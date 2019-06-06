@@ -2,7 +2,6 @@ package com.safety4kids.game.Utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.*;
-import com.safety4kids.game.Entities.BreakableTile;
 import com.safety4kids.game.Entities.InteractiveTile;
 import com.safety4kids.game.Entities.MainPlayer;
 
@@ -16,10 +15,10 @@ public class GameContactListener implements ContactListener {
 
 
         switch(collide){
-            case B2DConstants.BIT_PLAYER_HEAD | B2DConstants.BIT_BREAKABLE_BLOCK:
-            case B2DConstants.BIT_PLAYER_HEAD | B2DConstants.BIT_COIN:
+            case B2DConstants.BIT_PLAYER_HAT | B2DConstants.BIT_BREAKABLE_BLOCK:
+            case B2DConstants.BIT_PLAYER_HAT | B2DConstants.BIT_COIN:
                 Gdx.app.log("obj", "collide");
-                if(fixA.getFilterData().categoryBits == B2DConstants.BIT_PLAYER_HEAD) {
+                if(fixA.getFilterData().categoryBits == B2DConstants.BIT_PLAYER_HAT) {
                     Gdx.app.log("obj", "collide");
                     ((InteractiveTile) fixB.getUserData()).onHatContact((MainPlayer) fixA.getUserData());
                 }else

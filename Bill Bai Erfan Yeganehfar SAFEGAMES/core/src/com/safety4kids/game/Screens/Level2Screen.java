@@ -71,6 +71,7 @@ public class Level2Screen extends GameScreen implements Screen {
 
     public Level2Screen(Safety4Kids game) {
         this.game = game;
+        //TODO Remove later
         game.batch = new SpriteBatch();
         batch = game.batch;
         gamePort = new ScreenViewport();

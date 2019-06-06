@@ -1,6 +1,7 @@
 package com.safety4kids.game.Entities;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -13,18 +14,25 @@ import com.safety4kids.game.Utils.B2DConstants;
 public class MovingHazard extends Hazard {
 
     private float time;
-    private Animation<TextureRegion> move;
     private Array<TextureRegion> frames;
+    private Animation<TextureRegion> move;
+
 
     public MovingHazard(GameScreen screen, float x, float y) {
         super(screen, x, y);
         //TODO Add animation.
+        frames = new Array<TextureRegion>();
+        for(int i = 0; i < 10; i++) {
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("running"), 10+(i * 32), 4, 14, 24));
+        }
+        move = new Animation(0.075f, frames);
         time = 0;
+
         setBounds(getX(), getY(), 32 / Safety4Kids.PPM, 32 / Safety4Kids.PPM);
     }
 
     public void update(float dt){
-        time += dt;
+        //time += dt;
         setPosition(b2body.getPosition().x - getWidth() / 2,b2body.getPosition().y - getHeight() / 2 );
         setRegion(move.getKeyFrame(time, true));
     }
@@ -33,7 +41,7 @@ public class MovingHazard extends Hazard {
         //Defined Body
         BodyDef bdef = new BodyDef();
         //Position of the body
-        bdef.position.set(32 / Safety4Kids.PPM,32/ Safety4Kids.PPM);
+        bdef.position.set(getX(), getY());
 
         //the type of Body is dynamic (therefore it can move)
         bdef.type = BodyDef.BodyType.DynamicBody;
@@ -57,5 +65,9 @@ public class MovingHazard extends Hazard {
         //the shape is bound to the fixture, and the fixture to the body
         fdef.shape = shape;
         b2body.createFixture(fdef);
+    }
+
+    public void draw(Batch batch){
+        super.draw(batch);
     }
 }
