@@ -375,7 +375,7 @@ public class Level2Screen extends GameScreen implements Screen {
         System.out.println("correct answer");
         if (lives < 4) {
             lives++;
-            warningLocation -= (500f / 4f) + 12f;
+            warningLocation -= (500f / 4f);
         }
 
         state = RESUME;
@@ -385,7 +385,7 @@ public class Level2Screen extends GameScreen implements Screen {
 
     private void lose() {
         lives--;
-        warningLocation += (500f / 4f) - 12f;
+        warningLocation += (500f / 4f);
         System.out.println("Lost life.");
         state = RESUME;
 
@@ -454,7 +454,6 @@ public class Level2Screen extends GameScreen implements Screen {
         game.dispose();
         batch.dispose();
         bg.dispose();
-        player.dispose();
         warning.dispose();
     }
 
