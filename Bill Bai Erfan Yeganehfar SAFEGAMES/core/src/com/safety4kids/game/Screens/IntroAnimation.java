@@ -10,9 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.safety4kids.game.Utils.SplashScreenLogo;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,6 +105,8 @@ public class IntroAnimation implements Screen {
 
     public void loadLevel2Questions() {
         try {
+            //TODO change to allow jar work
+            //InputStream in = IntroAnimation.class.getResourceAsStream("/Level2Questions.txt");
             BufferedReader br = new BufferedReader(new FileReader("Lv2Assets/Level2Questions.txt"));
             for (int x = 0; x < 20; x++) {
                 ArrayList<String> txtAnswer = new ArrayList<String>();
@@ -122,8 +122,11 @@ public class IntroAnimation implements Screen {
             for (int x = 0; x < 20; x++) {
                 questionHelp.add(br.readLine());
             }
+
+            br.close();
+            //in.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("file not found");
         }
     }
 

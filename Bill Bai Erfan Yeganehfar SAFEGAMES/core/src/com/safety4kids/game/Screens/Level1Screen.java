@@ -3,7 +3,10 @@ package com.safety4kids.game.Screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -12,14 +15,15 @@ import com.safety4kids.game.Entities.MovingHazard;
 import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.Box2DCollisionCreator;
-import com.safety4kids.game.Utils.GameContactListener;
 import com.safety4kids.game.Utils.InputHandler;
 import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
 
-//import java.awt.*;
+import static com.safety4kids.game.Safety4Kids.PPM;
+import static com.safety4kids.game.Safety4Kids.STEP;
+import static com.safety4kids.game.Screens.GameScreen.GameState.NEXT_LEVEL;
+import static com.safety4kids.game.Screens.GameScreen.GameState.RUN;
 
-import static com.safety4kids.game.Safety4Kids.*;
-import static com.safety4kids.game.Screens.GameScreen.GameState.*;
+//import java.awt.*;
 
 /**
  * This Class represents the first level of the game where it is based on an interactive learning platformer.
@@ -38,7 +42,8 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
  * as better movement. -- 1.5hrs
  * 3.5 Erfan Yeg: (2019-06-01) Added a way of transitioning from the current level to the next -- 30mins
  * 3.6 Erfan Yeg: (2019-06-02) Added different states for the game that control the state of the game -- 1hr
- * @version 3.6 2019-05-30
+ * 3.7 Bill Bai: (2019-06-06) TODO fill this in.
+ * @version 3.7 2019-06-06
  */
 @SuppressWarnings("Duplicates")
 public class Level1Screen extends GameScreen {
@@ -53,6 +58,9 @@ public class Level1Screen extends GameScreen {
 
     //Instance of the main character
     private MainPlayer player;
+
+    //Bitmap Font object to draw and format text onscreen.
+    private BitmapFont font;
 
     /**
      * The constructor creates all the necessary components for this specific platformer. This includes the actual game,
@@ -80,6 +88,14 @@ public class Level1Screen extends GameScreen {
 
         //Processes input for the player
         input = new InputHandler(player);
+
+        //Font to draw and format text.
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/eight-bit-dragon.otf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 20;
+        parameter.borderColor = Color.BLACK;
+        parameter.borderWidth = 0.5f;
+        font = generator.generateFont(parameter);
     }
 
     public void update(float dt) {
@@ -193,6 +209,7 @@ public class Level1Screen extends GameScreen {
         tiledMapRenderer.dispose();
         pause.dispose();
         hud.dispose();
+        font.dispose();
     }
 
 }

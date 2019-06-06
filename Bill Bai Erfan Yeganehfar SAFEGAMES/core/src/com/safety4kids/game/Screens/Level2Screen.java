@@ -8,6 +8,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.safety4kids.game.Safety4Kids;
 
@@ -69,10 +74,35 @@ public class Level2Screen extends GameScreen implements Screen {
 
     private boolean pauseProgram = false;
 
+    private TextButton exitButton;
+    private Skin skin;
+
+    Stage stage;
+
     public Level2Screen(Safety4Kids game) {
         //Sets game to be drawn on
         this.game = game;
         //TODO Remove later
+
+        stage = new Stage();
+        Gdx.input.setInputProcessor(stage);
+        skin = new Skin(Gdx.files.internal("skin/flat_earth/flat-earth-ui.json"));
+        exitButton = new TextButton("MENU",skin);
+        exitButton.setPosition(Gdx.graphics.getWidth() - exitButton.getWidth()-10, 10);
+        exitButton.addListener(new InputListener() {
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                System.out.println("Starting level 1...");
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new MainMenu(new Safety4Kids()));
+                dispose();
+            }
+
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+
 
         //Instantiates SpriteBatch
         game.batch = new SpriteBatch();
@@ -156,10 +186,10 @@ public class Level2Screen extends GameScreen implements Screen {
                 batch.draw(playerAnimation.getKeyFrame(timePassed, true), 500, 150);
                 batch.draw(warningAnimation.getKeyFrame(timePassed, true), warningLocation, 130);
                 drawQuestions(batch);
-
-
                 batch.end();
 
+                stage.addActor(exitButton);
+                stage.draw();
                 break;
             case NEXT_LEVEL:
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(game));
@@ -215,13 +245,16 @@ public class Level2Screen extends GameScreen implements Screen {
 
                 batch.end();
 
+                stage.addActor(exitButton);
+                stage.draw();
+
                 break;
             case RETURN:
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
                 dispose();
                 break;
             case LOSE:
-                ((Game)Gdx.app.getApplicationListener()).setScreen(new LoseScreen(new Safety4Kids(), questionNumber));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new LoseScreen(new Safety4Kids(), questionNumber));
                 dispose();
                 break;
             default:
@@ -234,6 +267,8 @@ public class Level2Screen extends GameScreen implements Screen {
 
     private void shuffleAnswers() {
         for (int x = 0; x < answers.size(); x++) {
+            if(x == 4)
+                x++;
             Collections.shuffle(answers.get(x));
         }
 
@@ -301,28 +336,28 @@ public class Level2Screen extends GameScreen implements Screen {
         String a1 = "1)".concat(toPrint.get(0).substring(1));
         a1Glyph.setText(answerFont, a1);
         //Draw answer
-        answerFont.draw(batch, a1Glyph, 5, Gdx.graphics.getHeight() - 150);
+        answerFont.draw(batch, a1Glyph, 15, Gdx.graphics.getHeight() - 150);
 
         //Format second answer
         GlyphLayout a2Glyph = new GlyphLayout();
         String a2 = "2)".concat(toPrint.get(1).substring(1));
         a2Glyph.setText(answerFont, a2);
         //Draw answer
-        answerFont.draw(batch, a2Glyph, 5, Gdx.graphics.getHeight() - 200);
+        answerFont.draw(batch, a2Glyph, 15, Gdx.graphics.getHeight() - 200);
 
         //Format third answer
         GlyphLayout a3Glyph = new GlyphLayout();
         String a3 = "3)".concat(toPrint.get(2).substring(1));
         a3Glyph.setText(answerFont, a3);
         //Draw answer
-        answerFont.draw(batch, a3Glyph, 5, Gdx.graphics.getHeight() - 250);
+        answerFont.draw(batch, a3Glyph, 15, Gdx.graphics.getHeight() - 250);
 
         //Format fourth answer
         GlyphLayout a4Glyph = new GlyphLayout();
         String a4 = "4)".concat(toPrint.get(3).substring(1));
         a4Glyph.setText(answerFont, a4);
         //Draw answer
-        answerFont.draw(batch, a4Glyph, 5, Gdx.graphics.getHeight() - 300);
+        answerFont.draw(batch, a4Glyph, 15, Gdx.graphics.getHeight() - 300);
 
         if (pauseProgram == false) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
@@ -459,8 +494,10 @@ public class Level2Screen extends GameScreen implements Screen {
     public void dispose() {
         game.dispose();
         batch.dispose();
+        warning.dispose();
         bg.dispose();
         warning.dispose();
+        stage.dispose();
     }
 
     /**
