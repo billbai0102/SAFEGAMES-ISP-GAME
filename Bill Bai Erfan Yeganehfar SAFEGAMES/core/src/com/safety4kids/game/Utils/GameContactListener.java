@@ -45,9 +45,9 @@ public class GameContactListener implements ContactListener {
         //If one of the fixtures is the players hat
         if(fixA.getUserData() != null && fixB.getUserData() != null) {
             if ((fixA.getUserData().equals("hat") || fixA.getUserData().equals("hat") && (fixA.getUserData().equals("breakable") || fixA.getUserData().equals("breakable")))) {
-                Gdx.app.log("obj", "collide");
 
                 if (fixA.getFilterData().categoryBits == B2DConstants.BIT_PLAYER_HAT) {
+                    Gdx.app.log("obj", "collide");
 
                     InteractiveTile.onHatContact(player);
                 } else
