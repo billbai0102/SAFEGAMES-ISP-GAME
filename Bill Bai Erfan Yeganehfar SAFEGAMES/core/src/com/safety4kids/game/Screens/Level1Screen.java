@@ -277,6 +277,7 @@ public class Level1Screen extends GameScreen {
         hud.dispose();
         font.dispose();
         atlas.dispose();
+        game.batch.dispose();
     }
 
 }

@@ -11,7 +11,4 @@ public class B2DConstants {
 	public static final short BIT_OBJECT = 32;
 	public static final short BIT_HAZARD = 64;
 	public static final short BIT_PLAYER_HAT = 128;
-
-
-
 }
