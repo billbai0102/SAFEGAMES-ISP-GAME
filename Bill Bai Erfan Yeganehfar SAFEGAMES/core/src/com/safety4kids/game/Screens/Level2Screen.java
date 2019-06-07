@@ -16,7 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.safety4kids.game.Safety4Kids;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -498,7 +497,6 @@ public class Level2Screen extends GameScreen implements Screen {
         bg.dispose();
         stage.dispose();
         answerFont.dispose();
-        player.dispose();
         font.dispose();
         batch.dispose();
     }
