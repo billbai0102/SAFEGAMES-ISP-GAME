@@ -61,6 +61,8 @@ public class Level2Screen extends GameScreen implements Screen {
 
     private BitmapFont font;
     private BitmapFont answerFont;
+    private BitmapFont wrongFont;
+    private BitmapFont correctFont;
 
     private int lives = 4;
 
@@ -146,10 +148,10 @@ public class Level2Screen extends GameScreen implements Screen {
         correctFont.setColor(Color.GREEN);
 
         generator.dispose();
-    }
 
-    BitmapFont wrongFont;
-    BitmapFont correctFont;
+        stage.addActor(exitButton);
+
+    }
 
     public void loadQuestions() {
         for (int x = 0; x < 20; x++) {
@@ -188,7 +190,6 @@ public class Level2Screen extends GameScreen implements Screen {
                 drawQuestions(batch);
                 batch.end();
 
-                stage.addActor(exitButton);
                 stage.draw();
                 break;
             case NEXT_LEVEL:
@@ -499,6 +500,9 @@ public class Level2Screen extends GameScreen implements Screen {
         answerFont.dispose();
         font.dispose();
         batch.dispose();
+        wrongFont.dispose();
+        correctFont.dispose();
+
     }
 
     /**

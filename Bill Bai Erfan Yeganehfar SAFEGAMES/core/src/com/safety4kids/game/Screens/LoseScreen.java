@@ -109,6 +109,10 @@ public class LoseScreen implements Screen {
                 return true;
             }
         });
+
+        stage.addActor(menuBtn);
+        stage.addActor(nextLvl);
+        stage.addActor(restartLvl);
     }
 
 
@@ -130,9 +134,6 @@ public class LoseScreen implements Screen {
 
         batch.end();
 
-        stage.addActor(menuBtn);
-        stage.addActor(nextLvl);
-        stage.addActor(restartLvl);
         stage.draw();
     }
 
@@ -164,6 +165,10 @@ public class LoseScreen implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
+        batch.dispose();
+        bg.dispose();
+        font.dispose();
+        skin.dispose();
     }
 }
 

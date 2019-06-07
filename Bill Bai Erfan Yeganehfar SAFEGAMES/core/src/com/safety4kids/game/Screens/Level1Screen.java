@@ -206,7 +206,7 @@ public class Level1Screen extends GameScreen {
         GlyphLayout fontGlyphBottom = new GlyphLayout();
 
         if (xPos < 7) {
-            fontGlyph.setText(font, "Welcome to Safety4Kids! ");
+            fontGlyph.setText(font, "Welcome to Safety4Kids!");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);
 
             fontGlyphMiddle.setText(font, "... I can sense intelligence off of you... you're truly different.");
