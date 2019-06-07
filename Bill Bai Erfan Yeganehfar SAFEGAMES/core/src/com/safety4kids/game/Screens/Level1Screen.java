@@ -140,13 +140,13 @@ public class Level1Screen extends GameScreen {
         }
         switch (state) {
             case RUN:
-            if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+                if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+                    if (!isPaused)
+                        isPaused = true;
+                    else if (isPaused)
+                        isPaused = false;
+                }
                 if (!isPaused)
-                    isPaused = true;
-                else if (isPaused)
-                    isPaused = false;
-            }
-                if(!isPaused)
                     //update is separated from the render logic
                     update(delta);
                 //Clears the game screen
@@ -159,32 +159,32 @@ public class Level1Screen extends GameScreen {
                 //Draws the sprites to the game screen based on the cam
                 game.batch.setProjectionMatrix(gameCam.combined);
 
-                    game.batch.begin();
-                    player.draw(game.batch);
-                    hazard.draw(game.batch);
-                    game.batch.end();
+                game.batch.begin();
+                player.draw(game.batch);
+                hazard.draw(game.batch);
+                game.batch.end();
 
                 //Box2D Debug renderer
-                 b2dr.render(world, gameCam.combined);
+                b2dr.render(world, gameCam.combined);
                 hud.stage.draw();
 
-                    ///@@@@ERFAN DO NOT REMOVE THIS
-                    game.batch.begin();
-                    drawText(game.batch, player.getXPos());
-                    game.batch.end();
-                     ///@@@@ERFAN DO NOT REMOVE THIS
+                ///@@@@ERFAN DO NOT REMOVE THIS
+                game.batch.begin();
+                drawText(game.batch, player.getXPos());
+                game.batch.end();
+                ///@@@@ERFAN DO NOT REMOVE THIS
 
                 //shows the screen based on the Camera with the hud
                 game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-                if(isPaused)
-                pause.stage.draw();
+                if (isPaused)
+                    pause.stage.draw();
 
 
                 if (player.b2body.getPosition().x > 37.5)
                     state = NEXT_LEVEL;
                 break;
             case NEXT_LEVEL:
-                ((Game)Gdx.app.getApplicationListener()).setScreen(new Level2IntroScreen(new Safety4Kids()));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2IntroScreen(new Safety4Kids()));
                 dispose();
                 break;
             case RETURN:
@@ -196,15 +196,58 @@ public class Level1Screen extends GameScreen {
         }
     }
 
-    public void drawText(SpriteBatch batch, float xPos){
+    public void drawText(SpriteBatch batch, float xPos) {
         System.out.println(xPos);
+        final float TEXT_CEIL = 123f;
         GlyphLayout fontGlyph = new GlyphLayout();
+        GlyphLayout fontGlyphMiddle = new GlyphLayout();
+        GlyphLayout fontGlyphMiddle2 = new GlyphLayout();
+        GlyphLayout fontGlyphBottom = new GlyphLayout();
 
-        if(xPos < 7){
+        if (xPos < 7) {
             fontGlyph.setText(font, "Welcome to Safety4Kids! ");
-            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, 100);
-        }if(xPos<14){
+            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);
 
+            fontGlyphMiddle.setText(font, "... I can sense intelligence off of you... you're truly different.");
+            font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL - fontGlyph.height - 10);
+
+            fontGlyphMiddle2.setText(font, "I'm Gekyume, and I need your help.");
+            font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - 20);
+
+            fontGlyphBottom.setText(font, "I'll explain, keep walking.");
+            font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
+
+        } else if (xPos < 10) {
+            fontGlyph.setText(font, "For the past year, I've been stuck inside of this game.");
+            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);
+
+            fontGlyphMiddle.setText(font, "I need somebody to pass through all the levels, to help me escape!");
+            font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL - fontGlyph.height - 10);
+
+            fontGlyphMiddle2.setText(font, "Anyways, theres no time to waste. Let's get you started learning.");
+            font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - 20);
+
+            fontGlyphBottom.setText(font, "In this game, there are a few main topics that you'll be tested on:");
+            font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
+
+            GlyphLayout fontGlyphBottom2 = new GlyphLayout();
+            fontGlyphBottom2.setText(font, "Fire, Weather, Injuries, and STRANGER DANGER!");
+            font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
+        } else if (xPos < 12){
+            fontGlyph.setText(font, "And the rest will require you to use your intuition.");
+            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL/2 + fontGlyph.height);
+        } else if (xPos < 15){
+            fontGlyph.setText(font, "So let's get started. First, I'm going to teach you about fire.");
+            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);
+
+            fontGlyphMiddle.setText(font, "Fire is dangerous and deadly, and should never be messed with.");
+            font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL - fontGlyph.height - 10);
+
+            fontGlyphMiddle2.setText(font, "");
+            font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - 20);
+
+            fontGlyphBottom.setText(font, "I'll explain, keep walking.");
+            font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
         }
     }
 
