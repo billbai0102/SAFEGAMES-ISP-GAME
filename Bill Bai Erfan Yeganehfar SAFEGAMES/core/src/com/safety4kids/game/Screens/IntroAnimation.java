@@ -106,7 +106,8 @@ public class IntroAnimation implements Screen {
     public void loadLevel2Questions() {
         try {
             //TODO change to allow jar work
-            //BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("Level2Questions.txt")));
+           // InputStream in = getClass().getResourceAsStream("Level2Questions.txt");
+           // BufferedReader br = new BufferedReader(new InputStreamReader(in));
 
 
             BufferedReader br = new BufferedReader(new FileReader("Lv2Assets/Level2Questions.txt"));
