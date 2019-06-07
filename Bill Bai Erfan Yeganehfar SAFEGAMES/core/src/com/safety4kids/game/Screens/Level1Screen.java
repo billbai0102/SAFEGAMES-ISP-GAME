@@ -76,7 +76,7 @@ public class Level1Screen extends GameScreen {
     public Level1Screen(Safety4Kids game) {
         super();
         //Sets the hud for this level
-        hud = new Hud(batch, true, 1);
+        hud = new Hud(batch, false, 1);
 
         //Loads, fixes (added padding), and creates the renderer for the TileMap for level 1
         map = new TmxMapLoader().load("MapAssets/level1a.tmx");
@@ -166,7 +166,7 @@ public class Level1Screen extends GameScreen {
                 game.batch.end();
 
                 //Box2D Debug renderer
-                b2dr.render(world, gameCam.combined);
+                //b2dr.render(world, gameCam.combined);
                 hud.stage.draw();
 
                 ///@@@@ERFAN DO NOT REMOVE THIS
