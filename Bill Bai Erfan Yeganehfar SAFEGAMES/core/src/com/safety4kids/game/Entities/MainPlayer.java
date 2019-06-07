@@ -128,7 +128,7 @@ public class MainPlayer extends Sprite{
         fdef.filter.categoryBits = B2DConstants.BIT_PLAYER_HAT;
         fdef.shape = hat;
         fdef.isSensor = true;
-        b2body.createFixture(fdef).setUserData(this);
+        b2body.createFixture(fdef).setUserData("hat");
 
 
 

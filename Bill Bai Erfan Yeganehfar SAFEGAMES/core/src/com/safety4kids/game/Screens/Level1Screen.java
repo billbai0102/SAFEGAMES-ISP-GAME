@@ -84,7 +84,7 @@ public class Level1Screen extends GameScreen {
         renderer = new OrthogonalTiledMapRenderer(map, 1 / PPM);
 
         //Generates the Box2D world for the objects within the Tile Map
-        new Box2DCollisionCreator(world, map);
+        creator = new Box2DCollisionCreator(this);
 
         //The player is created inside of the Box2D world
         player = new MainPlayer(this, 400, 200);
@@ -198,7 +198,7 @@ public class Level1Screen extends GameScreen {
     }
 
     public void drawText(SpriteBatch batch, float xPos) {
-        System.out.println(xPos);
+        //System.out.println(xPos);
         final float TEXT_CEIL = 123f;
         GlyphLayout fontGlyph = new GlyphLayout();
         GlyphLayout fontGlyphMiddle = new GlyphLayout();
@@ -278,6 +278,10 @@ public class Level1Screen extends GameScreen {
         font.dispose();
         atlas.dispose();
         game.batch.dispose();
+    }
+
+    public TiledMap getMap(){
+        return map;
     }
 
 }
