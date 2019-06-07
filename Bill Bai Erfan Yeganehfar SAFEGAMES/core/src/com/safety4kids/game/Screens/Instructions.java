@@ -37,6 +37,8 @@ public class Instructions implements Screen {
     public Instructions(Game aGame) {
         game = aGame;
         stage = new Stage(new ScreenViewport());
+        batch = new SpriteBatch();
+
         Gdx.input.setInputProcessor(stage);
         backgroundImg = new Texture(Gdx.files.internal("InstructionsImg.jpg"));
         skin = new Skin(Gdx.files.internal("skin/flat-earth-ui.json"));
@@ -57,6 +59,8 @@ public class Instructions implements Screen {
                 return true;
             }
         });
+
+        stage.addActor(backBtn);
     }
 
     @Override
@@ -69,12 +73,11 @@ public class Instructions implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(255, 255, 255, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch = new SpriteBatch();
+
         batch.begin();
         batch.draw(backgroundImg, 0, 0);
         batch.end();
 
-        stage.addActor(backBtn);
         stage.draw();
     }
 
@@ -100,6 +103,9 @@ public class Instructions implements Screen {
 
     @Override
     public void dispose() {
+        backgroundImg.dispose();
         stage.dispose();
+        skin.dispose();
+        batch.dispose();
     }
 }

@@ -63,6 +63,17 @@ public class Level2Screen extends GameScreen implements Screen {
     private BitmapFont answerFont;
     private BitmapFont wrongFont;
     private BitmapFont correctFont;
+    private GlyphLayout fontGlyph = new GlyphLayout();
+    private GlyphLayout continueGlyph = new GlyphLayout();
+    private GlyphLayout qGlyphPart1 = new GlyphLayout();
+    private GlyphLayout qGlyphPart2 = new GlyphLayout();
+    private GlyphLayout questionGlyph = new GlyphLayout();
+    private GlyphLayout a1Glyph = new GlyphLayout();
+    private GlyphLayout a2Glyph = new GlyphLayout();
+    private GlyphLayout a3Glyph = new GlyphLayout();
+    private GlyphLayout a4Glyph = new GlyphLayout();
+    private GlyphLayout glyphLayout = new GlyphLayout();
+
 
     private int lives = 4;
 
@@ -230,7 +241,6 @@ public class Level2Screen extends GameScreen implements Screen {
                 if (pauseProgram)
                     displayQuestionHelp();
 
-                GlyphLayout fontGlyph = new GlyphLayout();
                 if (correct) {
                     fontGlyph.setText(correctFont, "CORRECT!");
                     //Draw font
@@ -240,23 +250,21 @@ public class Level2Screen extends GameScreen implements Screen {
                     //Draw font
                     answerFont.draw(batch, fontGlyph, (Gdx.graphics.getWidth() - fontGlyph.width) / 2, (Gdx.graphics.getHeight() - fontGlyph.height) / 2);
                 }
-                GlyphLayout continueGlyph = new GlyphLayout();
                 continueGlyph.setText(answerFont, "Press space to continue...");
                 answerFont.draw(batch, continueGlyph, (Gdx.graphics.getWidth() - continueGlyph.width) / 2, (Gdx.graphics.getHeight() - fontGlyph.height) / 2 - fontGlyph.height * 2);
 
                 batch.end();
 
-                stage.addActor(exitButton);
                 stage.draw();
 
                 break;
             case RETURN:
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
                 dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
                 break;
             case LOSE:
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new LoseScreen(new Safety4Kids(), questionNumber));
                 dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new LoseScreen(new Safety4Kids(), questionNumber));
                 break;
             default:
                 break;
@@ -289,10 +297,6 @@ public class Level2Screen extends GameScreen implements Screen {
         int guess;
 
         if (questions.get(curQuestionIndex).contains("snow")) {
-
-            GlyphLayout qGlyphPart1 = new GlyphLayout();
-            GlyphLayout qGlyphPart2 = new GlyphLayout();
-
             String part1 = "Q" + questionNumber + ":" + questions.get(curQuestionIndex).substring(2, 44);
             String part2 = questions.get(curQuestionIndex).substring(44);
 
@@ -303,10 +307,6 @@ public class Level2Screen extends GameScreen implements Screen {
             font.draw(batch, qGlyphPart2, (Gdx.graphics.getWidth() - qGlyphPart2.width) / 2, Gdx.graphics.getHeight() - qGlyphPart2.height - qGlyphPart1.height - 20);
 
         } else if (questions.get(curQuestionIndex).length() > 35) {
-
-            GlyphLayout qGlyphPart1 = new GlyphLayout();
-            GlyphLayout qGlyphPart2 = new GlyphLayout();
-
             int firstWord = questions.get(curQuestionIndex).substring(2).indexOf(' ', 35);
 
             String part1 = "Q" + questionNumber + ":" + questions.get(curQuestionIndex).substring(2, firstWord + 3);
@@ -319,9 +319,6 @@ public class Level2Screen extends GameScreen implements Screen {
             font.draw(batch, qGlyphPart2, (Gdx.graphics.getWidth() - qGlyphPart2.width) / 2, Gdx.graphics.getHeight() - qGlyphPart2.height - qGlyphPart1.height - 20);
 
         } else {
-
-            GlyphLayout questionGlyph = new GlyphLayout();
-
             String q = "Q".concat(String.valueOf(questionNumber).concat(":").concat(questions.get(curQuestionIndex).substring(2)));
 
             questionGlyph.setText(font, q);
@@ -333,28 +330,24 @@ public class Level2Screen extends GameScreen implements Screen {
         toPrint = answers.get(curQuestionIndex);
 
         //Format first answer
-        GlyphLayout a1Glyph = new GlyphLayout();
         String a1 = "1)".concat(toPrint.get(0).substring(1));
         a1Glyph.setText(answerFont, a1);
         //Draw answer
         answerFont.draw(batch, a1Glyph, 15, Gdx.graphics.getHeight() - 150);
 
         //Format second answer
-        GlyphLayout a2Glyph = new GlyphLayout();
         String a2 = "2)".concat(toPrint.get(1).substring(1));
         a2Glyph.setText(answerFont, a2);
         //Draw answer
         answerFont.draw(batch, a2Glyph, 15, Gdx.graphics.getHeight() - 200);
 
         //Format third answer
-        GlyphLayout a3Glyph = new GlyphLayout();
         String a3 = "3)".concat(toPrint.get(2).substring(1));
         a3Glyph.setText(answerFont, a3);
         //Draw answer
         answerFont.draw(batch, a3Glyph, 15, Gdx.graphics.getHeight() - 250);
 
         //Format fourth answer
-        GlyphLayout a4Glyph = new GlyphLayout();
         String a4 = "4)".concat(toPrint.get(3).substring(1));
         a4Glyph.setText(answerFont, a4);
         //Draw answer
@@ -439,8 +432,6 @@ public class Level2Screen extends GameScreen implements Screen {
     private void displayQuestionHelp() {
         if (questionHelp.get(curQuestionIndex).length() > 55) {
             //Format question
-            GlyphLayout qGlyphPart1 = new GlyphLayout();
-            GlyphLayout qGlyphPart2 = new GlyphLayout();
             int firstWord = questionHelp.get(curQuestionIndex).substring(2).indexOf(' ', 35);
 
             String part1 = questionHelp.get(curQuestionIndex).substring(0, firstWord + 2);
@@ -453,7 +444,6 @@ public class Level2Screen extends GameScreen implements Screen {
             answerFont.draw(batch, qGlyphPart2, (Gdx.graphics.getWidth() - qGlyphPart2.width) / 2, 50);
         } else {
             //Format question
-            GlyphLayout glyphLayout = new GlyphLayout();
             String q = questionHelp.get(curQuestionIndex);
             glyphLayout.setText(answerFont, q);
             //Draw question

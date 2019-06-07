@@ -57,8 +57,8 @@ public class Level2IntroScreen implements Screen {
         bgSprite.setAlpha(alpha);
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)){
-            ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
             dispose();
+            ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
         }
     }
 
