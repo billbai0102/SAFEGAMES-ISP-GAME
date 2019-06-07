@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.safety4kids.game.Safety4Kids;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -105,9 +106,9 @@ public class Level2Screen extends GameScreen implements Screen {
 
 
         //Instantiates SpriteBatch
-        game.batch = new SpriteBatch();
+        //game.batch = new SpriteBatch();
         //Sets this sprite batch to game's sprite batch
-        batch = game.batch;
+        batch =  new SpriteBatch();
         //Sets up ScreenViewport
         gamePort = new ScreenViewport();
         //Instantiates background
@@ -493,11 +494,13 @@ public class Level2Screen extends GameScreen implements Screen {
     @Override
     public void dispose() {
         game.dispose();
-        batch.dispose();
         warning.dispose();
         bg.dispose();
-        warning.dispose();
         stage.dispose();
+        answerFont.dispose();
+        player.dispose();
+        font.dispose();
+        batch.dispose();
     }
 
     /**

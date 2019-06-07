@@ -100,6 +100,7 @@ public class Level1Screen extends GameScreen {
         parameter.borderColor = Color.BLACK;
         parameter.borderWidth = 0.5f;
         font = generator.generateFont(parameter);
+        generator.dispose();
     }
 
     public void update(float dt) {
@@ -275,6 +276,7 @@ public class Level1Screen extends GameScreen {
         pause.dispose();
         hud.dispose();
         font.dispose();
+        atlas.dispose();
     }
 
 }
