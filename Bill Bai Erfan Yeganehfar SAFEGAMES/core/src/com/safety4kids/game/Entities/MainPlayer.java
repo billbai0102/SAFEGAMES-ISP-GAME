@@ -32,7 +32,7 @@ import static com.safety4kids.game.Safety4Kids.MIN_VELOCITY;
  * 3.3 Erfan Yeg: (2019-06-01) Binded the player sprite to the box2d body and also animated the running animation,
  * added the different states and fixed the infinite jumping. -- 3hr
  */
-public class MainPlayer extends Sprite {
+public class MainPlayer extends Sprite{
     public World world;
     public Body b2body;
     private float startPosX;
@@ -41,6 +41,8 @@ public class MainPlayer extends Sprite {
     private TextureRegion playerIdle;
     private Animation<TextureRegion> playerRun;
     private TextureRegion playerJump;
+
+
     public enum State {
         FALLING, JUMPING, IDLE, RUNNING }
     public State currState;

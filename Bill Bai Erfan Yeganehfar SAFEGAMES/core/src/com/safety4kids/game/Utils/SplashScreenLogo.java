@@ -5,8 +5,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Disposable;
 
-public class SplashScreenLogo {
+public class SplashScreenLogo implements Disposable {
     private Rectangle bottom;
     private Sprite sprite;
     private Texture texture;
@@ -52,5 +53,10 @@ public class SplashScreenLogo {
 
     public void draw(SpriteBatch spriteBatch){
         sprite.draw(spriteBatch);
+    }
+
+    @Override
+    public void dispose() {
+        texture.dispose();
     }
 }

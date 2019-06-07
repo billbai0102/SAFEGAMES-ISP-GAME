@@ -138,6 +138,7 @@ public class IntroAnimation implements Screen {
     public void dispose() {
         stage.dispose();
         batch.dispose();
+        logo.dispose();
     }
 
     /**

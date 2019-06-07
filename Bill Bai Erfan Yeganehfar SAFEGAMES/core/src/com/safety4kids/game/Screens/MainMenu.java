@@ -112,6 +112,7 @@ public class MainMenu implements Screen {
         stage.addActor(startBtn);
         stage.addActor(exitBtn);
         stage.addActor(instructionsBtn);
+
     }
 
     public void render(float delta) {
