@@ -6,6 +6,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -56,6 +58,8 @@ public class Level1Screen extends GameScreen {
     private InputHandler input;
     private MovingHazard hazard;
 
+    private final float STAGE_WIDTH = 225f;
+
     //Instance of the main character
     private MainPlayer player;
 
@@ -92,7 +96,7 @@ public class Level1Screen extends GameScreen {
         //Font to draw and format text.
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/eight-bit-dragon.otf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 20;
+        parameter.size = 10;
         parameter.borderColor = Color.BLACK;
         parameter.borderWidth = 0.5f;
         font = generator.generateFont(parameter);
@@ -164,6 +168,12 @@ public class Level1Screen extends GameScreen {
                  b2dr.render(world, gameCam.combined);
                 hud.stage.draw();
 
+                    ///@@@@ERFAN DO NOT REMOVE THIS
+                    game.batch.begin();
+                    drawText(game.batch, player.getXPos());
+                    game.batch.end();
+                     ///@@@@ERFAN DO NOT REMOVE THIS
+
                 //shows the screen based on the Camera with the hud
                 game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
                 if(isPaused)
@@ -183,6 +193,18 @@ public class Level1Screen extends GameScreen {
                 break;
             default:
                 break;
+        }
+    }
+
+    public void drawText(SpriteBatch batch, float xPos){
+        System.out.println(xPos);
+        GlyphLayout fontGlyph = new GlyphLayout();
+
+        if(xPos < 7){
+            fontGlyph.setText(font, "Welcome to Safety4Kids! ");
+            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, 100);
+        }if(xPos<14){
+
         }
     }
 

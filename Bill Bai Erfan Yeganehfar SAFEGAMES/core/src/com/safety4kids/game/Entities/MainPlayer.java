@@ -138,6 +138,10 @@ public class MainPlayer extends Sprite {
      */
     public Vector2 getPosition() { return b2body.getPosition(); }
 
+    public float getXPos(){
+        return b2body.getPosition().x;
+    }
+
     public void jump(){
         if ( currState != State.JUMPING && currState!= State.FALLING) {
             b2body.applyLinearImpulse(new Vector2(0, 3.8f), b2body.getWorldCenter(), true);
