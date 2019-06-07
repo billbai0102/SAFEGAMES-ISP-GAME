@@ -184,7 +184,7 @@ public class Level1Screen extends GameScreen {
                     state = NEXT_LEVEL;
                 break;
             case NEXT_LEVEL:
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(game));
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new Level2IntroScreen(new Safety4Kids()));
                 dispose();
                 break;
             case RETURN:

@@ -37,7 +37,7 @@ public class Level2IntroScreen implements Screen {
         batch.end();
 
         if(fadeIn){
-            alpha += (1f / 60f) / 3;
+            alpha += (1f / 60f) / 15;
             if(alpha >= 1) {
                 fadeIn = false;
                 System.out.println("done");
