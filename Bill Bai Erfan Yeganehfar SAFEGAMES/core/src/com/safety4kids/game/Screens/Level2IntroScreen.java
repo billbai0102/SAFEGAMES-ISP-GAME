@@ -28,6 +28,7 @@ public class Level2IntroScreen implements Screen {
         bg = new Texture(Gdx.files.internal("Lv2Assets/Lv2Intro.png"));
         bgSprite = new Sprite(bg);
         bgSprite.setAlpha(alpha);
+        bgSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
     @Override

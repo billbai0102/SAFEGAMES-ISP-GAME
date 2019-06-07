@@ -122,7 +122,7 @@ public class LoseScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
 
-        batch.draw(bg, 0, 0);
+        batch.draw(bg, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         GlyphLayout fontGlyph = new GlyphLayout();
         fontGlyph.setText(font, "Unfortunately, you lost at level " + loseScore + ".");
