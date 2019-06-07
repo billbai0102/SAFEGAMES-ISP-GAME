@@ -99,7 +99,7 @@ public class MainMenu implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Starting level 2...");
 
-                ((Game)Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new Level2IntroScreen(new Safety4Kids()));
                 dispose();
             }
 
