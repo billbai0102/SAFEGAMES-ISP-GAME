@@ -28,11 +28,6 @@ import java.util.List;
  */
 public class IntroAnimation implements Screen {
     /**
-     * This variable is type SpriteBatch. It holds a batch of sprites to be drawn on screen.
-     */
-    private SpriteBatch batch;
-
-    /**
      * This is the stage that is being drawn on
      */
     private Stage stage;
@@ -43,6 +38,11 @@ public class IntroAnimation implements Screen {
     private Game game;
 
     private SplashScreenLogo logo;
+
+    /**
+     * This variable is type SpriteBatch. It holds a batch of sprites to be drawn on screen.
+     */
+    public SpriteBatch batch;
 
     /**
      * This is the constructor. It initiates the global variables.
@@ -130,9 +130,14 @@ public class IntroAnimation implements Screen {
         }
     }
 
+    public SpriteBatch getBatch(){
+        return batch;
+    }
+
     @Override
     public void dispose() {
         stage.dispose();
+        batch.dispose();
     }
 
     /**
@@ -170,4 +175,5 @@ public class IntroAnimation implements Screen {
     @Override
     public void hide() {
     }
+
 }

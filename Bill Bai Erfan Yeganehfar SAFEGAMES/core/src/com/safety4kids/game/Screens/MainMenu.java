@@ -31,17 +31,17 @@ import com.safety4kids.game.Safety4Kids;
  */
 public class MainMenu implements Screen {
 
-    SpriteBatch batch;
-    Texture backgroundImg;
-    TextButton startBtn;
-    Skin skin;
-    TextButton instructionsBtn;
-    TextButton exitBtn;
+    public static SpriteBatch batch;
+    private Texture backgroundImg;
+    private TextButton startBtn;
+    private Skin skin;
+    private TextButton instructionsBtn;
+    private TextButton exitBtn;
     private Viewport gamePort;
     private OrthographicCamera gamecam;
 
-    Stage stage;
-    Game game;
+    private Stage stage;
+    private Game game;
 
     public MainMenu(Game aGame) {
         this.game = aGame;
@@ -108,19 +108,19 @@ public class MainMenu implements Screen {
                 return true;
             }
         });
+
+        stage.addActor(startBtn);
+        stage.addActor(exitBtn);
+        stage.addActor(instructionsBtn);
     }
 
     public void render(float delta) {
         Gdx.gl.glClearColor(255, 255, 255, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch = new SpriteBatch();
         batch.begin();
         batch.draw(backgroundImg, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
 
-        stage.addActor(startBtn);
-        stage.addActor(exitBtn);
-        stage.addActor(instructionsBtn);
         stage.draw();
     }
 
@@ -153,6 +153,9 @@ public class MainMenu implements Screen {
 
     @Override
     public void dispose() {
+        skin.dispose();
         stage.dispose();
+        backgroundImg.dispose();
+        batch.dispose();
     }
 }

@@ -163,6 +163,9 @@ public class Level3Screen extends GameScreen {
         tiledMapRenderer.dispose();
         pause.dispose();
         hud.dispose();
+        atlas.dispose();
+        batch.dispose();
+
     }
 
 }
