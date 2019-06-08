@@ -18,7 +18,7 @@ import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.Box2DCollisionCreator;
 import com.safety4kids.game.Utils.InputHandler;
-import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
+import com.safety4kids.game.Utils.CustomMapRenderer;
 
 import static com.safety4kids.game.Safety4Kids.PPM;
 import static com.safety4kids.game.Safety4Kids.STEP;
@@ -53,7 +53,7 @@ public class Level1Screen extends GameScreen {
     //Tile map Instance variables
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
-    private MyOrthogonalTiledMapRenderer tiledMapRenderer;
+    private CustomMapRenderer tiledMapRenderer;
 
     private InputHandler input;
     private MovingHazard hazard;
@@ -88,7 +88,7 @@ public class Level1Screen extends GameScreen {
 
         //Loads, fixes (added padding), and creates the renderer for the TileMap for level 1
         map = new TmxMapLoader().load("MapAssets/level1a.tmx");
-        tiledMapRenderer = new MyOrthogonalTiledMapRenderer(map, 1 / PPM);
+        tiledMapRenderer = new CustomMapRenderer(map, 1 / PPM);
         renderer = new OrthogonalTiledMapRenderer(map, 1 / PPM);
 
         //Generates the Box2D world for the objects within the Tile Map
@@ -200,6 +200,7 @@ public class Level1Screen extends GameScreen {
 
                 if (player.b2body.getPosition().x > 37.5)
                     state = NEXT_LEVEL;
+
                 break;
             case NEXT_LEVEL:
                 dispose();
@@ -453,7 +454,6 @@ public class Level1Screen extends GameScreen {
         font2.dispose();
         atlas.dispose();
         game.batch.dispose();
-        System.gc();
     }
 
     public TiledMap getMap() {

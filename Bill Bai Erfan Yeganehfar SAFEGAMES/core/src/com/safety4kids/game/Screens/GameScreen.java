@@ -19,7 +19,7 @@ import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.Box2DCollisionCreator;
 import com.safety4kids.game.Utils.GameContactListener;
 import com.safety4kids.game.Utils.InputHandler;
-import com.safety4kids.game.Utils.MyOrthogonalTiledMapRenderer;
+import com.safety4kids.game.Utils.CustomMapRenderer;
 
 import static com.safety4kids.game.Safety4Kids.*;
 
@@ -62,7 +62,7 @@ public abstract class GameScreen implements Screen {
     //Tile map Instance variables
     protected TiledMap map;
     protected OrthogonalTiledMapRenderer renderer;
-    protected MyOrthogonalTiledMapRenderer tiledMapRenderer;
+    protected CustomMapRenderer tiledMapRenderer;
 
     //Box2d collision detection instance variables
     protected World world;
