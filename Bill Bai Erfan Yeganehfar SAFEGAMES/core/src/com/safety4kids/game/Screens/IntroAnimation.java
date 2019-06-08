@@ -109,6 +109,7 @@ public class IntroAnimation implements Screen {
            // InputStream in = getClass().getResourceAsStream("Level2Questions.txt");
            // BufferedReader br = new BufferedReader(new InputStreamReader(in));
 
+           // BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("~/core/assets/Lv2Assets/Level2Questions.txt")));
 
             BufferedReader br = new BufferedReader(new FileReader("Lv2Assets/Level2Questions.txt"));
             for (int x = 0; x < 20; x++) {

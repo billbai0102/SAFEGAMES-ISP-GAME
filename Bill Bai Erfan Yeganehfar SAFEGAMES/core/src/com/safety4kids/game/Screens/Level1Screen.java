@@ -197,6 +197,14 @@ public class Level1Screen extends GameScreen {
         }
     }
 
+
+    /**
+     * Based on the character's x-position on the map, this method will draw correct text. The text is composed of
+     * educational material that will teach the user of safety.
+     *
+     * @param batch The SpriteBatch to be drawn on.
+     * @param xPos The character's x-position on the map.
+     */
     public void drawText(SpriteBatch batch, float xPos) {
         System.out.println(xPos);
         final float TEXT_CEIL = 123f;
@@ -205,7 +213,7 @@ public class Level1Screen extends GameScreen {
         GlyphLayout fontGlyphMiddle2 = new GlyphLayout();
         GlyphLayout fontGlyphBottom = new GlyphLayout();
 
-        if (xPos < 7) {
+        if (xPos < 5) {
             fontGlyph.setText(font, "Welcome to Safety4Kids!");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);
 
@@ -218,7 +226,7 @@ public class Level1Screen extends GameScreen {
             fontGlyphBottom.setText(font, "I'll explain, keep walking.");
             font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
 
-        } else if (xPos < 10) {
+        } else if (xPos < 8) {
             fontGlyph.setText(font, "For the past year, I've been stuck inside of this game.");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);
 
@@ -234,21 +242,23 @@ public class Level1Screen extends GameScreen {
             GlyphLayout fontGlyphBottom2 = new GlyphLayout();
             fontGlyphBottom2.setText(font, "Fire, Weather, Injuries, and STRANGER DANGER!");
             font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
-        } else if (xPos < 12){
-            fontGlyph.setText(font, "And the rest will require you to use your intuition.");
+        } else if (xPos < 10){
+            fontGlyph.setText(font, "And the rest will require you to use your safety intuition.");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL/2 + fontGlyph.height);
-        } else if (xPos < 15){
+        } else if (xPos < 12){
             fontGlyph.setText(font, "So let's get started. First, I'm going to teach you about fire.");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);
 
             fontGlyphMiddle.setText(font, "Fire is dangerous and deadly, and should never be messed with.");
             font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL - fontGlyph.height - 10);
 
-            fontGlyphMiddle2.setText(font, "");
+            fontGlyphMiddle2.setText(font, "Example of fire hazards are candles, cooking fires, and electrical fires.");
             font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - 20);
 
-            fontGlyphBottom.setText(font, "I'll explain, keep walking.");
+            fontGlyphBottom.setText(font, "All of these are equally dangerous, and all pose a major threat!");
             font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
+        } else if( xPos < 14){
+
         }
     }
 
