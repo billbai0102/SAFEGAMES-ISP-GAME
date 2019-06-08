@@ -310,11 +310,44 @@ public class Level1Screen extends GameScreen {
             fontGlyphMiddle.setText(font, "The most common hazard is lightning and thunderstorms.");
             font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL + 25 - fontGlyph.height - 10);
 
-            fontGlyphMiddle2.setText(font, "When ");
+            fontGlyphMiddle2.setText(font, "When you're outside and theres a thunderstorm, avoid all tall objects,");
             font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - 20);
 
-            fontGlyphBottom.setText(font, "Do NOT re-enter to save anything or anybody, unless");
+            fontGlyphBottom.setText(font, "and get to lowground. This will greatly reduce your chances of");
             font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
+
+            fontGlyphBottom2.setText(font, "getting struck.");
+            font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
+        }else if (xPos < 21.5){
+            fontGlyph.setText(font, "If you're inside and theres a thunderstorm, ");
+            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
+
+            fontGlyphMiddle.setText(font, "unplug all appliances. Lightning strikes can surge your appliances");
+            font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL + 25 - fontGlyph.height - 10);
+
+            fontGlyphMiddle2.setText(font, "that are plugged in, and cause them malfunction or even blow up.");
+            font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - 20);
+
+            fontGlyphBottom.setText(font, "As well, avoid using landline telephones, since they're connected to");
+            font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
+
+            fontGlyphBottom2.setText(font, "external wires. They could electrify you, if you're holding it.");
+            font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
+        }else if (xPos < 23){
+            fontGlyph.setText(font, "More weather hazards include tornadoes and earthquakes.");
+            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
+
+            fontGlyphMiddle.setText(font, "During both events, run to an interior room or basement, and stay");
+            font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL + 25 - fontGlyph.height - 10);
+
+            fontGlyphMiddle2.setText(font, "until the earthquake or tornado warning has ended.");
+            font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - 20);
+
+            fontGlyphBottom.setText(font, "Avoid all windows, and unsecured structures, as they could");
+            font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
+
+            fontGlyphBottom2.setText(font, "fall, break, and severely injure you.");
+            font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
         }
 
     }
