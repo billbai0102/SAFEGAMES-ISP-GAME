@@ -31,6 +31,8 @@ public class LoseScreen implements Screen {
     private Viewport gamePort;
     private OrthographicCamera gamecam;
     private BitmapFont font;
+    private GlyphLayout fontGlyph = new GlyphLayout();
+    private GlyphLayout fontGlyph2 = new GlyphLayout();
 
     private TextButton menuBtn;
     private TextButton nextLvl;
@@ -85,8 +87,8 @@ public class LoseScreen implements Screen {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Go to lv3");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(LoseScreen.this.game));
                 dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(LoseScreen.this.game));
             }
 
             @Override
@@ -100,8 +102,8 @@ public class LoseScreen implements Screen {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Restart lv 2");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(LoseScreen.this.game));
                 dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(LoseScreen.this.game));
             }
 
             @Override
@@ -124,11 +126,9 @@ public class LoseScreen implements Screen {
 
         batch.draw(bg, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        GlyphLayout fontGlyph = new GlyphLayout();
         fontGlyph.setText(font, "Unfortunately, you lost at level " + loseScore + ".");
         font.draw(batch, fontGlyph, (Gdx.graphics.getWidth() - fontGlyph.width) / 2, Gdx.graphics.getHeight() - fontGlyph.height);
 
-        GlyphLayout fontGlyph2 = new GlyphLayout();
         fontGlyph2.setText(font, "Would you like to...");
         font.draw(batch, fontGlyph2, (Gdx.graphics.getWidth() - fontGlyph2.width) / 2, Gdx.graphics.getHeight() - fontGlyph.height - fontGlyph2.height - 20);
 

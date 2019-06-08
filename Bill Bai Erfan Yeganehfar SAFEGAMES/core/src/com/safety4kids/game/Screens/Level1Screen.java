@@ -65,6 +65,12 @@ public class Level1Screen extends GameScreen {
 
     //Bitmap Font object to draw and format text onscreen.
     private BitmapFont font;
+    private GlyphLayout fontGlyph = new GlyphLayout();
+    private GlyphLayout fontGlyphMiddle = new GlyphLayout();
+    private GlyphLayout fontGlyphMiddle2 = new GlyphLayout();
+    private GlyphLayout fontGlyphBottom = new GlyphLayout();
+    private final float TEXT_CEIL = 123f;
+
 
     /**
      * The constructor creates all the necessary components for this specific platformer. This includes the actual game,
@@ -84,7 +90,7 @@ public class Level1Screen extends GameScreen {
         renderer = new OrthogonalTiledMapRenderer(map, 1 / PPM);
 
         //Generates the Box2D world for the objects within the Tile Map
-        new Box2DCollisionCreator(world, map);
+        creator = new Box2DCollisionCreator(this);
 
         //The player is created inside of the Box2D world
         player = new MainPlayer(this, 400, 200);
@@ -185,12 +191,12 @@ public class Level1Screen extends GameScreen {
                     state = NEXT_LEVEL;
                 break;
             case NEXT_LEVEL:
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2IntroScreen(new Safety4Kids()));
                 dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2IntroScreen(new Safety4Kids()));
                 break;
             case RETURN:
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
                 dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
                 break;
             default:
                 break;
@@ -206,12 +212,7 @@ public class Level1Screen extends GameScreen {
      * @param xPos The character's x-position on the map.
      */
     public void drawText(SpriteBatch batch, float xPos) {
-        System.out.println(xPos);
-        final float TEXT_CEIL = 123f;
-        GlyphLayout fontGlyph = new GlyphLayout();
-        GlyphLayout fontGlyphMiddle = new GlyphLayout();
-        GlyphLayout fontGlyphMiddle2 = new GlyphLayout();
-        GlyphLayout fontGlyphBottom = new GlyphLayout();
+        //System.out.println(xPos);
 
         if (xPos < 5) {
             fontGlyph.setText(font, "Welcome to Safety4Kids!");
@@ -260,6 +261,7 @@ public class Level1Screen extends GameScreen {
         } else if( xPos < 14){
 
         }
+
     }
 
     /**
@@ -288,6 +290,10 @@ public class Level1Screen extends GameScreen {
         font.dispose();
         atlas.dispose();
         game.batch.dispose();
+    }
+
+    public TiledMap getMap(){
+        return map;
     }
 
 }

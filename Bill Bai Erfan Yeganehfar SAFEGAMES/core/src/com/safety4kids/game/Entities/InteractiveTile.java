@@ -1,24 +1,39 @@
 package com.safety4kids.game.Entities;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
+import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.Safety4Kids;
+import com.safety4kids.game.Screens.GameScreen;
+import com.safety4kids.game.Screens.Level1Screen;
+import com.safety4kids.game.Screens.Level3Screen;
+import com.safety4kids.game.Utils.B2DConstants;
 
 public abstract class InteractiveTile {
     protected World world;
-    protected TiledMap map;
+    protected static TiledMap map;
     protected TiledMapTile tile;
     protected Rectangle border;
-    protected Body body;
-    protected Fixture fixture;
+    protected static Body body;
+    protected static Fixture fixture;
+    protected MapObject object;
+    protected GameScreen screen;
 
-    public InteractiveTile(World world, TiledMap map, Rectangle border) {
-        this.world = world;
-        this.map = map;
-        this.border = border;
+    public InteractiveTile(GameScreen screen, MapObject object) {
+        this.object = object;
+        this.screen = screen;
+        this.world = screen.getWorld();
+        if (screen instanceof Level1Screen)
+            map = ((Level1Screen )screen ).getMap();
+        else
+            map = ((Level3Screen)screen ).getMap();
+        this.border = ((RectangleMapObject) object).getRectangle();;
 
         BodyDef bdef = new BodyDef();
         FixtureDef fdef = new FixtureDef();
@@ -36,13 +51,17 @@ public abstract class InteractiveTile {
     /**
      * This Method invokes an action to be done based on the object the players hat collided with
      */
-    public abstract void onHatContact(MainPlayer player);
-
+    public static void onHatContact(MainPlayer player) {
+        Gdx.app.log("bruh", "Collision");
+        setCatFilter(B2DConstants.BIT_DESTROYED);
+        getCell().setTile(null);
+        Hud.addPoints(100);
+    }
     /**
      * Sets the filter bit for a box2d fixture
      * @param bit the filter bit to be set as the fixtures filter
      */
-    public void setCatFilter(short bit){
+    public static void setCatFilter(short bit){
         Filter filter = new Filter();
         filter.categoryBits = bit;
         fixture.setFilterData(filter);
@@ -53,7 +72,7 @@ public abstract class InteractiveTile {
      * Gets the tile cell of the players box2d body
      * @return The players cell location
      */
-    public TiledMapTileLayer.Cell getCell(){
+    public static TiledMapTileLayer.Cell getCell(){
         //Type casts the map layer to a TiledMapTileLayer to gain access to the specified tile
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(0);
 

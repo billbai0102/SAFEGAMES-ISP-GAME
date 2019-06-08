@@ -8,6 +8,9 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.safety4kids.game.Entities.BreakableTile;
 import com.safety4kids.game.Entities.CoinObj;
 import com.safety4kids.game.Safety4Kids;
+import com.safety4kids.game.Screens.GameScreen;
+import com.safety4kids.game.Screens.Level1Screen;
+import com.safety4kids.game.Screens.Level3Screen;
 
 
 /**
@@ -15,8 +18,17 @@ import com.safety4kids.game.Safety4Kids;
  * @author Bill Bai
  */
 public class Box2DCollisionCreator {
+        private World world;
+        private TiledMap map;
+    public Box2DCollisionCreator(GameScreen screen) {
+        world = screen.getWorld();
+        if (screen instanceof Level1Screen)
+            map = ((Level1Screen )screen).getMap();
+        else
+            map = ((Level3Screen)screen).getMap();
 
-    public Box2DCollisionCreator(World world, TiledMap map) {
+
+        System.out.println(map);
         //creates body and fixture variables which assign Objects their states within the world
         BodyDef bdef = new BodyDef();
         PolygonShape shape = new PolygonShape();
@@ -37,15 +49,12 @@ public class Box2DCollisionCreator {
         }
 
         for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            new BreakableTile(world, map, rect);
+            new BreakableTile(screen, object);
 
         }
 
         for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)){
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            new CoinObj(world, map, rect);
+            new CoinObj(screen, object);
         }
 
     }

@@ -50,10 +50,11 @@ public class Level3Screen extends GameScreen {
         renderer = new OrthogonalTiledMapRenderer(map, 1 / PPM);
 
         //Generates the Box2D world for the objects within the Tile Map
-        new Box2DCollisionCreator(world, map);
+        creator = new Box2DCollisionCreator(this);
 
         //The player is created inside of the Box2D world
         player = new MainPlayer(this, 400, 200);
+
 
         //Processes input for the player
         input = new InputHandler(player);
@@ -165,8 +166,10 @@ public class Level3Screen extends GameScreen {
         hud.dispose();
         atlas.dispose();
         batch.dispose();
-        game.batch.dispose();
 
     }
 
+    public TiledMap getMap(){
+        return map;
+    }
 }
