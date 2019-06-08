@@ -115,7 +115,6 @@ public class IntroAnimation implements Screen {
             for (int x = 0; x < 20; x++) {
                 ArrayList<String> txtAnswer = new ArrayList<String>();
                 questions.add(br.readLine());
-
                 for (int y = 0; y < 4; y++) {
                     txtAnswer.add(y, br.readLine());
                 }

@@ -22,7 +22,7 @@ public class Level2IntroScreen implements Screen {
     private boolean fadeIn = true;
     private boolean fadeOut = false;
 
-    public Level2IntroScreen(Safety4Kids game){
+    public Level2IntroScreen(Safety4Kids game) {
         this.game = game;
         batch = new SpriteBatch();
         bg = new Texture(Gdx.files.internal("Lv2Assets/Lv2Intro.png"));
@@ -37,28 +37,20 @@ public class Level2IntroScreen implements Screen {
         bgSprite.draw(batch);
         batch.end();
 
-        if(fadeIn){
+        if (fadeIn) {
             alpha += (1f / 60f) / 7;
-            if(alpha >= 1) {
+            if (alpha >= 1) {
                 fadeIn = false;
                 System.out.println("done");
             }
         }
 
-//        if(fadeOut){
-//            alpha -= (1f / 60f) / 3;
-//            bgSprite.setAlpha(alpha);
-//            if(alpha <= 0.01){
-//                ((Game)Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
-//                dispose();
-//            }
-//        }
-
         bgSprite.setAlpha(alpha);
-
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)){
-            dispose();
-            ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
+        if (alpha > 0.4) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
+            }
         }
     }
 

@@ -41,19 +41,20 @@ public class Level1IntroScreen implements Screen {
         bgSprite.draw(batch);
         batch.end();
 
-        if(fadeIn){
+        if (fadeIn) {
             alpha += (1f / 60f) / 7;
-            if(alpha >= 1) {
+            if (alpha >= 1) {
                 fadeIn = false;
                 System.out.println("done");
             }
         }
 
         bgSprite.setAlpha(alpha);
-
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)){
-            dispose();
-            ((Game) Gdx.app.getApplicationListener()).setScreen(new Level1Screen(new Safety4Kids()));
+        if (alpha > 0.4) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level1Screen(new Safety4Kids()));
+            }
         }
     }
 
