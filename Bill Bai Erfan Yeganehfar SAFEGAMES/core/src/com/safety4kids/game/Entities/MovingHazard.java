@@ -18,10 +18,16 @@ public class MovingHazard extends Hazard {
     private float time;
     private Array<TextureRegion> frames;
     private Animation<TextureRegion> move;
+    private float x;
+    private float y;
+    private GameScreen screen;
 
 
     public MovingHazard(GameScreen screen, float x, float y) {
         super(screen, x, y);
+        this.x = x;
+        this.y = y;
+        this.screen = screen;
         //TODO Add animation.
         frames = new Array<TextureRegion>();
         for(int i = 0; i < 10; i++) {
@@ -79,8 +85,6 @@ public class MovingHazard extends Hazard {
         fdef.shape = sensor;
         fdef.isSensor = true;
         b2body.createFixture(fdef).setUserData(this);
-
-
     }
 
     public void draw(Batch batch){
