@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Disposable;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Screens.GameScreen;
 import com.safety4kids.game.Utils.B2DConstants;
@@ -53,6 +52,7 @@ public class MainPlayer extends Sprite{
     private GameScreen screen;
     private InputHandler input;
 
+    //TODO fix hovering player
     public MainPlayer(GameScreen screen, float posX, float posY){
         this.screen = screen;
         this.world = screen.getWorld();

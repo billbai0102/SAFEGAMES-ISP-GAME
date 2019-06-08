@@ -202,6 +202,7 @@ public class Level2Screen extends GameScreen implements Screen {
                 batch.end();
 
                 stage.draw();
+                System.gc();
                 break;
             case NEXT_LEVEL:
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(game));

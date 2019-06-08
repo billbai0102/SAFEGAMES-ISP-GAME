@@ -9,9 +9,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.safety4kids.game.Safety4Kids;
 
-
-//created june 6 2hrs
-public class Level2IntroScreen implements Screen {
+//TODO remove supresswarnings
+@SuppressWarnings("Duplicates")
+public class Level1IntroScreen implements Screen {
 
     private SpriteBatch batch;
     private Safety4Kids game;
@@ -20,15 +20,19 @@ public class Level2IntroScreen implements Screen {
 
     private float alpha = 0;
     private boolean fadeIn = true;
-    private boolean fadeOut = false;
 
-    public Level2IntroScreen(Safety4Kids game){
-        this.game = game;
+    public Level1IntroScreen(Safety4Kids game) {
         batch = new SpriteBatch();
-        bg = new Texture(Gdx.files.internal("Lv2Assets/Lv2Intro.png"));
+        this.game = game;
+        bg = new Texture(Gdx.files.internal("Lv1Intro.png"));
         bgSprite = new Sprite(bg);
         bgSprite.setAlpha(alpha);
         bgSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+    }
+
+    @Override
+    public void show() {
+
     }
 
     @Override
@@ -45,26 +49,12 @@ public class Level2IntroScreen implements Screen {
             }
         }
 
-//        if(fadeOut){
-//            alpha -= (1f / 60f) / 3;
-//            bgSprite.setAlpha(alpha);
-//            if(alpha <= 0.01){
-//                ((Game)Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
-//                dispose();
-//            }
-//        }
-
         bgSprite.setAlpha(alpha);
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)){
             dispose();
-            ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(new Safety4Kids()));
+            ((Game) Gdx.app.getApplicationListener()).setScreen(new Level1Screen(new Safety4Kids()));
         }
-    }
-
-    @Override
-    public void show() {
-
     }
 
     @Override
@@ -89,7 +79,6 @@ public class Level2IntroScreen implements Screen {
 
     @Override
     public void dispose() {
-        batch.dispose();
-        bg.dispose();
+
     }
 }
