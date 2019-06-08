@@ -453,6 +453,7 @@ public class Level1Screen extends GameScreen {
         font2.dispose();
         atlas.dispose();
         game.batch.dispose();
+        System.gc();
     }
 
     public TiledMap getMap() {
