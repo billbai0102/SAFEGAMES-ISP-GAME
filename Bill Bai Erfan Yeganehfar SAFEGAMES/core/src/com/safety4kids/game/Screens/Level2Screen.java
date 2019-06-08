@@ -103,8 +103,8 @@ public class Level2Screen extends GameScreen implements Screen {
         exitButton.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Starting level 1...");
-                ((Game)Gdx.app.getApplicationListener()).setScreen(new MainMenu(new Safety4Kids()));
+                System.out.println("Go to menu");
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new MainMenu(Level2Screen.this.game));
                 dispose();
             }
 
@@ -173,9 +173,6 @@ public class Level2Screen extends GameScreen implements Screen {
     @Override
     public void render(float delta) {
         Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
-            state = RETURN;
 
         if (questionNumber == 16) {
             state = NEXT_LEVEL;
