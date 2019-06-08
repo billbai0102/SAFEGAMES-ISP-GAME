@@ -69,6 +69,7 @@ public class Level1Screen extends GameScreen {
     private GlyphLayout fontGlyphMiddle = new GlyphLayout();
     private GlyphLayout fontGlyphMiddle2 = new GlyphLayout();
     private GlyphLayout fontGlyphBottom = new GlyphLayout();
+    private GlyphLayout fontGlyphBottom2 = new GlyphLayout();
     private final float TEXT_CEIL = 123f;
 
 
@@ -209,7 +210,7 @@ public class Level1Screen extends GameScreen {
      * educational material that will teach the user of safety.
      *
      * @param batch The SpriteBatch to be drawn on.
-     * @param xPos The character's x-position on the map.
+     * @param xPos  The character's x-position on the map.
      */
     public void drawText(SpriteBatch batch, float xPos) {
         //System.out.println(xPos);
@@ -240,13 +241,12 @@ public class Level1Screen extends GameScreen {
             fontGlyphBottom.setText(font, "In this game, there are a few main topics that you'll be tested on:");
             font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
 
-            GlyphLayout fontGlyphBottom2 = new GlyphLayout();
             fontGlyphBottom2.setText(font, "Fire, Weather, Injuries, and STRANGER DANGER!");
             font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
-        } else if (xPos < 10){
+        } else if (xPos < 10) {
             fontGlyph.setText(font, "And the rest will require you to use your safety intuition.");
-            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL/2 + fontGlyph.height);
-        } else if (xPos < 12){
+            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL / 2 + fontGlyph.height);
+        } else if (xPos < 12) {
             fontGlyph.setText(font, "So let's get started. First, I'm going to teach you about fire.");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);
 
@@ -258,8 +258,63 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphBottom.setText(font, "All of these are equally dangerous, and all pose a major threat!");
             font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
-        } else if( xPos < 14){
+        } else if (xPos < 14) {
+            fontGlyph.setText(font, "The best way to deal with fires is to prevent fires in the first place.");
+            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);
 
+            fontGlyphMiddle.setText(font, "Remember, never leave a burning candle unattended.");
+            font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL - fontGlyph.height - 10);
+
+            fontGlyphMiddle2.setText(font, "ALWAYS blow out candles before you leave a room.");
+            font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - 20);
+
+            fontGlyphBottom.setText(font, "As well, always remember to turn off stoves when you're done using them.");
+            font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
+
+            fontGlyphBottom2.setText(font, "Make sure you have an extinguisher accessible in your house.");
+            font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
+        } else if (xPos < 16) {
+            fontGlyph.setText(font, "Now, in the case of a real fire, you should always be prepared.");
+            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);
+
+            fontGlyphMiddle.setText(font, "When using a fire extinguisher, aim at the BASE of the fire.");
+            font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL - fontGlyph.height - 10);
+
+            fontGlyphMiddle2.setText(font, "If you don't have a fire extinguisher, you may use water.");
+            font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - 20);
+
+            fontGlyphBottom.setText(font, " But only on burning SOLIDS!");
+            font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
+
+            fontGlyphBottom2.setText(font, "Do not pour water on LIQUID fires, such as grease fires.");
+            font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
+        } else if (xPos < 17.5) {
+            fontGlyph.setText(font, "Pouring water on liquid fires will cause it to explode and worsen.");
+            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
+
+            fontGlyphMiddle.setText(font, "Instead, use baking soda or a metal pan lid to smother the fire.");
+            font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL + 25 - fontGlyph.height - 10);
+
+            fontGlyphMiddle2.setText(font, "If worse comes to worst, and you need to evacuate a burning building,");
+            font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - 20);
+
+            fontGlyphBottom.setText(font, "Do NOT re-enter to save anything or anybody, unless");
+            font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
+
+            fontGlyphBottom2.setText(font, "you are given permission by firefighters.");
+            font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
+        }else if (xPos < 20){
+            fontGlyph.setText(font, "Next up, you must learn about weather safety.");
+            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
+
+            fontGlyphMiddle.setText(font, "The most common hazard is lightning and thunderstorms.");
+            font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL + 25 - fontGlyph.height - 10);
+
+            fontGlyphMiddle2.setText(font, "When ");
+            font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - 20);
+
+            fontGlyphBottom.setText(font, "Do NOT re-enter to save anything or anybody, unless");
+            font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
         }
 
     }
@@ -292,7 +347,7 @@ public class Level1Screen extends GameScreen {
         game.batch.dispose();
     }
 
-    public TiledMap getMap(){
+    public TiledMap getMap() {
         return map;
     }
 
