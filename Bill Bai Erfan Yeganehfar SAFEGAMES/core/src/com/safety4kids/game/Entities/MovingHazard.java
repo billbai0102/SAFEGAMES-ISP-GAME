@@ -70,13 +70,13 @@ public class MovingHazard extends Hazard {
         fdef.shape = shape;
         b2body.createFixture(fdef);
 
-        PolygonShape hat = new PolygonShape();
-        hat.setAsBox(12f/Safety4Kids.PPM,14f/Safety4Kids.PPM);
+        PolygonShape sensor = new PolygonShape();
+        sensor.setAsBox(12f/Safety4Kids.PPM,10f/Safety4Kids.PPM);
         fdef.filter.categoryBits = B2DConstants.BIT_HAZARD;
         fdef.filter.maskBits = B2DConstants.PLATFORM_BIT | B2DConstants.BIT_COIN |
                 B2DConstants.BIT_BREAKABLE_BLOCK | B2DConstants.BIT_HAZARD |
                 B2DConstants.BIT_OBJECT | B2DConstants.BIT_PLAYER;
-        fdef.shape = hat;
+        fdef.shape = sensor;
         fdef.isSensor = true;
         b2body.createFixture(fdef).setUserData(this);
 

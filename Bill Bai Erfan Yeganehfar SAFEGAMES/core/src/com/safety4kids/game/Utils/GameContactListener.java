@@ -2,13 +2,11 @@ package com.safety4kids.game.Utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.*;
-import com.safety4kids.game.Entities.BreakableTile;
-import com.safety4kids.game.Entities.Hazard;
-import com.safety4kids.game.Entities.InteractiveTile;
-import com.safety4kids.game.Entities.MainPlayer;
+import com.safety4kids.game.Entities.*;
 
 public class GameContactListener implements ContactListener {
     private MainPlayer player;
+
     public GameContactListener(MainPlayer player) {
         this.player = player;
     }
@@ -43,17 +41,29 @@ public class GameContactListener implements ContactListener {
 //        }
 
         //If one of the fixtures is the players hat
-        if(fixA.getUserData() != null && fixB.getUserData() != null) {
-            if ((fixA.getUserData().equals("hat") || fixA.getUserData().equals("hat") && (fixA.getUserData().equals("breakable") || fixA.getUserData().equals("breakable")))) {
+        if (fixA.getUserData() != null && fixB.getUserData() != null) {
+            if ((fixA.getUserData().equals("hat") || fixB.getUserData().equals("hat") && (fixA.getUserData().equals("breakable") || fixB.getUserData().equals("breakable")))) {
 
                 if (fixA.getFilterData().categoryBits == B2DConstants.BIT_PLAYER_HAT) {
-                    Gdx.app.log("obj", "collide");
 
                     InteractiveTile.onHatContact(player);
                 } else
                     InteractiveTile.onHatContact(player);
             }
         }
+        Gdx.app.log("obj1", fixB.getUserData()+"");
+        Gdx.app.log("obj2", fixA.getUserData()+"");
+        if (fixA.getUserData() != null && fixB.getUserData() != null) {
+            if ((fixA.getUserData() instanceof Hazard || fixA.getUserData()instanceof Hazard)) {
+                Gdx.app.log("obj", "collide");
+                if (fixA.getFilterData().categoryBits == B2DConstants.BIT_HAZARD) {
+                    ((Hazard) fixA.getUserData()).reverseVelocity(true, false);
+                }
+            } //else
+                //((Hazard) fixB.getUserData()).reverseVelocity(true, false);
+        }
+
+
 
     }
 

@@ -173,14 +173,12 @@ public class Level1Screen extends GameScreen {
                 game.batch.end();
 
                 //Box2D Debug renderer
-                //b2dr.render(world, gameCam.combined);
+                b2dr.render(world, gameCam.combined);
                 hud.stage.draw();
 
-                ///@@@@ERFAN DO NOT REMOVE THIS
                 game.batch.begin();
                 drawText(game.batch, player.getXPos());
                 game.batch.end();
-                ///@@@@ERFAN DO NOT REMOVE THIS
 
                 //shows the screen based on the Camera with the hud
                 game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
