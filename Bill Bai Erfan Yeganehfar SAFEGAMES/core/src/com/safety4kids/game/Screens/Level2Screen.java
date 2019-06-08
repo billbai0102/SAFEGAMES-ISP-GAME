@@ -15,11 +15,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.safety4kids.game.Safety4Kids;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import static com.safety4kids.game.Screens.GameScreen.GameState.*;
 
 

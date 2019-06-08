@@ -45,18 +45,18 @@ public class GameContactListener implements ContactListener {
             if ((fixA.getUserData().equals("hat") || fixB.getUserData().equals("hat") && (fixA.getUserData().equals("breakable") || fixB.getUserData().equals("breakable")))) {
 
                 if (fixA.getFilterData().categoryBits == B2DConstants.BIT_PLAYER_HAT) {
-                    Gdx.app.log("obj", "collide");
 
                     InteractiveTile.onHatContact(player);
                 } else
                     InteractiveTile.onHatContact(player);
             }
         }
+        Gdx.app.log("obj1", fixB.getUserData()+"");
+        Gdx.app.log("obj2", fixA.getUserData()+"");
         if (fixA.getUserData() != null && fixB.getUserData() != null) {
             if ((fixA.getUserData() instanceof Hazard || fixA.getUserData()instanceof Hazard)) {
                 Gdx.app.log("obj", "collide");
                 if (fixA.getFilterData().categoryBits == B2DConstants.BIT_HAZARD) {
-                    Gdx.app.log("obj", "collide");
                     ((Hazard) fixA.getUserData()).reverseVelocity(true, false);
                 }
             } //else

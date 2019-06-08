@@ -58,5 +58,6 @@ public class SplashScreenLogo implements Disposable {
     @Override
     public void dispose() {
         texture.dispose();
+
     }
 }
