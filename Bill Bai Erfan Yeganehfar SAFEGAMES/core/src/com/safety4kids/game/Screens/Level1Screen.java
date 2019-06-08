@@ -95,7 +95,7 @@ public class Level1Screen extends GameScreen {
         creator = new Box2DCollisionCreator(this);
 
         //The player is created inside of the Box2D world
-        player = new MainPlayer(this, 400, 200);
+        player = new MainPlayer(this, 370, 200);
         hazard = new MovingHazard(this, 450, 200);
 
         //Processes input for the player
@@ -119,7 +119,6 @@ public class Level1Screen extends GameScreen {
         parameter2.borderWidth = .5f;
         parameter2.color = Color.BLACK;
         font2 = generator2.generateFont(parameter2);
-     //   font2.setColor(Color.BLACK);
         generator2.dispose();
     }
 
@@ -226,7 +225,7 @@ public class Level1Screen extends GameScreen {
     public void drawText(SpriteBatch batch, float xPos) {
         System.out.println(xPos);
 
-        if (xPos < 5) {
+        if (xPos < 4) {
             fontGlyph.setText(font, "Welcome to Safety4Kids!");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);
 
@@ -239,7 +238,7 @@ public class Level1Screen extends GameScreen {
             fontGlyphBottom.setText(font, "I'll explain, keep walking.");
             font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
 
-        } else if (xPos < 7) {
+        } else if (xPos < 6.5) {
             fontGlyph.setText(font, "For the past year, I've been stuck inside of this game.");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);
 
@@ -284,7 +283,7 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphBottom2.setText(font, "Make sure you have an extinguisher accessible in your house.");
             font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
-        } else if (xPos < 16.01047) {
+        } else if (xPos < 16) {
             fontGlyph.setText(font, "Now, in the case of a real fire, you should always be prepared.");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);
 
@@ -299,7 +298,7 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphBottom2.setText(font, "Do not pour water on LIQUID fires, such as grease fires.");
             font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
-        } else if (xPos < 17.5) {
+        } else if (xPos < 18) {
             fontGlyph.setText(font, "Pouring water on liquid fires will cause it to explode and worsen.");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
 
@@ -314,7 +313,7 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphBottom2.setText(font, "you are given permission by firefighters.");
             font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
-        } else if (xPos < 19) {
+        } else if (xPos < 20) {
             fontGlyph.setText(font, "Next up, you must learn about weather safety.");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
 
@@ -329,7 +328,7 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphBottom2.setText(font, "getting struck.");
             font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
-        } else if (xPos < 20.5) {
+        } else if (xPos < 22) {
             fontGlyph.setText(font, "If you're inside and there's a thunderstorm, ");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
 
@@ -344,12 +343,7 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphBottom2.setText(font, "external wires. They could electrify you, if you're holding it.");
             font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
-        } else if (xPos < 21) {
-            fontGlyph.setText(font, "");
-            fontGlyphMiddle.setText(font, "");
-            fontGlyphMiddle2.setText(font, "Are you still bearing with me?");
-            font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - 20);
-        } else if (xPos < 22.5) {
+        } else if (xPos < 23.5) {
 
             fontGlyph.setText(font, "You must also learn about injuries.");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
@@ -365,7 +359,7 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphBottom2.setText(font, "are near, you should call 911 if it is serious.");
             font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
-        } else if (xPos < 24) {
+        } else if (xPos < 25.5) {
             fontGlyph.setText(font, "A serious injury is classified as an injury that affects your vitals");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
 
@@ -380,16 +374,16 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphBottom2.setText(font, "something you shouldn't, or touching something hazardous.");
             font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
-        } else if (xPos < 25.2) {
-            fontGlyph.setText(font, "Never hesitate to call 911 if you're unsure whether your injury");
-            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
+        } else if (xPos < 27) {
+            fontGlyph.setText(font2, "Never hesitate to call 911 if you're unsure whether your injury");
+            font2.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, 400);
 
             fontGlyphMiddle.setText(font, "is serious enough. Seriously, it could save your life.");
-            font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL + 25 - fontGlyph.height - 10);
+            font2.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, 400 - fontGlyph.height - 10);
 
             fontGlyphMiddle2.setText(font, "Just don't call 911 for non-emergencies.");
-            font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - 20);
-        }else if (xPos < 27){
+            font2.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, 400 - fontGlyph.height - fontGlyphMiddle.height - 20);
+        }else if (xPos < 30){
             fontGlyph.setText(font2, "Lastly, I need to teach you about stranger danger.");
             font2.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, 400);
 
@@ -401,7 +395,7 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphBottom.setText(font2, "avoid talking to, trusting, or accept anything from strangers.");
             font2.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, 400 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
-        } else if (xPos < 28.5){
+        } else if (xPos < 32){
             fontGlyph.setText(font2, "If a stranger comes up to you offering candy");
             font2.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, 400);
 
@@ -413,13 +407,13 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphBottom.setText(font2, "police, or shop, and inform them of what's happened.");
             font2.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, 400 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
-        } else if (xPos < 30){
+        } else if (xPos < 34){
             fontGlyph.setText(font2, "Stranger danger also applies to online settings.");
             font2.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, 400);
 
             fontGlyphMiddle.setText(font2, "NEVER give any information to strangers anywhere.");
             font2.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, 400 - fontGlyph.height - 10);
-        } else if (xPos < 34){
+        } else if (xPos < 36){
             fontGlyph.setText(font2, "");
             font2.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, 400);
 
