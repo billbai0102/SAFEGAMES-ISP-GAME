@@ -275,8 +275,6 @@ public class Level2Screen extends GameScreen implements Screen {
 
     private void shuffleAnswers() {
         for (int x = 0; x < answers.size(); x++) {
-            if(x == 4)
-                x++;
             Collections.shuffle(answers.get(x));
         }
 

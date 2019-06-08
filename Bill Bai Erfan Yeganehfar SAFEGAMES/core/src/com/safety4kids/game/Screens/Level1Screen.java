@@ -396,14 +396,38 @@ public class Level1Screen extends GameScreen {
             fontGlyphMiddle.setText(font2, "The world we live in isn't perfect, and there are bad");
             font2.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, 400 - fontGlyph.height - 10);
 
-            fontGlyphMiddle2.setText(font2, "people everywhere. ");
+            fontGlyphMiddle2.setText(font2, "people everywhere. That's why, you should always");
             font2.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, 400 - fontGlyph.height - fontGlyphMiddle.height - 20);
 
-            fontGlyphBottom.setText(font2, "This includes overdosing on medicine, accidentally swallowing");
+            fontGlyphBottom.setText(font2, "avoid talking to, trusting, or accept anything from strangers.");
             font2.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, 400 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
+        } else if (xPos < 28.5){
+            fontGlyph.setText(font2, "If a stranger comes up to you offering candy");
+            font2.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, 400);
 
-            fontGlyphBottom2.setText(font2, "something you shouldn't, or touching something hazardous.");
-            font2.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, 400 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
+            fontGlyphMiddle.setText(font2, "or asks you to follow them somewhere,");
+            font2.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, 400 - fontGlyph.height - 10);
+
+            fontGlyphMiddle2.setText(font2, "do not say anything, and run to the nearest trusted adult,");
+            font2.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, 400 - fontGlyph.height - fontGlyphMiddle.height - 20);
+
+            fontGlyphBottom.setText(font2, "police, or shop, and inform them of what's happened.");
+            font2.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, 400 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
+        } else if (xPos < 30){
+            fontGlyph.setText(font2, "Stranger danger also applies to online settings.");
+            font2.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, 400);
+
+            fontGlyphMiddle.setText(font2, "NEVER give any information to strangers anywhere.");
+            font2.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, 400 - fontGlyph.height - 10);
+        } else if (xPos < 34){
+            fontGlyph.setText(font2, "");
+            font2.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, 400);
+
+            fontGlyphMiddle.setText(font2, "Anyways, you're set now. Good luck on level 2.");
+            font2.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, 400 - fontGlyph.height - 10);
+
+            fontGlyphMiddle2.setText(font2, "I believe in you!");
+            font2.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, 400 - fontGlyph.height - fontGlyphMiddle.height - 20);
         }
 
     }
@@ -432,6 +456,7 @@ public class Level1Screen extends GameScreen {
         pause.dispose();
         hud.dispose();
         font.dispose();
+        font2.dispose();
         atlas.dispose();
         game.batch.dispose();
     }
