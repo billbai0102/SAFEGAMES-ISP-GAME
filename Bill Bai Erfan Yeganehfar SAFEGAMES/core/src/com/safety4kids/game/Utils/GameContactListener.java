@@ -59,8 +59,8 @@ public class GameContactListener implements ContactListener {
                 if (fixA.getFilterData().categoryBits == B2DConstants.BIT_HAZARD) {
                     ((Hazard) fixA.getUserData()).reverseVelocity(true, false);
                 }
-            } //else
-                //((Hazard) fixB.getUserData()).reverseVelocity(true, false);
+            } else if  (fixB.getFilterData().categoryBits == B2DConstants.BIT_HAZARD)
+                ((Hazard) fixB.getUserData()).reverseVelocity(true, false);
         }
 
 
