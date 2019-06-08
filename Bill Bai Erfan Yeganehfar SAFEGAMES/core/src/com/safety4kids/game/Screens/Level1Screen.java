@@ -359,7 +359,7 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphBottom2.setText(font, "are near, you should call 911 if it is serious.");
             font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
-        } else if (xPos < 25.5) {
+        } else if (xPos < 25.135944) {
             fontGlyph.setText(font, "A serious injury is classified as an injury that affects your vitals");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
 
