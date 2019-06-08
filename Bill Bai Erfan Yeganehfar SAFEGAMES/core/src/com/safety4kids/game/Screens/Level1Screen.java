@@ -213,7 +213,7 @@ public class Level1Screen extends GameScreen {
      * @param xPos  The character's x-position on the map.
      */
     public void drawText(SpriteBatch batch, float xPos) {
-        //System.out.println(xPos);
+        System.out.println(xPos);
 
         if (xPos < 5) {
             fontGlyph.setText(font, "Welcome to Safety4Kids!");
@@ -303,7 +303,7 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphBottom2.setText(font, "you are given permission by firefighters.");
             font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
-        }else if (xPos < 20){
+        } else if (xPos < 20) {
             fontGlyph.setText(font, "Next up, you must learn about weather safety.");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
 
@@ -318,7 +318,7 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphBottom2.setText(font, "getting struck.");
             font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
-        }else if (xPos < 21.5){
+        } else if (xPos < 21) {
             fontGlyph.setText(font, "If you're inside and theres a thunderstorm, ");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
 
@@ -333,20 +333,56 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphBottom2.setText(font, "external wires. They could electrify you, if you're holding it.");
             font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
-        }else if (xPos < 23){
-            fontGlyph.setText(font, "More weather hazards include tornadoes and earthquakes.");
+        } else if (xPos < 21.5) {
+            fontGlyph.setText(font, "");
+            fontGlyphMiddle.setText(font, "");
+            fontGlyphMiddle2.setText(font, "Are you still bearing with me?");
+            font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - 20);
+        } else if (xPos < 22.5) {
+
+            fontGlyph.setText(font, "You must also learn about injuries.");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
 
-            fontGlyphMiddle.setText(font, "During both events, run to an interior room or basement, and stay");
+            fontGlyphMiddle.setText(font, "If you are ever injured, during sports or anytime,");
             font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL + 25 - fontGlyph.height - 10);
 
-            fontGlyphMiddle2.setText(font, "until the earthquake or tornado warning has ended.");
+            fontGlyphMiddle2.setText(font, "tell an adult immediately and stop what you're doing.");
             font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - 20);
 
-            fontGlyphBottom.setText(font, "Avoid all windows, and unsecured structures, as they could");
+            fontGlyphBottom.setText(font, "They will help you deal with your injury. If no adults");
             font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
 
-            fontGlyphBottom2.setText(font, "fall, break, and severely injure you.");
+            fontGlyphBottom2.setText(font, "are near, you should call 911 if it is serious.");
+            font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
+        } else if (xPos < 25) {
+            fontGlyph.setText(font, "A serious injury is classified as an injury that affects your vitals");
+            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
+
+            fontGlyphMiddle.setText(font, "such as a tight chest, difficulty breathing, or disorientation,");
+            font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL + 25 - fontGlyph.height - 10);
+
+            fontGlyphMiddle2.setText(font, "or an injury that you know can lead to bad results.");
+            font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - 20);
+
+            fontGlyphBottom.setText(font, "This includes overdosing on medicine, accidentally swallowing");
+            font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
+
+            fontGlyphBottom2.setText(font, "something you shouldn't, or touching something hazardous.");
+            font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
+        } else if (xPos < 25.2) {
+            fontGlyph.setText(font, "Never hesitate to call 911 if you're unsure whether your injury");
+            font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
+
+            fontGlyphMiddle.setText(font, "is serious enough. Seriously, it could save your life.");
+            font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL + 25 - fontGlyph.height - 10);
+
+            fontGlyphMiddle2.setText(font, "Just don't call 911 for non-emergencies.");
+            font.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - 20);
+
+            fontGlyphBottom.setText(font, "This includes overdosing on medicine, accidentally swallowing");
+            font.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
+
+            fontGlyphBottom2.setText(font, "something you shouldn't, or touching something hazardous.");
             font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
         }
 

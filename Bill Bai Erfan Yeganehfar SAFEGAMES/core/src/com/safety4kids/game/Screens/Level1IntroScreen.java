@@ -79,6 +79,8 @@ public class Level1IntroScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        batch.dispose();
+        game.dispose();
+        bg.dispose();
     }
 }
