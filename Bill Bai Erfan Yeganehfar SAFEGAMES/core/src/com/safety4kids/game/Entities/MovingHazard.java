@@ -21,9 +21,10 @@ public class MovingHazard extends Hazard {
     private float x;
     private float y;
     private GameScreen screen;
+    private String type;
 
 
-    public MovingHazard(GameScreen screen, float x, float y) {
+    public MovingHazard(GameScreen screen, float x, float y, String type) {
         super(screen, x, y);
         this.x = x;
         this.y = y;
@@ -77,7 +78,7 @@ public class MovingHazard extends Hazard {
         b2body.createFixture(fdef);
 
         PolygonShape sensor = new PolygonShape();
-        sensor.setAsBox(12f/Safety4Kids.PPM,10f/Safety4Kids.PPM);
+        sensor.setAsBox(6f/Safety4Kids.PPM,14f/Safety4Kids.PPM);
         fdef.filter.categoryBits = B2DConstants.BIT_HAZARD;
         fdef.filter.maskBits = B2DConstants.PLATFORM_BIT | B2DConstants.BIT_COIN |
                 B2DConstants.BIT_BREAKABLE_BLOCK | B2DConstants.BIT_HAZARD |
@@ -85,6 +86,7 @@ public class MovingHazard extends Hazard {
         fdef.shape = sensor;
         fdef.isSensor = true;
         b2body.createFixture(fdef).setUserData(this);
+        System.out.println("bruc" + fdef.filter.categoryBits);
     }
 
     public void draw(Batch batch){

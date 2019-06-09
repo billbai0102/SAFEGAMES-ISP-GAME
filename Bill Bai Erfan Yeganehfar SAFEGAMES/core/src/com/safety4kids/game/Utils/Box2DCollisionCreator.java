@@ -17,7 +17,8 @@ import com.safety4kids.game.Screens.Level3Screen;
  * This method creates a Box2DCollisionCreator object, which takes in World and TiledMap information to create
  * boundaries, bodies, and fixture variables in the GameScreen.
  *
- * @author Erfan Yeganehfar, Bill Bai
+ * @author Erfan Yeganehfar
+ * @author Bill Bai
  */
 public class Box2DCollisionCreator {
     /**
@@ -38,14 +39,14 @@ public class Box2DCollisionCreator {
     public Box2DCollisionCreator(GameScreen screen) {
         world = screen.getWorld(); //Sets world to the GameScreen's World instance.
 
-        /*
-        Sets map to the correct TiledMap instance, based on whether the Box2D boundaries are being created for
-        Level1 or Level2
-         */
+
+        //Sets map to the correct TiledMap instance, based on whether the Box2D boundaries are being created for
+        // Level1 or Level2
         if (screen instanceof Level1Screen)
             map = ((Level1Screen) screen).getMap();
         else
             map = ((Level3Screen) screen).getMap();
+
         System.out.println(map);
         //Creates body and fixture variables which assign Objects their states within the world
         BodyDef bdef = new BodyDef();
@@ -63,15 +64,28 @@ public class Box2DCollisionCreator {
 
             shape.setAsBox(rect.getWidth() / 2 / Safety4Kids.PPM, rect.getHeight() / 2 / Safety4Kids.PPM);
             fdef.shape = shape;
+            body.createFixture(fdef);
+        }
+
+        for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            bdef.type = BodyDef.BodyType.StaticBody;
+            bdef.position.set((rect.getX()+rect.getWidth()/2)/ Safety4Kids.PPM, (rect.getY() + rect.getHeight() / 2)/ Safety4Kids.PPM);
+            body = world.createBody(bdef);
+
+            shape.setAsBox(rect.getWidth()/2/ Safety4Kids.PPM,rect.getHeight()/2/ Safety4Kids.PPM);
+            fdef.shape = shape;
             fdef.filter.categoryBits = B2DConstants.BIT_OBJECT;
             body.createFixture(fdef);
         }
-        for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
+
+        for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
             new BreakableTile(screen, object);
 
         }
 
-        for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
             new CoinObj(screen, object);
         }
 

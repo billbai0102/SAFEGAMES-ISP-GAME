@@ -51,12 +51,8 @@ public abstract class InteractiveTile {
     /**
      * This Method invokes an action to be done based on the object the players hat collided with
      */
-    public static void onHatContact(MainPlayer player) {
-        Gdx.app.log("bruh", "Collision");
-        setCatFilter(B2DConstants.BIT_DESTROYED);
-        getCell().setTile(null);
-        Hud.addPoints(100);
-    }
+    public abstract void onHatContact(MainPlayer player);
+
     /**
      * Sets the filter bit for a box2d fixture
      * @param bit the filter bit to be set as the fixtures filter

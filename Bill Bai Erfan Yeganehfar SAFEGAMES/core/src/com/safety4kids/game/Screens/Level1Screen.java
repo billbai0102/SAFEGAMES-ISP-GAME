@@ -17,6 +17,7 @@ import com.safety4kids.game.Entities.MovingHazard;
 import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.Box2DCollisionCreator;
+import com.safety4kids.game.Utils.GameContactListener;
 import com.safety4kids.game.Utils.InputHandler;
 import com.safety4kids.game.Utils.CustomMapRenderer;
 
@@ -44,8 +45,7 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.RUN;
  * as better movement. -- 1.5hrs
  * 3.5 Erfan Yeg: (2019-06-01) Added a way of transitioning from the current level to the next -- 30mins
  * 3.6 Erfan Yeg: (2019-06-02) Added different states for the game that control the state of the game -- 1hr
- * 3.7 Bill Bai: (2019-06-06) TODO fill this in.
- * @version 3.7 2019-06-06
+ * @version 4.0 2019-06-06
  */
 @SuppressWarnings("Duplicates")
 public class Level1Screen extends GameScreen {
@@ -94,11 +94,13 @@ public class Level1Screen extends GameScreen {
         creator = new Box2DCollisionCreator(this);
 
         //The player is created inside of the Box2D world
-        player = new MainPlayer(this, 370, 200);
-        hazard = new MovingHazard(this, 450, 200);
+        player = new MainPlayer(this, 350, 200);
+        hazard = new MovingHazard(this, 450, 200, "bruh");
 
         //Processes input for the player
         input = new InputHandler(player);
+
+        world.setContactListener(new GameContactListener());
 
         //Font to draw and format text.
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/eight-bit-dragon.otf"));
@@ -223,8 +225,6 @@ public class Level1Screen extends GameScreen {
      * @param xPos  The character's x-position on the map.
      */
     public void drawText(SpriteBatch batch, float xPos) {
-        System.out.println(xPos);
-
         if (xPos < 4) {
             fontGlyph.setText(font, "Welcome to Safety4Kids!");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);

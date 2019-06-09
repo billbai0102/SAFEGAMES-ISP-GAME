@@ -11,27 +11,16 @@ import com.safety4kids.game.Entities.MainPlayer;
  * <br> The <i>GameContactListener</i> instance will create different outputs in the game based on what Contact object
  * a <i>MainPlayer</i> object collides with.
  *
- * @author Erfan Yeganehfar, Bill Bai
- * @version 3.3 06/09/19
+ * @author Erfan Yeganehfar
+ * @author Bill Bai
+ * @version 4.2 06/09/19
+ * Modifications:
+ * 4.0
+ * 4.1
  */
 public class GameContactListener implements ContactListener {
     /**
-     * The instance of the <i>MainPlayer</i>, that will be
-     */
-    private MainPlayer player;
-
-    /**
-     * The constructor of the class. Sets the <i>MainPlayer</i> passed in the parameters to the <i>MainPlayer</i> instance
-     * of the class.
-     *
-     * @param player Instance of the <i>MainPlayer</i>
-     */
-    public GameContactListener(MainPlayer player) {
-        this.player = player;
-    }
-
-    /**
-     * This method is called when the <i>MainPlayer</i> object makes contact with a Contact object.
+     * This method is called when any object makes contact with a Contact object.
      *
      * @param contact The Contact object that is being made contact with.
      */
@@ -41,30 +30,32 @@ public class GameContactListener implements ContactListener {
         Fixture fixA = contact.getFixtureA();
         Fixture fixB = contact.getFixtureA();
 
+        // bitwise or to define the type of collision between 2 collision types
         int collide = fixA.getFilterData().categoryBits | fixB.getFilterData().categoryBits;
 
 
-//        switch(collide){
-//            case B2DConstants.BIT_PLAYER_HAT | B2DConstants.BIT_BREAKABLE_BLOCK:
-//            case B2DConstants.BIT_PLAYER_HAT | B2DConstants.BIT_COIN:
-//                Gdx.app.log("obj", "collide");
-//                if(fixA.getFilterData().categoryBits == B2DConstants.BIT_PLAYER_HAT) {
-//                    Gdx.app.log("obj", "collide");
-//                    ((InteractiveTile) fixB.getUserData()).onHatContact((MainPlayer) fixA.getUserData());
-//                }else
-//                    ((InteractiveTile) fixA.getUserData()).onHatContact((MainPlayer) fixB.getUserData());
-//
-//                break;
-//            case B2DConstants.BIT_HAZARD | B2DConstants.BIT_OBJECT:
-//            if(fixA.getFilterData().categoryBits == B2DConstants.BIT_HAZARD){
-//                Gdx.app.log("obj", "collide");
-//                ((Hazard)fixA.getUserData()).reverseVelocity(true, false);}
-//            else
-//                ((Hazard)fixB.getUserData()).reverseVelocity(true, false);
-//            break;
-//        }
+       /* switch(collide){
+            case B2DConstants.BIT_PLAYER_HAT | B2DConstants.BIT_BREAKABLE_BLOCK:
+            case B2DConstants.BIT_PLAYER_HAT | B2DConstants.BIT_COIN:
+                Gdx.app.log("obj", "collide");
+                if(fixA.getFilterData().categoryBits == B2DConstants.BIT_PLAYER_HAT) {
+                    Gdx.app.log("obj", "collide");
+                    ((InteractiveTile) fixB.getUserData()).onHatContact((MainPlayer) fixA.getUserData());
+                }else
+                    ((InteractiveTile) fixA.getUserData()).onHatContact((MainPlayer) fixB.getUserData());
 
-        //If one of the fixtures is the players hat
+                break;
+            case B2DConstants.BIT_HAZARD | B2DConstants.BIT_OBJECT:
+            if(fixA.getFilterData().categoryBits == B2DConstants.BIT_HAZARD){
+                Gdx.app.log("obj", "collide");
+                ((Hazard)fixA.getUserData()).reverseVelocity(true, false);}
+            else
+                Gdx.app.log("obj", "collide");
+                ((Hazard)fixB.getUserData()).reverseVelocity(true, false);
+            break;
+        }*/
+
+     /*   //If one of the fixtures is the players hat
         if (fixA.getUserData() != null && fixB.getUserData() != null) {
             if ((fixA.getUserData().equals("hat") || fixB.getUserData().equals("hat") && (fixA.getUserData().equals("breakable") || fixB.getUserData().equals("breakable")))) {
 
@@ -74,18 +65,25 @@ public class GameContactListener implements ContactListener {
                 } else
                     InteractiveTile.onHatContact(player);
             }
-        }
-        Gdx.app.log("obj1", fixB.getUserData() + "");
-        Gdx.app.log("obj2", fixA.getUserData() + "");
-        if (fixA.getUserData() != null && fixB.getUserData() != null) {
-            if ((fixA.getUserData() instanceof Hazard || fixA.getUserData() instanceof Hazard)) {
+        }*/
+       System.out.println(fixB.getFilterData());
+        System.out.println(fixA.getUserData());
+
+        /*if (fixA.getUserData() != null && fixB.getUserData() != null) {
+            if (collide == (B2DConstants.BIT_HAZARD | B2DConstants.BIT_PLAYER)) {
                 Gdx.app.log("obj", "collide");
-                if (fixA.getFilterData().categoryBits == B2DConstants.BIT_HAZARD) {
+                if (fixA.getFilterData().categoryBits == B2DConstants.BIT_PLAYER) {
                     ((Hazard) fixA.getUserData()).reverseVelocity(true, false);
                 }
-            } else if (fixB.getFilterData().categoryBits == B2DConstants.BIT_HAZARD)
+            } else if (fixB.getFilterData().categoryBits == B2DConstants.BIT_PLAYER){
+                Gdx.app.log("obj", "collide");
                 ((Hazard) fixB.getUserData()).reverseVelocity(true, false);
-        }
+            }
+        }*/
+
+      // if ((fixA.getFilterData().categoryBits == 2 && fixB.getFilterData().categoryBits == 2)){
+       //    System.out.println("bruh bruh");
+       //}
 
 
     }
