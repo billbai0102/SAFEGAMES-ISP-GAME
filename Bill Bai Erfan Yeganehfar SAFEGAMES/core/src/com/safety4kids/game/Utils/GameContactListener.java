@@ -2,15 +2,39 @@ package com.safety4kids.game.Utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.*;
-import com.safety4kids.game.Entities.*;
+import com.safety4kids.game.Entities.Hazard;
+import com.safety4kids.game.Entities.InteractiveTile;
+import com.safety4kids.game.Entities.MainPlayer;
 
+/**
+ * This class creates a <i>GameContactListener</i> object.
+ * <br> The <i>GameContactListener</i> instance will create different outputs in the game based on what Contact object
+ * a <i>MainPlayer</i> object collides with.
+ *
+ * @author Erfan Yeganehfar, Bill Bai
+ * @version 3.3 06/09/19
+ */
 public class GameContactListener implements ContactListener {
+    /**
+     * The instance of the <i>MainPlayer</i>, that will be
+     */
     private MainPlayer player;
 
+    /**
+     * The constructor of the class. Sets the <i>MainPlayer</i> passed in the parameters to the <i>MainPlayer</i> instance
+     * of the class.
+     *
+     * @param player Instance of the <i>MainPlayer</i>
+     */
     public GameContactListener(MainPlayer player) {
         this.player = player;
     }
 
+    /**
+     * This method is called when the <i>MainPlayer</i> object makes contact with a Contact object.
+     *
+     * @param contact The Contact object that is being made contact with.
+     */
     @Override
     public void beginContact(Contact contact) {
         //The two fixtures that are to be colliding
@@ -51,32 +75,42 @@ public class GameContactListener implements ContactListener {
                     InteractiveTile.onHatContact(player);
             }
         }
-        Gdx.app.log("obj1", fixB.getUserData()+"");
-        Gdx.app.log("obj2", fixA.getUserData()+"");
+        Gdx.app.log("obj1", fixB.getUserData() + "");
+        Gdx.app.log("obj2", fixA.getUserData() + "");
         if (fixA.getUserData() != null && fixB.getUserData() != null) {
-            if ((fixA.getUserData() instanceof Hazard || fixA.getUserData()instanceof Hazard)) {
+            if ((fixA.getUserData() instanceof Hazard || fixA.getUserData() instanceof Hazard)) {
                 Gdx.app.log("obj", "collide");
                 if (fixA.getFilterData().categoryBits == B2DConstants.BIT_HAZARD) {
                     ((Hazard) fixA.getUserData()).reverseVelocity(true, false);
                 }
-            } else if  (fixB.getFilterData().categoryBits == B2DConstants.BIT_HAZARD)
+            } else if (fixB.getFilterData().categoryBits == B2DConstants.BIT_HAZARD)
                 ((Hazard) fixB.getUserData()).reverseVelocity(true, false);
         }
 
 
-
     }
 
+    /**
+     * This method is called when contact between player and a Contact object ends.
+     *
+     * @param contact The Contact object that is being contacted with.
+     */
     @Override
     public void endContact(Contact contact) {
 
     }
 
+    /**
+     * This method has no use. It is only implemented since the class implements ContactListener.
+     */
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
 
     }
 
+    /**
+     * This method has no use. It is only implemented since the class implements ContactListener.
+     */
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
 

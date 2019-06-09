@@ -20,10 +20,8 @@ import static com.badlogic.gdx.graphics.g2d.Batch.Y2;
 import static com.badlogic.gdx.graphics.g2d.Batch.Y3;
 import static com.badlogic.gdx.graphics.g2d.Batch.Y4;
 */
-import static com.badlogic.gdx.graphics.g2d.Batch.*;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -32,33 +30,36 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 
+import static com.badlogic.gdx.graphics.g2d.Batch.*;
+//TODO COMMENT THIS ERFAN PLZ
 
 /**
- *
  * This class is just the is part of the implementation from BatchTiledMapRenderer from badlogic (libgdx)
  * yet the fixBleeding method has been added to fix the background leaks between tiles.
- *
+ * <p>
  * Citation for BatchTiledMapRenderer: https://github.com/libgdx/libgdx/blob/master/gdx/src/com/badlogic/gdx/maps/tiled/renderers/BatchTiledMapRenderer.java
  * Citation for fixing leaks: https://badlogicgames.com/forum/viewtopic.php?f=11&t=16368
+ *
+ * @author Erfan Yeganehfar, Bill Bai
  */
 public class CustomMapRenderer extends BatchTiledMapRenderer {
 
-    public CustomMapRenderer(TiledMap map) {
-        super(map);
-    }
-
-    public CustomMapRenderer(TiledMap map, Batch batch) {
-        super(map, batch);
-    }
-
+    /**
+     * This is the constructor of the class. It passes a <i>TiledMap</i> instance and the instance's pixel per meter
+     * scale to the super class constructor (BatchTiledMapRenderer).
+     *
+     * @param map
+     * @param unitScale
+     */
     public CustomMapRenderer(TiledMap map, float unitScale) {
         super(map, unitScale);
     }
 
-    public CustomMapRenderer(TiledMap map, float unitScale, Batch batch) {
-        super(map, unitScale, batch);
-    }
-
+    /**
+     * This method fixes map bleeding problems encountered when rendering the map, in a certain region of the map's texture.
+     *
+     * @param region The TextureRegion that encounters bleeding.
+     */
     public static void fixBleeding(TextureRegion region) {
         float fix = 0.01f;
         float x = region.getRegionX();
@@ -70,18 +71,26 @@ public class CustomMapRenderer extends BatchTiledMapRenderer {
         region.setRegion((x + fix) * invTexWidth, (y + fix) * invTexHeight, (x + width - fix) * invTexWidth, (y + height - fix) * invTexHeight); // Trims Region
     }
 
+    /**
+     * This method renders an object onto the map.
+     *
+     * @param object The object to be rendered
+     */
     @Override
-    public void renderObject (MapObject object) {
+    public void renderObject(MapObject object) {
 
     }
 
     /**
+     * This method renders a specific part of the TiledMap.
      *
      * @param layer the specific tile map layer to be rendered
      */
     @Override
-    public void renderTileLayer (TiledMapTileLayer layer) {
+    public void renderTileLayer(TiledMapTileLayer layer) {
+        //The color of the SpriteBatch
         final Color batchColor = batch.getColor();
+
         final float color = Color.toFloatBits(batchColor.r, batchColor.g, batchColor.b, batchColor.a * layer.getOpacity());
 
         final int layerWidth = layer.getWidth();
@@ -90,11 +99,11 @@ public class CustomMapRenderer extends BatchTiledMapRenderer {
         final float layerTileWidth = layer.getTileWidth() * unitScale;
         final float layerTileHeight = layer.getTileHeight() * unitScale;
 
-        final int col1 = Math.max(0, (int)(viewBounds.x / layerTileWidth));
-        final int col2 = Math.min(layerWidth, (int)((viewBounds.x + viewBounds.width + layerTileWidth) / layerTileWidth));
+        final int col1 = Math.max(0, (int) (viewBounds.x / layerTileWidth));
+        final int col2 = Math.min(layerWidth, (int) ((viewBounds.x + viewBounds.width + layerTileWidth) / layerTileWidth));
 
-        final int row1 = Math.max(0, (int)(viewBounds.y / layerTileHeight));
-        final int row2 = Math.min(layerHeight, (int)((viewBounds.y + viewBounds.height + layerTileHeight) / layerTileHeight));
+        final int row1 = Math.max(0, (int) (viewBounds.y / layerTileHeight));
+        final int row2 = Math.min(layerHeight, (int) ((viewBounds.y + viewBounds.height + layerTileHeight) / layerTileHeight));
 
         float y = row2 * layerTileHeight;
         float xStart = col1 * layerTileWidth;
