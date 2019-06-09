@@ -68,11 +68,12 @@ public class InputHandler implements InputProcessor {
     }
 
     /**
-     * Shifts
+     * Shifts the location of player to the left
      */
     public void moveLeft() {
         player.b2body.applyLinearImpulse(new Vector2(-0.07f, 0), player.b2body.getWorldCenter(), true);
     }
+
 
     @Override
     public boolean keyDown(int keycode) {
