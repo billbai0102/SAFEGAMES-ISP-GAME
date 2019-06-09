@@ -59,7 +59,7 @@ public class Level3Screen extends GameScreen {
         //Processes input for the player
         input = new InputHandler(player);
 
-        world.setContactListener(new GameContactListener());
+        world.setContactListener(new GameContactListener(player));
 
     }
 
@@ -71,6 +71,7 @@ public class Level3Screen extends GameScreen {
             world.step(STEP, 6, 2);
             player.update(dt);
 
+            hud.update(dt);
             if (player.b2body.getPosition().x > 2.5 && player.b2body.getPosition().x < 35)
                 gameCam.position.x = (player.b2body.getPosition().x);
 

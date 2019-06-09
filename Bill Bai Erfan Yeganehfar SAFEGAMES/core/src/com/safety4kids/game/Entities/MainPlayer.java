@@ -9,8 +9,10 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Screens.GameScreen;
+import com.safety4kids.game.Screens.Level1Screen;
 import com.safety4kids.game.Utils.B2DConstants;
 import com.safety4kids.game.Utils.InputHandler;
+import sun.applet.Main;
 
 import static com.safety4kids.game.Safety4Kids.MAX_VELOCITY;
 import static com.safety4kids.game.Safety4Kids.MIN_VELOCITY;
@@ -36,6 +38,7 @@ public class MainPlayer extends Sprite{
     public Body b2body;
     private float startPosX;
     private float startPosY;
+    private BodyDef bdef;
 
     private TextureRegion playerIdle;
     private Animation<TextureRegion> playerRun;
@@ -90,7 +93,7 @@ public class MainPlayer extends Sprite{
     public void creatBox2D(){
 
         //Defined Body
-        BodyDef bdef = new BodyDef();
+        bdef = new BodyDef();
         //Position of the body
         bdef.position.set(startPosX / Safety4Kids.PPM,startPosY/ Safety4Kids.PPM);
 
