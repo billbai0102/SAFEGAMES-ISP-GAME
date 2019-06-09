@@ -46,8 +46,8 @@ public class Pause implements Disposable {
      * the labels can be set properly with their sprites on the game screen.
      * @param sb the sprite batch passed into the hud for graphics
      */
-    public Pause(SpriteBatch sb, final GameScreen game, OrthographicCamera gameCam) {
-        viewport = new FitViewport(Safety4Kids.V_WIDTH * Safety4Kids.SCALE, Safety4Kids.V_HEIGHT * Safety4Kids.SCALE, gameCam);
+    public Pause(SpriteBatch sb, final GameScreen game) {
+        viewport = new FitViewport(Safety4Kids.V_WIDTH * Safety4Kids.SCALE, Safety4Kids.V_HEIGHT * Safety4Kids.SCALE, new OrthographicCamera());
         SpriteDrawable bgDrawble = new SpriteDrawable(new Sprite(new Texture("purp.jpg")));
         SpriteDrawable background = new SpriteDrawable(new Sprite(new Texture("transp.png")));
 

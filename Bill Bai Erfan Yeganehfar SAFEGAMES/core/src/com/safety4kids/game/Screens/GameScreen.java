@@ -91,7 +91,7 @@ public abstract class GameScreen implements Screen {
         gameCam = new OrthographicCamera();
         gamePort = new FitViewport(V_WIDTH / PPM, V_HEIGHT / PPM, gameCam);
 
-        pause = new Pause(batch, this, gameCam);
+        pause = new Pause(batch, this);
 
         //sets the view point of the Orthographic Camera to better use of the 4 quadrants within a 2d grid system
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
