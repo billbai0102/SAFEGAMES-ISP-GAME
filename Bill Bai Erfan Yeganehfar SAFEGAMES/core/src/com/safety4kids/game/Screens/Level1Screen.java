@@ -116,7 +116,7 @@ public class Level1Screen extends GameScreen {
         FreeTypeFontGenerator.FreeTypeFontParameter parameter2 = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter2.size = 10;
         parameter2.borderColor = Color.WHITE;
-        parameter2.borderWidth = .5f;
+        parameter2.borderWidth = .3f;
         parameter2.color = Color.BLACK;
         font2 = generator2.generateFont(parameter2);
         generator2.dispose();
@@ -256,6 +256,8 @@ public class Level1Screen extends GameScreen {
         } else if (xPos < 9) {
             fontGlyph.setText(font, "And the rest will require you to use your safety intuition.");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL / 2 + fontGlyph.height);
+            fontGlyphMiddle.setText(font, "That means your ability to do the right thing!");
+            font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL - fontGlyph.height - 10);
         } else if (xPos < 11) {
             fontGlyph.setText(font, "So let's get started. First, I'm going to teach you about fire.");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);
@@ -360,10 +362,10 @@ public class Level1Screen extends GameScreen {
             fontGlyphBottom2.setText(font, "are near, you should call 911 if it is serious.");
             font.draw(batch, fontGlyphBottom2, STAGE_WIDTH - fontGlyphBottom2.width / 2, TEXT_CEIL + 25 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - fontGlyphBottom.height - 40);
         } else if (xPos < 25.135944) {
-            fontGlyph.setText(font, "A serious injury is classified as an injury that affects your vitals");
+            fontGlyph.setText(font, "A serious injury means an injury that affects your vitals functions");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL + 25);
 
-            fontGlyphMiddle.setText(font, "such as a tight chest, difficulty breathing, or disorientation,");
+            fontGlyphMiddle.setText(font, "such as a tight chest, difficulty breathing, or double-vision,");
             font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL + 25 - fontGlyph.height - 10);
 
             fontGlyphMiddle2.setText(font, "or an injury that you know can lead to bad results.");

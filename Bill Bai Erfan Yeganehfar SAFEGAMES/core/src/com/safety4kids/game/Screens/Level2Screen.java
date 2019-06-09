@@ -200,7 +200,7 @@ public class Level2Screen extends GameScreen implements Screen {
                 System.gc();
                 break;
             case NEXT_LEVEL:
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2WinScreen(game));
                 dispose();
                 break;
             case RESUME: //when they lose (will change)
@@ -260,7 +260,7 @@ public class Level2Screen extends GameScreen implements Screen {
                 break;
             case LOSE:
                 dispose();
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new LoseScreen(new Safety4Kids(), questionNumber));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2LoseScreen(new Safety4Kids(), questionNumber));
                 break;
             default:
                 break;

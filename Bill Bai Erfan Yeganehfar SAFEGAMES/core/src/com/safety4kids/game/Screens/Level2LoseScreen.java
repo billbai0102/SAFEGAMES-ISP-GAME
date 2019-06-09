@@ -21,7 +21,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Safety4Kids;
 //created class on 06-06 bill 2hrs
-public class LoseScreen implements Screen {
+public class Level2LoseScreen implements Screen {
 
     private SpriteBatch batch;
     private Stage stage;
@@ -42,10 +42,10 @@ public class LoseScreen implements Screen {
 
     private int loseScore;
 
-    public LoseScreen(Safety4Kids game, int loseScore) {
+    public Level2LoseScreen(Safety4Kids game, int loseScore) {
         this.game = game;
         this.loseScore = loseScore;
-        skin = new Skin(Gdx.files.internal("skin/flat_earth/flat-earth-ui.json"));
+        skin = new Skin(Gdx.files.internal("skin/vhs/skin/vhs-ui.json"));
         batch = new SpriteBatch();
         stage = new Stage(new ScreenViewport());
         gamecam = new OrthographicCamera();
@@ -63,16 +63,16 @@ public class LoseScreen implements Screen {
         font = generator.generateFont(parameter);
         generator.dispose();
 
-        menuBtn = new TextButton("Go to Main Menu", skin);
-        nextLvl = new TextButton("Skip to level 3", skin);
-        restartLvl = new TextButton("Restart level 2", skin);
+        menuBtn = new TextButton(">>Go to Main Menu<<", skin);
+        nextLvl = new TextButton(">>Skip to level 3<<", skin);
+        restartLvl = new TextButton(">>Restart level 2<<", skin);
 
-        menuBtn.setPosition(Gdx.graphics.getWidth() / 2 - menuBtn.getWidth()/2, Gdx.graphics.getHeight() / 2);
+        menuBtn.setPosition(Gdx.graphics.getWidth() / 2 - menuBtn.getWidth()/2, Gdx.graphics.getHeight() / 2 + 50);
         menuBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Back to menu");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(LoseScreen.this.game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(Level2LoseScreen.this.game));
                 dispose();
             }
 
@@ -82,13 +82,13 @@ public class LoseScreen implements Screen {
             }
         });
 
-        nextLvl.setPosition(Gdx.graphics.getWidth() / 2 - menuBtn.getWidth()/2 - 30 - nextLvl.getWidth(), Gdx.graphics.getHeight()/2);
+        nextLvl.setPosition(Gdx.graphics.getWidth() / 2 - nextLvl.getWidth()/2, Gdx.graphics.getHeight()/2 - 30);
         nextLvl.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Go to lv3");
                 dispose();
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(LoseScreen.this.game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(Level2LoseScreen.this.game));
             }
 
             @Override
@@ -97,13 +97,13 @@ public class LoseScreen implements Screen {
             }
         });
 
-        restartLvl.setPosition(Gdx.graphics.getWidth() / 2 + menuBtn.getWidth()/2 + 30, Gdx.graphics.getHeight()/2);
+        restartLvl.setPosition(Gdx.graphics.getWidth() / 2 - restartLvl.getWidth()/2, Gdx.graphics.getHeight()/2 + 130);
         restartLvl.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Restart lv 2");
                 dispose();
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(LoseScreen.this.game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(Level2LoseScreen.this.game));
             }
 
             @Override
@@ -126,7 +126,7 @@ public class LoseScreen implements Screen {
 
         batch.draw(bg, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        fontGlyph.setText(font, "Unfortunately, you lost at level " + loseScore + ".");
+        fontGlyph.setText(font, "Unfortunately, you lost at question " + loseScore + ".");
         font.draw(batch, fontGlyph, (Gdx.graphics.getWidth() - fontGlyph.width) / 2, Gdx.graphics.getHeight() - fontGlyph.height);
 
         fontGlyph2.setText(font, "Would you like to...");

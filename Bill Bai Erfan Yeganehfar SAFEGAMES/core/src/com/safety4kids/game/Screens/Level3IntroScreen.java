@@ -15,8 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.safety4kids.game.Safety4Kids;
 
 
-//created june 6 2hrs
-public class Level2IntroScreen implements Screen {
+public class Level3IntroScreen implements Screen {
 
     private SpriteBatch batch;
     private Safety4Kids game;
@@ -25,13 +24,12 @@ public class Level2IntroScreen implements Screen {
 
     private float alpha = 0;
     private boolean fadeIn = true;
-    private boolean fadeOut = false;
 
     private Skin skin;
     private Stage stage;
     private TextButton contBtn;
 
-    public Level2IntroScreen(Safety4Kids game) {
+    public Level3IntroScreen(Safety4Kids game) {
         this.game = game;
         batch = new SpriteBatch();
         bg = new Texture(Gdx.files.internal("Lv2Assets/Lv2Intro.png"));
@@ -49,7 +47,7 @@ public class Level2IntroScreen implements Screen {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Continue...");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(Level2IntroScreen.this.game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(Level3IntroScreen.this.game));
                 dispose();
             }
 
