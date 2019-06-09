@@ -21,13 +21,10 @@ import com.safety4kids.game.Safety4Kids;
  * This class displays the main menu which has buttons to allow the user to visit different stages such as Instructions,
  * first level, or exit.
  *
- * @version 3.0, 2019-05-28
- * @author Erfan Yeganehfar
- * @author Bill Bai
+ * @author Bill Bai, Erfan Yeganehfar
  * Ms. Krasteva
  *
- * Modifications:
- * 3.1 Bill Bai: (2019-05-30) Recreated background, rearranged and restyled buttons. -- 0.5hrs
+ * @version 3.7 06/09/19
  */
 public class MainMenu implements Screen {
 
