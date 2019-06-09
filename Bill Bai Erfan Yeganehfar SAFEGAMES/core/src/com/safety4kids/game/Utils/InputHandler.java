@@ -60,7 +60,7 @@ public class InputHandler implements InputProcessor {
     }
 
     /**
-     * Shifts the
+     * Shifts the location of
      */
     public void moveRight() {
         player.b2body.applyLinearImpulse(new Vector2(0.07f, 0), player.b2body.getWorldCenter(), true);
