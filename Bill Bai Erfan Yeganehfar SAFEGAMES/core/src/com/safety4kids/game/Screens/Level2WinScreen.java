@@ -66,15 +66,15 @@ public class Level2WinScreen implements Screen {
         bgSprite.draw(batch);
         batch.end();
 
-        if (fadeIn) {
-            alpha += (1f / 60f) / 5;
-            if (alpha >= 1) {
-                fadeIn = false;
-                System.out.println("done");
-            }
-        }
-
-        bgSprite.setAlpha(alpha);
+//        if (fadeIn) {
+//            alpha += (1f / 60f) / 5;
+//            if (alpha >= 1) {
+//                fadeIn = false;
+//                System.out.println("done");
+//            }
+//        }
+//
+//        bgSprite.setAlpha(alpha);
 
         stage.draw();
     }

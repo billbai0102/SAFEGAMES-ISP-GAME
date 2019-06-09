@@ -205,8 +205,6 @@ public class Level2Screen extends GameScreen implements Screen {
                 break;
             case RESUME: //when they lose (will change)
 
-                float delay = 2.0f;
-
                 if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
                     if (pauseProgram) {
                         questions.remove(curQuestionIndex);
