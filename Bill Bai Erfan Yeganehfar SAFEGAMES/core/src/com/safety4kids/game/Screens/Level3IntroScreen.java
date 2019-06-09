@@ -47,7 +47,7 @@ public class Level3IntroScreen implements Screen {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Continue...");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(Level3IntroScreen.this.game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(new Safety4Kids()));
                 dispose();
             }
 

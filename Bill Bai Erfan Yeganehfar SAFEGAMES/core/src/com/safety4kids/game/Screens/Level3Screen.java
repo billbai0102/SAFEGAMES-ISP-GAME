@@ -45,7 +45,7 @@ public class Level3Screen extends GameScreen {
         hud = new Hud(batch, true, 3);
 
         //Loads, fixes (added padding), and creates the renderer for the TileMap for level 1
-        map = new TmxMapLoader().load("MapAssets/level1a.tmx");
+        map = new TmxMapLoader().load("MapAssets/level3.tmx");
         tiledMapRenderer = new CustomMapRenderer(map, 1 / PPM);
         renderer = new OrthogonalTiledMapRenderer(map, 1 / PPM);
 
