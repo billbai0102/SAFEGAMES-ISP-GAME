@@ -169,6 +169,7 @@ public class Level2LoseScreen implements Screen {
         bg.dispose();
         font.dispose();
         skin.dispose();
+        game.dispose();
     }
 }
 

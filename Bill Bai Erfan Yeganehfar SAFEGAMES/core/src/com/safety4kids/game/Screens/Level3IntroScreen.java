@@ -107,8 +107,9 @@ public class Level3IntroScreen implements Screen {
     @Override
     public void dispose() {
         batch.dispose();
+        game.dispose();
         bg.dispose();
+        stage.dispose();
         skin.dispose();
-        stage.draw();
     }
 }

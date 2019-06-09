@@ -484,6 +484,7 @@ public class Level2Screen extends GameScreen implements Screen {
         batch.dispose();
         wrongFont.dispose();
         correctFont.dispose();
+        game.dispose();
     }
 
     /**

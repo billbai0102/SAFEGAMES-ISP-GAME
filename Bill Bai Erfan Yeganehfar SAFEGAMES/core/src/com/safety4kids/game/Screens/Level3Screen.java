@@ -11,6 +11,7 @@ import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.Box2DCollisionCreator;
+import com.safety4kids.game.Utils.GameContactListener;
 import com.safety4kids.game.Utils.InputHandler;
 import com.safety4kids.game.Utils.CustomMapRenderer;
 
@@ -165,6 +166,7 @@ public class Level3Screen extends GameScreen {
         hud.dispose();
         atlas.dispose();
         batch.dispose();
+        game.dispose();
 
     }
 

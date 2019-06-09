@@ -158,5 +158,6 @@ public class MainMenu implements Screen {
         stage.dispose();
         backgroundImg.dispose();
         batch.dispose();
+        game.dispose();
     }
 }
