@@ -20,8 +20,8 @@ import com.safety4kids.game.Utils.Box2DCollisionCreator;
 import com.safety4kids.game.Utils.GameContactListener;
 import com.safety4kids.game.Utils.InputHandler;
 import com.safety4kids.game.Utils.CustomMapRenderer;
-
 import static com.safety4kids.game.Safety4Kids.*;
+
 
 /**
  * This Class represents the states that both level 1 and 3 inherit from.
@@ -40,6 +40,9 @@ import static com.safety4kids.game.Safety4Kids.*;
  */
 public abstract class GameScreen implements Screen {
 
+    /**
+     * Different enums representing th States of the game
+     */
     public enum GameState
     {
         NEXT_LEVEL,
@@ -49,10 +52,14 @@ public abstract class GameScreen implements Screen {
         LOSE
     }
 
+    //Overlay stages
     protected Pause pause;
     protected Hud hud;
 
+    //game state
     public GameState state;
+
+    //Basic functions fo the game, game cam, view ports, input handler, and sprites
     protected Safety4Kids game;
     protected SpriteBatch batch;
     protected OrthographicCamera gameCam;
@@ -73,11 +80,12 @@ public abstract class GameScreen implements Screen {
     //Instance of the main character
     protected MainPlayer player;
 
+    //Paused state
     protected boolean isPaused;
 
     /**
-     * The constructor creates all the base necessary components of the platformer. Which is the actual game,
-     * the sprite batches, game camera, viewport, and a Box2d world
+     * The constructor of the GameScreen, creates all the base necessary components of the platformer. Which is the actual game,
+     * the sprite batches, game camera, viewport, and a Box2d world and contact listeners
      */
     public GameScreen(){
         game = new Safety4Kids();
@@ -104,36 +112,71 @@ public abstract class GameScreen implements Screen {
 
     }
 
+    /**
+     * gets the current box2d game world
+     * @return the box2d game world
+     */
     public World getWorld() {
         return world;
     }
 
+    /**
+     * gets the texture atlas to be used for the sprites
+     * @return the texture atlas
+     */
     public TextureAtlas getAtlas() {
         return atlas;
     }
 
+    /**
+     * each render tick has an update execution to change the game application based on inputs and events
+     * @param dt The target frame rate minus the time taken to complete this frame is called the delta time, used to keep the frames consistant across platforms
+     */
     public abstract void update(float dt);
+
+    /**
+     * Rendering allows the game to be drawn to the screen while still updating the game, basically a dynamic drawing method
+     * @param delta The target frame rate minus the time taken to complete this frame is called the delta time, used to keep the frames consistant across platforms
+     */
     public abstract void render(float delta);
+
+    /**
+     * Resizes the viewport of the game to better fit the moniter
+     * @param width the games width
+     * @param height the games height
+     */
     public abstract void resize(int width, int height);
     public abstract void dispose();
 
+    /**
+     * Hides the game when the window is not active
+     */
     @Override
     public void hide() {
         pause();
         isPaused = true;
     }
 
+    /**
+     * displays the game when the window is active
+     */
     @Override
     public void show() {
 
     }
 
+    /**
+     * puases th game when invoked
+     */
     @Override
     public void pause() {
         isPaused = true;
 
     }
 
+    /**
+     * resumes the game after a pause when invoked
+     */
     @Override
     public void resume() {
         isPaused = false;
