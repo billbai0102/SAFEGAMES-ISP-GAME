@@ -10,20 +10,21 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.safety4kids.game.Utils.SplashScreenLogo;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * This class serves as the splash screen to the program. It displays the company logo.
  *
- * @author Erfan Yeganehfar
- * @author Bill Bai
  * <p>
  * Ms. Krasteva
  * <p>
- * Modifications:
- * Bill Bai: (2019-05-28) Completed entire class. Time spent: 1 hour.
+ *
+ * @author Erfan Yeganehfar
+ * @author Bill Bai
  * @version 3.0, 2019-05-28
  */
 public class IntroAnimation implements Screen {
@@ -70,15 +71,17 @@ public class IntroAnimation implements Screen {
         logo.draw(batch);
         batch.end();
 
-        game.setScreen(new MainMenu(game));
+        //game.setScreen(new MainMenu(game));
 
-//        if(logo.getX() < Gdx.graphics.getWidth()/2 - 200) {
-//            logo.moveRight(Gdx.graphics.getDeltaTime());
-//        }else if (logo.getX() > Gdx.graphics.getWidth()/2 - 200 && logo.getAlpha() >= 0) {
-//            logo.fade();
-//        }else{
-//            game.setScreen(new MainMenu(game));
-//        }
+        if (logo.getX() < Gdx.graphics.getWidth() / 2 - 200) {
+            logo.moveRight(Gdx.graphics.getDeltaTime());
+        } else if (logo.getX() > Gdx.graphics.getWidth() / 2 - 200 && logo.getAlpha() >= 0) {
+            logo.fade();
+        } else {
+            logo.dispose();
+            game.setScreen(new MainMenu(game));
+        }
+
     }
 
     static TextureAtlas playerTexture = new TextureAtlas(Gdx.files.internal("Lv2Assets/Lv2Sprites.atlas"));
@@ -106,10 +109,10 @@ public class IntroAnimation implements Screen {
     public void loadLevel2Questions() {
         try {
             //TODO change to allow jar work
-           // InputStream in = getClass().getResourceAsStream("Level2Questions.txt");
-           // BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            // InputStream in = getClass().getResourceAsStream("Level2Questions.txt");
+            // BufferedReader br = new BufferedReader(new InputStreamReader(in));
 
-           // BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("~/core/assets/Lv2Assets/Level2Questions.txt")));
+            // BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("~/core/assets/Lv2Assets/Level2Questions.txt")));
 
             BufferedReader br = new BufferedReader(new FileReader("Lv2Assets/Level2Questions.txt"));
             for (int x = 0; x < 20; x++) {
@@ -133,7 +136,7 @@ public class IntroAnimation implements Screen {
         }
     }
 
-    public SpriteBatch getBatch(){
+    public SpriteBatch getBatch() {
         return batch;
     }
 
@@ -141,7 +144,6 @@ public class IntroAnimation implements Screen {
     public void dispose() {
         stage.dispose();
         batch.dispose();
-        game.dispose();
         logo.dispose();
     }
 
