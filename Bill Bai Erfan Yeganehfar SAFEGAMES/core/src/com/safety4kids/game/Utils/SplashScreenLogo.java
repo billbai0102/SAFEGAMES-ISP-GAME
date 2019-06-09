@@ -12,8 +12,8 @@ import com.badlogic.gdx.utils.Disposable;
  * variables that alter it's positioning on the screen and it's alpha value, which is it's transparency.
  *
  * @author Bill Bai, Erfan Yeganehfar
+ * Ms. Krasteva
  * @version 3.2 06/06/19
- *
  */
 public class SplashScreenLogo implements Disposable {
     /**
@@ -40,12 +40,12 @@ public class SplashScreenLogo implements Disposable {
      * This is the constructor, that creates the instance of SplashScreenLogo. It initializes bottom, texture, sprite,
      * alpha, and places the sprite at location 0,0.
      */
-    public SplashScreenLogo(){
-        bottom = new Rectangle(0.0f,0.0f,400.0f,400.0f); //Creates new rectangle, 400x400
+    public SplashScreenLogo() {
+        bottom = new Rectangle(0.0f, 0.0f, 400.0f, 400.0f); //Creates new rectangle, 400x400
         texture = new Texture(Gdx.files.internal("SAFEGAMES_Logo.png")); //Texture containing image of logo
         sprite = new Sprite(texture); //Creates sprite, with texture on it
-        sprite.setSize(400,400);//Sets size of sprite to 400x400
-        this.setPosition(0,0); //Sets position of <i>this</i> object to 0,0
+        sprite.setSize(400, 400);//Sets size of sprite to 400x400
+        this.setPosition(0, 0); //Sets position of <i>this</i> object to 0,0
         alpha = 1; //Sets starting alpha value of sprite to 1
     }
 
@@ -56,16 +56,16 @@ public class SplashScreenLogo implements Disposable {
      * @param x The new x-location of the sprite.
      * @param y The new y-location of the sprite.
      */
-    public void setPosition(float x, float y){
+    public void setPosition(float x, float y) {
         bottom.x = x; //Sets x of Rectangle to x
         bottom.y = y; //Sets y of Rectangle to y
-        sprite.setPosition(x,y); //Sets position of sprite to x,y
+        sprite.setPosition(x, y); //Sets position of sprite to x,y
     }
 
     /**
      * This method decreases the alpha value of the sprite, giving it a fading out appearance.
      */
-    public void fade(){
+    public void fade() {
         alpha -= (1f / 60f) / 3; //Decreases the alpha value of sprite
         sprite.setAlpha(alpha); //Resets sprite alpha to new alpha value
     }
@@ -75,7 +75,7 @@ public class SplashScreenLogo implements Disposable {
      *
      * @return The alpha value of the sprite.
      */
-    public float getAlpha(){
+    public float getAlpha() {
         return alpha; //Returns alpha
     }
 
@@ -84,7 +84,7 @@ public class SplashScreenLogo implements Disposable {
      *
      * @return The sprite's x-location.
      */
-    public float getX(){
+    public float getX() {
         return sprite.getX(); //Returns X loc of sprite
     }
 
@@ -93,9 +93,9 @@ public class SplashScreenLogo implements Disposable {
      *
      * @param delta
      */
-    public void moveRight(float delta){
-        bottom.x += 175*delta; //Increases Rectangle x value
-        sprite.setPosition(bottom.x,bottom.y); //Resets position of the sprite to new location
+    public void moveRight(float delta) {
+        bottom.x += 175 * delta; //Increases Rectangle x value
+        sprite.setPosition(bottom.x, bottom.y); //Resets position of the sprite to new location
     }
 
     /**
@@ -103,7 +103,7 @@ public class SplashScreenLogo implements Disposable {
      *
      * @param spriteBatch The SpriteBatch object to be drawn onto.
      */
-    public void draw(SpriteBatch spriteBatch){
+    public void draw(SpriteBatch spriteBatch) {
         sprite.draw(spriteBatch); //Draws sprite
     }
 

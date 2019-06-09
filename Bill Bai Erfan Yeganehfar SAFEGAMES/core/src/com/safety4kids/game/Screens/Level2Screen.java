@@ -104,6 +104,7 @@ public class Level2Screen extends GameScreen implements Screen {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Go to menu");
+                curQuestionIndex--;
                 ((Game)Gdx.app.getApplicationListener()).setScreen(new MainMenu(Level2Screen.this.game));
                 dispose();
             }

@@ -2,7 +2,6 @@ package com.safety4kids.game.Utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 import com.safety4kids.game.Entities.MainPlayer;
 
@@ -16,8 +15,11 @@ import static com.safety4kids.game.Safety4Kids.MIN_VELOCITY;
  * @author Erfan Yeganehfar, Bill Bai
  * @version 3.6 06/07/19
  */
-public class InputHandler implements InputProcessor {
-    //Instance of the main character
+public class InputHandler{
+
+    /**
+     * This is the instance of the <i>MainPlayer</i> object, that will be altered by the <i>InputHandler</i> object.
+     */
     private static MainPlayer player;
 
     /**
@@ -37,7 +39,6 @@ public class InputHandler implements InputProcessor {
      * will shift the location of the <i>MainPlayer</i> object right.
      * <br> If the left key or A key is pressed, it will call the moveLeft method of this class, which
      * will shift the location of the <i>MainPlayer</i> object left.
-     * <br>TODO: Remove the unused comments?
      */
     public void inputProcess() {
         //If up or W key is pressed
@@ -72,46 +73,5 @@ public class InputHandler implements InputProcessor {
      */
     public void moveLeft() {
         player.b2body.applyLinearImpulse(new Vector2(-0.07f, 0), player.b2body.getWorldCenter(), true);
-    }
-
-
-    @Override
-    public boolean keyDown(int keycode) {
-        return false;
-    }
-
-    @Override
-    public boolean keyUp(int keycode) {
-        return Gdx.input.isKeyPressed(keycode) ? false : true;
-    }
-
-    @Override
-    public boolean scrolled(int amount) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return false;
-    }
-
-    @Override
-    public boolean mouseMoved(int screenX, int screenY) {
-        return false;
-    }
-
-    @Override
-    public boolean keyTyped(char character) {
-        return false;
     }
 }
