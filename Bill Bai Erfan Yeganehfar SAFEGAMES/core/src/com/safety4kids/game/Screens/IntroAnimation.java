@@ -3,6 +3,7 @@ package com.safety4kids.game.Screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -108,25 +109,34 @@ public class IntroAnimation implements Screen {
 
     public void loadLevel2Questions() {
         try {
-            //TODO change to allow jar work
-            // InputStream in = getClass().getResourceAsStream("Level2Questions.txt");
-            // BufferedReader br = new BufferedReader(new InputStreamReader(in));
-
-            // BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("~/core/assets/Lv2Assets/Level2Questions.txt")));
-
-            BufferedReader br = new BufferedReader(new FileReader("Lv2Assets/Level2Questions.txt"));
-            for (int x = 0; x < 20; x++) {
+            FileHandle file = Gdx.files.internal("Lv2Assets/Level2Questions.txt");
+            for(int x = 0; x < 20; x++){
                 ArrayList<String> txtAnswer = new ArrayList<String>();
-                questions.add(br.readLine());
-                for (int y = 0; y < 4; y++) {
-                    txtAnswer.add(y, br.readLine());
+                questions.add(file.readString());
+                for(int y = 0; y < 4; y++){
+                    txtAnswer.add(y, file.readString());
                 }
                 answers.add(x, txtAnswer);
             }
 
-            br = new BufferedReader(new FileReader("Lv2Assets/Level2QuestionHelp.txt"));
+
+            // BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("~/core/assets/Lv2Assets/Level2Questions.txt")));
+
+//            BufferedReader br = new BufferedReader(new FileReader("Lv2Assets/Level2Questions.txt"));
+//            for (int x = 0; x < 20; x++) {
+//                ArrayList<String> txtAnswer = new ArrayList<String>();
+//                questions.add(br.readLine());
+//                for (int y = 0; y < 4; y++) {
+//                    txtAnswer.add(y, br.readLine());
+//                }
+//                answers.add(x, txtAnswer);
+//            }
+            BufferedReader br = new BufferedReader(new FileReader("Lv2Assets/Level2Questions.txt"));
+         //   br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("Level2Questions.txt")));
+         //   BufferedReader ef = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("Level2Questions.txt")));
             for (int x = 0; x < 20; x++) {
                 questionHelp.add(br.readLine());
+               // ef.readLine();
             }
 
             br.close();
