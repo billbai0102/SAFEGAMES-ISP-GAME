@@ -257,7 +257,7 @@ public class Level1Screen extends GameScreen {
             fontGlyph.setText(font, "And the rest will require you to use your safety intuition.");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL / 2 + fontGlyph.height);
             fontGlyphMiddle.setText(font, "That means your ability to do the right thing!");
-            font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL - fontGlyph.height - 10);
+            font.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, TEXT_CEIL / 2 + fontGlyph.height - fontGlyphMiddle.height - 10);
         } else if (xPos < 11) {
             fontGlyph.setText(font, "So let's get started. First, I'm going to teach you about fire.");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);

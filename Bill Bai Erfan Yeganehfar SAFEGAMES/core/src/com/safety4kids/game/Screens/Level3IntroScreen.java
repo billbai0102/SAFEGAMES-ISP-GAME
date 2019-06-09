@@ -22,7 +22,7 @@ public class Level3IntroScreen implements Screen {
     private Texture bg;
     private Sprite bgSprite;
 
-    private float alpha = 0;
+    private float alpha = 1;
     private boolean fadeIn = true;
 
     private Skin skin;
@@ -66,19 +66,19 @@ public class Level3IntroScreen implements Screen {
         bgSprite.draw(batch);
         batch.end();
 
-        if (fadeIn) {
-            alpha += (1f / 60f) / 5;
-            if (alpha >= 1) {
-                fadeIn = false;
-                System.out.println("done");
-            }
-        }
+//        if (fadeIn) {
+//            alpha += (1f / 60f) / 5;
+//            if (alpha >= 1) {
+//                fadeIn = false;
+//                System.out.println("done");
+//            }
+//        }
 
         bgSprite.setAlpha(alpha);
 
-        if(alpha > 0.15) {
+//        if(alpha > 0.15) {
             stage.draw();
-        }
+//        }
     }
 
     @Override

@@ -88,7 +88,7 @@ public class Level2LoseScreen implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Go to lv3");
                 dispose();
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(Level2LoseScreen.this.game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3IntroScreen(Level2LoseScreen.this.game));
             }
 
             @Override
