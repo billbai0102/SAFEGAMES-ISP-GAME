@@ -79,7 +79,7 @@ public class MainPlayer extends Sprite{
         playerJump = new TextureRegion(screen.getAtlas().findRegion("jump"), 9, 4, 15, 24);
 
         creatBox2D();
-        setBounds(startPosX / Safety4Kids.PPM,startPosY / Safety4Kids.PPM, 17f / Safety4Kids.PPM, 29f / Safety4Kids.PPM);
+        setBounds(startPosX / Safety4Kids.PPM,startPosY / Safety4Kids.PPM , 17f / Safety4Kids.PPM, 30f / Safety4Kids.PPM);
         setRegion(playerIdle);
     }
 
@@ -109,7 +109,8 @@ public class MainPlayer extends Sprite{
 
         //Sets the filtering bits of the body as the Player bit category
         fdef.filter.categoryBits = B2DConstants.BIT_PLAYER;
-        //Defines what the player can
+
+        //Defines what the player can collide with
         fdef.filter.maskBits = B2DConstants.PLATFORM_BIT | B2DConstants.BIT_COIN
                 | B2DConstants.BIT_BREAKABLE_BLOCK | B2DConstants.BIT_HAZARD | B2DConstants.BIT_OBJECT;
 
@@ -117,18 +118,18 @@ public class MainPlayer extends Sprite{
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(this);
 
-        EdgeShape feet = new EdgeShape();
+        /*EdgeShape feet = new EdgeShape();
         feet.set(new Vector2(-5.6f / Safety4Kids.PPM, -14f / Safety4Kids.PPM), new Vector2(5f / Safety4Kids.PPM, -14f / Safety4Kids.PPM));
         fdef.shape = feet;
         fdef.isSensor = false;
-        b2body.createFixture(fdef).setUserData("feet");
+        b2body.createFixture(fdef).setUserData("feet");*/
 
-        EdgeShape hat = new EdgeShape();
+        /*EdgeShape hat = new EdgeShape();
         hat.set(new Vector2(-3.5f / Safety4Kids.PPM,  14f/ Safety4Kids.PPM), new Vector2(3.5f / Safety4Kids.PPM, 14f / Safety4Kids.PPM));
         fdef.filter.categoryBits = B2DConstants.BIT_PLAYER_HAT;
         fdef.shape = hat;
         fdef.isSensor = false;
-        b2body.createFixture(fdef).setUserData(this);
+        b2body.createFixture(fdef).setUserData(this);*/
 
 
 

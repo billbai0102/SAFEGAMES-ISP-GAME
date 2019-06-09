@@ -26,7 +26,7 @@ public class B2DConstants {
 	 */
 	public static final short BIT_DESTROYED = 16;
 	/**
-	 * The collision bit filter for InteractiveTile objects.
+	 * The collision bit filter for  objects.
 	 */
 	public static final short BIT_OBJECT = 32;
 	/**

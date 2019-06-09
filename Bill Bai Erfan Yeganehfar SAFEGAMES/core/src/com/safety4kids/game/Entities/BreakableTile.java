@@ -18,5 +18,11 @@ public class BreakableTile extends InteractiveTile {
 
     }
 
-
+    @Override
+    public void onHatContact(MainPlayer player) {
+        Gdx.app.log("bruh", "Collision");
+        setCatFilter(B2DConstants.BIT_DESTROYED);
+        getCell().setTile(null);
+        Hud.addPoints(100);
+    }
 }

@@ -79,12 +79,13 @@ public class Box2DCollisionCreator {
             fdef.filter.categoryBits = B2DConstants.BIT_OBJECT;
             body.createFixture(fdef);
         }
-        for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
+
+        for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
             new BreakableTile(screen, object);
 
         }
 
-        for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
             new CoinObj(screen, object);
         }
 

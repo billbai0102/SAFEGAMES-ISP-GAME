@@ -16,8 +16,8 @@ public class CoinObj extends InteractiveTile {
         setCatFilter(B2DConstants.BIT_COIN);
     }
 
-//    @Override
-//    public void onHatContact(MainPlayer player) {
-//        Gdx.app.log("coin", "Collision");
-//    }
+    @Override
+    public void onHatContact(MainPlayer player) {
+        Gdx.app.log("coin", "Collision");
+    }
 }

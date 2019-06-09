@@ -106,10 +106,6 @@ public abstract class GameScreen implements Screen {
 
         world = new World(new Vector2(0,CONST_GRAVITY),true);
         b2dr = new Box2DDebugRenderer();
-
-
-        world.setContactListener(new GameContactListener(player));
-
     }
 
     /**
