@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="240" height="29" tilewidth="16" tileheight="16" infinite="0" nextlayerid="16" nextobjectid="322">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="240" height="29" tilewidth="16" tileheight="16" infinite="0" nextlayerid="17" nextobjectid="329">
  <tileset firstgid="1" source="props.tsx"/>
  <tileset firstgid="365" source="back.tsx"/>
  <tileset firstgid="725" source="tileset.tsx"/>
@@ -11,12 +11,12 @@
  </layer>
  <layer id="2" name="Graphic layer" width="240" height="29">
   <data encoding="base64" compression="zlib">
-   eJzt2kdPFGEcgPFZgY+g2aNi7zV2saNgOdrFrhytCHY92hN7OYrtYj/bTipYol9BE41+Aj34bNzJGiIgy86W4XmSX5ad7M68G/JneAlBYGZmZmZmZmZmZmZmZmZmceonfhV6EWaWVb0TQdAnUehVmFk2tZQHQWt5oVdhZtn0mdn94vyalVThvtf7r1npFe57w/vvSI6NwmiMwViMw3hMSL+nEv0xAAMxCIMxJAfrqWzneOrcQzEMwzEiB9ey7HpfVugVWNvC+/ACLEQNarEIi7EES9OvnY4ZqMJMzMJszIlwfalzz8U8zEd1hNfqqfXl53i/Tv6GGbfZ7ezzfCqRzxvehzfw9UZswmZswVZsQ336tcuwHCuwEquwGmsiXuNa1GEd1nfhffWdv6QkO9crt+ebyvd/WgfzG6fZ7cpnKeYZDve94eN+jh3AQRzCYRzBURxLv2c7dmAndmE39qAhD+ttRBP25eFalqmnzm5Ysc5wuO8NHy9w7CIu4TKu4Cqu4Xr6PcdxAidxCqdxBmfzuO7zebyWxaM4/QwKq07/vhTuf+/hPh7gIR7hMZ4Emf3RDb5uxk3cwm3cwV0kE93/X67mNs//Z19m1lG5mN1ivAfXMBe1icz+9xXHXuMNWtCKt3gXZPZHVXjK82d4jhd4GfyZ3eRf50rmYOZS1/rXvmxiRRBMwmRMqej+dSy+5fK+W4wzXIo1MLN70Ygm59faKYrfmZ1hs2hLze2HiObsY5kzbBZlX5mvbxHN2HfO+8P5NTMzMzMzMzMzM7MY9xvdd2qG
+   eJztmslOFFEYRm8LvIGaXirO87hyQEWCgkN046yJqMDSETEOIO6cE6OCsBSnjRNsnTcqOETjG2ii0RdQF56KddOkInRbVFED30lOqvvSde9fTX99+++0MUIIIYQQQgghhBBCCCGEEEIIIdLEL/wddRFCCF+MyhgzOhN1FUIIP/QUG9NbHHUVQgg/fCa7X5RfIRKF7Xu1/wqRPGzfa/ffGYzNxFk4G+fgXJyH891zSnEcjscJOBEn4eQA6intZ9yZewpOxWk4PYC1hD/eFUVdgfBi9+EVuBKrsBpX4Wpcg2vdxy7CxViGS3ApLsPyEOtz5l6OFRGtPxwYw/v42DzfYaYtu/mu52NCrtfuwzu5XYO7cDfuwVqsw3r3sRtwI27CzbgFt+K2kGvcjjt8rF/fz3jSuTQi2PkW8P9fOEB+05Td/7mWOGfY9r32eJSxY3gcT2ATNuNJbHHP2Yv7cD8ewIN4CBuGoN7GAtYv5zoqPFaqtx8UwzW7lrhm2Pa99niZsSt4FVuxDa9hO3a455zGM3gWz+F5vIAXh6jmfOvXch11+InnfB3H9cquMOl6D7JUup+XbP97F+/hfXyAD7ELu02uP7rO7U68gTfxFt7GO5jNDP63XJ2e+96+bKD1HZrIa7Ob3xaOpwrI70+Tqzur37GkjiCyG8c9uIrXanUm1/++ZOwVvsYe7MU3+Nbk+qMyfMz9J/gUn+Fz8/d1n+0zVxA5cNby9mWPzL/Xf+H+vZW8trn5befYUUB+R/ap2z4nIh0Eue/GMcNJpKHEmMPYiEdKoq5GxJUwPjMrw0KEi5Pb9yHl7EORMixEmHwlX99Cyth35v2h/AohhBBCCCGEEEIIIYRIMX8A7cSJ6Q==
   </data>
  </layer>
  <layer id="6" name="Mid Layer" width="240" height="29">
   <data encoding="base64" compression="zlib">
-   eJzt2csuA3EYQPH/0L4AISJs3B+BhLo8hPtDuIcNe/eHcFtgzcKCBRY8Bs9AWDgbyWSS0kwnGa3zS06azkzbb/OlnTQESZIkSZIkSZIkSVI9eKP3vIeQlEpTFEJzlPcUktJ4KoTwXMh7CklpvLC7r+6vJEk1o4u6qYd6qY/6aSDPoaR/JM397zCNxB5LNEpjNE4TmU4oqZxq7n8naYqmaYZmaY7msxpO0o8+6DPlaxdokZZomVZoldayGU3SL1qiEFor/P+3PXHdNu3QLu3RPh3QYZYDolTk93kx4zeV6kRbYi8beN6YOHZOF3QZO3ZEx3RCp3RW5rpqbbK7W+6vVJEOdrczsb/39ECPsWNXdE03dEt3Za5LI/md+/1ZcYOcH3KvpT+nku/cdc5vuL+SJEmSJEmSJEmSJKnGfQEv5S3p
+   eJzt2TlKxFAcgPEXZ+YCiiKijfsh3A/hfgh39ACD4H4It0KttbDQQi30GHoGRQu/QjAMThwywaB+P/gIebyEf/OKkBAkSZIkSZIkSZIkSX/BM73kPYSkVBqjEJqivKeQlMZ9MYSHYt5TSErjkbP75PmVJOnX6KQu6qYe6qU+6s9zKOkfSfP9O0CDsesQDdMIjdJYphNKqqae799xmqBJmqJpmqHZrIaTlOiV3lI+O0fztECLtETLtJLNaJK+0RyF0FLj/9+2in0btElbtE07tEt7WQ4oKVFrxbls4L5QsXZCp3QWW9unAzqkIzqusk/Sz2nn7HbQeuFz7YZu6Y7KH+vndEGXdEXXX+yLvyONcsLztb6/3hkkZW+1FMJaKe8pJEmSJEmSJEmSJEmS6vMOMO4tKQ==
   </data>
  </layer>
  <objectgroup id="3" name="Ground">
@@ -76,6 +76,13 @@
   <object id="303" x="3263.09" y="288" width="16.9091" height="32"/>
   <object id="304" x="3280" y="304" width="16" height="32"/>
   <object id="305" x="3296" y="320" width="16" height="16"/>
+  <object id="328" x="848" y="256" width="96" height="16"/>
+ </objectgroup>
+ <objectgroup id="16" name="Object">
+  <object id="322" x="640" y="304" width="16" height="16"/>
+  <object id="323" x="656" y="288" width="32" height="32"/>
+  <object id="326" x="1072" y="288" width="48" height="32"/>
+  <object id="327" x="1120" y="304" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="14" name="Breakable"/>
  <objectgroup id="4" name="Coins"/>

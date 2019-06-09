@@ -20,6 +20,7 @@ import com.safety4kids.game.Screens.Level3Screen;
 public class Box2DCollisionCreator {
         private World world;
         private TiledMap map;
+
     public Box2DCollisionCreator(GameScreen screen) {
         world = screen.getWorld();
         if (screen instanceof Level1Screen)
@@ -34,6 +35,18 @@ public class Box2DCollisionCreator {
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
         Body body;
+
+        for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            bdef.type = BodyDef.BodyType.StaticBody;
+            bdef.position.set((rect.getX()+rect.getWidth()/2)/ Safety4Kids.PPM, (rect.getY() + rect.getHeight() / 2)/ Safety4Kids.PPM);
+            body = world.createBody(bdef);
+
+            shape.setAsBox(rect.getWidth()/2/ Safety4Kids.PPM,rect.getHeight()/2/ Safety4Kids.PPM);
+            fdef.shape = shape;
+            body.createFixture(fdef);
+        }
 
         for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();

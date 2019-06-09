@@ -21,9 +21,10 @@ public class MovingHazard extends Hazard {
     private float x;
     private float y;
     private GameScreen screen;
+    private String type;
 
 
-    public MovingHazard(GameScreen screen, float x, float y) {
+    public MovingHazard(GameScreen screen, float x, float y, String type) {
         super(screen, x, y);
         this.x = x;
         this.y = y;

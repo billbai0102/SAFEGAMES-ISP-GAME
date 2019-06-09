@@ -94,8 +94,8 @@ public class Level1Screen extends GameScreen {
         creator = new Box2DCollisionCreator(this);
 
         //The player is created inside of the Box2D world
-        player = new MainPlayer(this, 370, 200);
-        hazard = new MovingHazard(this, 450, 200);
+        player = new MainPlayer(this, 350, 200);
+        hazard = new MovingHazard(this, 450, 200, "bruh");
 
         //Processes input for the player
         input = new InputHandler(player);
@@ -223,8 +223,6 @@ public class Level1Screen extends GameScreen {
      * @param xPos  The character's x-position on the map.
      */
     public void drawText(SpriteBatch batch, float xPos) {
-        System.out.println(xPos);
-
         if (xPos < 4) {
             fontGlyph.setText(font, "Welcome to Safety4Kids!");
             font.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, TEXT_CEIL);

@@ -73,14 +73,14 @@ public class IntroAnimation implements Screen {
 
         //game.setScreen(new MainMenu(game));
 
-        if (logo.getX() < Gdx.graphics.getWidth() / 2 - 200) {
+        /*if (logo.getX() < Gdx.graphics.getWidth() / 2 - 200) {
             logo.moveRight(Gdx.graphics.getDeltaTime());
         } else if (logo.getX() > Gdx.graphics.getWidth() / 2 - 200 && logo.getAlpha() >= 0) {
             logo.fade();
         } else {
             logo.dispose();
             game.setScreen(new MainMenu(game));
-        }
+        }*/
 
     }
 
