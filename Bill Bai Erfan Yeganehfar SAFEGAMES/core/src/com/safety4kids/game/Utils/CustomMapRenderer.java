@@ -41,21 +41,21 @@ import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
  * Citation for BatchTiledMapRenderer: https://github.com/libgdx/libgdx/blob/master/gdx/src/com/badlogic/gdx/maps/tiled/renderers/BatchTiledMapRenderer.java
  * Citation for fixing leaks: https://badlogicgames.com/forum/viewtopic.php?f=11&t=16368
  */
-public class MyOrthogonalTiledMapRenderer extends BatchTiledMapRenderer {
+public class CustomMapRenderer extends BatchTiledMapRenderer {
 
-    public MyOrthogonalTiledMapRenderer (TiledMap map) {
+    public CustomMapRenderer(TiledMap map) {
         super(map);
     }
 
-    public MyOrthogonalTiledMapRenderer (TiledMap map, Batch batch) {
+    public CustomMapRenderer(TiledMap map, Batch batch) {
         super(map, batch);
     }
 
-    public MyOrthogonalTiledMapRenderer (TiledMap map, float unitScale) {
+    public CustomMapRenderer(TiledMap map, float unitScale) {
         super(map, unitScale);
     }
 
-    public MyOrthogonalTiledMapRenderer (TiledMap map, float unitScale, Batch batch) {
+    public CustomMapRenderer(TiledMap map, float unitScale, Batch batch) {
         super(map, unitScale, batch);
     }
 
