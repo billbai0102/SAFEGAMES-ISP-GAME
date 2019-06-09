@@ -42,9 +42,9 @@ public class Level2IntroScreen implements Screen {
         skin = new Skin(Gdx.files.internal("skin/vhs/skin/vhs-ui.json"));
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
-        contBtn = new TextButton(">Press to continue...<",skin);
+        contBtn = new TextButton(">Press to continue...<", skin);
         contBtn.setColor(Color.BLACK);
-        contBtn.setPosition(Gdx.graphics.getWidth() / 2 - contBtn.getWidth()/2, contBtn.getHeight() + 10);
+        contBtn.setPosition(Gdx.graphics.getWidth() / 2 - contBtn.getWidth() / 2, contBtn.getHeight() + 10);
         contBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
@@ -77,8 +77,9 @@ public class Level2IntroScreen implements Screen {
         }
 
         bgSprite.setAlpha(alpha);
-
-        stage.draw();
+        if (alpha > 0.15) {
+            stage.draw();
+        }
     }
 
     @Override

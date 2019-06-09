@@ -76,10 +76,10 @@ public class Level1IntroScreen implements Screen {
                 System.out.println("done");
             }
         }
-
         bgSprite.setAlpha(alpha);
-
-        stage.draw();
+        if(alpha > 0.15) {
+            stage.draw();
+        }
     }
 
     @Override

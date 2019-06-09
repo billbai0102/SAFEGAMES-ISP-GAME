@@ -76,7 +76,9 @@ public class Level3IntroScreen implements Screen {
 
         bgSprite.setAlpha(alpha);
 
-        stage.draw();
+        if(alpha > 0.15) {
+            stage.draw();
+        }
     }
 
     @Override

@@ -22,7 +22,7 @@ public class Level2WinScreen implements Screen {
     private Texture bg;
     private Sprite bgSprite;
 
-    private float alpha = 0;
+    private float alpha = 1;
     private boolean fadeIn = true;
 
     private Skin skin;
@@ -47,8 +47,8 @@ public class Level2WinScreen implements Screen {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Continue...");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(Level2WinScreen.this.game));
                 dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3IntroScreen(Level2WinScreen.this.game));
             }
 
             @Override
@@ -76,7 +76,9 @@ public class Level2WinScreen implements Screen {
 //
 //        bgSprite.setAlpha(alpha);
 
-        stage.draw();
+        if(alpha > 0.15) {
+            stage.draw();
+        }
     }
 
     @Override
