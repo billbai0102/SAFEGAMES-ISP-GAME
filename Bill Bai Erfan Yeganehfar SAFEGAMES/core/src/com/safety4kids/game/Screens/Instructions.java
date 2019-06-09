@@ -105,6 +105,7 @@ public class Instructions implements Screen {
     public void dispose() {
         backgroundImg.dispose();
         stage.dispose();
+        game.dispose();
         skin.dispose();
         batch.dispose();
     }

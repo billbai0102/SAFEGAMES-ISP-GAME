@@ -112,5 +112,6 @@ public class Level2WinScreen implements Screen {
         bg.dispose();
         skin.dispose();
         stage.draw();
+        game.dispose();
     }
 }

@@ -24,10 +24,10 @@ import com.safety4kids.game.Utils.CustomMapRenderer;
 import static com.safety4kids.game.Safety4Kids.*;
 
 /**
- * This Class represents the states that both level 1 and 2 inherit from.
- * This includes the base game functionalitiy like the gameCam, the sprite batches, the viewPorts and the Box2d World
+ * This Class represents the states that both level 1 and 3 inherit from.
+ * This includes the base game functionality like the gameCam, the sprite batches, the viewPorts and the Box2d World
  *
- * @version 3.1 2019-05-31
+ * @version 4.0 2019-05-31
  * @author Erfan Yeganehfar
  * @author Bill Bai
  *
@@ -36,12 +36,12 @@ import static com.safety4kids.game.Safety4Kids.*;
  * Modifications:
  * 3.1 Erfan Yeg: (2019-05-31) Created this Class for ease of use/ reasuability in the levels. -- 30mins
  * 3.2 Erfan Yeg: (2019-05-2) Added states to the levels, allowing the user to exit to the main menu -- 15mins
+ * 4.0 Added states variables enabling pause options, also added some get methods
  */
 public abstract class GameScreen implements Screen {
 
     public enum GameState
     {
-        PAUSE,
         NEXT_LEVEL,
         RUN,
         RESUME,
@@ -85,12 +85,13 @@ public abstract class GameScreen implements Screen {
         batch =  game.batch;
         state = GameState.RUN;
 
-        atlas = new TextureAtlas(Gdx.files.internal("MainPlayerAssets/MainPlayer.pack"));
+        atlas = new TextureAtlas(Gdx.files.internal("SpriteAssets/SpriteAssets.pack"));
 
-        pause = new Pause(batch, this);
 
         gameCam = new OrthographicCamera();
         gamePort = new FitViewport(V_WIDTH / PPM, V_HEIGHT / PPM, gameCam);
+
+        pause = new Pause(batch, this, gameCam);
 
         //sets the view point of the Orthographic Camera to better use of the 4 quadrants within a 2d grid system
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);

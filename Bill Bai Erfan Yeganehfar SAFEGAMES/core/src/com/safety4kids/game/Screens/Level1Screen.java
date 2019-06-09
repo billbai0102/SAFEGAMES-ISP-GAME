@@ -58,8 +58,6 @@ public class Level1Screen extends GameScreen {
     private InputHandler input;
     private MovingHazard hazard;
 
-    private final float STAGE_WIDTH = 225f;
-
     //Instance of the main character
     private MainPlayer player;
 
@@ -72,6 +70,7 @@ public class Level1Screen extends GameScreen {
     private GlyphLayout fontGlyphBottom = new GlyphLayout();
     private GlyphLayout fontGlyphBottom2 = new GlyphLayout();
     private final float TEXT_CEIL = 123f;
+    private final float STAGE_WIDTH = 225f;
 
 
     /**
@@ -456,6 +455,7 @@ public class Level1Screen extends GameScreen {
         font2.dispose();
         atlas.dispose();
         game.batch.dispose();
+        game.dispose();
     }
 
     public TiledMap getMap() {

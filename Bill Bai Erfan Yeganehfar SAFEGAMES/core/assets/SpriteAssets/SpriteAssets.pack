@@ -1,0 +1,47 @@
+
+SpriteAssets.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+running
+  rotate: false
+  xy: 1, 1
+  size: 352, 32
+  orig: 352, 32
+  offset: 0, 0
+  index: -1
+Safety4Kids Stranger Sprite
+  rotate: false
+  xy: 355, 1
+  size: 192, 32
+  orig: 192, 32
+  offset: 0, 0
+  index: -1
+SAFEGAMES Lightning Sprite
+  rotate: false
+  xy: 549, 1
+  size: 128, 32
+  orig: 128, 32
+  offset: 0, 0
+  index: -1
+SAFEGAMES Fire Animation
+  rotate: false
+  xy: 679, 1
+  size: 96, 32
+  orig: 96, 32
+  offset: 0, 0
+  index: -1
+idle
+  rotate: false
+  xy: 777, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+jump
+  rotate: false
+  xy: 811, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
