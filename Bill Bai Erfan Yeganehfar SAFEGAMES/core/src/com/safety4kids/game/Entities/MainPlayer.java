@@ -134,9 +134,6 @@ public class MainPlayer extends Sprite{
         fdef.isSensor = false;
         b2body.createFixture(fdef).setUserData(this);*/
 
-
-
-
     }
 
     /**

@@ -116,18 +116,7 @@ public class HazardSprite extends Hazard {
         FixtureDef fdef = new FixtureDef();
         //The type of shape is assigned and defined
         PolygonShape shape = new PolygonShape();
-
-        switch (type) {
-            case 1:
-            default:
-                shape.setAsBox(5f / Safety4Kids.PPM, 13f / Safety4Kids.PPM);
-                break;
-            case 2:
-            case 3:
-                shape.setAsBox(9f / Safety4Kids.PPM, 9f / Safety4Kids.PPM);
-                break;
-        }
-
+        shape.setAsBox(11f / Safety4Kids.PPM, 9f / Safety4Kids.PPM);
 
         //Sets the filtering bits of the body as the Player bit category
         fdef.filter.categoryBits = B2DConstants.BIT_HAZARD;
