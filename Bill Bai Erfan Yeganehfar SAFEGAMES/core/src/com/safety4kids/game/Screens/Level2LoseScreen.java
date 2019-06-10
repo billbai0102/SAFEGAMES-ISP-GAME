@@ -30,7 +30,7 @@ import com.safety4kids.game.Safety4Kids;
  * ICS4U with V. Krasteva
  *
  * @author Bill Bai, Erfan Yeganehfar
- * @version 1.6 05/02/19
+ * @version 1.8 05/02/19
  */
 public class Level2LoseScreen implements Screen {
 

@@ -34,7 +34,7 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
  * ICS4U with V. Krasteva
  *
  * @author Bill Bai, Erfan Yeganehfar
- * @version 1.2 06/09/19
+ * @version 6.5 06/09/19
  */
 public class Level2Screen extends GameScreen implements Screen {
     /**

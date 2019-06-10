@@ -35,20 +35,52 @@ import com.safety4kids.game.Safety4Kids;
  */
 public class Level3LoseScreen implements Screen {
 
+    /**
+     * SpriteBatch to be drawn onto.
+     */
     private SpriteBatch batch;
+    /**
+     * Stage where buttons will be drawn on.
+     */
     private Stage stage;
+    /**
+     * Game to be drawn onto.
+     */
     private Safety4Kids game;
+    /**
+     * Background texture.
+     */
     private Texture bg;
-
+    /**
+     * GamePort that conducts the user's view of the screen.
+     */
     private Viewport gamePort;
+    /**
+     * Orthographic Camera instance used with gamePort.
+     */
     private OrthographicCamera gamecam;
+    /**
+     * Font used in this level.
+     */
     private BitmapFont font;
-
+    /**
+     * TextButton that leads to menu.
+     */
     private TextButton menuBtn;
+    /**
+     * TextButton that restarts lv2
+     */
     private TextButton restartLvl;
-
+    /**
+     * Button skin.
+     */
     private Skin skin;
 
+    /**
+     * This is the constructor. It initializes the global variables and adds listeners to the different
+     * TextButton instances.
+     * @param game The game to be drawn on.
+     */
     public Level3LoseScreen(Safety4Kids game) {
         this.game = game;
         skin = new Skin(Gdx.files.internal("skin/vhs/skin/vhs-ui.json"));
@@ -61,6 +93,7 @@ public class Level3LoseScreen implements Screen {
 
         bg = new Texture(Gdx.files.internal("Lv3Assets/Lv3Lose.png"));
 
+        //Creates font
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/eight-bit-dragon.otf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 30;
@@ -69,9 +102,11 @@ public class Level3LoseScreen implements Screen {
         font = generator.generateFont(parameter);
         generator.dispose();
 
+        //Initializes TextButtons
         menuBtn = new TextButton(">>Go to Main Menu<<", skin);
         restartLvl = new TextButton(">>Restart level 3<<", skin);
 
+        //Adds listener to menuBtn
         menuBtn.setPosition(Gdx.graphics.getWidth() / 2 - menuBtn.getWidth()/2, Gdx.graphics.getHeight() / 2 + 50);
         menuBtn.addListener(new InputListener() {
             @Override
@@ -87,6 +122,7 @@ public class Level3LoseScreen implements Screen {
             }
         });
 
+        //Adds listener to restartLvl
         restartLvl.setPosition(Gdx.graphics.getWidth() / 2 - restartLvl.getWidth()/2, Gdx.graphics.getHeight()/2 + 130);
         restartLvl.addListener(new InputListener() {
             @Override
@@ -102,11 +138,17 @@ public class Level3LoseScreen implements Screen {
             }
         });
 
+        //Adds buttons to stage
         stage.addActor(menuBtn);
         stage.addActor(restartLvl);
     }
 
-
+    /**
+     * This is the render methood. It draws the background and losing text onto the screen. It the draws the
+     * button over the image and text.
+     *
+     * @param delta The current frame.
+     */
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(255, 255, 255, 1);
@@ -119,6 +161,9 @@ public class Level3LoseScreen implements Screen {
         stage.draw();
     }
 
+    /**
+     * This method disposes of objects created in this class to free up memory.
+     */
     @Override
     public void dispose() {
         stage.dispose();
