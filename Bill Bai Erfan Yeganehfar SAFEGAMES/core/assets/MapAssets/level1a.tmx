@@ -28,7 +28,7 @@
   <object id="122" x="1424.35" y="272.061" width="32" height="16"/>
   <object id="123" x="31.6667" y="0" width="3808.33" height="16"/>
   <object id="141" x="430" y="-105" width="3" height="3"/>
-  <object id="142" x="1728.18" y="160" width="79.1003" height="16"/>
+  <object id="142" x="1728.18" y="160" width="63.6458" height="16"/>
   <object id="147" x="2208" y="240" width="32" height="16"/>
   <object id="148" x="2224" y="224" width="32" height="16"/>
   <object id="149" x="2240" y="208" width="32" height="16"/>
@@ -65,19 +65,17 @@
   <object id="239" x="3280" y="351.875" width="16.25" height="9.75"/>
   <object id="240" x="3280.5" y="336.25" width="29.625" height="9.5"/>
   <object id="241" x="3279.88" y="345.875" width="24.25" height="5.625"/>
-  <object id="244" x="1584" y="208.063" width="14.1563" height="9.9375"/>
+  <object id="244" x="1584" y="208.063" width="112.338" height="9.9375"/>
   <object id="246" x="1592.1" y="217.943" width="6.0625" height="6.05398"/>
   <object id="247" x="1585.06" y="218.026" width="7.72727" height="1.81818"/>
-  <object id="248" x="1087.94" y="256.08" width="14.9375" height="9.6875"/>
-  <object id="249" x="1096.85" y="265.71" width="6" height="6.30398"/>
+  <object id="248" x="1087.94" y="256.08" width="128.188" height="9.6875"/>
+  <object id="249" x="1097.6" y="265.71" width="6" height="6.30398"/>
   <object id="250" x="1088.94" y="265.824" width="8.53977" height="2.13068"/>
-  <object id="257" x="1712.09" y="160.033" width="16.0625" height="9.6875"/>
+  <object id="257" x="1712.09" y="160.033" width="95.8807" height="9.6875"/>
   <object id="258" x="1720.07" y="169.663" width="8.0625" height="6.30398"/>
   <object id="259" x="1713.06" y="169.777" width="9.69602" height="2.13068"/>
-  <object id="272" x="1680.18" y="208.081" width="15.8167" height="9.91944"/>
   <object id="273" x="1680.18" y="217.987" width="14.8167" height="1.825"/>
   <object id="274" x="1680.16" y="219.862" width="8.84306" height="4.075"/>
-  <object id="281" x="1199.9" y="256.056" width="16.0511" height="9.96631"/>
   <object id="282" x="1199.95" y="266.009" width="14.8167" height="1.825"/>
   <object id="283" x="1199.93" y="267.884" width="8.84306" height="4.075"/>
   <object id="284" x="2784" y="352" width="48" height="16"/>

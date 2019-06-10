@@ -14,7 +14,6 @@ import com.safety4kids.game.Utils.B2DConstants;
  * This Class represents the main hazard type, it defines the textures, box2d body, and updates the position and texture regions of the hazard
  *
  * <h2>Course Info:</h2>
- *
  * @version 4.2 2019-06-02
  * @author Erfan Yeganehfar
  * @author Bill Bai
@@ -130,7 +129,7 @@ public class HazardSprite extends Hazard {
     }
 
     /**
-     * Creates the hazards box2d body inside the screen box2d world
+     * Creates the hazards box2d body inside the screen box2d world using fixtures and filtering masking bits
      */
     @Override
     protected void createHazard() {
