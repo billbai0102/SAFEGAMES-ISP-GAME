@@ -48,6 +48,9 @@ public class Hud implements Disposable {
     //The bitmap font used
     private BitmapFont font;
 
+    //determines if the game should end
+    private boolean endGame;
+
     //various labels used to display information
     private Label countdownLabel;
     private Label timeLabel;
@@ -62,8 +65,9 @@ public class Hud implements Disposable {
     public Hud(SpriteBatch sb, boolean showStats, int level) {
         this.level = level;
         this.showStats = showStats;
-        worldTimer = 300;
+        worldTimer = 200;
         timer = 0;
+        endGame= false;
         viewport = new FitViewport(Safety4Kids.V_WIDTH, Safety4Kids.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, sb);
 
@@ -116,11 +120,23 @@ public class Hud implements Disposable {
      */
     public void update(float delta) {
         timer += delta;
-        if (timer >= 1) {
-            worldTimer--;
+        if(timer >= 1){
+            if (worldTimer > 0) {
+                worldTimer--;
+            } else {
+                endGame = true;
+            }
             countdownLabel.setText(String.format("%03d", worldTimer));
             timer = 0;
         }
+    }
+
+    /**
+     * Returns if the game should en d
+     * @return returns the boolean endGame
+     */
+    public boolean isEndGame(){
+        return endGame;
     }
 
     /**

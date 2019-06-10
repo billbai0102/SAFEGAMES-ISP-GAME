@@ -173,4 +173,5 @@ public class HazardSprite extends Hazard {
     public void draw(Batch batch) {
         super.draw(batch);
     }
+
 }
