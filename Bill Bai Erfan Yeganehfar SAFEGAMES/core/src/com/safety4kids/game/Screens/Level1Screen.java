@@ -209,8 +209,8 @@ public class Level1Screen extends GameScreen {
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2IntroScreen(game));
                 break;
             case RETURN:
-                dispose();
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
+                dispose();
                 break;
             default:
                 break;
