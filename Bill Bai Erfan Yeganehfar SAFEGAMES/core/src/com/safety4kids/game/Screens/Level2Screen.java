@@ -93,8 +93,6 @@ public class Level2Screen extends GameScreen implements Screen {
     public Level2Screen(Safety4Kids game) {
         //Sets game to be drawn on
         this.game = game;
-        //TODO Remove later
-
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
         skin = new Skin(Gdx.files.internal("skin/flat_earth/flat-earth-ui.json"));

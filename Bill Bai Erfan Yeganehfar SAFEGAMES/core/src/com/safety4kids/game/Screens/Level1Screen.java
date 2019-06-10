@@ -131,17 +131,22 @@ public class Level1Screen extends GameScreen {
         generator2.dispose();
     }
 
+    /**
+     * The update method used to update the locations and states of the game, it also changes how the camera is relative to the player
+     * @param dt The target frame rate minus the time taken to complete this frame is called the delta time, used to keep the frames consistant across platforms
+     */
     public void update(float dt) {
         if (!isPaused) {
             //user input handler
             input.inputProcess();
 
-            //
+            //takes 1 step in the physics simulation which it takes 60 times per second
             world.step(STEP, 6, 2);
 
+            //updates the player and hud
             player.update(dt);
-
             hud.update(dt);
+
             //Sets the min and max bounds if the camera following the player
             if (player.b2body.getPosition().x > 2.5 && player.b2body.getPosition().x < 35)
                 gameCam.position.x = (player.b2body.getPosition().x);
@@ -195,8 +200,11 @@ public class Level1Screen extends GameScreen {
 
                 //Box2D Debug renderer
                 b2dr.render(world, gameCam.combined);
+
+                //draw the hud
                 hud.stage.draw();
 
+                //Draws the onscreen text
                 game.batch.begin();
                 drawText(game.batch, player.getXPos());
                 game.batch.end();
@@ -206,10 +214,9 @@ public class Level1Screen extends GameScreen {
                 if (isPaused)
                     pause.stage.draw();
 
-
+                //The end condition fo the game
                 if (player.b2body.getPosition().x > 37.5)
                     state = NEXT_LEVEL;
-
                 break;
             case NEXT_LEVEL:
                 dispose();
@@ -466,6 +473,10 @@ public class Level1Screen extends GameScreen {
         game.dispose();
     }
 
+    /**
+     * Returns the levels tilemap
+     * @return the tilemap to be returned
+     */
     public TiledMap getMap() {
         return map;
     }

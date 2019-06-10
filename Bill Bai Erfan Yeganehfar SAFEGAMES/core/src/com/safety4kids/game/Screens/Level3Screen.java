@@ -63,6 +63,7 @@ public class Level3Screen extends GameScreen {
 
         world.setContactListener(new GameContactListener(this));
 
+        //create sthe hazards onto the screen
         createHazards();
     }
 

@@ -48,7 +48,7 @@ public class GameContactListener implements ContactListener {
         System.out.println(fixA.getFilterData());
 
        if ((fixA.getFilterData().categoryBits == 2 && fixB.getFilterData().categoryBits == 2)){
-           screen.state =  GameScreen.GameState.RETURN;
+           System.out.println("bruh");
        }
 
 
