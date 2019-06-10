@@ -1,7 +1,6 @@
 package com.safety4kids.game.Utils;
 
 import com.badlogic.gdx.physics.box2d.*;
-import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.Screens.GameScreen;
 
 /**
@@ -44,7 +43,7 @@ public class GameContactListener implements ContactListener {
         Fixture fixA = contact.getFixtureA();
         Fixture fixB = contact.getFixtureA();
 
-       System.out.println(fixB.getFilterData().categoryBits);
+        System.out.println(fixB.getFilterData().categoryBits);
         System.out.println(fixA.getFilterData().categoryBits);
 
         if ((fixA.getFilterData().categoryBits != 32 && fixB.getFilterData().categoryBits != 32)) {

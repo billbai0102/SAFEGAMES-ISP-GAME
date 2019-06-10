@@ -23,19 +23,12 @@ import static com.safety4kids.game.Safety4Kids.MIN_VELOCITY;
  *
  *
  * <h2>Course Info:</h2>
+ * ICS4UO with V. Krasteva
  * @version 4 2019-05-29
  * @author Erfan Yeganehfar
  * @author Bill Bai
  *
  * Ms. Krasteva
- *
- * Modifications:
- * 3.1 Erfan Yeg: (2019-05-29) Created the Box2d body and fixture for the main player, allowing for collsiion detection. -- 30 mins
- * 3.2 Erfan Yeg: (2019-05-31) created texture regions for the main players sprite animation states.
- * Allowing the Box2d body to bind with the sprite animations. -- 1hr
- * 3.3 Erfan Yeg: (2019-06-01) Binded the player sprite to the box2d body and also animated the running animation,
- * added the different states and fixed the infinite jumping. -- 3hr
- * 4.0 Finished the Player, fixed the box2d body position
  */
 public class MainPlayer extends Sprite{
 

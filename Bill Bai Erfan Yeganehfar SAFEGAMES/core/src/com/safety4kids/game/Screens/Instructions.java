@@ -1,117 +1,151 @@
 package com.safety4kids.game.Screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.safety4kids.game.Safety4Kids;
 
 
 /**
- * This class is the instructions screen for the game, which display's the game's instructions.
+ * This class is the instructions screen. It displays an image with instructions on how the game runs.
+ * <br>
  *
  * <h2>Course info:</h2>
  * ICS4U with V. Krasteva
  *
  * @author Bill Bai, Erfan Yeganehfar
- * @version 1.5 05/30/19
+ * @version 3.5 06/07/19
  */
 public class Instructions implements Screen {
+
     /**
-     * SpriteBatch to be drawn on
+     * SpriteBatch to be drawn onto.
      */
     private SpriteBatch batch;
     /**
-     * Image containing instructions
+     * Game to be drawn onto.
      */
-    private Texture backgroundImg;
+    private Safety4Kids game;
     /**
-     * Skin for the buttons.
+     * Background of level.
      */
-    private Skin skin;
+    private Texture bg;
     /**
-     * Button that leads to MainMenu
+     * Sprite to convert bg Texture to sprite, therefore it can be altered.
      */
-    private TextButton backBtn;
+    private Sprite bgSprite;
     /**
-     * Stage, where buttons are added on to be drawn
+     * Button to allow user to continue
+     */
+    private TextButton contBtn;
+    /**
+     * Stage that button will be drawn onto
      */
     private Stage stage;
     /**
-     * Game screen to be drawn on.
+     * Skin for buttons
      */
-    private Safety4Kids game;
+    private Skin skin;
+    /**
+     * Starting alpha value of bgSprite
+     */
+    private float alpha = 0;
+    /**
+     * boolean value to dictate whether the sprite should fade in or not.
+     */
+    private boolean fadeIn = true;
 
     /**
-     * This is the constructor. It sets initializes variables and adds a listener to backBtn.
+     * This is the constructor. It initializes variables, and sets the position and adds a listener to contBtn.
      *
-     * @param game Safety4Kids game object to be drawn on.
+     * @param game The game to be drawn onto
      */
     public Instructions(Safety4Kids game) {
         this.game = game;
-        stage = new Stage(new ScreenViewport());
         batch = new SpriteBatch();
-        Gdx.input.setInputProcessor(stage);
-        backgroundImg = new Texture(Gdx.files.internal("InstructionsImg.jpg"));
-        skin = new Skin(Gdx.files.internal("skin/flat_earth/flat-earth-ui.json"));
+        bg = new Texture(Gdx.files.internal("InstructionsImg.jpg"));
+        bgSprite = new Sprite(bg);
+        bgSprite.setAlpha(alpha);
+        bgSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        //Instructions button
-        backBtn = new TextButton("BACK", skin);
-        backBtn.setPosition(Gdx.graphics.getWidth() / 2 - backBtn.getWidth() / 2, 30);
-        //Adds listener
-        backBtn.addListener(new InputListener() {
+        skin = new Skin(Gdx.files.internal("skin/vhs/skin/vhs-ui.json"));
+        stage = new Stage();
+        Gdx.input.setInputProcessor(stage);
+        contBtn = new TextButton(">Back<", skin);
+        contBtn.setColor(Color.BLACK);
+        contBtn.setPosition(Gdx.graphics.getWidth() / 2 - contBtn.getWidth() / 2, contBtn.getHeight() + 10);
+        //Adds listener to contBtn
+        contBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Instructions --> Main Menu");
-                Instructions.this.game.setScreen(new MainMenu(Instructions.this.game));
+                System.out.println("Back");
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(Instructions.this.game));
                 dispose();
             }
+
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 return true;
             }
         });
-        stage.addActor(backBtn);
+
+        stage.addActor(contBtn);
     }
 
     /**
-     * This is the render method. It draws the instructions image and button.
+     * Renders the screen. It draws bgSprite and the button, and causes the bgSprite to fade in.
      *
      * @param delta The current frame.
      */
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(255, 255, 255, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        //Draws bgSprite
         batch.begin();
-        batch.draw(backgroundImg, 0, 0);
+        bgSprite.draw(batch);
         batch.end();
 
-        stage.draw();
+        //Fades in bgSprite by increasing it's alpha value.
+        if (fadeIn) {
+            alpha += (1f / 60f) / 7;
+            //Stops fading in when alpha is 1 (max)
+            if (alpha >= 1) {
+                fadeIn = false;
+                System.out.println("done");
+            }
+        }
+        //Sets alpha value of bgSprite to alpha
+        bgSprite.setAlpha(alpha);
+        //Draws the button when alpha is atleast .15
+        if(alpha > 0.15) {
+            stage.draw();
+        }
     }
 
+
     /**
-     * Disposes of objects created in the class to free up memory.
+     * This method disposes of objects created in this class to free up memory.
      */
     @Override
     public void dispose() {
-        backgroundImg.dispose();
-        stage.dispose();
-        game.dispose();
-        skin.dispose();
         batch.dispose();
+        game.dispose();
+        bg.dispose();
+        stage.dispose();
+        skin.dispose();
     }
 
     @Override
     public void show() {
+
     }
 
     @Override
