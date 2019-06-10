@@ -3,44 +3,79 @@ SpriteAssets.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+KnifeSprite
+  rotate: false
+  xy: 1, 69
+  size: 480, 32
+  orig: 480, 32
+  offset: 0, 0
+  index: -1
+PowerOutletSprite
+  rotate: false
+  xy: 1, 35
+  size: 384, 32
+  orig: 384, 32
+  offset: 0, 0
+  index: -1
 running
   rotate: false
-  xy: 1, 1
+  xy: 483, 69
   size: 352, 32
   orig: 352, 32
   offset: 0, 0
   index: -1
+PoisonSprite
+  rotate: false
+  xy: 1, 1
+  size: 224, 32
+  orig: 224, 32
+  offset: 0, 0
+  index: -1
 Safety4Kids Stranger Sprite
   rotate: false
-  xy: 355, 1
+  xy: 387, 35
   size: 192, 32
   orig: 192, 32
   offset: 0, 0
   index: -1
+SkullSprite
+  rotate: false
+  xy: 227, 1
+  size: 192, 32
+  orig: 192, 32
+  offset: 0, 0
+  index: -1
+NeedleSprite
+  rotate: false
+  xy: 837, 69
+  size: 160, 32
+  orig: 160, 32
+  offset: 0, 0
+  index: -1
 SAFEGAMES Lightning Sprite
   rotate: false
-  xy: 549, 1
+  xy: 581, 35
   size: 128, 32
   orig: 128, 32
   offset: 0, 0
   index: -1
 SAFEGAMES Fire Animation
   rotate: false
-  xy: 679, 1
+  xy: 421, 1
   size: 96, 32
   orig: 96, 32
   offset: 0, 0
   index: -1
 idle
   rotate: false
-  xy: 777, 1
+  xy: 711, 35
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 jump
   rotate: false
-  xy: 811, 1
+  xy: 519, 1
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

@@ -31,13 +31,11 @@ public class Hud implements Disposable {
     private Viewport viewport;
     private  Integer worldTimer;
     private float timer;
-    private static Integer lives;
     private boolean showStats;
     private int level;
     private BitmapFont font;
 
     private Label countdownLabel;
-    private static Label livesLabel;
     private Label timeLabel;
     private Label levelLabel;
     private Label worlLabel;
@@ -53,7 +51,6 @@ public class Hud implements Disposable {
         this.showStats = showStats;
         worldTimer = 300;
         timer = 0;
-        lives = 3;
         viewport = new FitViewport(Safety4Kids.V_WIDTH, Safety4Kids.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, sb);
 
@@ -73,7 +70,6 @@ public class Hud implements Disposable {
         generator.dispose();
 
         countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(font, Color.WHITE));
-        livesLabel =new Label(String.format("%06d", lives), new Label.LabelStyle(font, Color.WHITE));
         timeLabel= new Label("TIME", new Label.LabelStyle(font, Color.WHITE));
         levelLabel= new Label(level+"", new Label.LabelStyle(font, Color.WHITE));
         worlLabel= new Label( "LEVEL", new Label.LabelStyle(font, Color.WHITE));
@@ -85,7 +81,6 @@ public class Hud implements Disposable {
             table.add(worlLabel).expandX().padTop(10);
             table.add(timeLabel).expandX().padTop(10);
             table.row();
-            table.add(livesLabel).expandX().padTop(10);
             table.add(levelLabel).expandX().padTop(10);
             table.add(countdownLabel).expandX().padTop(10);
 
@@ -114,12 +109,6 @@ public class Hud implements Disposable {
             timer = 0;
         }
     }
-
-     public static void loseLife(){
-         lives--;
-         livesLabel.setText(String.format("%06d", lives));
-        }
-
 
     @Override
     public void dispose() {

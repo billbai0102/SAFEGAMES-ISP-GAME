@@ -2,6 +2,7 @@ package com.safety4kids.game.Utils;
 
 import com.badlogic.gdx.physics.box2d.*;
 import com.safety4kids.game.Entities.MainPlayer;
+import com.safety4kids.game.Screens.GameScreen;
 
 /**
  * This class creates a <i>GameContactListener</i> object.
@@ -18,18 +19,18 @@ import com.safety4kids.game.Entities.MainPlayer;
 public class GameContactListener implements ContactListener {
 
     /**
-     * The instance of the <i>MainPlayer</i>, that will be
+     * The instance of the <i>GameScreen</i>
      */
-    private MainPlayer player;
+    private GameScreen screen;
 
     /**
-     * The constructor of the class. Sets the <i>MainPlayer</i> passed in the parameters to the <i>MainPlayer</i> instance
+     * The constructor of the class. Sets the <i>GameScreen</i> passed in the parameters to the <i>GameScreen</i> instance
      * of the class.
      *
-     * @param player Instance of the <i>MainPlayer</i>
+     * @param screen Instance of the <i>GameScreen</i>
      */
-    public GameContactListener(MainPlayer player) {
-        this.player = player;
+    public GameContactListener(GameScreen screen) {
+        this.screen = screen;
     }
 
     /**
@@ -48,6 +49,7 @@ public class GameContactListener implements ContactListener {
 
        if ((fixA.getFilterData().categoryBits == 2 && fixB.getFilterData().categoryBits == 2)){
            System.out.println("bruh bruh");
+
        }
 
 

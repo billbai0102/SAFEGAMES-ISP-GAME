@@ -95,12 +95,12 @@ public class Level1Screen extends GameScreen {
 
         //The player is created inside of the Box2D world
         player = new MainPlayer(this, 350, 200);
-        hazard = new HazardSprite(this, 450, 200, "bruh");
+        hazard = new HazardSprite(this, 450, 200, 3);
 
         //Processes input for the player
         input = new InputHandler(player);
 
-        world.setContactListener(new GameContactListener(player));
+        world.setContactListener(new GameContactListener(this));
 
         //Font to draw and format text.
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/eight-bit-dragon.otf"));

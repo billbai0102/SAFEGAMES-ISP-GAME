@@ -21,7 +21,6 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
 @SuppressWarnings("Duplicates")
 
 public class Level3Screen extends GameScreen {
-
     //Tile map Instance variables
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
@@ -59,7 +58,7 @@ public class Level3Screen extends GameScreen {
         //Processes input for the player
         input = new InputHandler(player);
 
-        world.setContactListener(new GameContactListener(player));
+        world.setContactListener(new GameContactListener(this));
 
     }
 
