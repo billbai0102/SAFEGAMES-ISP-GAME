@@ -43,12 +43,11 @@ public class GameContactListener implements ContactListener {
         Fixture fixA = contact.getFixtureA();
         Fixture fixB = contact.getFixtureA();
 
-        System.out.println(fixB.getFilterData().categoryBits);
-        System.out.println(fixA.getFilterData().categoryBits);
 
+        //When the player touches a hazard they are sent to the lose screen
         if ((fixA.getFilterData().categoryBits != 32 && fixB.getFilterData().categoryBits != 32)) {
             if ((fixA.getFilterData().categoryBits == 2 && fixB.getFilterData().categoryBits == 2)) {
-                //screen.state = GameScreen.GameState.LOSE;
+                screen.state = GameScreen.GameState.LOSE;
             }
         }
     }
