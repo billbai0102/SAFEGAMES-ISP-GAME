@@ -23,9 +23,22 @@ import static com.safety4kids.game.Safety4Kids.PPM;
 import static com.safety4kids.game.Safety4Kids.STEP;
 import static com.safety4kids.game.Screens.GameScreen.GameState.*;
 @SuppressWarnings("Duplicates")
-
+/**
+ * This Class represents the 3rd level of the game where it is based on an interactive learning platformer.
+ * In this level the user must avoid hazards and unsafe situations to final escape their adversity.
+ * Using Box2d bodies, tile maps, cameras, viewports, game loops, and game states
+ * to create a cohesive platformer meant to make the user learn about safety
+ * <h2>Course info:</h2>
+ * ICS4U with V. Krasteva
+ *
+ * @author Erfan Yeganehfar, Bill Bai
+ * @version 4.1 06/09/19
+ */
 public class Level3Screen extends GameScreen {
-    //Tile map Instance variables
+
+    /**
+     * Custom TiledMap renderer to fix bleeding.
+     */
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     private CustomMapRenderer tiledMapRenderer;
@@ -148,7 +161,7 @@ public class Level3Screen extends GameScreen {
                     pause.stage.draw();
 
 
-                if (player.b2body.getPosition().x > 37.5)
+                if (player.b2body.getPosition().x > /*37.5*/ 6)
                     state = NEXT_LEVEL;
                 break;
             case RETURN:
@@ -158,16 +171,18 @@ public class Level3Screen extends GameScreen {
             case NEXT_LEVEL:
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3WinScreen(game));
                 dispose();
+                break;
             case LOSE:
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3LoseScreen(game));
                 dispose();
+                break;
             default:
                 break;
         }
     }
 
     public void createHazards(){
-        //create all goombas
+        //create all hazards
         hazards = new Array<HazardSprite>();
 
         //Adds all stranger hazards
@@ -210,6 +225,8 @@ public class Level3Screen extends GameScreen {
         gamePort.update(width, height);
     }
 
+
+
     /**
      * Used for memory efficiency, disposes of game assets
      */
@@ -223,9 +240,8 @@ public class Level3Screen extends GameScreen {
         pause.dispose();
         hud.dispose();
         atlas.dispose();
-        batch.dispose();
+        game.batch.dispose();
         game.dispose();
-        hazards.clear();
     }
 
     public TiledMap getMap(){

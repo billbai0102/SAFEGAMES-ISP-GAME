@@ -28,8 +28,9 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.RUN;
 //import java.awt.*;
 
 /**
- * This class is the first level of the game.
- *
+ * This Class represents the first level of the game where it is based on an interactive learning platformer.
+ * Using Box2d bodies, tile maps, cameras, viewports, game loops, and game states
+ * to create a cohesive platformer meant to make the user learn about safety
  * <h2>Course info:</h2>
  * ICS4U with V. Krasteva
  *
@@ -45,7 +46,7 @@ public class Level1Screen extends GameScreen {
     private TiledMap map;
 
     /**
-     * Used to render TiledMap.
+     * Used to render the TiledMap.
      */
     private OrthogonalTiledMapRenderer renderer;
 

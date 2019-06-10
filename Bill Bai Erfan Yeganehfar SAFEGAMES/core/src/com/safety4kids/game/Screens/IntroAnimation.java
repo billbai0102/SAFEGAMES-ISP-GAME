@@ -99,8 +99,8 @@ public class IntroAnimation implements Screen {
         batch.begin();
         logo.draw(batch);
         batch.end();
-
-        //Controls when to shift alpha, location, and change to menu screen.
+        game.setScreen(new MainMenu(game));
+      /*  //Controls when to shift alpha, location, and change to menu screen.
         if (logo.getX() < Gdx.graphics.getWidth() / 2 - 200) {
             logo.moveRight(Gdx.graphics.getDeltaTime());
         } else if (logo.getX() > Gdx.graphics.getWidth() / 2 - 200 && logo.getAlpha() >= 0) {
@@ -108,7 +108,7 @@ public class IntroAnimation implements Screen {
         } else {
             game.setScreen(new MainMenu(game));
             dispose();
-        }
+        }*/
 
     }
 

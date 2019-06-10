@@ -92,8 +92,8 @@ public class Level3LoseScreen implements Screen {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Restart lv 2");
-                dispose();
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3Screen(Level3LoseScreen.this.game));
+                dispose();
             }
 
             @Override

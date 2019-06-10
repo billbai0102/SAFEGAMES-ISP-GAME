@@ -101,10 +101,6 @@ public class Level2WinScreen implements Screen {
 
     @Override
     public void dispose() {
-        batch.dispose();
-        bg.dispose();
-        skin.dispose();
-        stage.draw();
-        game.dispose();
+
     }
 }
