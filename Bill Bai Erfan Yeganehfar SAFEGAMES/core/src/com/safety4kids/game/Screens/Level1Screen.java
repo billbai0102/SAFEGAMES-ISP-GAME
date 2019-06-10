@@ -29,12 +29,16 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.RUN;
 
 /**
  * This Class represents the first level of the game where it is based on an interactive learning platformer.
+ * The player will progress through the level learning new skills along the way about avoiding hazards and staying safe.
+ * This level was made using box2d, tile maps, a game loop, and scene2d elements
  *
+ * <h2>Course Info:</h2>
  * @author Erfan Yeganehfar
  * @author Bill Bai
  * <p>
  * Ms. Krasteva
  * <p>
+ *
  * Modifications:
  * 3.1 Erfan Yeg: (2019-05-28) Added the basics for the game such as the camera, viewports, hud, and renderer -- 2hrs
  * 3.2 Erfan Yeg: (2019-05-29) created + added the basic tile map and created the tilemap renderer -- 2hrs
@@ -44,6 +48,7 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.RUN;
  * as better movement. -- 1.5hrs
  * 3.5 Erfan Yeg: (2019-06-01) Added a way of transitioning from the current level to the next -- 30mins
  * 3.6 Erfan Yeg: (2019-06-02) Added different states for the game that control the state of the game -- 1hr
+ * 4.0 Finshed the level by adding a pause menu
  * @version 4.0 2019-06-06
  */
 @SuppressWarnings("Duplicates")
@@ -51,9 +56,13 @@ public class Level1Screen extends GameScreen {
 
     //Tile map Instance variables
     private TiledMap map;
+    //tile map renderer
     private OrthogonalTiledMapRenderer renderer;
+
+    //custom tile map render that fixes padding
     private CustomMapRenderer tiledMapRenderer;
 
+    //the games input handler
     private InputHandler input;
 
     //Instance of the main character
@@ -85,6 +94,7 @@ public class Level1Screen extends GameScreen {
 
         //Loads, fixes (added padding), and creates the renderer for the TileMap for level 1
         map = new TmxMapLoader().load("MapAssets/level1a.tmx");
+        //scales the tile map and instantiates the render
         tiledMapRenderer = new CustomMapRenderer(map, 1 / PPM);
         renderer = new OrthogonalTiledMapRenderer(map, 1 / PPM);
 
@@ -97,6 +107,7 @@ public class Level1Screen extends GameScreen {
         //Processes input for the player
         input = new InputHandler(player);
 
+        //The world contact listener is set up
         world.setContactListener(new GameContactListener(this));
 
         //Font to draw and format text.
@@ -125,6 +136,7 @@ public class Level1Screen extends GameScreen {
             //user input handler
             input.inputProcess();
 
+            //
             world.step(STEP, 6, 2);
 
             player.update(dt);
