@@ -5,8 +5,6 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
-import com.safety4kids.game.Entities.BreakableTile;
-import com.safety4kids.game.Entities.CoinObj;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Screens.GameScreen;
 import com.safety4kids.game.Screens.Level1Screen;
@@ -81,12 +79,10 @@ public class Box2DCollisionCreator {
         }
 
         for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
-            new BreakableTile(screen, object);
 
         }
 
         for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
-            new CoinObj(screen, object);
         }
 
     }

@@ -13,7 +13,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.safety4kids.game.Entities.MainPlayer;
-import com.safety4kids.game.Entities.MovingHazard;
+import com.safety4kids.game.Entities.HazardSprite;
 import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.Box2DCollisionCreator;
@@ -56,10 +56,10 @@ public class Level1Screen extends GameScreen {
     private CustomMapRenderer tiledMapRenderer;
 
     private InputHandler input;
-    private MovingHazard hazard;
+    private HazardSprite hazard;
 
     //Instance of the main character
-    private MainPlayer player;
+    public MainPlayer player;
 
     //Bitmap Font object to draw and format text onscreen.
     private BitmapFont font;
@@ -95,12 +95,12 @@ public class Level1Screen extends GameScreen {
 
         //The player is created inside of the Box2D world
         player = new MainPlayer(this, 350, 200);
-        hazard = new MovingHazard(this, 450, 200, "bruh");
+        hazard = new HazardSprite(this, 450, 200, "bruh");
 
         //Processes input for the player
         input = new InputHandler(player);
 
-        world.setContactListener(new GameContactListener());
+        world.setContactListener(new GameContactListener(player));
 
         //Font to draw and format text.
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/eight-bit-dragon.otf"));
@@ -129,6 +129,7 @@ public class Level1Screen extends GameScreen {
             input.inputProcess();
 
             world.step(STEP, 6, 2);
+
             player.update(dt);
             hazard.update(dt);
 
