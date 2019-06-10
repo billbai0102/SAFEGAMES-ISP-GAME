@@ -146,7 +146,7 @@ public class Level3Screen extends GameScreen {
                     state = RETURN;
                 break;
             case RETURN:
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3LoseScreen(game));
                 dispose();
                 break;
             default:
@@ -159,28 +159,33 @@ public class Level3Screen extends GameScreen {
         hazards = new Array<HazardSprite>();
 
         //Adds all stranger hazards
-        hazards.add(new HazardSprite(this, 450, 200, 1));
-
+        hazards.add(new HazardSprite(this, 1400, 300, 1));
+        hazards.add(new HazardSprite(this, 3200, 400, 1));
         //Adds all fire hazards
-        hazards.add(new HazardSprite(this, 450, 200, 2));
-
+        hazards.add(new HazardSprite(this, 500, 200, 2));
+        hazards.add(new HazardSprite(this, 1597, 200, 2));
         //Adds lightning poison hazards
-        hazards.add(new HazardSprite(this, 450, 200, 3));
-
+        hazards.add(new HazardSprite(this, 2147, 200, 3));
+        hazards.add(new HazardSprite(this, 2449, 150, 3));
+        hazards.add(new HazardSprite(this, 3430, 200, 3));
         //Adds all poison hazards
-        hazards.add(new HazardSprite(this, 450, 200, 4));
-
+        hazards.add(new HazardSprite(this, 780, 200, 4));
+        hazards.add(new HazardSprite(this, 1900, 270, 4));
+        hazards.add(new HazardSprite(this, 3000, 400, 4));
         //Adds all knife hazards
-        hazards.add(new HazardSprite(this, 450, 200, 5));
-
+        hazards.add(new HazardSprite(this, 930, 200, 5));
+        hazards.add(new HazardSprite(this, 1800, 200, 5));
+        hazards.add(new HazardSprite(this, 2780, 200, 5));
         //Adds all needle hazards
-        hazards.add(new HazardSprite(this, 450, 200, 6));
-
+        hazards.add(new HazardSprite(this, 1400, 200, 6));
+        hazards.add(new HazardSprite(this, 2300, 150, 6));
         //Adds all skull hazards
-        hazards.add(new HazardSprite(this, 450, 200, 7));
-
+        hazards.add(new HazardSprite(this, 880, 200, 7));
+        hazards.add(new HazardSprite(this, 1967, 200, 7));
         //Adds all outlet hazards
-        hazards.add(new HazardSprite(this, 450, 200, 8));
+        hazards.add(new HazardSprite(this, 1550, 380, 8));
+        hazards.add(new HazardSprite(this, 2658, 200, 8));
+
     }
 
     /**
