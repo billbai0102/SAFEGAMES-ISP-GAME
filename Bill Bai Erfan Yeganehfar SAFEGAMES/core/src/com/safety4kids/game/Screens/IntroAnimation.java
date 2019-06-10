@@ -3,6 +3,7 @@ package com.safety4kids.game.Screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -11,7 +12,6 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.safety4kids.game.Utils.SplashScreenLogo;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -110,7 +110,8 @@ public class IntroAnimation implements Screen {
         try {
           //  BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("~/core/assets/Lv2Assets/Level2Questions.txt")));
 
-            BufferedReader br = new BufferedReader(new FileReader("Lv2Assets/Level2Questions.txt"));
+            FileHandle file = Gdx.files.internal("Lv2Assets/Level2Questions.txt");
+            BufferedReader br = new BufferedReader(file.reader());
             for (int x = 0; x < 20; x++) {
                 ArrayList<String> txtAnswer = new ArrayList<String>();
                 questions.add(br.readLine());
@@ -119,16 +120,13 @@ public class IntroAnimation implements Screen {
                 }
                 answers.add(x, txtAnswer);
             }
-            br = new BufferedReader(new FileReader("Lv2Assets/Level2Questions.txt"));
-         //   br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("Level2Questions.txt")));
-         //   BufferedReader ef = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("Level2Questions.txt")));
+            FileHandle file2 = Gdx.files.internal("Lv2Assets/Level2QuestionHelp.txt");
+            br = new BufferedReader(file2.reader());
             for (int x = 0; x < 20; x++) {
                 questionHelp.add(br.readLine());
-               // ef.readLine();
             }
 
             br.close();
-            //in.close();
         } catch (IOException e) {
             System.out.println("file not found");
         }
