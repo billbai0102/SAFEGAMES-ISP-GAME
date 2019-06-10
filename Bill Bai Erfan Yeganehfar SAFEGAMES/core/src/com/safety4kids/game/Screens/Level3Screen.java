@@ -91,7 +91,7 @@ public class Level3Screen extends GameScreen {
         creator = new Box2DCollisionCreator(this);
 
         //The player is created inside of the Box2D world
-        player = new MainPlayer(this, 350, 200);
+        player = new MainPlayer(this, 240, 200);
 
 
         //Processes input for the player
