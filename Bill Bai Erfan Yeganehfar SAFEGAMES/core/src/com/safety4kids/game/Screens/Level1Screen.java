@@ -54,7 +54,6 @@ public class Level1Screen extends GameScreen {
 
     //Instance of the main character
     public MainPlayer player;
-    HazardSprite hazard;
 
     //Bitmap Font object to draw and format text onscreen.
     private BitmapFont font;
@@ -91,7 +90,6 @@ public class Level1Screen extends GameScreen {
 
         //The player is created inside of the Box2D world
         player = new MainPlayer(this, 350, 200);
-hazard = new HazardSprite(this, 400, 200, 3);
         //Processes input for the player
         input = new InputHandler(player);
 
@@ -133,7 +131,6 @@ hazard = new HazardSprite(this, 400, 200, 3);
 
             //updates the player and hud
             player.update(dt);
-            hazard.update(dt);
             hud.update(dt);
 
             //Sets the min and max bounds if the camera following the player
@@ -185,7 +182,6 @@ hazard = new HazardSprite(this, 400, 200, 3);
 
                 game.batch.begin();
                 player.draw(game.batch);
-                hazard.draw(game.batch);
                 game.batch.end();
 
                 //draw the hud

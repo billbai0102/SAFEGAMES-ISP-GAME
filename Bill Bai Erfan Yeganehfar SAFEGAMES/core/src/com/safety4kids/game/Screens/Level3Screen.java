@@ -18,6 +18,7 @@ import com.safety4kids.game.Utils.InputHandler;
 import com.safety4kids.game.Utils.CustomMapRenderer;
 import sun.applet.Main;
 
+
 import static com.safety4kids.game.Safety4Kids.PPM;
 import static com.safety4kids.game.Safety4Kids.STEP;
 import static com.safety4kids.game.Screens.GameScreen.GameState.*;
@@ -64,7 +65,7 @@ public class Level3Screen extends GameScreen {
 
         world.setContactListener(new GameContactListener(this));
 
-        //create sthe hazards onto the screen
+        //create the hazards onto the screen
         createHazards();
     }
 
@@ -130,8 +131,8 @@ public class Level3Screen extends GameScreen {
                 game.batch.setProjectionMatrix(gameCam.combined);
                 game.batch.begin();
                 player.draw(game.batch);
-                for (HazardSprite enemy : hazards)
-                    enemy.draw(game.batch);
+                for (HazardSprite hazard : hazards)
+                    hazard.draw(game.batch);
                 game.batch.end();
 
                 //Box2D Debug renderer
@@ -184,7 +185,7 @@ public class Level3Screen extends GameScreen {
         hazards.add(new HazardSprite(this, 1800, 200, 5));
         hazards.add(new HazardSprite(this, 2780, 200, 5));
         //Adds all needle hazards
-        hazards.add(new HazardSprite(this, 1400, 420, 6));
+        hazards.add(new HazardSprite(this, 1400, 360, 6));
         hazards.add(new HazardSprite(this, 2300, 150, 6));
         //Adds all skull hazards
         hazards.add(new HazardSprite(this, 880, 200, 7));
