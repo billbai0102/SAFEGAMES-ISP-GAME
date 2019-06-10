@@ -27,27 +27,27 @@ public class Instructions implements Screen {
     /**
      * SpriteBatch to be drawn on
      */
-    SpriteBatch batch;
+    private SpriteBatch batch;
     /**
      * Image containing instructions
      */
-    Texture backgroundImg;
+    private Texture backgroundImg;
     /**
      * Skin for the buttons.
      */
-    Skin skin;
+    private Skin skin;
     /**
      * Button that leads to MainMenu
      */
-    TextButton backBtn;
+    private TextButton backBtn;
     /**
      * Stage, where buttons are added on to be drawn
      */
-    Stage stage;
+    private Stage stage;
     /**
      * Game screen to be drawn on.
      */
-    Safety4Kids game;
+    private Safety4Kids game;
 
     /**
      * This is the constructor. It sets initializes variables and adds a listener to backBtn.

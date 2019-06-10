@@ -118,6 +118,9 @@ public class Level3Screen extends GameScreen {
                 }
 
                 if(!isPaused)
+                    //If the timer is up
+                    if(hud.isEndGame())
+                        state = LOSE;
                     //update is separated from the render logic
                     update(delta);
                 //Clears the game screen
