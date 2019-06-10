@@ -15,8 +15,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.safety4kids.game.Safety4Kids;
 
-
-public class Level2WinScreen implements Screen {
+/**
+ * This class is the win screen for level 3.
+ * <br>
+ * Background of image borrowed from <a href="https://imgur.com/gallery/6hSG6">source site</a> (2017-09-10) by artist: Spintronic
+ * <br>
+ *
+ * <h2>Course info:</h2>
+ * ICS4U with V. Krasteva
+ *
+ * @author Bill Bai, Erfan Yeganehfar
+ * @version 1.2 06/09/19
+ */
+public class Level3WinScreen implements Screen {
 
     private SpriteBatch batch;
     private Safety4Kids game;
@@ -24,16 +35,15 @@ public class Level2WinScreen implements Screen {
     private Sprite bgSprite;
 
     private float alpha = 1;
-    private boolean fadeIn = true;
 
     private Skin skin;
     private Stage stage;
     private TextButton contBtn;
 
-    public Level2WinScreen(Safety4Kids game) {
+    public Level3WinScreen(Safety4Kids game) {
         this.game = game;
         batch = new SpriteBatch();
-        bg = new Texture(Gdx.files.internal("Lv2Assets/WinScreenBg.png"));
+        bg = new Texture(Gdx.files.internal("Lv3Assets/Lv3Win.png"));
         bgSprite = new Sprite(bg);
         bgSprite.setAlpha(alpha);
         bgSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -41,17 +51,17 @@ public class Level2WinScreen implements Screen {
         skin = new Skin(Gdx.files.internal("skin/vhs/skin/vhs-ui.json"));
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
-        contBtn = new TextButton(">Press to continue...<",skin);
+        contBtn = new TextButton(">Press to continue...<", skin);
         contBtn.setColor(Color.BLACK);
-        contBtn.setPosition(Gdx.graphics.getWidth() / 2 - contBtn.getWidth()/2, contBtn.getHeight() + 10);
+        contBtn.setPosition(Gdx.graphics.getWidth() / 2 - contBtn.getWidth() / 2, contBtn.getHeight() + 10);
         contBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Continue...");
                 dispose();
-                Gdx.gl.glClearColor( 255, 255, 255, 1 );
-                Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3IntroScreen(Level2WinScreen.this.game));
+                Gdx.gl.glClearColor(255, 255, 255, 1);
+                Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(Level3WinScreen.this.game));
             }
 
             @Override
@@ -63,15 +73,33 @@ public class Level2WinScreen implements Screen {
         stage.addActor(contBtn);
     }
 
+    /**
+     * This method renders the screen. It causes the image to fade in, then draws a button that leads to MainMenu.
+     *
+     * @param delta The current frame.
+     */
     @Override
     public void render(float delta) {
         batch.begin();
-        bgSprite.draw(batch);
+        bgSprite.draw(batch); //Draw bgSprite
         batch.end();
 
-        if(alpha > 0.15) {
+        //Draws button after alpha is greater than .15
+        if (alpha > 0.15) {
             stage.draw();
         }
+    }
+
+    /**
+     * This method disposes of objects created in this class. This frees up memory.
+     */
+    @Override
+    public void dispose() {
+        batch.dispose();
+        bg.dispose();
+        skin.dispose();
+        stage.draw();
+        game.dispose();
     }
 
     @Override
@@ -97,14 +125,5 @@ public class Level2WinScreen implements Screen {
     @Override
     public void hide() {
 
-    }
-
-    @Override
-    public void dispose() {
-        batch.dispose();
-        bg.dispose();
-        skin.dispose();
-        stage.draw();
-        game.dispose();
     }
 }

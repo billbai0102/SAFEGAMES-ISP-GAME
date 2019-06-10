@@ -41,7 +41,7 @@ public class Instructions implements Screen {
 
         Gdx.input.setInputProcessor(stage);
         backgroundImg = new Texture(Gdx.files.internal("InstructionsImg.jpg"));
-        skin = new Skin(Gdx.files.internal("skin/flat-earth-ui.json"));
+        skin = new Skin(Gdx.files.internal("skin/flat_earth/flat-earth-ui.json"));
 
         //instructions btn
         backBtn = new TextButton("BACK", skin);
