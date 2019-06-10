@@ -16,6 +16,7 @@ import com.safety4kids.game.Utils.Box2DCollisionCreator;
 import com.safety4kids.game.Utils.GameContactListener;
 import com.safety4kids.game.Utils.InputHandler;
 import com.safety4kids.game.Utils.CustomMapRenderer;
+import sun.applet.Main;
 
 import static com.safety4kids.game.Safety4Kids.PPM;
 import static com.safety4kids.game.Safety4Kids.STEP;
@@ -63,6 +64,7 @@ public class Level3Screen extends GameScreen {
 
         world.setContactListener(new GameContactListener(this));
 
+        //create sthe hazards onto the screen
         createHazards();
     }
 
@@ -143,12 +145,15 @@ public class Level3Screen extends GameScreen {
 
 
                 if (player.b2body.getPosition().x > 37.5)
-                    state = RETURN;
+                    state = NEXT_LEVEL;
                 break;
             case RETURN:
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3LoseScreen(game));
                 dispose();
                 break;
+            case NEXT_LEVEL:
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3WinScreen(game));
+                dispose();
             default:
                 break;
         }
@@ -176,7 +181,7 @@ public class Level3Screen extends GameScreen {
         hazards.add(new HazardSprite(this, 1800, 200, 5));
         hazards.add(new HazardSprite(this, 2780, 200, 5));
         //Adds all needle hazards
-        hazards.add(new HazardSprite(this, 1400, 200, 6));
+        hazards.add(new HazardSprite(this, 1400, 420, 6));
         hazards.add(new HazardSprite(this, 2300, 150, 6));
         //Adds all skull hazards
         hazards.add(new HazardSprite(this, 880, 200, 7));

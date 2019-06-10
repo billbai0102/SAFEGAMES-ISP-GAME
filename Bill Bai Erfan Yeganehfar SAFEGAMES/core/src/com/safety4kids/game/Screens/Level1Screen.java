@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.safety4kids.game.Entities.Hazard;
+import com.safety4kids.game.Entities.HazardSprite;
 import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.Safety4Kids;
@@ -41,13 +43,18 @@ public class Level1Screen extends GameScreen {
 
     //Tile map Instance variables
     private TiledMap map;
+    //tile map renderer
     private OrthogonalTiledMapRenderer renderer;
+
+    //custom tile map render that fixes padding
     private CustomMapRenderer tiledMapRenderer;
 
+    //the games input handler
     private InputHandler input;
 
     //Instance of the main character
     public MainPlayer player;
+    HazardSprite hazard;
 
     //Bitmap Font object to draw and format text onscreen.
     private BitmapFont font;
@@ -75,6 +82,7 @@ public class Level1Screen extends GameScreen {
 
         //Loads, fixes (added padding), and creates the renderer for the TileMap for level 1
         map = new TmxMapLoader().load("MapAssets/level1a.tmx");
+        //scales the tile map and instantiates the render
         tiledMapRenderer = new CustomMapRenderer(map, 1 / PPM);
         renderer = new OrthogonalTiledMapRenderer(map, 1 / PPM);
 
@@ -83,10 +91,11 @@ public class Level1Screen extends GameScreen {
 
         //The player is created inside of the Box2D world
         player = new MainPlayer(this, 350, 200);
-
+hazard = new HazardSprite(this, 400, 200, 3);
         //Processes input for the player
         input = new InputHandler(player);
 
+        //The world contact listener is set up
         world.setContactListener(new GameContactListener(this));
 
         //Font to draw and format text.
@@ -110,16 +119,23 @@ public class Level1Screen extends GameScreen {
         generator2.dispose();
     }
 
+    /**
+     * The update method used to update the locations and states of the game, it also changes how the camera is relative to the player
+     * @param dt The target frame rate minus the time taken to complete this frame is called the delta time, used to keep the frames consistant across platforms
+     */
     public void update(float dt) {
         if (!isPaused) {
             //user input handler
             input.inputProcess();
 
+            //takes 1 step in the physics simulation which it takes 60 times per second
             world.step(STEP, 6, 2);
 
+            //updates the player and hud
             player.update(dt);
-
+            hazard.update(dt);
             hud.update(dt);
+
             //Sets the min and max bounds if the camera following the player
             if (player.b2body.getPosition().x > 2.5 && player.b2body.getPosition().x < 35)
                 gameCam.position.x = (player.b2body.getPosition().x);
@@ -169,12 +185,16 @@ public class Level1Screen extends GameScreen {
 
                 game.batch.begin();
                 player.draw(game.batch);
+                hazard.draw(game.batch);
                 game.batch.end();
 
                 //Box2D Debug renderer
                 b2dr.render(world, gameCam.combined);
+
+                //draw the hud
                 hud.stage.draw();
 
+                //Draws the onscreen text
                 game.batch.begin();
                 drawText(game.batch, player.getXPos());
                 game.batch.end();
@@ -184,10 +204,9 @@ public class Level1Screen extends GameScreen {
                 if (isPaused)
                     pause.stage.draw();
 
-
+                //The end condition fo the game
                 if (player.b2body.getPosition().x > 37.5)
                     state = NEXT_LEVEL;
-
                 break;
             case NEXT_LEVEL:
                 dispose();
@@ -444,6 +463,10 @@ public class Level1Screen extends GameScreen {
         game.dispose();
     }
 
+    /**
+     * Returns the levels tilemap
+     * @return the tilemap to be returned
+     */
     public TiledMap getMap() {
         return map;
     }

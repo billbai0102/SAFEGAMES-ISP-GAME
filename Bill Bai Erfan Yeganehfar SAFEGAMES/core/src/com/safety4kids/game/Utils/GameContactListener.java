@@ -44,12 +44,14 @@ public class GameContactListener implements ContactListener {
         Fixture fixA = contact.getFixtureA();
         Fixture fixB = contact.getFixtureA();
 
-       System.out.println(fixB.getFilterData());
-        System.out.println(fixA.getFilterData());
+       System.out.println(fixB.getFilterData().categoryBits);
+        System.out.println(fixA.getFilterData().categoryBits);
 
-       if ((fixA.getFilterData().categoryBits == 2 && fixB.getFilterData().categoryBits == 2)){
-           screen.state =  GameScreen.GameState.RETURN;
-       }
+        if ((fixA.getFilterData().categoryBits != 32 && fixB.getFilterData().categoryBits != 32)) {
+            if ((fixA.getFilterData().categoryBits == 2 && fixB.getFilterData().categoryBits == 2)) {
+                screen.state = GameScreen.GameState.RETURN;
+            }
+        }
 
 
 
