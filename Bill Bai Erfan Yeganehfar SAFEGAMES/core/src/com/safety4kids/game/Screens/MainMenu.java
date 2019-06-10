@@ -122,15 +122,23 @@ public class MainMenu implements Screen {
         stage.draw();
     }
 
-
     @Override
-    public void show() {
-
+    public void dispose() {
+        skin.dispose();
+        stage.dispose();
+        backgroundImg.dispose();
+        batch.dispose();
+        game.dispose();
     }
 
     @Override
     public void resize(int width, int height) {
         gamePort.update(width, height);
+
+    }
+
+    @Override
+    public void show() {
 
     }
 
@@ -147,14 +155,5 @@ public class MainMenu implements Screen {
     @Override
     public void hide() {
 
-    }
-
-    @Override
-    public void dispose() {
-        skin.dispose();
-        stage.dispose();
-        backgroundImg.dispose();
-        batch.dispose();
-        game.dispose();
     }
 }

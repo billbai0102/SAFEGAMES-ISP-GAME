@@ -2,6 +2,9 @@ package com.safety4kids.game.Utils;
 
 /**
  * This class serves as a utility class where collision bit filters are held, so that multiple classes can access them.
+ *
+ * @author Bill Bai, Erfan Yeganehfar
+ * @version 1.1 05/30/19
  */
 public class B2DConstants {
 	//Collision collision bit filters
