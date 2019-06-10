@@ -95,7 +95,7 @@ public class Level1Screen extends GameScreen {
 
         //The player is created inside of the Box2D world
         player = new MainPlayer(this, 350, 200);
-        hazard = new HazardSprite(this, 450, 200, 3);
+        hazard = new HazardSprite(this, 450, 200, 5);
 
         //Processes input for the player
         input = new InputHandler(player);
