@@ -32,7 +32,7 @@ public class Level3IntroScreen implements Screen {
     public Level3IntroScreen(Safety4Kids game) {
         this.game = game;
         batch = new SpriteBatch();
-        bg = new Texture(Gdx.files.internal("Lv2Assets/Lv2Intro.png"));
+        bg = new Texture(Gdx.files.internal("Lv3Assets/Lv3Intro.png"));
         bgSprite = new Sprite(bg);
         bgSprite.setAlpha(alpha);
         bgSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
