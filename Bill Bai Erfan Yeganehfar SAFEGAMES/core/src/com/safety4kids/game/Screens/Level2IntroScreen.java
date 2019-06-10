@@ -64,6 +64,11 @@ public class Level2IntroScreen implements Screen {
      */
     private boolean fadeIn = true;
 
+    /**
+     * This is the constructor. It initializes variables, and sets the position and adds a listener to contBtn.
+     *
+     * @param game The game to be drawn onto
+     */
     public Level2IntroScreen(Safety4Kids game) {
         this.game = game;
         batch = new SpriteBatch();
@@ -78,6 +83,7 @@ public class Level2IntroScreen implements Screen {
         contBtn = new TextButton(">Press to continue...<", skin);
         contBtn.setColor(Color.BLACK);
         contBtn.setPosition(Gdx.graphics.getWidth() / 2 - contBtn.getWidth() / 2, contBtn.getHeight() + 10);
+        //Adds listener to contBtn
         contBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
@@ -95,24 +101,46 @@ public class Level2IntroScreen implements Screen {
         stage.addActor(contBtn);
     }
 
+    /**
+     * Renders the screen. It draws bgSprite and the button, and causes the bgSprite to fade in.
+     *
+     * @param delta The current frame.
+     */
     @Override
     public void render(float delta) {
+        //Draws bgSprite
         batch.begin();
         bgSprite.draw(batch);
         batch.end();
 
+        //Fades in bgSprite by increasing it's alpha value.
         if (fadeIn) {
-            alpha += (1f / 60f) / 5;
+            alpha += (1f / 60f) / 7;
+            //Stops fading in when alpha is 1 (max)
             if (alpha >= 1) {
                 fadeIn = false;
                 System.out.println("done");
             }
         }
-
+        //Sets alpha value of bgSprite to alpha
         bgSprite.setAlpha(alpha);
-        if (alpha > 0.15) {
+        //Draws the button when alpha is atleast .15
+        if(alpha > 0.15) {
             stage.draw();
         }
+    }
+
+
+    /**
+     * This method disposes of objects created in this class to free up memory.
+     */
+    @Override
+    public void dispose() {
+        batch.dispose();
+        game.dispose();
+        bg.dispose();
+        stage.dispose();
+        skin.dispose();
     }
 
     @Override
@@ -138,14 +166,5 @@ public class Level2IntroScreen implements Screen {
     @Override
     public void hide() {
 
-    }
-
-    @Override
-    public void dispose() {
-        batch.dispose();
-        game.dispose();
-        bg.dispose();
-        stage.dispose();
-        skin.dispose();
     }
 }

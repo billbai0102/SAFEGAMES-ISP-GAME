@@ -20,28 +20,83 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Safety4Kids;
-//created class on 06-06 bill 2hrs
+
+/**
+ * This class is called when the user loses level 2. It draws a Lose screen.
+ * <br>
+ * Background of image borrowed from <a href="https://wallup.net/sunset-16-bit-pixel-art-pokemon/">source site</a> (2017-03-29) by unknown artist.
+ * <br>
+ * <h2>Course info:</h2>
+ * ICS4U with V. Krasteva
+ *
+ * @author Bill Bai, Erfan Yeganehfar
+ * @version 1.6 05/02/19
+ */
 public class Level2LoseScreen implements Screen {
 
+    /**
+     * SpriteBatch to be drawn onto.
+     */
     private SpriteBatch batch;
+    /**
+     * Stage where buttons will be drawn on.
+     */
     private Stage stage;
+    /**
+     * Game to be drawn onto.
+     */
     private Safety4Kids game;
+    /**
+     * Background texture.
+     */
     private Texture bg;
-
+    /**
+     * GamePort that conducts the user's view of the screen.
+     */
     private Viewport gamePort;
+    /**
+     * Orthographic Camera instance used with gamePort.
+     */
     private OrthographicCamera gamecam;
+    /**
+     * Font used in this level.
+     */
     private BitmapFont font;
+    /**
+     * FontGlyph instance that controls first line of text onscreen.
+     */
     private GlyphLayout fontGlyph = new GlyphLayout();
+    /**
+     * FontGlyph instance that controls second line of text onscreen.
+     */
     private GlyphLayout fontGlyph2 = new GlyphLayout();
-
+    /**
+     * TextButton that leads to menu.
+     */
     private TextButton menuBtn;
+    /**
+     * TextButton that leads to lv3
+     */
     private TextButton nextLvl;
+    /**
+     * TextButton that restarts lv2
+     */
     private TextButton restartLvl;
-
+    /**
+     * Button skin.
+     */
     private Skin skin;
-
+    /**
+     * The score at which the user lost at.
+     */
     private int loseScore;
 
+    /**
+     * This is the constructor. It initializes the global variables and adds listeners to the different
+     * TextButton instances.
+     * @param game The game to be drawn on.
+     * @param loseScore The score at which the user lost on.
+     */
     public Level2LoseScreen(Safety4Kids game, int loseScore) {
         this.game = game;
         this.loseScore = loseScore;
@@ -50,11 +105,10 @@ public class Level2LoseScreen implements Screen {
         stage = new Stage(new ScreenViewport());
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), gamecam);
-
+        //Sets input processor to this stage
         Gdx.input.setInputProcessor(stage);
-
         bg = new Texture(Gdx.files.internal("Lv2Assets/LoseScreenBg.png"));
-
+        //Creates fonts
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/eight-bit-dragon.otf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 30;
@@ -62,12 +116,12 @@ public class Level2LoseScreen implements Screen {
         parameter.borderWidth = 0.5f;
         font = generator.generateFont(parameter);
         generator.dispose();
-
+        //Initializes the text buttons
         menuBtn = new TextButton(">>Go to Main Menu<<", skin);
         nextLvl = new TextButton(">>Skip to level 3<<", skin);
         restartLvl = new TextButton(">>Restart level 2<<", skin);
-
-        menuBtn.setPosition(Gdx.graphics.getWidth() / 2 - menuBtn.getWidth()/2, Gdx.graphics.getHeight() / 2 + 50);
+        //Adds listener to menuBtn
+        menuBtn.setPosition(Gdx.graphics.getWidth() / 2 - menuBtn.getWidth() / 2, Gdx.graphics.getHeight() / 2 + 50);
         menuBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
@@ -81,8 +135,8 @@ public class Level2LoseScreen implements Screen {
                 return true;
             }
         });
-
-        nextLvl.setPosition(Gdx.graphics.getWidth() / 2 - nextLvl.getWidth()/2, Gdx.graphics.getHeight()/2 - 30);
+        //Adds listener to nextLvl
+        nextLvl.setPosition(Gdx.graphics.getWidth() / 2 - nextLvl.getWidth() / 2, Gdx.graphics.getHeight() / 2 - 30);
         nextLvl.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
@@ -96,8 +150,8 @@ public class Level2LoseScreen implements Screen {
                 return true;
             }
         });
-
-        restartLvl.setPosition(Gdx.graphics.getWidth() / 2 - restartLvl.getWidth()/2, Gdx.graphics.getHeight()/2 + 130);
+        //Adds listener to restartLvl
+        restartLvl.setPosition(Gdx.graphics.getWidth() / 2 - restartLvl.getWidth() / 2, Gdx.graphics.getHeight() / 2 + 130);
         restartLvl.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
@@ -111,13 +165,18 @@ public class Level2LoseScreen implements Screen {
                 return true;
             }
         });
-
+        //Adds buttons to the stage
         stage.addActor(menuBtn);
         stage.addActor(nextLvl);
         stage.addActor(restartLvl);
     }
 
-
+    /**
+     * This is the render methood. It draws the background and losing text onto the screen. It the draws the
+     * button over the image and text.
+     *
+     * @param delta The current frame.
+     */
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(255, 255, 255, 1);
@@ -135,6 +194,19 @@ public class Level2LoseScreen implements Screen {
         batch.end();
 
         stage.draw();
+    }
+
+    /**
+     * This method disposes of objects created in this class to free up memory.
+     */
+    @Override
+    public void dispose() {
+        stage.dispose();
+        batch.dispose();
+        bg.dispose();
+        font.dispose();
+        skin.dispose();
+        game.dispose();
     }
 
     @Override
@@ -160,16 +232,6 @@ public class Level2LoseScreen implements Screen {
     @Override
     public void hide() {
 
-    }
-
-    @Override
-    public void dispose() {
-        stage.dispose();
-        batch.dispose();
-        bg.dispose();
-        font.dispose();
-        skin.dispose();
-        game.dispose();
     }
 }
 

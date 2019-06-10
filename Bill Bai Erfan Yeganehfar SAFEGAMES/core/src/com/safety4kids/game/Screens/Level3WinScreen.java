@@ -47,13 +47,13 @@ public class Level3WinScreen implements Screen {
         bgSprite = new Sprite(bg);
         bgSprite.setAlpha(alpha);
         bgSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
         skin = new Skin(Gdx.files.internal("skin/vhs/skin/vhs-ui.json"));
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
         contBtn = new TextButton(">Press to continue...<", skin);
         contBtn.setColor(Color.BLACK);
         contBtn.setPosition(Gdx.graphics.getWidth() / 2 - contBtn.getWidth() / 2, contBtn.getHeight() + 10);
+        //Adds listener to contBtn
         contBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
