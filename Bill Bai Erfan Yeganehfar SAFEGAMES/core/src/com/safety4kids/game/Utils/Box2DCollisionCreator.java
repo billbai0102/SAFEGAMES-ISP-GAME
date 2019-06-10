@@ -30,16 +30,6 @@ public class Box2DCollisionCreator {
      */
     private TiledMap map;
 
-    private Array<HazardSprite> stranger;
-    private Array<HazardSprite> fire;
-    private Array<HazardSprite> poison;
-    private Array<HazardSprite> lightning;
-    private Array<HazardSprite> knife;
-    private Array<HazardSprite> needle;
-    private Array<HazardSprite> skull;
-    private Array<HazardSprite> outlet;
-
-
     /**
      * This is the constructor. World and TiledMap instances of the GameScreen class are accessed, so that information
      * from the World and TiledMap, can be used to create boundaries, bodies, and fixture variables.
@@ -77,47 +67,6 @@ public class Box2DCollisionCreator {
             body.createFixture(fdef);
         }
 
-        //create all goombas
-        stranger = new Array<HazardSprite>();
-        stranger.add(new HazardSprite(screen, 450, 200, 1));
-
-        fire = new Array<HazardSprite>();
-            fire.add(new HazardSprite(screen, 450, 200, 2));
-
-        poison = new Array<HazardSprite>();
-        poison.add(new HazardSprite(screen, 450, 200, 3));
-
-
-        lightning = new Array<HazardSprite>();
-        lightning.add(new HazardSprite(screen, 450, 200, 4));
-
-        knife = new Array<HazardSprite>();
-        knife.add(new HazardSprite(screen, 450, 200, 5));
-
-
-        needle = new Array<HazardSprite>();
-        needle.add(new HazardSprite(screen, 450, 200, 6));
-
-        skull = new Array<HazardSprite>();
-        skull.add(new HazardSprite(screen, 450, 200, 7));
-
-
-        outlet = new Array<HazardSprite>();
-        outlet.add(new HazardSprite(screen, 450, 200, 8));
-
-
     }
 
-    public Array<HazardSprite> getEnemies(){
-        Array<HazardSprite> enemies = new Array<HazardSprite>();
-        enemies.addAll(stranger);
-        enemies.addAll(fire);
-        enemies.addAll(poison);
-        enemies.addAll(lightning);
-        enemies.addAll(knife);
-        enemies.addAll(needle);
-        enemies.addAll(skull);
-        enemies.addAll(outlet);
-        return enemies;
-    }
 }

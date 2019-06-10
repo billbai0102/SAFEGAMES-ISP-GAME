@@ -32,6 +32,7 @@ public class Level3Screen extends GameScreen {
 
     //Instance of the main character
     private MainPlayer player;
+    Array<HazardSprite> hazards;
 
     /**
      * The constructor creates all the necessary components for this specific platformer. This includes the actual game,
@@ -62,6 +63,7 @@ public class Level3Screen extends GameScreen {
 
         world.setContactListener(new GameContactListener(this));
 
+        createHazards();
     }
 
     public void update(float dt) {
@@ -71,7 +73,7 @@ public class Level3Screen extends GameScreen {
 
             world.step(STEP, 6, 2);
             player.update(dt);
-            for(HazardSprite hazard : creator.getEnemies()) {
+            for(HazardSprite hazard : hazards) {
                 hazard.update(dt);
                 /*if(hazard.getX() < player.getX() + 224 / Safety4Kids.PPM)
                     hazard.b2body.setActive(true);*/
@@ -126,7 +128,7 @@ public class Level3Screen extends GameScreen {
                 game.batch.setProjectionMatrix(gameCam.combined);
                 game.batch.begin();
                 player.draw(game.batch);
-                for (HazardSprite enemy : creator.getEnemies())
+                for (HazardSprite enemy : hazards)
                     enemy.draw(game.batch);
                 game.batch.end();
 
@@ -144,12 +146,46 @@ public class Level3Screen extends GameScreen {
                     state = RETURN;
                 break;
             case RETURN:
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3LoseScreen(game));
                 dispose();
                 break;
             default:
                 break;
         }
+    }
+
+    public void createHazards(){
+        //create all goombas
+        hazards = new Array<HazardSprite>();
+
+        //Adds all stranger hazards
+        hazards.add(new HazardSprite(this, 1400, 300, 1));
+        hazards.add(new HazardSprite(this, 3200, 400, 1));
+        //Adds all fire hazards
+        hazards.add(new HazardSprite(this, 500, 200, 2));
+        hazards.add(new HazardSprite(this, 1597, 200, 2));
+        //Adds lightning poison hazards
+        hazards.add(new HazardSprite(this, 2147, 200, 3));
+        hazards.add(new HazardSprite(this, 2449, 150, 3));
+        hazards.add(new HazardSprite(this, 3430, 200, 3));
+        //Adds all poison hazards
+        hazards.add(new HazardSprite(this, 780, 200, 4));
+        hazards.add(new HazardSprite(this, 1900, 270, 4));
+        hazards.add(new HazardSprite(this, 3000, 400, 4));
+        //Adds all knife hazards
+        hazards.add(new HazardSprite(this, 930, 200, 5));
+        hazards.add(new HazardSprite(this, 1800, 200, 5));
+        hazards.add(new HazardSprite(this, 2780, 200, 5));
+        //Adds all needle hazards
+        hazards.add(new HazardSprite(this, 1400, 200, 6));
+        hazards.add(new HazardSprite(this, 2300, 150, 6));
+        //Adds all skull hazards
+        hazards.add(new HazardSprite(this, 880, 200, 7));
+        hazards.add(new HazardSprite(this, 1967, 200, 7));
+        //Adds all outlet hazards
+        hazards.add(new HazardSprite(this, 1550, 380, 8));
+        hazards.add(new HazardSprite(this, 2658, 200, 8));
+
     }
 
     /**
