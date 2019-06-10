@@ -537,7 +537,6 @@ public class Level2Screen extends GameScreen implements Screen {
     private void lose() {
         lives--;
         warningLocation += (500f / 4f);
-        System.out.println("Lost life.");
         state = RESUME;
 
         correct = false;
