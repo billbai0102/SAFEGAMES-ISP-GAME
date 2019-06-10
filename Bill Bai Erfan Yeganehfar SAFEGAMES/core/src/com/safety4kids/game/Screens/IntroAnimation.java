@@ -196,6 +196,8 @@ public class IntroAnimation implements Screen {
         stage.dispose();
         batch.dispose();
         logo.dispose();
+        game.dispose();
+
     }
 
     @Override
