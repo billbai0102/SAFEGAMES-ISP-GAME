@@ -3,9 +3,7 @@ package com.safety4kids.game.Entities;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
@@ -59,6 +57,13 @@ public class HazardSprite extends Hazard {
                     frames.add(new TextureRegion(screen.getAtlas().findRegion("SAFEGAMES Lightning Sprite"),  5 + (i * 32), 17, 19, 15));
                 move = new Animation(0.07f, frames);
                 setBounds(x - 20/ Safety4Kids.PPM, y / Safety4Kids.PPM, 19 / Safety4Kids.PPM, 15 / Safety4Kids.PPM);
+                break;
+            case 5:
+                frames = new Array<TextureRegion>();
+                for(int i = 0; i < 15; i++)
+                    frames.add(new TextureRegion(screen.getAtlas().findRegion("KnifeSprite.png"), 11 + (i*32), 8, 14 ,17));
+                break;
+            case 6:
                 break;
 
         }
