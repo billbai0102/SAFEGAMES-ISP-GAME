@@ -47,7 +47,6 @@ public class Box2DCollisionCreator {
         else
             map = ((Level3Screen) screen).getMap();
 
-        System.out.println(map);
         //Creates body and fixture variables which assign Objects their states within the world
         BodyDef bdef = new BodyDef();
         PolygonShape shape = new PolygonShape();
