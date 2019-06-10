@@ -29,7 +29,7 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.RETURN;
  * @author Erfan Yeganehfar
  * @author Bill Bai
  *
- * @version 4.1 Erfan Yeg: (2019-05-04) Created the pause stage and window styles + interactions 2hrs
+ * @version 4.1 Erfan Yeg: (2019-06-04) Created the pause stage and window styles + interactions 2hrs
  */
 public class Pause implements Disposable {
 

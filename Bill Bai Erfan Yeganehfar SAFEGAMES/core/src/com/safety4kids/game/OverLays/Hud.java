@@ -1,30 +1,30 @@
 package com.safety4kids.game.OverLays;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.safety4kids.game.Safety4Kids;
-import com.safety4kids.game.Screens.MainMenu;
 
 /**
- *
- * @author Erfan Yeg, Bill Bai
- * @version 1.0
  * the Hud class displays current game information to the player using stages and Scene2D
+ *
+ * <h2>Course Info:</h2>
+ * @author Erfan Yeg
+ * @author Bill Bai
+ * Ms.Krasteva
+ *
+ * @version 4.1 2019-05-24
+ * 4.1 Fins
+ *
  */
 public class Hud implements Disposable {
     public Stage stage;
