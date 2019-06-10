@@ -15,37 +15,57 @@ import com.safety4kids.game.Safety4Kids;
 
 
 /**
+ * This class is the instructions screen for the game, which display's the game's instructions.
  *
- * @version 3.0, 2019-05-28
- * @author Erfan Yeganehfar
- * @author Bill Bai
+ * <h2>Course info:</h2>
+ * ICS4U with V. Krasteva
  *
- * Ms. Krasteva
- *
- * Modifications:
- *  Bill Bai: Completed entire class. Time spent: 1 hour.
+ * @author Bill Bai, Erfan Yeganehfar
+ * @version 1.5 05/30/19
  */
 public class Instructions implements Screen {
+    /**
+     * SpriteBatch to be drawn on
+     */
     SpriteBatch batch;
+    /**
+     * Image containing instructions
+     */
     Texture backgroundImg;
+    /**
+     * Skin for the buttons.
+     */
     Skin skin;
+    /**
+     * Button that leads to MainMenu
+     */
     TextButton backBtn;
-
+    /**
+     * Stage, where buttons are added on to be drawn
+     */
     Stage stage;
+    /**
+     * Game screen to be drawn on.
+     */
     Safety4Kids game;
 
+    /**
+     * This is the constructor. It sets initializes variables and adds a listener to backBtn.
+     *
+     * @param game Safety4Kids game object to be drawn on.
+     */
     public Instructions(Safety4Kids game) {
         this.game = game;
         stage = new Stage(new ScreenViewport());
         batch = new SpriteBatch();
-
         Gdx.input.setInputProcessor(stage);
         backgroundImg = new Texture(Gdx.files.internal("InstructionsImg.jpg"));
         skin = new Skin(Gdx.files.internal("skin/flat_earth/flat-earth-ui.json"));
 
-        //instructions btn
+        //Instructions button
         backBtn = new TextButton("BACK", skin);
-        backBtn.setPosition(Gdx.graphics.getWidth() / 2 - backBtn.getWidth()/2, 30);
+        backBtn.setPosition(Gdx.graphics.getWidth() / 2 - backBtn.getWidth() / 2, 30);
+        //Adds listener
         backBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
@@ -53,23 +73,20 @@ public class Instructions implements Screen {
                 Instructions.this.game.setScreen(new MainMenu(Instructions.this.game));
                 dispose();
             }
-
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 return true;
             }
         });
-
         stage.addActor(backBtn);
     }
 
+    /**
+     * This is the render method. It draws the instructions image and button.
+     *
+     * @param delta The current frame.
+     */
     @Override
-    public void show() {
-        Gdx.input.setInputProcessor(stage);
-    }
-
-    @Override
-    @SuppressWarnings("Duplicates")
     public void render(float delta) {
         Gdx.gl.glClearColor(255, 255, 255, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -79,6 +96,22 @@ public class Instructions implements Screen {
         batch.end();
 
         stage.draw();
+    }
+
+    /**
+     * Disposes of objects created in the class to free up memory.
+     */
+    @Override
+    public void dispose() {
+        backgroundImg.dispose();
+        stage.dispose();
+        game.dispose();
+        skin.dispose();
+        batch.dispose();
+    }
+
+    @Override
+    public void show() {
     }
 
     @Override
@@ -99,14 +132,5 @@ public class Instructions implements Screen {
     @Override
     public void hide() {
 
-    }
-
-    @Override
-    public void dispose() {
-        backgroundImg.dispose();
-        stage.dispose();
-        game.dispose();
-        skin.dispose();
-        batch.dispose();
     }
 }

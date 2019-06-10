@@ -28,23 +28,13 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.RUN;
 //import java.awt.*;
 
 /**
- * This Class represents the first level of the game where it is based on an interactive learning platformer.
+ * This class is the win screen for level 3.
  *
- * @author Erfan Yeganehfar
- * @author Bill Bai
- * <p>
- * Ms. Krasteva
- * <p>
- * Modifications:
- * 3.1 Erfan Yeg: (2019-05-28) Added the basics for the game such as the camera, viewports, hud, and renderer -- 2hrs
- * 3.2 Erfan Yeg: (2019-05-29) created + added the basic tile map and created the tilemap renderer -- 2hrs
- * 3.3 Erfan Yeg: (2019-05-29) Created box2d bodies and fixtures and added them to the box2d world, aka collision detection,
- * Added the main player body to the world as well as input handling. -- 2hrs
- * 3.4 Erfan Yeg: (2019-05-30) Cleaned code up, made a new class for loading in objects and fixed tilemap bleeding as well
- * as better movement. -- 1.5hrs
- * 3.5 Erfan Yeg: (2019-06-01) Added a way of transitioning from the current level to the next -- 30mins
- * 3.6 Erfan Yeg: (2019-06-02) Added different states for the game that control the state of the game -- 1hr
- * @version 4.0 2019-06-06
+ * <h2>Course info:</h2>
+ * ICS4U with V. Krasteva
+ *
+ * @author Erfan Yeganehfar, Bill Bai
+ * @version 1.2 06/09/19
  */
 @SuppressWarnings("Duplicates")
 public class Level1Screen extends GameScreen {

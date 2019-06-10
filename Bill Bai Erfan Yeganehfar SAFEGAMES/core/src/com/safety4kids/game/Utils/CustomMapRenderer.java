@@ -31,7 +31,6 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 
 import static com.badlogic.gdx.graphics.g2d.Batch.*;
-//TODO COMMENT THIS ERFAN PLZ
 
 /**
  * This class is just the is part of the implementation from BatchTiledMapRenderer from badlogic (libgdx)

@@ -22,23 +22,17 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
 
 
 /**
- * This is class represents the second level of the game.
+ * This class is the win screen for level 3.
+ * <br>
+ * Background of image borrowed from <a href="https://imgur.com/gallery/6hSG6">source site</a> (2017-09-10) by artist: Spintronic
+ * <br>
  *
- * @author Erfan Yeganehfar
- * @author Bill Bai
- * <p>
- * Ms. Krasteva
- * <p>
- * Modifications:
- * 3.1 Bill Bai: (2019-05-30) Added the basics for the game such as the camera, viewports, hud, and renderer -- 2hrs
- * 3.2 Added File IO to read into game -- 30min
- * 3.3 Added Infinite map and animated sprites -- 1.5hrs
- * 3.4 Added shuffling questions and answers, and input to game - 2hrs
- * 3.5 Bill Bai: Added external library manually. Had to edit build.gradle and manually insert the JAR files. -- 1.5hrs
- * 3.6 Bill Bai: Added algorithm to correctly display text without going over edges. -- 2hrs
- * @version 6 2019-06-03
+ * <h2>Course info:</h2>
+ * ICS4U with V. Krasteva
+ *
+ * @author Bill Bai, Erfan Yeganehfar
+ * @version 3.8 06/06/19
  */
-@SuppressWarnings("Duplicates")
 public class Level2Screen extends GameScreen implements Screen {
     private Safety4Kids game;
     private SpriteBatch batch;
@@ -93,7 +87,6 @@ public class Level2Screen extends GameScreen implements Screen {
     public Level2Screen(Safety4Kids game) {
         //Sets game to be drawn on
         this.game = game;
-        //TODO Remove later
 
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
