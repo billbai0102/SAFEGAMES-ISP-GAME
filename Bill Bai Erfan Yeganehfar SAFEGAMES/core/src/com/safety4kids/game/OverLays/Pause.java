@@ -26,21 +26,38 @@ import com.safety4kids.game.Screens.GameScreen;
 import static com.safety4kids.game.Screens.GameScreen.GameState.RETURN;
 
 /**
+ * A pause screen that pauses the game and allows the user to return to the main menu.
+ *
  * @author Erfan Yeganehfar
  * @author Bill Bai
  *
- * @version 4.1 Erfan Yeg: (2019-06-04) Created the pause stage and window styles + interactions 2hrs
+ * @version 4.1 2019-06-04
+ * 4.1 Erfan Yeg: (2019-06-04) Created the pause stage and window styles + interactions 2hrs
  */
 public class Pause implements Disposable {
 
+    //stage that displays the labels on
     public Stage stage;
+
+    //the games viewport, allows hud to follow player
     private Viewport viewport;
+
+    //The skin for the SceneU elements
     private Skin skin;
+
+    //Window that displays buttons
     private final Window pause;
+
+    //Bitmap font used to show the title
     private BitmapFont font;
+
+    //Buttons used to continue and exit the level
     public TextButton cont;
     public TextButton exit;
+
+    //title label
     private Label title;
+
     /**
      * The constructor for the Hud initializes the Label values and constructs the viewport. Using Scene2D API such as Table,
      * the labels can be set properly with their sprites on the game screen.
@@ -51,10 +68,12 @@ public class Pause implements Disposable {
         SpriteDrawable bgDrawble = new SpriteDrawable(new Sprite(new Texture("purp.jpg")));
         SpriteDrawable background = new SpriteDrawable(new Sprite(new Texture("transp.png")));
 
+        //window style
         Window.WindowStyle windowStyle= new Window.WindowStyle(new BitmapFont(), Color.BLACK, bgDrawble);
         windowStyle.stageBackground = background;
         pause = new Window("", windowStyle);
 
+        //font generator
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/eight-bit-dragon.otf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 20;
@@ -68,6 +87,7 @@ public class Pause implements Disposable {
 
         pause.top();
 
+        //Button controls onClick return to game
         cont = new TextButton("Continue", skin);
         cont.addListener(new ClickListener() {
             @Override
@@ -77,6 +97,7 @@ public class Pause implements Disposable {
             }
         });
 
+        //Button controls onClick return to menu
         exit = new TextButton("Main Menu", skin);
         exit.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
@@ -91,6 +112,7 @@ public class Pause implements Disposable {
         cont.setSize(20, 20);
         exit.setSize(20, 20);
 
+        //sets up the styling of the window
         pause.add(title).expandX().padTop(20).row();
         pause.add(cont).padTop(40);
         pause.row();
@@ -99,12 +121,15 @@ public class Pause implements Disposable {
         pause.setPosition(stage.getWidth()/2-pause.getWidth()/2,stage.getHeight()/2-pause.getHeight()/2);
 
 
-
         //adds table to the current stage
         stage.addActor(pause);
+        //sets the input prcessor as this stage
         Gdx.input.setInputProcessor(stage);
     }
 
+    /**
+     * Disposes of assets
+     */
     @Override
     public void dispose() {
         stage.dispose();

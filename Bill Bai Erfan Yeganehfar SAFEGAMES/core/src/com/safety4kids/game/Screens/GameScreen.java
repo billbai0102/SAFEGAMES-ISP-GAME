@@ -17,7 +17,6 @@ import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.OverLays.Pause;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.Box2DCollisionCreator;
-import com.safety4kids.game.Utils.GameContactListener;
 import com.safety4kids.game.Utils.InputHandler;
 import com.safety4kids.game.Utils.CustomMapRenderer;
 import static com.safety4kids.game.Safety4Kids.*;
