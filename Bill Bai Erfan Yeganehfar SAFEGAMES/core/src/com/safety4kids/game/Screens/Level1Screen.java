@@ -12,8 +12,6 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.safety4kids.game.Entities.Hazard;
-import com.safety4kids.game.Entities.HazardSprite;
 import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.Safety4Kids;
@@ -30,40 +28,77 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.RUN;
 //import java.awt.*;
 
 /**
- * This class is the win screen for level 3.
+ * This class is the first level of the game.
  *
  * <h2>Course info:</h2>
  * ICS4U with V. Krasteva
  *
  * @author Erfan Yeganehfar, Bill Bai
- * @version 1.2 06/09/19
+ * @version 4.2 06/09/19
  */
 @SuppressWarnings("Duplicates")
 public class Level1Screen extends GameScreen {
 
-    //Tile map Instance variables
+    /**
+     * Tiled map instance, which is the map in the game.
+     */
     private TiledMap map;
-    //tile map renderer
+
+    /**
+     * Used to render TiledMap.
+     */
     private OrthogonalTiledMapRenderer renderer;
 
-    //custom tile map render that fixes padding
+    /**
+     * Custom TiledMap renderer to fix bleeding.
+     */
     private CustomMapRenderer tiledMapRenderer;
 
-    //the games input handler
+    /**
+     * Handles user input
+     */
     private InputHandler input;
 
-    //Instance of the main character
+    /**
+     * Creates instance of MainPlayer which is player to be controlled.
+     */
     public MainPlayer player;
 
-    //Bitmap Font object to draw and format text onscreen.
+    /**
+     * Font used in first half of the level
+     */
     private BitmapFont font;
+    /**
+     * Font used in second half of the level
+     */
     private BitmapFont font2;
+    /**
+     * Font glyph that controls first line of text onscreen.
+     */
     private GlyphLayout fontGlyph = new GlyphLayout();
+    /**
+     * Font glyph that controls second line of text onscreen.
+     */
     private GlyphLayout fontGlyphMiddle = new GlyphLayout();
+    /**
+     * Font glyph that controls third line of text onscreen.
+     */
     private GlyphLayout fontGlyphMiddle2 = new GlyphLayout();
+    /**
+     * Font glyph that controls fourth line of text onscreen.
+     */
     private GlyphLayout fontGlyphBottom = new GlyphLayout();
+    /**
+     * Font glyph that controls fifth line of text onscreen.
+     */
     private GlyphLayout fontGlyphBottom2 = new GlyphLayout();
+    /**
+     * Text ceiling
+     */
     private final float TEXT_CEIL = 123f;
+    /**
+     * Width of the stage
+     */
     private final float STAGE_WIDTH = 225f;
 
 
@@ -119,6 +154,7 @@ public class Level1Screen extends GameScreen {
 
     /**
      * The update method used to update the locations and states of the game, it also changes how the camera is relative to the player
+     *
      * @param dt The target frame rate minus the time taken to complete this frame is called the delta time, used to keep the frames consistant across platforms
      */
     public void update(float dt) {
@@ -151,7 +187,7 @@ public class Level1Screen extends GameScreen {
      * The renderer method updates and displays new graphical/technical changes to the game screen based on the game camera
      * This includes the Tiled Map, the box2d debugger, the camera position, and the onscreen Hud.
      *
-     * @param delta
+     * @param delta The current frame.
      */
     @Override
     public void render(float delta) {
@@ -383,7 +419,7 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphMiddle2.setText(font, "Just don't call 911 for non-emergencies.");
             font2.draw(batch, fontGlyphMiddle2, STAGE_WIDTH - fontGlyphMiddle2.width / 2, 400 - fontGlyph.height - fontGlyphMiddle.height - 20);
-        }else if (xPos < 30){
+        } else if (xPos < 30) {
             fontGlyph.setText(font2, "Lastly, I need to teach you about stranger danger.");
             font2.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, 400);
 
@@ -395,7 +431,7 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphBottom.setText(font2, "avoid talking to, trusting, or accept anything from strangers.");
             font2.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, 400 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
-        } else if (xPos < 32){
+        } else if (xPos < 32) {
             fontGlyph.setText(font2, "If a stranger comes up to you offering candy");
             font2.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, 400);
 
@@ -407,13 +443,13 @@ public class Level1Screen extends GameScreen {
 
             fontGlyphBottom.setText(font2, "police, or shop, and inform them of what's happened.");
             font2.draw(batch, fontGlyphBottom, STAGE_WIDTH - fontGlyphBottom.width / 2, 400 - fontGlyph.height - fontGlyphMiddle.height - fontGlyphMiddle2.height - 30);
-        } else if (xPos < 34){
+        } else if (xPos < 34) {
             fontGlyph.setText(font2, "Stranger danger also applies to online settings.");
             font2.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, 400);
 
             fontGlyphMiddle.setText(font2, "NEVER give any information to strangers anywhere.");
             font2.draw(batch, fontGlyphMiddle, STAGE_WIDTH - fontGlyphMiddle.width / 2, 400 - fontGlyph.height - 10);
-        } else if (xPos < 36){
+        } else if (xPos < 36) {
             fontGlyph.setText(font2, "");
             font2.draw(batch, fontGlyph, STAGE_WIDTH - fontGlyph.width / 2, 400);
 
@@ -427,10 +463,10 @@ public class Level1Screen extends GameScreen {
     }
 
     /**
-     * Based on the screen size, the viewport of the game is positioned to correctly display the game screen
+     * Based on the screen size, the viewport of the game is positioned to correctly display the game screen.
      *
-     * @param width  the world width to be displayed
-     * @param height the world height to be displayed
+     * @param width  the world width to be displayed.
+     * @param height the world height to be displayed.
      */
     @Override
     public void resize(int width, int height) {
@@ -438,7 +474,7 @@ public class Level1Screen extends GameScreen {
     }
 
     /**
-     * Used for memory efficiency, disposes of game assets
+     * Used for memory efficiency, disposes of game assets.
      */
     @Override
     public void dispose() {
@@ -457,8 +493,9 @@ public class Level1Screen extends GameScreen {
     }
 
     /**
-     * Returns the levels tilemap
-     * @return the tilemap to be returned
+     * Returns the level's tilemap
+     *
+     * @return the tilemap to be returned.
      */
     public TiledMap getMap() {
         return map;
