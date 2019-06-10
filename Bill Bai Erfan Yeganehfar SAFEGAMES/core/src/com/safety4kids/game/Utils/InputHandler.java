@@ -32,7 +32,7 @@ public class InputHandler{
     }
 
     /**
-     * This method processses inputs.
+     * This method processes inputs.
      * <br>If the up key or W key is pressed, it will call the <i>MainPlayer</i> object's
      * <i>jump</i> method.
      * <br>If the right key or D key is pressed, it will call the moveRight method of this class, which

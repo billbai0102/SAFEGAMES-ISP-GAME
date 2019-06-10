@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.safety4kids.game.Entities.Hazard;
+import com.safety4kids.game.Entities.HazardSprite;
 import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.Safety4Kids;
@@ -67,6 +69,7 @@ public class Level1Screen extends GameScreen {
 
     //Instance of the main character
     public MainPlayer player;
+    HazardSprite hazard;
 
     //Bitmap Font object to draw and format text onscreen.
     private BitmapFont font;
@@ -103,7 +106,7 @@ public class Level1Screen extends GameScreen {
 
         //The player is created inside of the Box2D world
         player = new MainPlayer(this, 350, 200);
-
+hazard = new HazardSprite(this, 400, 200, 3);
         //Processes input for the player
         input = new InputHandler(player);
 
@@ -145,6 +148,7 @@ public class Level1Screen extends GameScreen {
 
             //updates the player and hud
             player.update(dt);
+            hazard.update(dt);
             hud.update(dt);
 
             //Sets the min and max bounds if the camera following the player
@@ -196,6 +200,7 @@ public class Level1Screen extends GameScreen {
 
                 game.batch.begin();
                 player.draw(game.batch);
+                hazard.draw(game.batch);
                 game.batch.end();
 
                 //Box2D Debug renderer
