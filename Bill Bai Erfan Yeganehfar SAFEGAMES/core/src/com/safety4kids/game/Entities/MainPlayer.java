@@ -9,18 +9,18 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Screens.GameScreen;
-import com.safety4kids.game.Screens.Level1Screen;
 import com.safety4kids.game.Utils.B2DConstants;
 import com.safety4kids.game.Utils.InputHandler;
-import sun.applet.Main;
 
 import static com.safety4kids.game.Safety4Kids.MAX_VELOCITY;
 import static com.safety4kids.game.Safety4Kids.MIN_VELOCITY;
 
 
 /**
+ * This class represents the MainPlayer, it creates and instantiates the location of the player, the box2d body, the sprites, and the animation for them.
+ * It is the control center for the main player.
  *
- * @version 3.3 2019-05-29
+ * @version 4 2019-05-29
  * @author Erfan Yeganehfar
  * @author Bill Bai
  *
@@ -32,35 +32,69 @@ import static com.safety4kids.game.Safety4Kids.MIN_VELOCITY;
  * Allowing the Box2d body to bind with the sprite animations. -- 1hr
  * 3.3 Erfan Yeg: (2019-06-01) Binded the player sprite to the box2d body and also animated the running animation,
  * added the different states and fixed the infinite jumping. -- 3hr
+ * 4.0 Finished the Player, fixed the box2d body position
  */
 public class MainPlayer extends Sprite{
-    public World world;
-    public Body b2body;
-    private float startPosX;
-    private float startPosY;
-    private BodyDef bdef;
 
+    /** The world that the player box 2d body is located in**/
+    public World world;
+
+    /** The players box 2d body**/
+    public Body b2body;
+
+    /**the x start position of the player**/
+    private float startPosX;
+
+    /**the y start position of the player**/
+    private float startPosY;
+
+    /** The idle texture region for the player**/
     private TextureRegion playerIdle;
+
+    /** The running texture region animation for the player**/
     private Animation<TextureRegion> playerRun;
+
+    /** The jumping texture region for the player**/
     private TextureRegion playerJump;
 
-
+    /**
+     * Enum that represents the states of the player
+     */
     public enum State {
-        FALLING, JUMPING, IDLE, RUNNING }
+        FALLING, JUMPING, IDLE, RUNNING };
+
+    /**the current state of the player**/
     public State currState;
+
+    /**The previous state of the player**/
     public State prevState;
 
+    /**The animation timer for the player**/
     private float timer;
+
+    /**Determines if the player is facing right**/
     private boolean isRight;
+
+    /** The screen on which the player is displayed on**/
     private GameScreen screen;
+
+    /**The input handler for the player**/
     private InputHandler input;
 
-    //TODO fix hovering player
+    /**
+     * The constructor for the MainPLayer class, it instantiates the screen and position of the sprite, as well as defines the box2d body,
+     * and the texture animation for it
+     *
+     * @param screen the screen in which the player is drawn on
+     * @param posX the x position of the player
+     * @param posY the y position of the player
+     */
     public MainPlayer(GameScreen screen, float posX, float posY){
         this.screen = screen;
         this.world = screen.getWorld();
         startPosX = posX;
         startPosY = posY;
+        //sets the states to idle
         currState = State.IDLE;
         prevState = State.IDLE;
         timer = 0;
@@ -81,6 +115,7 @@ public class MainPlayer extends Sprite{
         playerIdle = new TextureRegion(screen.getAtlas().findRegion("idle"), 10, 4, 14, 24);
         playerJump = new TextureRegion(screen.getAtlas().findRegion("jump"), 9, 4, 15, 24);
 
+        //creates and bounds the box2d body for the player
         creatBox2D();
         setBounds(startPosX / Safety4Kids.PPM,startPosY / Safety4Kids.PPM , 17f / Safety4Kids.PPM, 30f / Safety4Kids.PPM);
         setRegion(playerIdle);
@@ -93,7 +128,7 @@ public class MainPlayer extends Sprite{
     public void creatBox2D(){
 
         //Defined Body
-        bdef = new BodyDef();
+        BodyDef bdef = new BodyDef();
         //Position of the body
         bdef.position.set(startPosX / Safety4Kids.PPM,startPosY/ Safety4Kids.PPM);
 
@@ -121,18 +156,11 @@ public class MainPlayer extends Sprite{
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(this);
 
-        /*EdgeShape feet = new EdgeShape();
+        EdgeShape feet = new EdgeShape();
         feet.set(new Vector2(-5.6f / Safety4Kids.PPM, -14f / Safety4Kids.PPM), new Vector2(5f / Safety4Kids.PPM, -14f / Safety4Kids.PPM));
         fdef.shape = feet;
         fdef.isSensor = false;
-        b2body.createFixture(fdef).setUserData("feet");*/
-
-        /*EdgeShape hat = new EdgeShape();
-        hat.set(new Vector2(-3.5f / Safety4Kids.PPM,  14f/ Safety4Kids.PPM), new Vector2(3.5f / Safety4Kids.PPM, 14f / Safety4Kids.PPM));
-        fdef.filter.categoryBits = B2DConstants.BIT_PLAYER_HAT;
-        fdef.shape = hat;
-        fdef.isSensor = false;
-        b2body.createFixture(fdef).setUserData(this);*/
+        b2body.createFixture(fdef);
 
     }
 
@@ -142,10 +170,17 @@ public class MainPlayer extends Sprite{
      */
     public Vector2 getPosition() { return b2body.getPosition(); }
 
+    /**
+     * Gets the box 2ds body position
+     * @return the box 2d body position
+     */
     public float getXPos(){
         return b2body.getPosition().x;
     }
 
+    /**
+     * Applies an impulse to the player from the y coordinate allowing it to simulate jumping if the current state was not jumping/falling before
+     */
     public void jump(){
         if ( currState != State.JUMPING && currState!= State.FALLING) {
             b2body.applyLinearImpulse(new Vector2(0, 3.8f), b2body.getWorldCenter(), true);
@@ -153,19 +188,24 @@ public class MainPlayer extends Sprite{
         }
     }
 
+    /**
+     * Update used to update the position of the hazard as well as the current animation
+     * @param dt uses delta time derived from the the cpu's speed indicating the frames of the game
+     */
     public void update(float dt) {
-
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
-
         setRegion(getFrame(dt));
-
-
     }
 
+    /**
+     * Based on the current state of the body (in the form of coordinates) the state of the body is returned
+     * @return the state of the players body
+     */
         public State getState(){
+            //if the player is above the ground and the current state is jumping or if the players y value is falling and the state is jumping
         if((b2body.getLinearVelocity().y > 0 && currState == State.JUMPING) || (b2body.getLinearVelocity().y < 0 && prevState == State.JUMPING))
             return State.JUMPING;
-            //if there is a negative value in the y Axis
+            //if there is a negative value in the y axis
         else if(b2body.getLinearVelocity().y < 0)
             return State.FALLING;
             //if the player is running at a positive or negative value in the x axis
@@ -176,6 +216,11 @@ public class MainPlayer extends Sprite{
             return State.IDLE;
     }
 
+    /**
+     * Gets the sprite frame of the player depending on the state a different animation key is returned.
+     * @param dt uses delta time derived from the the cpu's speed indicating the frames of the game
+     * @return returns the texture region that shoudl be displayed at the specified frame
+     */
     public TextureRegion getFrame(float dt) {
         //get player current state. ie. jumping, running, standing...
         currState = getState();
@@ -213,17 +258,23 @@ public class MainPlayer extends Sprite{
             isRight = true;
         }
 
-        //if the current state is the same as the previous state increase the state timer.
-        //otherwise the state has changed and we need to reset timer.
+        //if the current state is the same as the previous state increase the state timer
+        //otherwise the state has changed and the timer is reset
         timer = currState == prevState ? timer + dt : 0;
         //update previous state
         prevState = currState;
-        //return our final adjusted frame
+
+        //the texture region is returned
         return region;
     }
 
+    /**
+     * gets the timers value
+     * @return the value of the timer
+     */
     public float getTimer(){
         return timer;
     }
+
 
 }
