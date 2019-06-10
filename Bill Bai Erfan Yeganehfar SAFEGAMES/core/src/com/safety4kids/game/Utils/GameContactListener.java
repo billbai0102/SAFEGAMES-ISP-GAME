@@ -52,10 +52,6 @@ public class GameContactListener implements ContactListener {
                 //screen.state = GameScreen.GameState.LOSE;
             }
         }
-
-
-
-
     }
 
     /**

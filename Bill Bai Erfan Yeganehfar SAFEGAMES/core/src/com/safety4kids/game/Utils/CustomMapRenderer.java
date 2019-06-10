@@ -55,7 +55,8 @@ public class CustomMapRenderer extends BatchTiledMapRenderer {
     }
 
     /**
-     * This method fixes map bleeding problems encountered when rendering the map, in a certain region of the map's texture.
+     * This method fixes map bleeding problems encountered when rendering the map, in a certain region of the map's texture
+     * by increasing the padding of the tiles.
      *
      * @param region The TextureRegion that encounters bleeding.
      */
@@ -81,7 +82,7 @@ public class CustomMapRenderer extends BatchTiledMapRenderer {
     }
 
     /**
-     * This method renders a specific part of the TiledMap.
+     * This method renders a specific tile map layer of the TiledMap.
      *
      * @param layer the specific tile map layer to be rendered
      */

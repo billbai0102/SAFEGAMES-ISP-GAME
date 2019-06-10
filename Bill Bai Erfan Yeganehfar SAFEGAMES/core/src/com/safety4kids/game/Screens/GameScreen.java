@@ -72,8 +72,9 @@ public abstract class GameScreen implements Screen {
 
     //Box2d collision detection instance variables
     protected World world;
-    protected Box2DDebugRenderer b2dr;
     protected TextureAtlas atlas;
+
+    //Box2d collision creator that loads in the boxes from the Tilemap
     protected Box2DCollisionCreator creator;
 
     //Instance of the main character
@@ -104,7 +105,6 @@ public abstract class GameScreen implements Screen {
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
 
         world = new World(new Vector2(0,CONST_GRAVITY),true);
-        b2dr = new Box2DDebugRenderer();
     }
 
     /**

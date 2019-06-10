@@ -19,6 +19,8 @@ import static com.safety4kids.game.Safety4Kids.MIN_VELOCITY;
 /**
  * This class represents the MainPlayer, it creates and instantiates the location of the player, the box2d body, the sprites, and the animation for them.
  * It is the control center for the main player.
+ * <b>Sprite resources are original from Erfan.Y and Bill.B</b>
+ *
  *
  * <h2>Course Info:</h2>
  * @version 4 2019-05-29

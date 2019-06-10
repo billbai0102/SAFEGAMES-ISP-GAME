@@ -12,6 +12,7 @@ import com.safety4kids.game.Screens.GameScreen;
 import com.safety4kids.game.Utils.B2DConstants;
 /**
  * This Class represents the main hazard type, it defines the textures, box2d body, and updates the position and texture regions of the hazard
+ * <b>Sprite resources are original from Erfan.Y and Bill.B</b>
  *
  * <h2>Course Info:</h2>
  * @version 4.2 2019-06-02

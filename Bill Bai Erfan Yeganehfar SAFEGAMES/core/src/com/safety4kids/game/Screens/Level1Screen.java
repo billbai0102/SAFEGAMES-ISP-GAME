@@ -31,6 +31,13 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.RUN;
  * This Class represents the first level of the game where it is based on an interactive learning platformer.
  * Using Box2d bodies, tile maps, cameras, viewports, game loops, and game states
  * to create a cohesive platformer meant to make the user learn about safety
+ *
+ * Most of the documentation for the methods used can be found at
+ * <a href="https://github.com/libgdx/libgdx">libgdx</a>
+ * alongside the documentation used to make this game
+ * tilemap resources from <a href="https://ansimuz.itch.io/sunny-land-pixel-game-art ">by ansimuz</a>
+ * <b>Sprite resources are original from Erfan.Y and Bill.B</b>
+ *
  * <h2>Course info:</h2>
  * ICS4U with V. Krasteva
  *
@@ -188,7 +195,7 @@ public class Level1Screen extends GameScreen {
      * The renderer method updates and displays new graphical/technical changes to the game screen based on the game camera
      * This includes the Tiled Map, the box2d debugger, the camera position, and the onscreen Hud.
      *
-     * @param delta The current frame.
+     * @param delta The target frame rate minus the time taken to complete this frame is called the delta time, used to keep the frames consistant across platforms
      */
     @Override
     public void render(float delta) {
@@ -482,7 +489,6 @@ public class Level1Screen extends GameScreen {
         map.dispose();
         renderer.dispose();
         world.dispose();
-        b2dr.dispose();
         tiledMapRenderer.dispose();
         pause.dispose();
         hud.dispose();

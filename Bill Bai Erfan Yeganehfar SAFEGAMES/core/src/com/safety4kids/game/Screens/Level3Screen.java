@@ -28,6 +28,13 @@ import static com.safety4kids.game.Screens.GameScreen.GameState.*;
  * In this level the user must avoid hazards and unsafe situations to final escape their adversity.
  * Using Box2d bodies, tile maps, cameras, viewports, game loops, and game states
  * to create a cohesive platformer meant to make the user learn about safety
+ *
+ * Most of the documentation for the methods used can be found at
+ * <a href="https://github.com/libgdx/libgdx">libgdx</a>
+ * alongside the documentation used to make this game
+ * tilemap resources from <a href="https://ansimuz.itch.io/sunny-land-pixel-game-art ">by ansimuz</a>
+ * <b>Sprite resources are original from Erfan.Y and Bill.B</b>
+ *
  * <h2>Course info:</h2>
  * ICS4U with V. Krasteva
  *
@@ -40,13 +47,27 @@ public class Level3Screen extends GameScreen {
      * Custom TiledMap renderer to fix bleeding.
      */
     private TiledMap map;
+
+    /**
+     * Used to render the TiledMap.
+     */
     private OrthogonalTiledMapRenderer renderer;
+
+    /**
+     * Custom TiledMap renderer to fix bleeding.
+     */
     private CustomMapRenderer tiledMapRenderer;
 
     private InputHandler input;
 
-    //Instance of the main character
+    /**
+     * Creates instance of MainPlayer which is player to be controlled.
+     */
     private MainPlayer player;
+
+    /**
+     * An Arraylist of hazards that are to be drawn to the game world
+     */
     Array<HazardSprite> hazards;
 
     /**
@@ -82,6 +103,10 @@ public class Level3Screen extends GameScreen {
         createHazards();
     }
 
+    /**
+     * The update method used to update the locations and states of the game, it also changes how the camera is relative to the player
+     * @param dt The target frame rate minus the time taken to complete this frame is called the delta time, used to keep the frames consistant across platforms
+     */
     public void update(float dt) {
         if (!isPaused) {
             //user input handler
@@ -111,18 +136,22 @@ public class Level3Screen extends GameScreen {
 
     /**
      * The renderer method updates and displays new graphical/technical changes to the game screen based on the game camera
-     * This includes the Tiled Map, the box2d debugger, the camera position, and the onscreen Hud.
+     * This includes the Tiled Map, the box2d debugger, the camera position, and the onscreen Hud.  makes sure end conditions are met.
      *
-     * @param delta
+     * @param delta The target frame rate minus the time taken to complete this frame is called the delta time, used to keep the frames consistant across platforms
      */
     @Override
     public void render(float delta) {
+
+        //if the game is paused
         if (isPaused) {
+            //resumes the game
             if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY))
                 state = RUN;
         }
         switch (state) {
             case RUN:
+                //if the esc is pressed then pauses or un-pauses the game
                 if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
                     if (!isPaused)
                         isPaused = true;
@@ -151,9 +180,6 @@ public class Level3Screen extends GameScreen {
                     hazard.draw(game.batch);
                 game.batch.end();
 
-                //Box2D Debug renderer
-                //b2dr.render(world, gameCam.combined);
-
                 //shows the screen based on the Camera with the hud
                 game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
                 hud.stage.draw();
@@ -161,7 +187,7 @@ public class Level3Screen extends GameScreen {
                     pause.stage.draw();
 
 
-                if (player.b2body.getPosition().x > /*37.5*/ 6)
+                if (player.b2body.getPosition().x > 37.5)
                     state = NEXT_LEVEL;
                 break;
             case RETURN:
@@ -181,6 +207,9 @@ public class Level3Screen extends GameScreen {
         }
     }
 
+    /**
+     * A method that creates all the hazards within the level
+     */
     public void createHazards(){
         //create all hazards
         hazards = new Array<HazardSprite>();
@@ -191,10 +220,13 @@ public class Level3Screen extends GameScreen {
         //Adds all fire hazards
         hazards.add(new HazardSprite(this, 500, 200, 2));
         hazards.add(new HazardSprite(this, 1597, 200, 2));
+        hazards.add(new HazardSprite(this, 1700, 200, 2));
+
         //Adds  lightning hazards
-        hazards.add(new HazardSprite(this, 2147, 200, 3));
-        hazards.add(new HazardSprite(this, 2469, 150, 3));
+        hazards.add(new HazardSprite(this, 2147, 100, 2));
+        hazards.add(new HazardSprite(this, 2469, 100, 1));
         hazards.add(new HazardSprite(this, 3450, 200, 3));
+
         hazards.add(new HazardSprite(this, 780, 200, 5));
         hazards.add(new HazardSprite(this, 1920, 270, 7));
         hazards.add(new HazardSprite(this, 3000, 400, 1));
@@ -203,8 +235,10 @@ public class Level3Screen extends GameScreen {
         hazards.add(new HazardSprite(this, 1800, 200, 5));
         hazards.add(new HazardSprite(this, 2780, 200, 5));
         //Adds all needle hazards
-        hazards.add(new HazardSprite(this, 1400, 360, 6));
+        hazards.add(new HazardSprite(this, 1500, 360, 6));
         hazards.add(new HazardSprite(this, 2300, 150, 6));
+        hazards.add(new HazardSprite(this, 300, 400, 6));
+
         //Adds all skull hazards
         hazards.add(new HazardSprite(this, 880, 200, 7));
         hazards.add(new HazardSprite(this, 1967, 200, 7));
@@ -235,15 +269,20 @@ public class Level3Screen extends GameScreen {
         map.dispose();
         renderer.dispose();
         world.dispose();
-        b2dr.dispose();
         tiledMapRenderer.dispose();
         pause.dispose();
         hud.dispose();
         atlas.dispose();
         game.batch.dispose();
         game.dispose();
+        hazards.clear();
     }
 
+    /**
+     * Returns the level's tilemap
+     *
+     * @return the tilemap to be returned.
+     */
     public TiledMap getMap(){
         return map;
     }
