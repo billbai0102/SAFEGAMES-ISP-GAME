@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.SplashScreenLogo;
 
 import java.io.BufferedReader;
@@ -71,7 +72,7 @@ public class IntroAnimation implements Screen {
         logo.draw(batch);
         batch.end();
 
-        game.setScreen(new MainMenu(game));
+        game.setScreen(new MainMenu(new Safety4Kids()));
 
         /*if (logo.getX() < Gdx.graphics.getWidth() / 2 - 200) {
             logo.moveRight(Gdx.graphics.getDeltaTime());

@@ -164,14 +164,13 @@ public class Level3Screen extends GameScreen {
         //Adds all fire hazards
         hazards.add(new HazardSprite(this, 500, 200, 2));
         hazards.add(new HazardSprite(this, 1597, 200, 2));
-        //Adds lightning poison hazards
+        //Adds  lightning hazards
         hazards.add(new HazardSprite(this, 2147, 200, 3));
-        hazards.add(new HazardSprite(this, 2449, 150, 3));
-        hazards.add(new HazardSprite(this, 3430, 200, 3));
-        //Adds all poison hazards
-        hazards.add(new HazardSprite(this, 780, 200, 4));
-        hazards.add(new HazardSprite(this, 1900, 270, 4));
-        hazards.add(new HazardSprite(this, 3000, 400, 4));
+        hazards.add(new HazardSprite(this, 2469, 150, 3));
+        hazards.add(new HazardSprite(this, 3450, 200, 3));
+        hazards.add(new HazardSprite(this, 780, 200, 5));
+        hazards.add(new HazardSprite(this, 1920, 270, 7));
+        hazards.add(new HazardSprite(this, 3000, 400, 1));
         //Adds all knife hazards
         hazards.add(new HazardSprite(this, 930, 200, 5));
         hazards.add(new HazardSprite(this, 1800, 200, 5));

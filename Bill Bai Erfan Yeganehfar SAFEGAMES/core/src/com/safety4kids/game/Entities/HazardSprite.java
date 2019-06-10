@@ -73,13 +73,13 @@ public class HazardSprite extends Hazard {
             case 3:
                 frames = new Array<TextureRegion>();
                 for (int i = 0; i < 7; i++)
-                    frames.add(new TextureRegion(screen.getAtlas().findRegion("PoisonSprite"), 9 + (i * 32), 9, 9, 24));
+                    frames.add(new TextureRegion(screen.getAtlas().findRegion("PoisonSprite"), 9 + (i * 32), 3, 9, 5));
                 move = new Animation(0.07f, frames);
                 setBounds(x / Safety4Kids.PPM, y / Safety4Kids.PPM, 9 / Safety4Kids.PPM, 24 / Safety4Kids.PPM);
                 break;
             case 4:
                 frames = new Array<TextureRegion>();
-                for (int i = 0; i < 7; i++)
+                for (int i = 0; i < 4; i++)
                     frames.add(new TextureRegion(screen.getAtlas().findRegion("SAFEGAMES Lightning Sprite"), 5 + (i * 32), 17, 19, 15));
                 move = new Animation(0.07f, frames);
                 setBounds(x / Safety4Kids.PPM, y / Safety4Kids.PPM, 19 / Safety4Kids.PPM, 15 / Safety4Kids.PPM);
