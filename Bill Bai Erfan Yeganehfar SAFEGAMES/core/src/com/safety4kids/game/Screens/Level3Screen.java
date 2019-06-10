@@ -91,7 +91,7 @@ public class Level3Screen extends GameScreen {
         creator = new Box2DCollisionCreator(this);
 
         //The player is created inside of the Box2D world
-        player = new MainPlayer(this, 240, 200);
+        player = new MainPlayer(this, 300, 200);
 
 
         //Processes input for the player
@@ -209,6 +209,7 @@ public class Level3Screen extends GameScreen {
 
     /**
      * A method that creates all the hazards within the level
+     * Based on the x, y, and type values, different hazards will be created to be drawn to the screen
      */
     public void createHazards(){
         //create all hazards
@@ -237,7 +238,7 @@ public class Level3Screen extends GameScreen {
         //Adds all needle hazards
         hazards.add(new HazardSprite(this, 1500, 360, 6));
         hazards.add(new HazardSprite(this, 2300, 150, 6));
-        hazards.add(new HazardSprite(this, 300, 400, 6));
+        hazards.add(new HazardSprite(this, 400, 400, 6));
 
         //Adds all skull hazards
         hazards.add(new HazardSprite(this, 880, 200, 7));
