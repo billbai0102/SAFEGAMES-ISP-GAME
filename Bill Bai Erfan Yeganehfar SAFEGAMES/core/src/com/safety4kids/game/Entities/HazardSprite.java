@@ -66,6 +66,25 @@ public class HazardSprite extends Hazard {
                 setBounds(x - 20 / Safety4Kids.PPM, y / Safety4Kids.PPM, 14 / Safety4Kids.PPM, 17 / Safety4Kids.PPM);
                 break;
             case 6:
+                frames = new Array<TextureRegion>();
+                for (int i = 0; i < 5; i++)
+                    frames.add(new TextureRegion(screen.getAtlas().findRegion("NeedleSprite"), 15 + (i * 32), 5, 5, 23));
+                move = new Animation(0.07f, frames);
+                setBounds(x - 20 / Safety4Kids.PPM, y / Safety4Kids.PPM, 5 / Safety4Kids.PPM, 23 / Safety4Kids.PPM);
+                break;
+            case 7:
+                frames = new Array<TextureRegion>();
+                for (int i = 0; i < 6; i++)
+                    frames.add(new TextureRegion(screen.getAtlas().findRegion("SkullSprite"), 8 + (i * 32), 7, 14, 18));
+                move = new Animation(0.07f, frames);
+                setBounds(x - 20 / Safety4Kids.PPM, y / Safety4Kids.PPM, 13 / Safety4Kids.PPM, 17 / Safety4Kids.PPM);
+                break;
+            case 8:
+                frames = new Array<TextureRegion>();
+                for (int i = 0; i < 12; i++)
+                    frames.add(new TextureRegion(screen.getAtlas().findRegion("PowerOutletSprite"), 8 + (i * 32), 2, 17, 27));
+                move = new Animation(0.07f, frames);
+                setBounds(x - 20 / Safety4Kids.PPM, y / Safety4Kids.PPM, 20 / Safety4Kids.PPM, 27 / Safety4Kids.PPM);
                 break;
 
         }
