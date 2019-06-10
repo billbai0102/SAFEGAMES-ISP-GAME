@@ -25,34 +25,61 @@ import com.safety4kids.game.Safety4Kids;
  * ICS4U with V. Krasteva
  *
  * @author Bill Bai, Erfan Yeganehfar
- * @version 1.2 06/09/19
+ * @version 3.4 06/09/19
  */
 public class Level3WinScreen implements Screen {
 
+    /**
+     * SpriteBatch to be drawn onto.
+     */
     private SpriteBatch batch;
+    /**
+     * Game to be drawn onto.
+     */
     private Safety4Kids game;
+    /**
+     * Background of level.
+     */
     private Texture bg;
+    /**
+     * Sprite to convert bg Texture to sprite, therefore it can be altered.
+     */
     private Sprite bgSprite;
-
-    private float alpha = 1;
-
-    private Skin skin;
-    private Stage stage;
+    /**
+     * Button to allow user to continue
+     */
     private TextButton contBtn;
+    /**
+     * Stage that button will be drawn onto
+     */
+    private Stage stage;
+    /**
+     * Skin for buttons
+     */
+    private Skin skin;
+    /**
+     * Starting alpha value of bgSprite
+     */
+    private float alpha = 1;
 
     public Level3WinScreen(Safety4Kids game) {
         this.game = game;
         batch = new SpriteBatch();
+
         bg = new Texture(Gdx.files.internal("Lv3Assets/Lv3Win.png"));
         bgSprite = new Sprite(bg);
         bgSprite.setAlpha(alpha);
         bgSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
         skin = new Skin(Gdx.files.internal("skin/vhs/skin/vhs-ui.json"));
         stage = new Stage();
+
         Gdx.input.setInputProcessor(stage);
+
         contBtn = new TextButton(">Press to continue...<", skin);
         contBtn.setColor(Color.BLACK);
         contBtn.setPosition(Gdx.graphics.getWidth() / 2 - contBtn.getWidth() / 2, contBtn.getHeight() + 10);
+
         //Adds listener to contBtn
         contBtn.addListener(new InputListener() {
             @Override
