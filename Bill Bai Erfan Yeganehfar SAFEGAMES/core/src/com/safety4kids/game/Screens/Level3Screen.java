@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.utils.Array;
+import com.safety4kids.game.Entities.HazardSprite;
 import com.safety4kids.game.Entities.MainPlayer;
 import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.Safety4Kids;
@@ -69,6 +71,11 @@ public class Level3Screen extends GameScreen {
 
             world.step(STEP, 6, 2);
             player.update(dt);
+            for(HazardSprite hazard : creator.getEnemies()) {
+                hazard.update(dt);
+                /*if(hazard.getX() < player.getX() + 224 / Safety4Kids.PPM)
+                    hazard.b2body.setActive(true);*/
+            }
 
             hud.update(dt);
             if (player.b2body.getPosition().x > 2.5 && player.b2body.getPosition().x < 35)
@@ -119,6 +126,8 @@ public class Level3Screen extends GameScreen {
                 game.batch.setProjectionMatrix(gameCam.combined);
                 game.batch.begin();
                 player.draw(game.batch);
+                for (HazardSprite enemy : creator.getEnemies())
+                    enemy.draw(game.batch);
                 game.batch.end();
 
                 //Box2D Debug renderer

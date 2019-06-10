@@ -27,14 +27,14 @@ public class HazardSprite extends Hazard {
         this.x = x;
         this.y = y;
         this.screen = screen;
-        System.out.println("b" + type);
+
         switch (type) {
             case 1:
             default:
                 frames = new Array<TextureRegion>();
                 for (int i = 0; i < 6; i++)
                     frames.add(new TextureRegion(screen.getAtlas().findRegion("Safety4Kids Stranger Sprite"), 10 + (i * 32), 4, 14, 24));
-                move = new Animation(1f, frames);
+                move = new Animation(0.8f, frames);
                 setBounds(x / Safety4Kids.PPM, y / Safety4Kids.PPM, 17 / Safety4Kids.PPM, 30 / Safety4Kids.PPM);
                 break;
             case 2:
@@ -49,42 +49,42 @@ public class HazardSprite extends Hazard {
                 for (int i = 0; i < 7; i++)
                     frames.add(new TextureRegion(screen.getAtlas().findRegion("PoisonSprite"), 9 + (i * 32), 3, 9, 24));
                 move = new Animation(0.07f, frames);
-                setBounds(x - 20 / Safety4Kids.PPM, y / Safety4Kids.PPM, 9 / Safety4Kids.PPM, 24 / Safety4Kids.PPM);
+                setBounds(x / Safety4Kids.PPM, y / Safety4Kids.PPM, 9 / Safety4Kids.PPM, 24 / Safety4Kids.PPM);
                 break;
             case 4:
                 frames = new Array<TextureRegion>();
                 for (int i = 0; i < 7; i++)
                     frames.add(new TextureRegion(screen.getAtlas().findRegion("SAFEGAMES Lightning Sprite"), 5 + (i * 32), 17, 19, 15));
                 move = new Animation(0.07f, frames);
-                setBounds(x - 20 / Safety4Kids.PPM, y / Safety4Kids.PPM, 19 / Safety4Kids.PPM, 15 / Safety4Kids.PPM);
+                setBounds(x / Safety4Kids.PPM, y / Safety4Kids.PPM, 19 / Safety4Kids.PPM, 15 / Safety4Kids.PPM);
                 break;
             case 5:
                 frames = new Array<TextureRegion>();
                 for (int i = 0; i < 15; i++)
                     frames.add(new TextureRegion(screen.getAtlas().findRegion("KnifeSprite"), 11 + (i * 32), 8, 14, 17));
                 move = new Animation(0.07f, frames);
-                setBounds(x - 20 / Safety4Kids.PPM, y / Safety4Kids.PPM, 14 / Safety4Kids.PPM, 17 / Safety4Kids.PPM);
+                setBounds(x / Safety4Kids.PPM, y / Safety4Kids.PPM, 14 / Safety4Kids.PPM, 17 / Safety4Kids.PPM);
                 break;
             case 6:
                 frames = new Array<TextureRegion>();
                 for (int i = 0; i < 5; i++)
                     frames.add(new TextureRegion(screen.getAtlas().findRegion("NeedleSprite"), 15 + (i * 32), 5, 5, 23));
-                move = new Animation(0.07f, frames);
-                setBounds(x - 20 / Safety4Kids.PPM, y / Safety4Kids.PPM, 5 / Safety4Kids.PPM, 23 / Safety4Kids.PPM);
+                move = new Animation(0.1f, frames);
+                setBounds(x / Safety4Kids.PPM, y / Safety4Kids.PPM, 5 / Safety4Kids.PPM, 23 / Safety4Kids.PPM);
                 break;
             case 7:
                 frames = new Array<TextureRegion>();
                 for (int i = 0; i < 6; i++)
                     frames.add(new TextureRegion(screen.getAtlas().findRegion("SkullSprite"), 8 + (i * 32), 7, 14, 18));
-                move = new Animation(0.07f, frames);
-                setBounds(x - 20 / Safety4Kids.PPM, y / Safety4Kids.PPM, 13 / Safety4Kids.PPM, 17 / Safety4Kids.PPM);
+                move = new Animation(0.1f, frames);
+                setBounds(x / Safety4Kids.PPM, y / Safety4Kids.PPM, 13 / Safety4Kids.PPM, 17 / Safety4Kids.PPM);
                 break;
             case 8:
                 frames = new Array<TextureRegion>();
                 for (int i = 0; i < 12; i++)
                     frames.add(new TextureRegion(screen.getAtlas().findRegion("PowerOutletSprite"), 8 + (i * 32), 2, 17, 27));
                 move = new Animation(0.07f, frames);
-                setBounds(x - 20 / Safety4Kids.PPM, y / Safety4Kids.PPM, 20 / Safety4Kids.PPM, 27 / Safety4Kids.PPM);
+                setBounds(x / Safety4Kids.PPM, y / Safety4Kids.PPM, 20 / Safety4Kids.PPM, 27 / Safety4Kids.PPM);
                 break;
 
         }
@@ -116,7 +116,7 @@ public class HazardSprite extends Hazard {
         FixtureDef fdef = new FixtureDef();
         //The type of shape is assigned and defined
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(11f / Safety4Kids.PPM, 9f / Safety4Kids.PPM);
+        shape.setAsBox(11f / Safety4Kids.PPM, 10f / Safety4Kids.PPM);
 
         //Sets the filtering bits of the body as the Player bit category
         fdef.filter.categoryBits = B2DConstants.BIT_HAZARD;
