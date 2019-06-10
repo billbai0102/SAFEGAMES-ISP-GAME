@@ -49,7 +49,7 @@ public class GameContactListener implements ContactListener {
 
         if ((fixA.getFilterData().categoryBits != 32 && fixB.getFilterData().categoryBits != 32)) {
             if ((fixA.getFilterData().categoryBits == 2 && fixB.getFilterData().categoryBits == 2)) {
-                screen.state = GameScreen.GameState.RETURN;
+                screen.state = GameScreen.GameState.LOSE;
             }
         }
 
