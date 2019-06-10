@@ -15,21 +15,54 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.safety4kids.game.Safety4Kids;
 
 
-//created june 6 2hrs
+/**
+ * This class is the introductory screen for level 2.
+ * <br>
+ *
+ * <h2>Course info:</h2>
+ * ICS4U with V. Krasteva
+ *
+ * @author Bill Bai, Erfan Yeganehfar
+ * @version 3.5 06/07/19
+ */
 public class Level2IntroScreen implements Screen {
 
+    /**
+     * SpriteBatch to be drawn onto.
+     */
     private SpriteBatch batch;
+    /**
+     * Game to be drawn onto.
+     */
     private Safety4Kids game;
+    /**
+     * Background of level.
+     */
     private Texture bg;
+    /**
+     * Sprite to convert bg Texture to sprite, therefore it can be altered.
+     */
     private Sprite bgSprite;
-
-    private float alpha = 0;
-    private boolean fadeIn = true;
-    private boolean fadeOut = false;
-
-    private Skin skin;
-    private Stage stage;
+    /**
+     * Button to allow user to continue
+     */
     private TextButton contBtn;
+    /**
+     * Stage that button will be drawn onto
+     */
+    private Stage stage;
+    /**
+     * Skin for buttons
+     */
+    private Skin skin;
+    /**
+     * Starting alpha value of bgSprite
+     */
+    private float alpha = 0;
+    /**
+     * boolean value to dictate whether the sprite should fade in or not.
+     */
+    private boolean fadeIn = true;
 
     public Level2IntroScreen(Safety4Kids game) {
         this.game = game;
