@@ -16,7 +16,6 @@ public abstract class Hazard extends Sprite {
     protected Screen screen;
 
     public Body b2body;
-    public Vector2 velocity;
 
 
     public Hazard (GameScreen screen, float x, float y){
@@ -24,18 +23,10 @@ public abstract class Hazard extends Sprite {
         this.screen = screen;
         setPosition(x,y);
         createHazard();
-        velocity = new Vector2(-1, -2);
     }
 
     protected abstract void createHazard();
     public abstract void update(float dt);
-
-    public void reverseVelocity(boolean x, boolean y){
-        if(x)
-            velocity.x = -velocity.x;
-        if(y)
-            velocity.y = -velocity.y;
-    }
 
     @Override
     public void draw(Batch batch) {
