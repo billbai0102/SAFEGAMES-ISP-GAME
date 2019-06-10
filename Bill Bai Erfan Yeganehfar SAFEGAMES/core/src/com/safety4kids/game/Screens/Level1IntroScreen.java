@@ -83,7 +83,6 @@ public class Level1IntroScreen implements Screen {
         contBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Continue...");
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level1Screen(Level1IntroScreen.this.game));
                 dispose();
             }
@@ -114,7 +113,6 @@ public class Level1IntroScreen implements Screen {
             //Stops fading in when alpha is 1 (max)
             if (alpha >= 1) {
                 fadeIn = false;
-                System.out.println("done");
             }
         }
         //Sets alpha value of bgSprite to alpha

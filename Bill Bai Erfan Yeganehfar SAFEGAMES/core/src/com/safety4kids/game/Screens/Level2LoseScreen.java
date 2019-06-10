@@ -125,7 +125,6 @@ public class Level2LoseScreen implements Screen {
         menuBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Back to menu");
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(Level2LoseScreen.this.game));
                 dispose();
             }
@@ -140,7 +139,6 @@ public class Level2LoseScreen implements Screen {
         nextLvl.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Go to lv3");
                 dispose();
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3IntroScreen(Level2LoseScreen.this.game));
             }
@@ -155,7 +153,6 @@ public class Level2LoseScreen implements Screen {
         restartLvl.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Restart lv 2");
                 dispose();
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level2Screen(Level2LoseScreen.this.game));
             }

@@ -86,7 +86,6 @@ public class Level2WinScreen implements Screen {
         contBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Continue...");
                 dispose();
                 Gdx.gl.glClearColor(255, 255, 255, 1);
                 Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -125,7 +124,7 @@ public class Level2WinScreen implements Screen {
         batch.dispose();
         bg.dispose();
         skin.dispose();
-        stage.draw();
+        stage.dispose();
         game.dispose();
     }
 

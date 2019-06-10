@@ -87,7 +87,6 @@ public class Instructions implements Screen {
         contBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Back");
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(Instructions.this.game));
                 dispose();
             }
@@ -119,7 +118,6 @@ public class Instructions implements Screen {
             //Stops fading in when alpha is 1 (max)
             if (alpha >= 1) {
                 fadeIn = false;
-                System.out.println("done");
             }
         }
         //Sets alpha value of bgSprite to alpha

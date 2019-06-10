@@ -58,8 +58,6 @@ public class MainMenu implements Screen {
         startBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Starting level 1...");
-
                 ((Game)Gdx.app.getApplicationListener()).setScreen(new Level1IntroScreen(new Safety4Kids()));
                 dispose();
             }
@@ -77,7 +75,6 @@ public class MainMenu implements Screen {
         exitBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Lights out!");
                 Gdx.app.exit();
             }
 
@@ -94,8 +91,6 @@ public class MainMenu implements Screen {
         instructionsBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Starting level 2...");
-
                 ((Game)Gdx.app.getApplicationListener()).setScreen(new Instructions(new Safety4Kids()));
                 dispose();
             }

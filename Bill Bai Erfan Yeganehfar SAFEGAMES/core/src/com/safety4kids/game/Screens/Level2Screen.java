@@ -203,7 +203,6 @@ public class Level2Screen extends GameScreen implements Screen {
         exitButton.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Go to menu");
                 curQuestionIndex--;
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(Level2Screen.this.game));
                 dispose();
@@ -513,7 +512,6 @@ public class Level2Screen extends GameScreen implements Screen {
         }
         //Sets state to LOSE if lives is 0
         if (lives == 0) {
-            System.out.println("You've lost!");
             state = LOSE;
         }
 
@@ -523,7 +521,6 @@ public class Level2Screen extends GameScreen implements Screen {
      * This method is called when the user gets the correct answer. It adds a life and draws CORRECT onto the screen
      */
     private void win() {
-        System.out.println("correct answer");
         if (lives < 4) {
             lives++;
             warningLocation -= (500f / 4f);
