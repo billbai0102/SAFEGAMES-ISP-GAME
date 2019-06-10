@@ -39,7 +39,6 @@ public class Hud implements Disposable {
     private Label timeLabel;
     private Label levelLabel;
     private Label worlLabel;
-    private Label  playerLabel;
 
     /**
      * The constructor for the Hud initializes the Label values and constructs the viewport. Using Scene2D API such as Table,
@@ -73,11 +72,9 @@ public class Hud implements Disposable {
         timeLabel= new Label("TIME", new Label.LabelStyle(font, Color.WHITE));
         levelLabel= new Label(level+"", new Label.LabelStyle(font, Color.WHITE));
         worlLabel= new Label( "LEVEL", new Label.LabelStyle(font, Color.WHITE));
-        playerLabel= new Label("SCORE", new Label.LabelStyle(font, Color.WHITE));
         //adds Labels to the table, while equally dividing them
 
         if (showStats){
-            table.add(playerLabel).expandX().padTop(10);
             table.add(worlLabel).expandX().padTop(10);
             table.add(timeLabel).expandX().padTop(10);
             table.row();

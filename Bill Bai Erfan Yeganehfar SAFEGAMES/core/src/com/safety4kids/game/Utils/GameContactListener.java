@@ -45,12 +45,14 @@ public class GameContactListener implements ContactListener {
         Fixture fixB = contact.getFixtureA();
 
        System.out.println(fixB.getFilterData());
-        System.out.println(fixA.getUserData());
+        System.out.println(fixA.getFilterData());
 
        if ((fixA.getFilterData().categoryBits == 2 && fixB.getFilterData().categoryBits == 2)){
            System.out.println("bruh bruh");
 
        }
+
+
 
 
     }
