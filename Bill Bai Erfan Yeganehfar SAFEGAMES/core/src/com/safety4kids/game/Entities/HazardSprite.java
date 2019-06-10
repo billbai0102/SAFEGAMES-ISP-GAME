@@ -61,7 +61,8 @@ public class HazardSprite extends Hazard {
             case 5:
                 frames = new Array<TextureRegion>();
                 for(int i = 0; i < 15; i++)
-                    frames.add(new TextureRegion(screen.getAtlas().findRegion("KnifeSprite.png"), 11 + (i*32), 8, 14 ,17));
+                    frames.add(new TextureRegion(screen.getAtlas().findRegion("KnifeSprite"), 11 + (i*32), 8, 14 ,17));
+                  setBounds(x - 20/ Safety4Kids.PPM, y / Safety4Kids.PPM, 14 / Safety4Kids.PPM, 17 / Safety4Kids.PPM);
                 break;
             case 6:
                 break;
