@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -60,7 +59,7 @@ public class Pause implements Disposable {
 
     /**
      * The constructor for the Hud initializes the Label values and constructs the viewport. Using Scene2D API such as Table,
-     * the labels can be set properly with their sprites on the game screen.
+     * the labels can be set properly with their sprites  on the game screen.
      * @param sb the sprite batch passed into the hud for graphics
      */
     public Pause(SpriteBatch sb, final GameScreen game) {
