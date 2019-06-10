@@ -45,8 +45,7 @@ public class Instructions implements Screen {
 
         //instructions btn
         backBtn = new TextButton("BACK", skin);
-        backBtn.setSize(100, 100);
-        backBtn.setPosition(Gdx.graphics.getWidth() / 2 - 10, 30);
+        backBtn.setPosition(Gdx.graphics.getWidth() / 2 - backBtn.getWidth()/2, 30);
         backBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
