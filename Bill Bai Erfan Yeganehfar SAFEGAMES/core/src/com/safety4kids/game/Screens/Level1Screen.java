@@ -13,13 +13,12 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.safety4kids.game.Entities.MainPlayer;
-import com.safety4kids.game.Entities.HazardSprite;
 import com.safety4kids.game.OverLays.Hud;
 import com.safety4kids.game.Safety4Kids;
 import com.safety4kids.game.Utils.Box2DCollisionCreator;
+import com.safety4kids.game.Utils.CustomMapRenderer;
 import com.safety4kids.game.Utils.GameContactListener;
 import com.safety4kids.game.Utils.InputHandler;
-import com.safety4kids.game.Utils.CustomMapRenderer;
 
 import static com.safety4kids.game.Safety4Kids.PPM;
 import static com.safety4kids.game.Safety4Kids.STEP;
@@ -56,7 +55,6 @@ public class Level1Screen extends GameScreen {
     private CustomMapRenderer tiledMapRenderer;
 
     private InputHandler input;
-    private HazardSprite hazard;
 
     //Instance of the main character
     public MainPlayer player;
@@ -95,7 +93,6 @@ public class Level1Screen extends GameScreen {
 
         //The player is created inside of the Box2D world
         player = new MainPlayer(this, 350, 200);
-        hazard = new HazardSprite(this, 450, 150, 3);
 
         //Processes input for the player
         input = new InputHandler(player);
@@ -131,7 +128,6 @@ public class Level1Screen extends GameScreen {
             world.step(STEP, 6, 2);
 
             player.update(dt);
-            hazard.update(dt);
 
             hud.update(dt);
             //Sets the min and max bounds if the camera following the player
@@ -183,7 +179,6 @@ public class Level1Screen extends GameScreen {
 
                 game.batch.begin();
                 player.draw(game.batch);
-                hazard.draw(game.batch);
                 game.batch.end();
 
                 //Box2D Debug renderer

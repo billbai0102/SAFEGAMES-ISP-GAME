@@ -1,6 +1,5 @@
 package com.safety4kids.game.Screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -12,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.safety4kids.game.Safety4Kids;
 
 
 /**
@@ -32,10 +32,10 @@ public class Instructions implements Screen {
     TextButton backBtn;
 
     Stage stage;
-    Game game;
+    Safety4Kids game;
 
-    public Instructions(Game aGame) {
-        game = aGame;
+    public Instructions(Safety4Kids game) {
+        this.game = game;
         stage = new Stage(new ScreenViewport());
         batch = new SpriteBatch();
 
@@ -50,7 +50,8 @@ public class Instructions implements Screen {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Instructions --> Main Menu");
-                game.setScreen(new MainMenu(game));
+                Instructions.this.game.setScreen(new MainMenu(Instructions.this.game));
+                dispose();
             }
 
             @Override
