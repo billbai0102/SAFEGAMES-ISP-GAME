@@ -148,11 +148,14 @@ public class Level3Screen extends GameScreen {
                     state = NEXT_LEVEL;
                 break;
             case RETURN:
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3LoseScreen(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));
                 dispose();
                 break;
             case NEXT_LEVEL:
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3WinScreen(game));
+                dispose();
+            case LOSE:
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level3LoseScreen(game));
                 dispose();
             default:
                 break;
@@ -218,7 +221,7 @@ public class Level3Screen extends GameScreen {
         atlas.dispose();
         batch.dispose();
         game.dispose();
-
+        hazards.clear();
     }
 
     public TiledMap getMap(){

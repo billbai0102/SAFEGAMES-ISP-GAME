@@ -188,9 +188,6 @@ hazard = new HazardSprite(this, 400, 200, 3);
                 hazard.draw(game.batch);
                 game.batch.end();
 
-                //Box2D Debug renderer
-                b2dr.render(world, gameCam.combined);
-
                 //draw the hud
                 hud.stage.draw();
 
